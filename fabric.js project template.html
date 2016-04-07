@@ -1,9 +1,11 @@
 <!-- template for Project 1 - CS 422 - Spring 2016 - Andrew Johnson -->
 
-<!DOCTYPE html>    
+<!DOCTYPE html>  
+<html>
 <head>
     <meta charset="utf-8">
     <title>fabric.js project template</title>
+    <script src="enrique.js"></script>
 	
     <style>
 code {
@@ -129,6 +131,7 @@ footer {
     </section>
 </body>
  
+
 <script>
 
 // the aspect ratios given here are not quite tall enough for a 36" x 80" door
@@ -166,6 +169,7 @@ var Units_format = 'Imperial';
 
 var HomeIsActive = false;
 var Current_user = null; 
+var RestartIsActive = false;
 //*******************************************************************************************
 
 //************************************ Users Profiles ***************************************
@@ -580,8 +584,9 @@ canvas.on('object:selected', function(e)
 
    else if(activeObject.id == 'UnlockDeadbolt')
        LockDeadbolt();
-
-
+    else if(activeObject.id == 'restart')
+       RestartSystem();
+   
   });
 
 
@@ -795,6 +800,7 @@ function LockDeadbolt()
   }
 
  }
+
 //------------------ Radio buttons Events Functions -------------------------
 function User1FromInside()
 {
