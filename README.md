@@ -1,7 +1,6 @@
 # CS422 Final Project
 
 **Install**
-Run:
 ```
 git clone https://github.com/cbeltran5/cs422_final.git
 ```
