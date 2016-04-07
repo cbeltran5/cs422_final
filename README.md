@@ -4,7 +4,6 @@
 Run:
 ```
 git clone https://github.com/cbeltran5/cs422_final.git
-
 ```
 
 **After you've made some changes, check to see what you've done.**
