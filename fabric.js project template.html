@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <title>fabric.js project template</title>
     
-	
     <style>
 code {
   background: #1D5F9A;
@@ -76,11 +75,11 @@ footer {
       </section>
 
       <section>
-      <code><form>
+      <code><form name="Heights">
       Heights:<br>
-      <input type="radio" class="radio1" name="Heights" onchange="TallHeight()" value="Tall"> Tall<br>
-      <input type="radio" class="radio1" name="Heights" onchange="MediumHeight()" value="Medium"> Medium<br>
-      <input type="radio" class="radio1" name="Heights" onchange="ShortHeight()" value="Short"> Short<br>
+      <input type="radio" class="radio1" name="Heights" onchange="AdjustHeight()" value="Tall"> Tall<br>
+      <input type="radio" class="radio1" name="Heights" onchange="AdjustHeight()" value="Medium"> Medium<br>
+      <input type="radio" class="radio1" name="Heights" onchange="AdjustHeight()" value="Short"> Short<br>
       </form></code> 
       </section>
 
@@ -107,7 +106,7 @@ footer {
 
 
       <section>
-      <code><form>
+      <code><form name="UsersOutside">
       Users:<br>
       <input type="radio" class="radio1" name="UsersOut" onchange="User1FromOutside()" value="Adam"> Adam<br>
       <input type="radio" class="radio1" name="UsersOut" onchange="NewUserFromOutside()" value="NewUser"> New User<br>
@@ -117,7 +116,7 @@ footer {
       </section>
 
       <section>
-      <code><form>
+      <code><form name="Verification">
       Verification:<br>
       <input type="radio" class="radio1" name="Verification" onchange="FaceRecognized()" value="Face"> Face<br>
       <input type="radio" class="radio1" name="Verification" onchange="FingerRecognized()" value="FingerPrint"> FingerPrint<br>
@@ -168,7 +167,10 @@ var Time_format = 1;
 var Units_format = 'Imperial';
 
 var HomeIsActive = false;
-var Current_user = null; 
+var Current_user = null;
+var UserFingerIsRecognizable = false;
+var Height = 0;
+var ImgHeight = Height*2.22222222;  
 var RestartIsActive = false;
 
 //*******************************************************************************************
@@ -308,6 +310,14 @@ Line.selectable = false;
 
 //******************************* Adding In/out Door knobs  ******************************************
 
+fabric.Image.fromURL('images/knob.png', function(oImg) {
+  oImg.set({left: 1480, top: 1030, id: this.id});
+  oImg.id = 'knob';
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  canvas.add(oImg);
+});
+
 fabric.Image.fromURL('images/lockknob.png', function(oImg) {
   oImg.set({left: 1120, top: 1030, id: this.id});
   oImg.id = 'LockKnobIn';
@@ -317,8 +327,8 @@ fabric.Image.fromURL('images/lockknob.png', function(oImg) {
   canvas.add(oImg);
 });
 
-fabric.Image.fromURL('images/unlockknob.png', function(oImg) {
-  oImg.set({left: 1120, top: 1030, id: this.id});
+fabric.Image.fromURL('images/unlockknob2.png', function(oImg) {
+  oImg.set({left: 1110, top: 1020, id: this.id});
   oImg.id = 'UnlockKnobIn';
   oImg.hasControls = oImg.hasBorders = false;
   oImg.visible = false;
@@ -326,10 +336,20 @@ fabric.Image.fromURL('images/unlockknob.png', function(oImg) {
   canvas.add(oImg);
 });
 
-fabric.Image.fromURL('images/knob.png', function(oImg) {
+fabric.Image.fromURL('images/lockknob.png', function(oImg) {
   oImg.set({left: 1480, top: 1030, id: this.id});
-  oImg.id = 'knob';
+  oImg.id = 'LockKnobOut';
   oImg.hasControls = oImg.hasBorders = false;
+  oImg.visible = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  canvas.add(oImg);
+});
+
+fabric.Image.fromURL('images/unlockknob2.png', function(oImg) {
+  oImg.set({left: 1470, top: 1020, id: this.id});
+  oImg.id = 'UnlockKnobOut';
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.visible = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   canvas.add(oImg);
 });
@@ -360,6 +380,72 @@ Deadbolttext.selectable = false;
 
 
 //*********************** Components called by functions *************************************
+//To Do/Calender 
+
+ fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
+  oImg.set({left: 220, top: 730 + ImgHeight, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'user1calender';
+  canvas.add(oImg);
+});
+
+ fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
+  oImg.set({left: 220, top: 730 + ImgHeight, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'user2calender';
+  canvas.add(oImg);
+});
+
+ fabric.Image.fromURL('images/user1todo.gif', function(oImg) {
+  oImg.set({left: 660, top: 730 + ImgHeight, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'user1todo';
+  canvas.add(oImg);
+});
+
+ fabric.Image.fromURL('images/user2todo.gif', function(oImg) {
+  oImg.set({left: 660, top: 730 + ImgHeight, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'user2todo';
+  canvas.add(oImg);
+});
+
+
+ fabric.Image.fromURL('images/UsersList.gif', function(oImg) {
+  oImg.set({left: 440, top: 730 + ImgHeight, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'userslist';
+  canvas.add(oImg);
+});
+
+ fabric.Image.fromURL('images/user1name.gif', function(oImg) {
+  oImg.set({left: 440, top: 830 + ImgHeight, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'user1name';
+  canvas.add(oImg);
+});
+
+ fabric.Image.fromURL('images/user2name.gif', function(oImg) {
+  oImg.set({left: 440, top: 911 + ImgHeight, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'user2name';
+  canvas.add(oImg);
+});
+
 
 //Main panel components
 var PanelRect = new fabric.Rect({
@@ -646,7 +732,32 @@ fabric.Image.fromURL('images/restart.png', function(oImg) {
     });
 });  
   
+fabric.Image.fromURL('images/doorbell.gif', function(oImg) {
+  oImg.set({left: 1485, top: 680, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'doorbell';
+  canvas.add(oImg);
+});
 
+fabric.Image.fromURL('images/writemsg.gif', function(oImg) {
+  oImg.set({left: 1470, top: 790, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'writemsg';
+  canvas.add(oImg);
+});
+
+fabric.Image.fromURL('images/np.gif', function(oImg) {
+  oImg.set({left: 1480, top: 860, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'np';
+  canvas.add(oImg);
+});
 //********************************************************************************************
 
 // add all of the elements to the canvas
@@ -679,7 +790,7 @@ canvas.on('object:selected', function(e)
   { 
     var activeObject = e.target; 
 
-    console.log(e.target);
+    //console.log(e.target);
     if(activeObject.id == 'home')
     {
       HomeSelected();
@@ -692,11 +803,14 @@ canvas.on('object:selected', function(e)
    else if(activeObject.id == 'UnlockKnobIn')
       LockDoorIn();
 
-   //else if(activeObject.id == 'LockKnobOut')
-      //UnlockDoorOut();
+   else if(activeObject.id == 'LockKnobOut') 
+   {
+      if(UserFingerIsRecognizable == true)
+      UnlockDoorOut();
+   }
 
-   //else if(activeObject.id == 'UnlockKnobOut')
-      //LockDoorOut();
+   else if(activeObject.id == 'UnlockKnobOut')
+      LockDoorOut();
 
    else if(activeObject.id == 'LockDeadbolt')
        UnlockDeadbolt();
@@ -712,6 +826,12 @@ canvas.on('object:selected', function(e)
   
   else if(activeObject.id == 'alarm')
         AlarmOn();
+
+  else if(activeObject.id == 'user1name')
+       {HideUsersList(); User1FromInside();}
+
+   else if(activeObject.id == 'user2name')
+       {HideUsersList(); User2FromInside();}
   
   if(activeObject.id == 'mirror')
     {
@@ -824,7 +944,9 @@ function HomeSelected()
 
 function ShowHome()
 {
-  //console.log(HomeIsActive);
+  HideUser1FromInside();
+  HideUser2FromInside();
+  HideUsersList();
   HomeIsActive = true; 
   PanelRect.visible = true;
 
@@ -875,7 +997,6 @@ function HideHome()
     }
     
   }
-  
 
 Messagestext.visible = false;
 Cameratext.visible = false;
@@ -905,6 +1026,26 @@ Settingstext.visible = false;
   }
 
  }
+ //-------------------------------------------------------------
+function UnlockDoorOut()
+ {
+
+  //
+  
+  //{
+    for (var i = 0; i < canvas.getObjects().length; ++i) 
+    { 
+      if (canvas.item(i).id == 'LockKnobOut')
+    
+        canvas.item(i).visible = false;
+    
+      else if (canvas.item(i).id == 'UnlockKnobOut')
+      
+        canvas.item(i).visible = true;
+    }
+  //}
+
+ }
 //-------------------------------------------------------------
 function LockDoorIn()
  {
@@ -916,6 +1057,22 @@ function LockDoorIn()
       canvas.item(i).visible = false;
     
     else if (canvas.item(i).id == 'LockKnobIn')
+      
+      canvas.item(i).visible = true;
+  }
+
+ }
+//-------------------------------------------------------------
+function LockDoorOut()
+ {
+
+  for (var i = 0; i < canvas.getObjects().length; ++i) 
+  { 
+    if (canvas.item(i).id == 'UnlockKnobOut')
+    
+      canvas.item(i).visible = false;
+    
+    else if (canvas.item(i).id == 'LockKnobOut')
       
       canvas.item(i).visible = true;
   }
@@ -953,84 +1110,271 @@ function LockDeadbolt()
   }
 
  }
+//-------------------------------------------------------------
+ function TriggerDoorFromOutside()  //A user approached the door from outside
+ {
 
+  for (var i = 0; i < canvas.getObjects().length; ++i) 
+  { 
+     if (canvas.item(i).id == 'doorbell' || canvas.item(i).id == 'writemsg' || 
+        canvas.item(i).id == 'LockKnobOut')
+      
+      canvas.item(i).visible = true;
+
+  }
+ }
+//-------------------------------------------------------------
+ function ResetDoorFromOutside()  //Reset the door to non signal status
+ {
+  UserFingerIsRecognizable = false; 
+  document.getElementsByName('Verification')[1].disabled = false; 
+  document.getElementsByName('Verification')[2].disabled = false; 
+  document.getElementsByName('Verification')[3].disabled = false; 
+  for (var i = 0; i < canvas.getObjects().length; ++i) 
+  { 
+     if (canvas.item(i).id == 'doorbell' || canvas.item(i).id == 'writemsg'|| canvas.item(i).id == 'np' ||
+         canvas.item(i).id == 'UnlockKnobOut' || canvas.item(i).id == 'LockKnobOut')
+     {
+        canvas.item(i).visible = false;
+     }
+   }
+
+   for (var i = 0; i < canvas.getObjects().length; ++i) 
+    { 
+      if (canvas.item(i).id == 'UnlockKnobOut')
+    
+        canvas.item(i).selectable = true;
+    }
+ }
+      
 //------------------ Radio buttons Events Functions -------------------------
 function User1FromInside()
 {
 
-// To do list
-// System settings adjusting
+HideHome();
+HideUsersList();
+HideUser2FromInside();
+
+for (var i = 0; i < canvas.getObjects().length; ++i) 
+    { 
+      if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
+    
+        canvas.item(i).visible = true;
+    }
+
+System_language = User1.language;
+
+In_theme = User1.in_theme;
+In_ornament = User1.in_ornament;
+Out_theme = User1.out_theme;
+Out_ornament = User1.out_ornament;
+
+Date_format = User1.date_format;
+Time_format = User1.time_format;
+Units_format = User1.units_format;
 
 }
+function HideUser1FromInside()
+{
 
+for (var i = 0; i < canvas.getObjects().length; ++i) 
+    { 
+      if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
+    
+        canvas.item(i).visible = false;
+    }
+}
+//-------------------------------------------------------------
 function User2FromInside()
 {
 
-// To do list
-// System settings adjusting
+HideHome();
+HideUsersList();
+HideUser1FromInside();
+for (var i = 0; i < canvas.getObjects().length; ++i) 
+    { 
+      if (canvas.item(i).id == 'user2calender' || canvas.item(i).id == 'user2todo')
+    
+        canvas.item(i).visible = true;
+    }
+
+System_language = User2.language;
+
+In_theme = User2.in_theme;
+In_ornament = User2.in_ornament;
+Out_theme = User2.out_theme;
+Out_ornament = User2.out_ornament;
+
+Date_format = User2.date_format;
+Time_format = User2.time_format;
+Units_format = User2.units_format;
 
 }
+function HideUser2FromInside()
+{
 
+for (var i = 0; i < canvas.getObjects().length; ++i) 
+    { 
+      if (canvas.item(i).id == 'user2calender' || canvas.item(i).id == 'user2todo')
+    
+        canvas.item(i).visible = false;
+    }
+}
+//-------------------------------------------------------------
 function MultiUsersFromInside()
 {
+  HideHome();
+  HideUser1FromInside();
+  HideUser2FromInside();
 
+  for (var i = 0; i < canvas.getObjects().length; ++i) 
+    { 
+      if (canvas.item(i).id == 'userslist' ||
+          canvas.item(i).id == 'user1name' || 
+          canvas.item(i).id == 'user2name')
+    
+        canvas.item(i).visible = true;
+    }
 }
-
+function HideUsersList()
+{
+  for (var i = 0; i < canvas.getObjects().length; ++i) 
+    { 
+      if (canvas.item(i).id == 'userslist' ||
+          canvas.item(i).id == 'user1name' || 
+          canvas.item(i).id == 'user2name')
+    
+        canvas.item(i).visible = false;
+    }
+}
+//----------------------------------------------------------
 function NewUserFromInside()
 {
-
+  HideHome();
+  HideUser1FromInside();
+  HideUser2FromInside();
+  HideUsersList();
+  LockDoorIn();
+  LockDeadbolt();
 }
 
 function NoUserFromInside()
 {
   HideHome();
+  HideUser1FromInside();
+  HideUser2FromInside();
+  HideUsersList();
   LockDoorIn();
   LockDeadbolt();
+  document.getElementsByName('Heights')[1].disabled = true; 
+  document.getElementsByName('Heights')[2].disabled = true; 
+  document.getElementsByName('Heights')[3].disabled = true; 
 }
-
-function TallHeight()
+//-------------------------------------------------------------
+function AdjustHeight()
 {
+   var Heights = document.getElementsByName('Heights');
+  
+  if(Heights[1].checked)
+     { Height = 40; 
+       ImgHeight = Height * 2.22222222;
+       console.log(Height);
+       //canvas.dispose();
+       canvas.renderAll();
 
-}
+    for (var i = 0; i < canvas.getObjects().length; ++i) 
+    { 
+      if (canvas.item(i).id == 'home')
+    
+        console.log(canvas.item(i).top);
+    }
 
-function MediumHeight()
-{
-
-}
-
-function ShortHeight()
-{
-
-}
+       }  
+  
+  else if(Heights[2].checked)
+    { Height = 0; 
+       ImgHeight = Height * 2.22222222;
+       console.log(Height);
+       canvas.renderAll();
+       }    
+  
+  else if(Heights[3].checked)
+    { Height = -40; 
+       ImgHeight = Height * 2.22222222;
+       console.log(Height);
+       canvas.renderAll();
+       }  
+  
+ }
+//-------------------------------------------------------------
 
 function User1FromOutside()
 {
-
+  ResetDoorFromOutside();
+  TriggerDoorFromOutside();
+  var Verification = document.getElementsByName('Verification');
+  
+  if(Verification[1].checked)
+    FaceRecognized();
+  
+  else if(Verification[2].checked)
+    FingerRecognized();
+  
+  else if(Verification[3].checked)
+    FailedVerification();
 }
 
 function NewUserFromOutside()
 {
-
+  ResetDoorFromOutside();
+  TriggerDoorFromOutside();
+  FailedVerification();
+  document.getElementsByName('Verification')[1].disabled = true; 
+  document.getElementsByName('Verification')[2].disabled = true; 
+  document.getElementsByName('Verification')[3].checked = true; 
 }
 
 function NoUserFromOutside()
 {
-
+  ResetDoorFromOutside();
+  document.getElementsByName('Verification')[1].disabled = true; 
+  document.getElementsByName('Verification')[2].disabled = true; 
+  document.getElementsByName('Verification')[3].checked = true; 
 }
 
 function FaceRecognized()
 {
+  ResetDoorFromOutside();
+  TriggerDoorFromOutside();
 
+  for (var i = 0; i < canvas.getObjects().length; ++i) 
+    { 
+      if (canvas.item(i).id == 'UnlockKnobOut')
+    
+        canvas.item(i).selectable = false;
+    }
+
+  UnlockDoorOut();
 }
 
 function FingerRecognized()
 {
-
+  ResetDoorFromOutside();
+  TriggerDoorFromOutside();
+  UserFingerIsRecognizable = true; 
 }
 
 function FailedVerification()
 {
-
+  ResetDoorFromOutside();
+  TriggerDoorFromOutside();
+  for (var i = 0; i < canvas.getObjects().length; ++i) 
+  { 
+     if (canvas.item(i).id == 'np')
+     {
+        canvas.item(i).visible = true;
+     }
+   }
 }
 
 
