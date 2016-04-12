@@ -27,3 +27,9 @@ var SEPTEMBER = ["September", "Septiembre"];
 var OCTOBER = ["October", "Octubre"];
 var NOVEMBER = ["November", "Noviembre"];
 var DECEMBER = ["December", "Diciembre"];
+
+//
+//function UpdateText() 
+//{
+//    
+//}

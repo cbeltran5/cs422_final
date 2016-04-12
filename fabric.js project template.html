@@ -158,6 +158,8 @@ footer {
 
 //****************************** System Settings Parameters *********************************
 
+// syslang is an index into an array that represents a word in a language.
+// ENGLISH = 0, SPANISH = 1, etc
 var syslang = 1;
 var System_language = SYSTEM_LANGUAGE[syslang];
 
@@ -376,7 +378,7 @@ fabric.Image.fromURL('images/unlockdeadbolt.png', function(oImg) {
   canvas.add(oImg);
 });
 
-var Deadbolttext = new fabric.Text('Deadbolt', { left: 500, top: 293, fontFamily: 'Calibri', fontSize: 15 });
+var Deadbolttext = new fabric.Text(DEADBOLT[syslang], { left: 500, top: 293, fontFamily: 'Calibri', fontSize: 15 });
 Deadbolttext.setColor('black');
 Deadbolttext.selectable = false;
 //********************************************************************************************
@@ -482,7 +484,7 @@ var PanelRect = new fabric.Rect({
   canvas.add(oImg);
 });
 
-  var Messagestext = new fabric.Text('Messages', { left: 85, top: 385, fontFamily: 'Times', fontSize: 15 });
+  var Messagestext = new fabric.Text(MESSAGES[syslang], { left: 85, top: 385, fontFamily: 'Times', fontSize: 15 });
   Messagestext.setColor('black');
   Messagestext.selectable = false;
   Messagestext.visible = false;
@@ -497,7 +499,7 @@ fabric.Image.fromURL('images/camera.gif', function(oImg) {
   canvas.add(oImg);
 });
 
-  var Cameratext = new fabric.Text('Camera', { left: 165, top: 385, fontFamily: 'Times', fontSize: 15 });
+  var Cameratext = new fabric.Text(CAMERA[syslang], { left: 165, top: 385, fontFamily: 'Times', fontSize: 15 });
   Cameratext.setColor('black');
   Cameratext.selectable = false;
   Cameratext.visible = false;
@@ -512,7 +514,7 @@ fabric.Image.fromURL('images/traffic.gif', function(oImg) {
   canvas.add(oImg);
 });
 
-  var Traffictext = new fabric.Text('Traffic', { left: 255, top: 385, fontFamily: 'Times', fontSize: 15 });
+  var Traffictext = new fabric.Text(TRAFFIC[syslang], { left: 255, top: 385, fontFamily: 'Times', fontSize: 15 });
   Traffictext.setColor('black');
   Traffictext.selectable = false;
   Traffictext.visible = false;
@@ -527,7 +529,7 @@ fabric.Image.fromURL('images/cta.gif', function(oImg) {
   canvas.add(oImg);
 });
 
-  var Ctatext = new fabric.Text('Transport', { left: 330, top: 385, fontFamily: 'Times', fontSize: 15 });
+  var Ctatext = new fabric.Text(TRANSPORT[syslang], { left: 330, top: 385, fontFamily: 'Times', fontSize: 15 });
   Ctatext.setColor('black');
   Ctatext.selectable = false;
   Ctatext.visible = false;
@@ -541,7 +543,7 @@ fabric.Image.fromURL('images/news.gif', function(oImg) {
   canvas.add(oImg);
 });
 
-  var Newstext = new fabric.Text('News', { left: 420, top: 385, fontFamily: 'Times', fontSize: 15 });
+  var Newstext = new fabric.Text(NEWS[syslang], { left: 420, top: 385, fontFamily: 'Times', fontSize: 15 });
   Newstext.setColor('black');
   Newstext.selectable = false;
   Newstext.visible = false;
@@ -555,7 +557,7 @@ fabric.Image.fromURL('images/mirror.gif', function(oImg) {
   canvas.add(oImg);
 });
 
-  var Mirrortext = new fabric.Text('Mirror', { left: 95, top: 475, fontFamily: 'Times', fontSize: 15 });
+  var Mirrortext = new fabric.Text(MIRROR[syslang], { left: 95, top: 475, fontFamily: 'Times', fontSize: 15 });
   Mirrortext.setColor('black');
   Mirrortext.selectable = false;
   Mirrortext.visible = false;
@@ -569,7 +571,7 @@ fabric.Image.fromURL('images/lights.gif', function(oImg) {
   canvas.add(oImg);
 });
 
-  var Lightstext = new fabric.Text('Lights', { left: 175, top: 475, fontFamily: 'Times', fontSize: 15 });
+  var Lightstext = new fabric.Text(LIGHTS[syslang], { left: 175, top: 475, fontFamily: 'Times', fontSize: 15 });
   Lightstext.setColor('black');
   Lightstext.selectable = false;
   Lightstext.visible = false;
@@ -583,7 +585,7 @@ fabric.Image.fromURL('images/alarm.gif', function(oImg) {
   canvas.add(oImg);
 });
   
-  var Alarmtext = new fabric.Text('Alarm', { left: 255, top: 475, fontFamily: 'Times', fontSize: 15 });
+  var Alarmtext = new fabric.Text(ALARM[syslang], { left: 255, top: 475, fontFamily: 'Times', fontSize: 15 });
   Alarmtext.setColor('black');
   Alarmtext.selectable = false;
   Alarmtext.visible = false;
@@ -598,7 +600,7 @@ fabric.Image.fromURL('images/911.gif', function(oImg) {
   canvas.add(oImg);
 });
 
-  var Emergtext = new fabric.Text('Emergency', { left: 325, top: 475, fontFamily: 'Times', fontSize: 15 });
+  var Emergtext = new fabric.Text(EMERGENCY[syslang], { left: 325, top: 475, fontFamily: 'Times', fontSize: 15 });
   Emergtext.setColor('black');
   Emergtext.selectable = false;
   Emergtext.visible = false;
@@ -612,7 +614,7 @@ fabric.Image.fromURL('images/settings.gif', function(oImg) {
   canvas.add(oImg);
 });
 
-  var Settingstext = new fabric.Text('Settings', { left: 415, top: 475, fontFamily: 'Times', fontSize: 15 });
+  var Settingstext = new fabric.Text(SETTINGS[syslang], { left: 415, top: 475, fontFamily: 'Times', fontSize: 15 });
   Settingstext.setColor('black');
   Settingstext.selectable = false;
   Settingstext.visible = false;
@@ -1000,18 +1002,18 @@ var time =  '    ' + hours + ":" + minutes;
 
 if (Date_format == 1)
 {
-  if      (month == 1) month = 'January';
-  else if (month == 2) month = 'February';
-  else if (month == 3) month = 'March';
-  else if (month == 4) month = 'April';
-  else if (month == 5) month = 'May';
-  else if (month == 6) month = 'June';
-  else if (month == 7) month = 'July';
-  else if (month == 8) month = 'August';
-  else if (month == 9) month = 'September';
-  else if (month == 10) month = 'October';
-  else if (month == 11) month = 'November';
-  else if (month == 12) month = 'December';
+  if      (month == 1) month = JANUARY[syslang];
+  else if (month == 2) month = FEBRUARY[syslang];
+  else if (month == 3) month = MARCH[syslang];
+  else if (month == 4) month = APRIL[syslang];
+  else if (month == 5) month = MAY[syslang];
+  else if (month == 6) month = JUNE[syslang];
+  else if (month == 7) month = JULY[syslang];
+  else if (month == 8) month = AUGUST[syslang];
+  else if (month == 9) month = SEPTEMBER[syslang];
+  else if (month == 10) month = OCTOBER[syslang];
+  else if (month == 11) month = NOVEMBER[syslang];
+  else if (month == 12) month = DECEMBER[syslang];
   var date = day + " " + month + "-" + year;
 }
 
