@@ -285,7 +285,7 @@ var Datetext = new fabric.Text('', { left: 105, top: 112, fontFamily: 'Calibri',
 Datetext.setColor('black');
 Datetext.selectable = false;
 
-var rect = new fabric.Rect({
+var date_rect = new fabric.Rect({
   left: 85,
   top: 110,
   fill: 'lightgrey',
@@ -294,7 +294,7 @@ var rect = new fabric.Rect({
   height: 25,
   angle: 0
 });
-rect.selectable = false;
+date_rect.selectable = false;
 
 var Timetext = new fabric.Text('', { left: 100, top: 80, fontFamily: 'Calibri', fontSize: 30 });
 Timetext.setColor('black');
@@ -874,7 +874,7 @@ fabric.Image.fromURL('images/np.gif', function(oImg) {
 
 canvas.add(insideDoor);
 canvas.add(outsideDoor);
-canvas.add(rect);
+canvas.add(date_rect);
 canvas.add(Mirror);
 canvas.add(Traffic);
 canvas.add(Transport);
