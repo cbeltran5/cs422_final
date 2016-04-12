@@ -1,3 +1,31 @@
+
+// Created a User class to hold the personal information common to all users
+function User (name, language) {
+  this.name = name;
+  this.language = language;
+  
+  this.date_format = 1;
+  this.time_format = 1;
+  this.units_format = 'Imperial';
+  
+  // fahrenheit or celsius
+  // Fahrenheit by default
+  this.temerature_units = 'Fahrenheit'
+  
+  this.in_theme = 'wood';
+  this.out_theme = 'wood';
+  
+  this.in_ornament = 'default';
+  this.out_ornament = 'default';
+  
+  // new User adds itself to the array of users
+  Users.push(this);
+}
+
+// An array of Users
+var Users = [];
+
+
 // variables for text
 // English = 1 , Spanish = 2, etc...
 var ENGLISH = 0;
@@ -31,8 +59,6 @@ var OCTOBER = ["October", "Octubre"];
 var NOVEMBER = ["November", "Noviembre"];
 var DECEMBER = ["December", "Diciembre"];
 
-
-
 // when called, this function will update the text of the respective
 // faric text object with a string that matches that object and the currently
 // set language
@@ -52,26 +78,4 @@ function UpdateText()
 }
 
 
-
-// Created a User class to hold the personal information common to all users
-function User (name, language) {
-  this.name = name;
-  this.language = language;
-  
-  this.date_format = 1;
-  this.time_format = 1;
-  this.units_format = 'Imperial';
-  
-  this.in_theme = 'wood';
-  this.out_theme = 'wood';
-  
-  this.in_ornament = 'default';
-  this.out_ornament = 'default';
-  
-  // Add yourself to the array of users
-  Users.push(this);
-  console.log("Users.length = " + Users.length);
-}
-// An array of Users
-var Users = [];
 
