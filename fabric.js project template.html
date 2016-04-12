@@ -162,16 +162,24 @@ footer {
 var syslang = ENGLISH; // set to english by default
 var System_language = SYSTEM_LANGUAGE[syslang];
 
+// width for both doors
+var doorwidth = 555;
+// value for left side of rect object representing door, relative to the canvas
+var inside_left = 22;
+var outside_left = 642;
 
+  
 var In_theme = 'default';
 var In_ornament = 'default';
 var Out_theme = 'default';
 var Out_ornament = 'default';
 
-var Date_format = 1;
+  
+var Date_format = 1; 
 var Time_format = 1;
 var Units_format = 'Imperial';
 
+  
 var HomeIsActive = false;
 var Current_user = null;
 var UserFingerIsRecognizable = false;
@@ -179,6 +187,9 @@ var Height = 0;
 var ImgHeight = Height*2.22222222;  
 var RestartIsActive = false;
 var AvatarIsActive = false;
+
+  
+
 
 //*******************************************************************************************
 
@@ -192,7 +203,7 @@ var User2 = new User('Sara', SPANISH);
 //  name : 'Adam',
 //  language : ENGLISH,
 //
-//  in_theme : 'wood',
+//  in_theme : 'wood',  
 //  out_theme : 'wood',
 //  in_ornament : 'default',
 //  out_ornament : 'default',
@@ -224,11 +235,11 @@ var User2 = new User('Sara', SPANISH);
 //*************************** Inside & Outside door initialization **************************
 
 var insideDoor = new fabric.Rect({
-  left: 22,
+  left: inside_left,
   top: 0,
   fill: 'grey',
   stroke: 'black',
-  width: 555,
+  width: doorwidth,
   height: localHeight,
   angle: 0
 });
@@ -246,11 +257,11 @@ fabric.util.loadImage('images/Doorpattern.gif', function (img) {
 });
 
 var outsideDoor = new fabric.Rect({
-  left: 642,
+  left: outside_left,
   top: 0,
   fill: 'grey',
   stroke: 'black',
-  width: 555,
+  width: doorwidth,
   height: localHeight,
   angle: 0
 });
@@ -935,6 +946,7 @@ canvas.on('object:selected', function(e)
 
    else if(activeObject.id == 'user2name')
        {HideUsersList(); User2FromInside();}
+  
   
   if(activeObject.id == 'mirror')
     {

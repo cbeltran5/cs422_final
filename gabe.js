@@ -17,7 +17,6 @@ var EMERGENCY = ["Emergency", "Emergencia"];
 var SETTINGS = ["Settings", "Ajustes"];
 var DEADBOLT = ["Dead Bolt", "Cerrojo"];
 
-
 // months of the year
 var JANUARY = ["January", "Enero"];
 var FEBRUARY = ["February", "Febrero"];
@@ -33,6 +32,10 @@ var NOVEMBER = ["November", "Noviembre"];
 var DECEMBER = ["December", "Diciembre"];
 
 
+
+// when called, this function will update the text of the respective
+// faric text object with a string that matches that object and the currently
+// set language
 function UpdateText() 
 {
   Messagestext.text = MESSAGES[syslang];
@@ -49,9 +52,9 @@ function UpdateText()
 }
 
 
-// created a format
+
+// Created a User class to hold the personal information common to all users
 function User (name, language) {
-  //console.log("User Instance created");
   this.name = name;
   this.language = language;
   
@@ -64,6 +67,11 @@ function User (name, language) {
   
   this.in_ornament = 'default';
   this.out_ornament = 'default';
-  //console.log("Hello from " + this.name);
+  
+  // Add yourself to the array of users
+  Users.push(this);
+  console.log("Users.length = " + Users.length);
 }
+// An array of Users
+var Users = [];
 
