@@ -50,6 +50,7 @@ footer {
 	<!-- Get version 1.5.0 of Fabric.js from CDN -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.5.0/fabric.min.js" ></script>
     <script src="enrique.js"></script>
+    <script src="gabe.js"></script>
 
 	 
 <body>
@@ -158,7 +159,7 @@ footer {
 //****************************** System Settings Parameters *********************************
 
 var syslang = 1;
-var System_language = 'English';
+var System_language = SYSTEM_LANGUAGE[syslang];
 
 var In_theme = 'default';
 var In_ornament = 'default';
@@ -735,6 +736,9 @@ fabric.Image.fromURL('images/restart.png', function(oImg) {
         repeat: 'repeat'
     });
 }); 
+    
+    
+    
 //----------------------- Camera Components ---------------------------
 var AvatarOut = new fabric.Rect({
   left: 830,
@@ -812,6 +816,7 @@ LiveOnOff = new fabric.Rect({
         repeat: 'repeat'
     });
 }); 
+    
 //------------------------------------------------------------------
 fabric.Image.fromURL('images/doorbell.gif', function(oImg) {
   oImg.set({left: 1485, top: 680, id: this.id});
@@ -1023,6 +1028,8 @@ canvas.add(Timetext);
 timeout = setTimeout(ShowDateTime,1000);
 
 }
+    
+    
 //-------------------------------------------------------------
 function HomeSelected()
 {
@@ -1068,6 +1075,8 @@ Emergtext.visible = true;
 Settingstext.visible = true;
 
 }
+    
+    
 //-------------------------------------------------------------
 function HideHome()
 {

@@ -1,0 +1,54 @@
+same as "System parameters.docx" in this same folder
+
+ystem parameters:
+
+var System_language = 'English';		// English, Spanish
+var In_theme = 'default'; 			//default, wood,  metal
+var In_ornament = 'default';			//default, xmas, easter
+var Out_theme = 'default';			//default, wood,  metal
+var Out_ornament = 'default';			//default, xmas, easter
+var Date_format = 1;				//1 or 2
+var Time_format = 1;				//1 or 2 
+var Units_format = 'imperial';			//imperial, metric
+var Current_user = null; 
+
+
+Users (assume user 1 and 2):
+
+  var User1 = {
+  name : ‘Adam’,
+  language : 'English',
+  in_theme : 'wood',
+  out_theme : 'wood',
+  in_ornament : 'default',
+  out_ornament : 'default',
+  date_format : 1,
+  time_format : 1,
+  units_format : 'Imperial'
+
+};
+
+Functions:
+canvas.on('object:selected', function(e) //Any image (ex. Icon)
+function ShowDateTime()
+function ShowHome()
+function HideHome()
+function UnlockDoorIn()
+function LockDoorIn()
+function UnlockDeadbolt()
+function LockDeadbolt()
+
+Function triggered by Radio buttons (to implement)
+function User1FromInside()
+function User2FromInside()
+function MultiUsersFromInside()
+function NewUserFromInside()
+function NoUserFromInside() //No signal
+function TallHeight()
+function MediumHeight()
+function ShortHeight()
+function User1FromOutside()
+function NewUserFromOutside()
+function NoUserFromOutside()
+function FaceRecognized()
+function FingerRecognized()
