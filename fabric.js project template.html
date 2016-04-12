@@ -64,7 +64,6 @@ footer {
     <h1>Inside Events</h1>
 
     <code> 
-
       <section>
       <code><form>
       Users:<br>
@@ -160,8 +159,9 @@ footer {
 
 // syslang is an index into an array that represents a word in a language.
 // ENGLISH = 0, SPANISH = 1, etc
-var syslang = 1;
+var syslang = ENGLISH; // set to english by default
 var System_language = SYSTEM_LANGUAGE[syslang];
+
 
 var In_theme = 'default';
 var In_ornament = 'default';
@@ -183,9 +183,14 @@ var AvatarIsActive = false;
 //*******************************************************************************************
 
 //************************************ Users Profiles ***************************************
+
+var User1_Adam = new User('Adam', ENGLISH);
+var User2_Sara = new User('Sara', SPANISH);
+
+  
 var User1 = {
   name : 'Adam',
-  language : 'English',
+  language : ENGLISH,
 
   in_theme : 'wood',
   out_theme : 'wood',
@@ -200,7 +205,7 @@ var User1 = {
 
 var User2 = {
   name : 'Sara',
-  language : 'English',
+  language : SPANISH,
 
   in_theme : 'metal',
   out_theme : 'metal',
@@ -475,6 +480,8 @@ var PanelRect = new fabric.Rect({
     });
 });
 
+    
+// MESSAGES
   fabric.Image.fromURL('images/messages.gif', function(oImg) {
   oImg.set({left: 189, top: 730, id: this.id});
   oImg.visible = false;
@@ -483,13 +490,13 @@ var PanelRect = new fabric.Rect({
   oImg.id = 'messages';
   canvas.add(oImg);
 });
-
   var Messagestext = new fabric.Text(MESSAGES[syslang], { left: 85, top: 385, fontFamily: 'Times', fontSize: 15 });
   Messagestext.setColor('black');
   Messagestext.selectable = false;
   Messagestext.visible = false;
 
 
+// CAMERA    
 fabric.Image.fromURL('images/camera.gif', function(oImg) {
   oImg.set({left: 369, top: 735, id: this.id});
   oImg.visible = false;
@@ -498,13 +505,13 @@ fabric.Image.fromURL('images/camera.gif', function(oImg) {
   oImg.id = 'camera';
   canvas.add(oImg);
 });
-
   var Cameratext = new fabric.Text(CAMERA[syslang], { left: 165, top: 385, fontFamily: 'Times', fontSize: 15 });
   Cameratext.setColor('black');
   Cameratext.selectable = false;
   Cameratext.visible = false;
 
 
+// TRAFFIC    
 fabric.Image.fromURL('images/traffic.gif', function(oImg) {
   oImg.set({left: 549, top: 720, id: this.id});
   oImg.visible = false;
@@ -513,13 +520,13 @@ fabric.Image.fromURL('images/traffic.gif', function(oImg) {
   oImg.id = 'traffic';
   canvas.add(oImg);
 });
-
   var Traffictext = new fabric.Text(TRAFFIC[syslang], { left: 255, top: 385, fontFamily: 'Times', fontSize: 15 });
   Traffictext.setColor('black');
   Traffictext.selectable = false;
   Traffictext.visible = false;
 
 
+// TRANSPORT - CTA    
 fabric.Image.fromURL('images/cta.gif', function(oImg) {
   oImg.set({left: 729, top: 720, id: this.id});
   oImg.visible = false;
@@ -528,12 +535,13 @@ fabric.Image.fromURL('images/cta.gif', function(oImg) {
   oImg.id = 'cta';
   canvas.add(oImg);
 });
-
   var Ctatext = new fabric.Text(TRANSPORT[syslang], { left: 330, top: 385, fontFamily: 'Times', fontSize: 15 });
   Ctatext.setColor('black');
   Ctatext.selectable = false;
   Ctatext.visible = false;
 
+    
+// NEWS    
 fabric.Image.fromURL('images/news.gif', function(oImg) {
   oImg.set({left: 909, top: 730, id: this.id});
   oImg.visible = false;
@@ -542,12 +550,13 @@ fabric.Image.fromURL('images/news.gif', function(oImg) {
   oImg.id = 'news';
   canvas.add(oImg);
 });
-
   var Newstext = new fabric.Text(NEWS[syslang], { left: 420, top: 385, fontFamily: 'Times', fontSize: 15 });
   Newstext.setColor('black');
   Newstext.selectable = false;
   Newstext.visible = false;
 
+    
+// MIRROR    
 fabric.Image.fromURL('images/mirror.gif', function(oImg) {
   oImg.set({left: 189, top: 925, id: this.id});
   oImg.visible = false;
@@ -556,12 +565,13 @@ fabric.Image.fromURL('images/mirror.gif', function(oImg) {
   oImg.id = 'mirror';
   canvas.add(oImg);
 });
-
   var Mirrortext = new fabric.Text(MIRROR[syslang], { left: 95, top: 475, fontFamily: 'Times', fontSize: 15 });
   Mirrortext.setColor('black');
   Mirrortext.selectable = false;
   Mirrortext.visible = false;
 
+    
+// LIGHTS    
 fabric.Image.fromURL('images/lights.gif', function(oImg) {
   oImg.set({left: 369, top: 920, id: this.id});
   oImg.visible = false;
@@ -570,12 +580,13 @@ fabric.Image.fromURL('images/lights.gif', function(oImg) {
   oImg.id = 'lights';
   canvas.add(oImg);
 });
-
   var Lightstext = new fabric.Text(LIGHTS[syslang], { left: 175, top: 475, fontFamily: 'Times', fontSize: 15 });
   Lightstext.setColor('black');
   Lightstext.selectable = false;
   Lightstext.visible = false;
 
+    
+// ALARM    
 fabric.Image.fromURL('images/alarm.gif', function(oImg) {
   oImg.set({left: 549, top: 920, id: this.id});
   oImg.visible = false;
@@ -584,13 +595,13 @@ fabric.Image.fromURL('images/alarm.gif', function(oImg) {
   oImg.id = 'alarm';
   canvas.add(oImg);
 });
-  
   var Alarmtext = new fabric.Text(ALARM[syslang], { left: 255, top: 475, fontFamily: 'Times', fontSize: 15 });
   Alarmtext.setColor('black');
   Alarmtext.selectable = false;
   Alarmtext.visible = false;
 
 
+// EMERGENCY    
 fabric.Image.fromURL('images/911.gif', function(oImg) {
   oImg.set({left: 729, top: 935, id: this.id});
   oImg.visible = false;
@@ -599,12 +610,13 @@ fabric.Image.fromURL('images/911.gif', function(oImg) {
   oImg.id = '911';
   canvas.add(oImg);
 });
-
   var Emergtext = new fabric.Text(EMERGENCY[syslang], { left: 325, top: 475, fontFamily: 'Times', fontSize: 15 });
   Emergtext.setColor('black');
   Emergtext.selectable = false;
   Emergtext.visible = false;
 
+    
+// SETTINGS    
 fabric.Image.fromURL('images/settings.gif', function(oImg) {
   oImg.set({left: 909, top: 930, id: this.id});
   oImg.visible = false;
@@ -613,12 +625,13 @@ fabric.Image.fromURL('images/settings.gif', function(oImg) {
   oImg.id = 'settings';
   canvas.add(oImg);
 });
-
   var Settingstext = new fabric.Text(SETTINGS[syslang], { left: 415, top: 475, fontFamily: 'Times', fontSize: 15 });
   Settingstext.setColor('black');
   Settingstext.selectable = false;
   Settingstext.visible = false;
 
+    
+    
 fabric.Image.fromURL('images/restart.png', function(oImg) {
   oImg.set({left: 550, top: 1150, id: this.id});
   oImg.visible = false;
@@ -717,8 +730,6 @@ fabric.Image.fromURL('images/restart.png', function(oImg) {
     });
 });  
 
-
-  
   var News = new fabric.Rect({
   left: 135,
   top: 310,
@@ -962,73 +973,71 @@ canvas.on('object:selected', function(e)
 
 function ShowDateTime()
 {
-var currentdate = new Date();
-var year = currentdate.getFullYear();
-var month = currentdate.getMonth()+1;
-var day = currentdate.getDate();
-var hours = currentdate.getHours();
-var minutes = currentdate.getMinutes();
-var timetype;
+  var currentdate = new Date();
+  var year = currentdate.getFullYear();
+  var month = currentdate.getMonth()+1;
+  var day = currentdate.getDate();
+  var hours = currentdate.getHours();
+  var minutes = currentdate.getMinutes();
+  var timetype;
 
 
-if( hours >= 12)
-   timetype = "PM";
-else
-   timetype = "AM";
+  if( hours >= 12)
+    timetype = "PM";
+  else
+    timetype = "AM";
 
-if (Time_format == 1) // 12-hours format
-{
-hours = hours % 12;
+  if (Time_format == 1) // 12-hours format
+  {
+    hours = hours % 12;
+    if (hours == 0)
+      hours = 12;
 
-if (hours == 0)
-hours = 12;
+    if (minutes < 10)
+      minutes = "0" + minutes;
 
-if (minutes < 10)
-minutes = "0" + minutes;
+    var time =  hours + ":" + minutes + " "+ timetype;
+  }
 
-var time =  hours + ":" + minutes + " "+ timetype;
-}
+  else if(Time_format == 2) // 24-hours format
+  {
 
-else if(Time_format == 2) // 24-hours format
-{
+    if (hours < 10)
+      hours = "0" + hours;
+    if (minutes < 10)
+      minutes = "0" + minutes;
 
-if (hours < 10)
-hours = "0" + hours;
-if (minutes < 10)
-minutes = "0" + minutes;
+    var time =  '    ' + hours + ":" + minutes;
+  }
 
-var time =  '    ' + hours + ":" + minutes;
-}
+  if (Date_format == 1)
+  {
+    if      (month == 1) month = JANUARY[syslang];
+    else if (month == 2) month = FEBRUARY[syslang];
+    else if (month == 3) month = MARCH[syslang];
+    else if (month == 4) month = APRIL[syslang];
+    else if (month == 5) month = MAY[syslang];
+    else if (month == 6) month = JUNE[syslang];
+    else if (month == 7) month = JULY[syslang];
+    else if (month == 8) month = AUGUST[syslang];
+    else if (month == 9) month = SEPTEMBER[syslang];
+    else if (month == 10) month = OCTOBER[syslang];
+    else if (month == 11) month = NOVEMBER[syslang];
+    else if (month == 12) month = DECEMBER[syslang];
+    var date = day + " " + month + "-" + year;
+  }
 
-if (Date_format == 1)
-{
-  if      (month == 1) month = JANUARY[syslang];
-  else if (month == 2) month = FEBRUARY[syslang];
-  else if (month == 3) month = MARCH[syslang];
-  else if (month == 4) month = APRIL[syslang];
-  else if (month == 5) month = MAY[syslang];
-  else if (month == 6) month = JUNE[syslang];
-  else if (month == 7) month = JULY[syslang];
-  else if (month == 8) month = AUGUST[syslang];
-  else if (month == 9) month = SEPTEMBER[syslang];
-  else if (month == 10) month = OCTOBER[syslang];
-  else if (month == 11) month = NOVEMBER[syslang];
-  else if (month == 12) month = DECEMBER[syslang];
-  var date = day + " " + month + "-" + year;
-}
+  else if (Date_format == 2)
+  var date = ' ' + day + " - " + month + " - " + year;
 
-else if (Date_format == 2)
-var date = ' ' + day + " - " + month + " - " + year;
+  Datetext.initialize(date);
+  canvas.remove(Datetext);
+  canvas.add(Datetext);
 
-Datetext.initialize(date);
-canvas.remove(Datetext);
-canvas.add(Datetext);
-
-Timetext.initialize(time);
-canvas.remove(Timetext);
-canvas.add(Timetext);
-timeout = setTimeout(ShowDateTime,1000);
-
+  Timetext.initialize(time);
+  canvas.remove(Timetext);
+  canvas.add(Timetext);
+  timeout = setTimeout(ShowDateTime,1000);
 }
     
     
@@ -1051,7 +1060,7 @@ function ShowHome()
   HomeIsActive = true; 
   PanelRect.visible = true;
 
-for (var i = 0; i < canvas.getObjects().length; ++i) 
+  for (var i = 0; i < canvas.getObjects().length; ++i) 
   { 
     if (canvas.item(i).id == 'messages' || canvas.item(i).id == 'camera'   ||
         canvas.item(i).id == 'traffic'  || canvas.item(i).id == 'cta'      ||
@@ -1060,22 +1069,21 @@ for (var i = 0; i < canvas.getObjects().length; ++i)
         canvas.item(i).id == '911'      || canvas.item(i).id == 'settings' ||
         canvas.item(i).id == 'restart') 
     {
-      canvas.item(i).visible = true;
+        canvas.item(i).visible = true;
     }
     
   }
 
-Messagestext.visible = true;
-Cameratext.visible = true;
-Traffictext.visible = true;
-Ctatext.visible = true;
-Newstext.visible = true;
-Mirrortext.visible = true;
-Lightstext.visible = true;
-Alarmtext.visible = true;
-Emergtext.visible = true;
-Settingstext.visible = true;
-
+  Messagestext.visible = true;
+  Cameratext.visible = true;
+  Traffictext.visible = true;
+  Ctatext.visible = true;
+  Newstext.visible = true;
+  Mirrortext.visible = true;
+  Lightstext.visible = true;
+  Alarmtext.visible = true;
+  Emergtext.visible = true;
+  Settingstext.visible = true;
 }
     
     
@@ -1101,34 +1109,29 @@ function HideHome()
     
   }
 
-Messagestext.visible = false;
-Cameratext.visible = false;
-Traffictext.visible = false;
-Ctatext.visible = false;
-Newstext.visible = false;
-Mirrortext.visible = false;
-Lightstext.visible = false;
-Alarmtext.visible = false;
-Emergtext.visible = false;
-Settingstext.visible = false;
-
+  Messagestext.visible = false;
+  Cameratext.visible = false;
+  Traffictext.visible = false;
+  Ctatext.visible = false;
+  Newstext.visible = false;
+  Mirrortext.visible = false;
+  Lightstext.visible = false;
+  Alarmtext.visible = false;
+  Emergtext.visible = false;
+  Settingstext.visible = false;
 }
+  
 //-------------------------------------------------------------
- function UnlockDoorIn()
- {
-
-  for (var i = 0; i < canvas.getObjects().length; ++i) 
-  { 
+ function UnlockDoorIn(){
+   for (var i = 0; i < canvas.getObjects().length; ++i) 
+   { 
     if (canvas.item(i).id == 'LockKnobIn')
-    
-      canvas.item(i).visible = false;
+        canvas.item(i).visible = false;
     
     else if (canvas.item(i).id == 'UnlockKnobIn')
-      
       canvas.item(i).visible = true;
-  }
-
- }
+    }
+}
  //-------------------------------------------------------------
 function UnlockDoorOut()
  {
@@ -1253,66 +1256,63 @@ function LockDeadbolt()
 //------------------ Radio buttons Events Functions -------------------------
 function User1FromInside()
 {
-
-HideHome();
-HideUsersList();
-HideUser2FromInside();
-
-for (var i = 0; i < canvas.getObjects().length; ++i) 
-    { 
-      if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
-    
+  HideHome();
+  HideUsersList();
+  HideUser2FromInside();
+  
+  for (var i = 0; i < canvas.getObjects().length; ++i) { 
+    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
         canvas.item(i).visible = true;
-    }
+  }
 
-System_language = User1.language;
+  syslang = User1.language;  
 
-In_theme = User1.in_theme;
-In_ornament = User1.in_ornament;
-Out_theme = User1.out_theme;
-Out_ornament = User1.out_ornament;
+  In_theme = User1.in_theme;
+  In_ornament = User1.in_ornament;
+  Out_theme = User1.out_theme;
+  Out_ornament = User1.out_ornament;
 
-Date_format = User1.date_format;
-Time_format = User1.time_format;
-Units_format = User1.units_format;
-
+  Date_format = User1.date_format;
+  Time_format = User1.time_format;
+  Units_format = User1.units_format;
+  
+  UpdateText();
 }
+  
 function HideUser1FromInside()
 {
-
-for (var i = 0; i < canvas.getObjects().length; ++i) 
-    { 
-      if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
-    
-        canvas.item(i).visible = false;
-    }
+  for (var i = 0; i < canvas.getObjects().length; ++i) 
+  { 
+    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
+      canvas.item(i).visible = false;
+  }
 }
 //-------------------------------------------------------------
 function User2FromInside()
 {
+  HideHome();
+  HideUsersList();
+  HideUser1FromInside();
+  
+  for (var i = 0; i < canvas.getObjects().length; ++i) 
+  { 
+    if (canvas.item(i).id == 'user2calender' || canvas.item(i).id == 'user2todo')
+      canvas.item(i).visible = true;
+  }
+  syslang = User2.language;
 
-HideHome();
-HideUsersList();
-HideUser1FromInside();
-for (var i = 0; i < canvas.getObjects().length; ++i) 
-    { 
-      if (canvas.item(i).id == 'user2calender' || canvas.item(i).id == 'user2todo')
-    
-        canvas.item(i).visible = true;
-    }
+  In_theme = User2.in_theme;
+  In_ornament = User2.in_ornament;
+  Out_theme = User2.out_theme;
+  Out_ornament = User2.out_ornament;
 
-System_language = User2.language;
-
-In_theme = User2.in_theme;
-In_ornament = User2.in_ornament;
-Out_theme = User2.out_theme;
-Out_ornament = User2.out_ornament;
-
-Date_format = User2.date_format;
-Time_format = User2.time_format;
-Units_format = User2.units_format;
-
+  Date_format = User2.date_format;
+  Time_format = User2.time_format;
+  Units_format = User2.units_format;
+  
+  UpdateText();
 }
+  
 function HideUser2FromInside()
 {
 
@@ -1323,6 +1323,7 @@ for (var i = 0; i < canvas.getObjects().length; ++i)
         canvas.item(i).visible = false;
     }
 }
+  
 //-------------------------------------------------------------
 function MultiUsersFromInside()
 {
@@ -1339,6 +1340,7 @@ function MultiUsersFromInside()
         canvas.item(i).visible = true;
     }
 }
+  
 function HideUsersList()
 {
   for (var i = 0; i < canvas.getObjects().length; ++i) 
@@ -1417,14 +1419,16 @@ function User1FromOutside()
   TriggerDoorFromOutside();
   var Verification = document.getElementsByName('Verification');
   
-  if(Verification[1].checked)
+  if(Verification[1].checked) 
+  {
     FaceRecognized();
-  
-  else if(Verification[2].checked)
+  }
+  else if(Verification[2].checked) {
     FingerRecognized();
-  
-  else if(Verification[3].checked)
+  }
+  else if(Verification[3].checked) {
     FailedVerification();
+  }
 }
 
 function NewUserFromOutside()
