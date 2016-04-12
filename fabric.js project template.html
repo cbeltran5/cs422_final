@@ -172,6 +172,7 @@ var UserFingerIsRecognizable = false;
 var Height = 0;
 var ImgHeight = Height*2.22222222;  
 var RestartIsActive = false;
+var AvatarIsActive = false;
 
 //*******************************************************************************************
 
@@ -730,8 +731,85 @@ fabric.Image.fromURL('images/restart.png', function(oImg) {
         source: img,
         repeat: 'repeat'
     });
-});  
+}); 
+//----------------------- Camera Components ---------------------------
+var AvatarOut = new fabric.Rect({
+  left: 830,
+  top: 250,
+  //fill: 'grey',
+  stroke: 'black',
+  width: 200,
+  height: 200,
+  angle: 0
+});
+  AvatarOut.visible = false;
+  AvatarOut.hasControls = AvatarOut.hasBorders = AvatarOut.selectable = false;
+  AvatarOut.lockMovementX = AvatarOut.lockMovementY = true;
+
+  fabric.util.loadImage('images/AvatarOnOut.gif', function (img) {
+    AvatarOut.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });
+});   
   
+var CameraIn = new fabric.Rect({
+  left: 100,
+  top: 320,
+  stroke: 'black',
+  width: 100,
+  height: 100,
+  angle: 0
+});
+  CameraIn.visible = false;
+  CameraIn.hasControls = CameraIn.hasBorders = CameraIn.selectable = false;
+  CameraIn.lockMovementX = CameraIn.lockMovementY = true;
+
+  fabric.util.loadImage('images/AvatarIn.gif', function (img) {
+    CameraIn.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });
+}); 
+
+AvatarOnOff = new fabric.Rect({
+  left: 210,
+  top: 320,
+  stroke: 'black',
+  width: 40,
+  height: 40,
+  angle: 0
+});
+  AvatarOnOff.visible = false;
+  AvatarOnOff.hasControls = AvatarOnOff.hasBorders = false;
+  AvatarOnOff.lockMovementX = AvatarOnOff.lockMovementY = true;
+
+  fabric.util.loadImage('images/AvatarOn.gif', function (img) {
+    AvatarOnOff.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });
+}); 
+
+LiveOnOff = new fabric.Rect({
+  left: 210,
+  top: 380,
+  stroke: 'black',
+  width: 40,
+  height: 40,
+  angle: 0
+});
+  LiveOnOff.visible = false;
+  LiveOnOff.hasControls = LiveOnOff.hasBorders = false;
+  LiveOnOff.lockMovementX = LiveOnOff.lockMovementY = true;
+
+  fabric.util.loadImage('images/LiveOn.gif', function (img) {
+    LiveOnOff.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });
+}); 
+//------------------------------------------------------------------
 fabric.Image.fromURL('images/doorbell.gif', function(oImg) {
   oImg.set({left: 1485, top: 680, id: this.id});
   oImg.visible = false;
@@ -784,6 +862,10 @@ canvas.add(Alarmtext);
 canvas.add(Emergtext);
 canvas.add(Settingstext);
 canvas.add(Lights);
+canvas.add(AvatarOut);
+canvas.add(CameraIn);
+canvas.add(AvatarOnOff);
+canvas.add(LiveOnOff);
 
 //************************************** Functions *******************************************
 canvas.on('object:selected', function(e) 
@@ -859,6 +941,12 @@ canvas.on('object:selected', function(e)
       canvas.deactivateAll();  
     }
    
+   if(activeObject.id == 'camera')
+    {
+      RunCamera();
+      //canvas.deactivateAll();  
+    }
+
   });
 
 
@@ -947,6 +1035,7 @@ function ShowHome()
   HideUser1FromInside();
   HideUser2FromInside();
   HideUsersList();
+  CloseCamera();
   HomeIsActive = true; 
   PanelRect.visible = true;
 
@@ -1376,8 +1465,132 @@ function FailedVerification()
      }
    }
 }
+//------------------------------------------------------------
+//Camera Functionality
+
+function RunCamera()
+{
+
+  HideHome();
+
+  AvatarOnOff.visible = true;
+  LiveOnOff.visible = true;
+  CameraIn.visible = true;
+  RunOutsideCamera();           //To show what is outside
+  RunInsideCameraAvatar();     //Avatar from inside is default
+}
+
+function RunOutsideCamera()
+{
+  fabric.util.loadImage('images/FromOutCamera.gif', function (img) {
+    insideDoor.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });});
+}
+
+function RunInsideCameraAvatar()
+{
+  AvatarIsActive = true;
+  AvatarOut.visible = true;
+  
+  fabric.util.loadImage('images/AvatarIn.gif', function (img) {
+    CameraIn.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });});
+
+  fabric.util.loadImage('images/AvatarOn.gif', function (img) {
+    AvatarOnOff.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });});
+
+  fabric.util.loadImage('images/LiveOff.gif', function (img) {
+    LiveOnOff.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });});
+
+  fabric.util.loadImage('images/DoorpatternOut.gif', function (img) {
+    outsideDoor.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });});
+
+}
+function RunInsideCameraLive()
+{
+  console.log(" live ");
+  
+  AvatarIsActive = false;
+  AvatarOut.visible = false;
+  
+  fabric.util.loadImage('images/LiveIn.gif', function (img) {
+    CameraIn.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });});
+
+  fabric.util.loadImage('images/AvatarOff.gif', function (img) {
+    AvatarOnOff.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });});
+
+  fabric.util.loadImage('images/LiveOn.gif', function (img) {
+    LiveOnOff.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });});
+
+  fabric.util.loadImage('images/FromInCamera.gif', function (img) {
+    outsideDoor.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });});
+
+}
+
+AvatarOnOff.on('selected', function()
+    {
+      if (AvatarIsActive == true)
+      RunInsideCameraLive();
+      else 
+      RunInsideCameraAvatar(); 
+    });
+
+LiveOnOff.on('selected', function()
+    {
+      if (AvatarIsActive == true)
+      RunInsideCameraLive();
+      else 
+      RunInsideCameraAvatar(); 
+    });
+
+function CloseCamera()
+{
+
+  AvatarIsActive = false;
+  CameraIn.visible = false;
+  AvatarOut.visible = false;
+  AvatarOnOff.visible = false;
+  LiveOnOff.visible = false;
+
+fabric.util.loadImage('images/Doorpattern.gif', function (img) {
+    insideDoor.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });});
+
+fabric.util.loadImage('images/DoorpatternOut.gif', function (img) {
+    outsideDoor.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });});
 
 
+}
 //********************************************************************************************
 
 
