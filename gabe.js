@@ -64,6 +64,6 @@ function User (name, language) {
   
   this.in_ornament = 'default';
   this.out_ornament = 'default';
-  console.log("Hello from " + this.name);
+  //console.log("Hello from " + this.name);
 }
 
