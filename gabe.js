@@ -25,7 +25,6 @@ function User (name, language) {
 // An array of Users
 var Users = [];
 
-
 // variables for text
 // English = 1 , Spanish = 2, etc...
 var ENGLISH = 0;
@@ -77,7 +76,6 @@ function UpdateText()
   Emergtext.text = EMERGENCY[syslang];
   Settingstext.text = SETTINGS[syslang];
   Deadbolttext.text = DEADBOLT[syslang];
-  // console.log('CALLED UPDATE TEXT');
 }
 
 var MenuItems = [];
