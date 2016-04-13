@@ -366,7 +366,7 @@ var doorknob_outside_locked = fabric.Image.fromURL('images/knob.png', function(o
   canvas.add(oImg);
 });
 
-var fabric.Image.fromURL('images/lockknob.png', function(oImg) {
+fabric.Image.fromURL('images/lockknob.png', function(oImg) {
   oImg.set({left: 1480, top: 1030, id: this.id});
   oImg.id = 'LockKnobOut';
   oImg.hasControls = oImg.hasBorders = false;
