@@ -173,11 +173,9 @@ var In_ornament = 'default';
 var Out_theme = 'default';
 var Out_ornament = 'default';
 
-  
 var Date_format = 1; 
 var Time_format = 1;
 var Units_format = 'Imperial';
-
   
 var HomeIsActive = false;
 var Current_user = null;
@@ -323,15 +321,8 @@ Weathertext.selectable = false;
 
 //****************** Adding In/out Door knobs ******************************************
 
-fabric.Image.fromURL('images/knob.png', function(oImg) {
-  oImg.set({left: 1480, top: 1030, id: this.id});
-  oImg.id = 'knob';
-  oImg.hasControls = oImg.hasBorders = false;
-  oImg.lockMovementY = oImg.lockMovementX = true;
-  canvas.add(oImg);
-});
 
-fabric.Image.fromURL('images/lockknob.png', function(oImg) {
+var doorknob_inside_locked = fabric.Image.fromURL('images/lockknob.png', function(oImg) {
   oImg.set({left: 1120, top: 1030, id: this.id});
   oImg.id = 'LockKnobIn';
   oImg.hasControls = oImg.hasBorders = false;
@@ -340,7 +331,7 @@ fabric.Image.fromURL('images/lockknob.png', function(oImg) {
   canvas.add(oImg);
 });
 
-fabric.Image.fromURL('images/unlockknob2.png', function(oImg) {
+var doorknob_inside_unlocked = fabric.Image.fromURL('images/unlockknob2.png', function(oImg) {
   oImg.set({left: 1110, top: 1020, id: this.id});
   oImg.id = 'UnlockKnobIn';
   oImg.hasControls = oImg.hasBorders = false;
@@ -349,7 +340,33 @@ fabric.Image.fromURL('images/unlockknob2.png', function(oImg) {
   canvas.add(oImg);
 });
 
-fabric.Image.fromURL('images/lockknob.png', function(oImg) {
+var deadbolt_locked = fabric.Image.fromURL('images/lockdeadbolt.png', function(oImg) {
+  oImg.set({left: 1100, top: 680, id: this.id});
+  oImg.id = 'LockDeadbolt';
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  canvas.add(oImg);
+});
+
+var deadbolt_unlocked = fabric.Image.fromURL('images/unlockdeadbolt.png', function(oImg) {
+  oImg.set({left: 1100, top: 680, id: this.id});
+  oImg.id = 'UnlockDeadbolt';
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.visible = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  canvas.add(oImg);
+});
+
+
+var doorknob_outside_locked = fabric.Image.fromURL('images/knob.png', function(oImg) {
+  oImg.set({left: 1480, top: 1030, id: this.id});
+  oImg.id = 'knob';
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  canvas.add(oImg);
+});
+
+var fabric.Image.fromURL('images/lockknob.png', function(oImg) {
   oImg.set({left: 1480, top: 1030, id: this.id});
   oImg.id = 'LockKnobOut';
   oImg.hasControls = oImg.hasBorders = false;
@@ -367,24 +384,13 @@ fabric.Image.fromURL('images/unlockknob2.png', function(oImg) {
   canvas.add(oImg);
 });
 
-fabric.Image.fromURL('images/lockdeadbolt.png', function(oImg) {
-  oImg.set({left: 1100, top: 680, id: this.id});
-  oImg.id = 'LockDeadbolt';
-  oImg.hasControls = oImg.hasBorders = false;
-  oImg.lockMovementY = oImg.lockMovementX = true;
-  canvas.add(oImg);
+var Deadbolttext = new fabric.Text(DEADBOLT[syslang], { 
+  left: 500, 
+  top: 293, 
+  fontFamily: 'Calibri', 
+  fontSize: 15 
 });
 
-fabric.Image.fromURL('images/unlockdeadbolt.png', function(oImg) {
-  oImg.set({left: 1100, top: 680, id: this.id});
-  oImg.id = 'UnlockDeadbolt';
-  oImg.hasControls = oImg.hasBorders = false;
-  oImg.visible = false;
-  oImg.lockMovementY = oImg.lockMovementX = true;
-  canvas.add(oImg);
-});
-
-var Deadbolttext = new fabric.Text(DEADBOLT[syslang], { left: 500, top: 293, fontFamily: 'Calibri', fontSize: 15 });
 Deadbolttext.setColor('black');
 Deadbolttext.selectable = false;
 //********************************************************************************************
