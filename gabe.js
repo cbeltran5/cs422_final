@@ -81,9 +81,6 @@ function UpdateText()
 }
 
 var MenuItems = [];
-var canvaswidth  = canvas.width;
-var canvasheight = canvas.height; 
-
 
 // height offsets
 var height_offset_tall = 0;
