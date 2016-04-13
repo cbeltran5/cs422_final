@@ -1,5 +1,4 @@
 Abeer
-
   Face recognition
   Fingerprint
   Number pad (2 cases)
@@ -11,8 +10,6 @@ Abeer
   Home button panel
   Camera
 
- 
-
 Enrique
   Messages
   Map
@@ -23,16 +20,12 @@ Enrique
   Alarm
   Restart
 
- 
-
 Carlos 
   Users
   Traffic
   Doorbell
   Brightness
   Themes
-
- 
 
 Gabe
   Language – (texts by all)

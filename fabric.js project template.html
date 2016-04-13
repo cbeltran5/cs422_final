@@ -145,15 +145,15 @@ footer {
 
 // within the code below I assume I am drawing into a 1220x990 box
 // then I can scale the group to whatever size the final canvas is
-  var localHeight = 990;
-  var localWidth = 1220;
+var localHeight = 990;
+var localWidth = 1220;
 
-  //var checkedRB = $('input[type="radio"][name="layout"]:checked');
+//var checkedRB = $('input[type="radio"][name="layout"]:checked');
 
-  var canvas = this.__canvas = new fabric.Canvas('c');
+var canvas = this.__canvas = new fabric.Canvas('c');
 
-  // set background to blue to make it easier to see it
-  canvas.backgroundColor = "#DDDDDD";  // light grey
+// set background to blue to make it easier to see it
+canvas.backgroundColor = "#DDDDDD";  // light grey
 
 //****************************** System Settings Parameters *********************************
 
@@ -190,8 +190,6 @@ var ArrayOfObjects = [];
 var OriginalObjCoordinate = [];
 var counter = 0;
   
-
-
 //*******************************************************************************************
 
 //************************************ Users Profiles ***************************************
@@ -250,11 +248,11 @@ insideDoor.hasControls = insideDoor.hasBorders = insideDoor.selectable = false;
 insideDoor.lockMovementX = insideDoor.lockMovementY = true;
 // Default door pattern
 fabric.util.loadImage('images/Doorpattern.gif', function (img) {
-    insideDoor.setPatternFill({
-        source: img,
-        repeat: 'repeat'
-    });
-    canvas.renderAll();
+  insideDoor.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+  });
+  canvas.renderAll();
 });
 
 var outsideDoor = new fabric.Rect({
@@ -282,7 +280,12 @@ fabric.util.loadImage('images/DoorpatternOut.gif', function (img) {
 
 //******************************* Adding Date/Time and weather ******************************
 
-var Datetext = new fabric.Text('', { left: 105, top: 112, fontFamily: 'Calibri', fontSize: 20 });
+var Datetext = new fabric.Text('', { 
+  left: 105, 
+  top: 112, 
+  fontFamily: 'Calibri', 
+  fontSize: 20 
+});
 Datetext.setColor('black');
 Datetext.selectable = false;
 
@@ -297,17 +300,25 @@ var date_rect = new fabric.Rect({
 });
 date_rect.selectable = false;
 
-var Timetext = new fabric.Text('', { left: 100, top: 80, fontFamily: 'Calibri', fontSize: 30 });
+var Timetext = new fabric.Text('', { 
+  left: 100, 
+  top: 80, 
+  fontFamily: 'Calibri', 
+  fontSize: 30 
+});
+
 Timetext.setColor('black');
 Timetext.selectable = false;
 
 ShowDateTime();
 
-var icon_weather = fabric.Image.fromURL('images/weather.gif', function(oImg) {
+var icon_weather;
+fabric.Image.fromURL('images/weather.gif', function(oImg) {
   oImg.set({left: 800, top: 95, id: this.id});
   oImg.selectable = false;
   oImg.id = 'weather';
-  canvas.add(oImg);
+  icon_weather = oImg;
+  canvas.add(icon_weather);
 });
 
 var Weathertext = new fabric.Text('49 F', { 
@@ -326,69 +337,81 @@ Weathertext.selectable = false;
 //****************** Adding In/out Door knobs ******************************************
 
 
-var doorknob_inside_locked = fabric.Image.fromURL('images/lockknob.png', function(oImg) {
+var doorknob_inside_locked; 
+fabric.Image.fromURL('images/lockknob.png', function(oImg) {
   oImg.set({left: 1120, top: 1030, id: this.id});
   oImg.id = 'LockKnobIn';
   oImg.hasControls = oImg.hasBorders = false;
   oImg.visible = true;
   oImg.lockMovementY = oImg.lockMovementX = true;
-  canvas.add(oImg);
+  doorknob_inside_locked = oImg;
+  canvas.add(doorknob_inside_locked);
 });
 
-var doorknob_inside_unlocked = fabric.Image.fromURL('images/unlockknob2.png', function(oImg) {
+var doorknob_inside_unlocked;
+fabric.Image.fromURL('images/unlockknob2.png', function(oImg) {
   oImg.set({left: 1110, top: 1020, id: this.id});
   oImg.id = 'UnlockKnobIn';
   oImg.hasControls = oImg.hasBorders = false;
   oImg.visible = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
-  canvas.add(oImg);
+  doorknob_inside_unlocked = oImg;
+  canvas.add(doorknob_inside_unlocked);
 });
 
-var deadbolt_locked = fabric.Image.fromURL('images/lockdeadbolt.png', function(oImg) {
+var deadbolt_locked;
+fabric.Image.fromURL('images/lockdeadbolt.png', function(oImg) {
   oImg.set({left: 1100, top: 680, id: this.id});
   oImg.id = 'LockDeadbolt';
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
-  canvas.add(oImg);
+  deadbolt_locked = oImg;
+  canvas.add(deadbolt_locked);
 });
 
-var deadbolt_unlocked = fabric.Image.fromURL('images/unlockdeadbolt.png', function(oImg) {
+var deadbolt_unlocked;
+fabric.Image.fromURL('images/unlockdeadbolt.png', function(oImg) {
   oImg.set({left: 1100, top: 680, id: this.id});
   oImg.id = 'UnlockDeadbolt';
   oImg.hasControls = oImg.hasBorders = false;
   oImg.visible = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
-  canvas.add(oImg);
+  deadbolt_unlocked = oImg;
+  canvas.add(deadbolt_unlocked);
 });
 
 
 
-var doorknob_outside_blank = fabric.Image.fromURL('images/knob.png', function(oImg) {
+var doorknob_outside_blank;
+fabric.Image.fromURL('images/knob.png', function(oImg) {
   oImg.set({left: 1480, top: 1030, id: this.id});
   oImg.id = 'knob';
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
-  canvas.add(oImg);
+  doorknob_outside_blank = oImg;
+  canvas.add(doorknob_outside_blank);
 });
 
-var doorknob_outside_locked = fabric.Image.fromURL('images/lockknob.png', function(oImg) {
+var doorknob_outside_locked;
+fabric.Image.fromURL('images/lockknob.png', function(oImg) {
   oImg.set({left: 1480, top: 1030, id: this.id});
   oImg.id = 'LockKnobOut';
   oImg.hasControls = oImg.hasBorders = false;
   oImg.visible = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
-  canvas.add(oImg);
+  doorknob_outside_locked = oImg;
+  canvas.add(doorknob_outside_locked);
 });
-
-
  
-var doorknob_outside_unlocked = fabric.Image.fromURL('images/unlockknob2.png', function(oImg) {
-   oImg.set({left: 1470, top: 1020, id: this.id});
+var doorknob_outside_unlocked;
+fabric.Image.fromURL('images/unlockknob2.png', function(oImg) {
+  oImg.set({left: 1470, top: 1020, id: this.id});
   oImg.id = 'UnlockKnobOut';
   oImg.hasControls = oImg.hasBorders = false;
   oImg.visible = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
-  canvas.add(oImg);
+  doorknob_outside_unlocked = oImg;
+  canvas.add(doorknob_outside_unlocked);
 });
 
 var Deadbolttext = new fabric.Text(DEADBOLT[syslang], { 
@@ -397,7 +420,6 @@ var Deadbolttext = new fabric.Text(DEADBOLT[syslang], {
   fontFamily: 'Calibri', 
   fontSize: 15 
 });
-
 Deadbolttext.setColor('black');
 Deadbolttext.selectable = false;
 //********************************************************************************************
@@ -406,93 +428,113 @@ Deadbolttext.selectable = false;
 //*********************** Components called by functions *************************************
 //To Do/Calender 
 
+var calendar_user1;
 fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
   oImg.set({left: 220, top: 730 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'user1calender';
-  ArrayOfObjects.push(oImg);
-  canvas.add(oImg);
+  calendar_user1 = oImg
+  ArrayOfObjects.push(calendar_user1);
+  canvas.add(calendar_user1);
 });
 
- fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
+
+var calendar_user2;
+fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
   oImg.set({left: 220, top: 730 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'user2calender';
-  ArrayOfObjects.push(oImg);
-  canvas.add(oImg);
+  calendar_user2 = oImg;
+  ArrayOfObjects.push(calendar_user2);
+  canvas.add(calendar_user2);
 });
 
- fabric.Image.fromURL('images/user1todo.gif', function(oImg) {
+var todo_list_user1;
+fabric.Image.fromURL('images/user1todo.gif', function(oImg) {
   oImg.set({left: 660, top: 730 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'user1todo';
-  ArrayOfObjects.push(oImg);
-  canvas.add(oImg);
+  todo_list_user1 = oImg;
+  ArrayOfObjects.push(todo_list_user1);
+  canvas.add(todo_list_user1);
 });
 
- fabric.Image.fromURL('images/user2todo.gif', function(oImg) {
+var todo_list_user2;
+fabric.Image.fromURL('images/user2todo.gif', function(oImg) {
   oImg.set({left: 660, top: 730 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'user2todo';
-  ArrayOfObjects.push(oImg);
-  canvas.add(oImg);
+  todo_list_user2 = oImg;
+  ArrayOfObjects.push(todo_list_user2);
+  canvas.add(todo_list_user2);
 });
 
 
- fabric.Image.fromURL('images/UsersList.gif', function(oImg) {
+var list_of_users;
+fabric.Image.fromURL('images/UsersList.gif', function(oImg) {
   oImg.set({left: 440, top: 730 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'userslist';
-  ArrayOfObjects.push(oImg);
-  canvas.add(oImg);
+  list_of_users = oImg;
+  ArrayOfObjects.push(list_of_users);
+  canvas.add(list_of_users);
 });
 
- fabric.Image.fromURL('images/user1name.gif', function(oImg) {
+var name_user1;
+fabric.Image.fromURL('images/user1name.gif', function(oImg) {
   oImg.set({left: 440, top: 830 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'user1name';
-  ArrayOfObjects.push(oImg);
-  canvas.add(oImg);
+  name_user1 = oImg;
+  ArrayOfObjects.push(name_user1);
+  canvas.add(name_user1);
 });
 
- fabric.Image.fromURL('images/user2name.gif', function(oImg) {
+var name_user2;
+fabric.Image.fromURL('images/user2name.gif', function(oImg) {
   oImg.set({left: 440, top: 911 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'user2name';
-  ArrayOfObjects.push(oImg);
-  canvas.add(oImg);
+  name_user2 = oImg;
+  ArrayOfObjects.push(name_user2);
+  canvas.add(name_user2);
 });
 
-  
-  
 
 //******************************* Home Button ****************************************
 var home_topheight = 555;
 
-var icon_home = fabric.Image.fromURL('images/home.gif', function(oImg) {
+var icon_home;
+fabric.Image.fromURL('images/home.gif', function(oImg) {
   oImg.set({left: 549, top: 555, id: this.id});
   oImg.id = 'home';
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
-  ArrayOfObjects.push(oImg);
-  canvas.add(oImg);
+  icon_home = oImg;
+  ArrayOfObjects.push(icon_home);
+  canvas.add(icon_home);
 });
 
-var Line = new fabric.Line([100, 310, 460, 310], { lfill: 'black', stroke: 'black',strokeWidth: 0.5});
+var Line = new fabric.Line([100, 310, 460, 310], { 
+  lfill: 'black', 
+  stroke: 'black',
+  strokeWidth: 0.5,
+  //selectable: true
+});
 Line.selectable = false;
 ArrayOfObjects.push(Line);
 //********************************************************************************************
@@ -516,8 +558,8 @@ PanelRect.lockMovementX = PanelRect.lockMovementY = true;
 
 fabric.util.loadImage('images/panelpattern.gif', function (img) {
   PanelRect.setPatternFill({
-      source: img,
-      repeat: 'repeat'
+    source: img,
+    repeat: 'repeat'
   });
 });
 ArrayOfObjects.push(PanelRect);
@@ -528,20 +570,28 @@ ArrayOfObjects.push(PanelRect);
 //******************************************************************************************** 
 // FIRST COLUMN OF ITEMS
 // MESSAGES
-var icon_messages = fabric.Image.fromURL('images/messages.gif', function(oImg) {
+var icon_messages;
+fabric.Image.fromURL('images/messages.gif', function(oImg) {
   oImg.set({left: 189, top: 730, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'messages';
-  ArrayOfObjects.push(oImg);
-  canvas.add(oImg);
+  icon_messages = oImg;
+  ArrayOfObjects.push(icon_messages);
+  canvas.add(icon_messages);
 });
-  var Messagestext = new fabric.Text(MESSAGES[syslang], { left: 85, top: 385, fontFamily: 'Times', fontSize: 15 });
-  Messagestext.setColor('black');
-  Messagestext.selectable = false;
-  Messagestext.visible = false;
-  ArrayOfObjects.push(Messagestext);
+
+var Messagestext = new fabric.Text(MESSAGES[syslang], { 
+  left: 85, 
+  top: 385, 
+  fontFamily: 'Times', 
+  fontSize: 15 
+});
+Messagestext.setColor('black');
+Messagestext.selectable = false;
+Messagestext.visible = false;
+ArrayOfObjects.push(Messagestext);
 
 // MIRROR   
 var Mirror = new fabric.Rect({
@@ -559,21 +609,29 @@ Mirror.lockMovementX = Mirror.lockMovementY = true;
 
 fabric.util.loadImage('images/mirrorwomen.gif', function (img) {
   Mirror.setPatternFill({
-      source: img,
-      repeat: 'repeat'
+    source: img,
+    ßrepeat: 'repeat'
   });
 }); 
- 
-var icon_mirror = fabric.Image.fromURL('images/mirror.gif', function(oImg) {
+
+var icon_mirror;
+fabric.Image.fromURL('images/mirror.gif', function(oImg) {
   oImg.set({left: 189, top: 925, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'mirror';
-  ArrayOfObjects.push(oImg);
-  canvas.add(oImg);
+  icon_mirror = oImg;
+  ArrayOfObjects.push(icon_mirror);
+  canvas.add(icon_mirror);
 });
-  var Mirrortext = new fabric.Text(MIRROR[syslang], { left: 95, top: 475, fontFamily: 'Times', fontSize: 15 });
+
+var Mirrortext = new fabric.Text(MIRROR[syslang], { 
+  left: 95, 
+  top: 475, 
+  fontFamily: 'Times', 
+  fontSize: 15 
+});
   Mirrortext.setColor('black');
   Mirrortext.selectable = false;
   Mirrortext.visible = false;
@@ -585,31 +643,42 @@ var icon_mirror = fabric.Image.fromURL('images/mirror.gif', function(oImg) {
 //******************************************************************************************** 
 // SECOND COLUMN OF ITEMS
 // CAMERA    
-var icon_camera = fabric.Image.fromURL('images/camera.gif', function(oImg) {
+var icon_camera;
+fabric.Image.fromURL('images/camera.gif', function(oImg) {
   oImg.set({left: 369, top: 735, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'camera';
-  ArrayOfObjects.push(oImg);
-  canvas.add(oImg);
+  icon_camera  = oImg;
+  ArrayOfObjects.push(icon_camera);
+  canvas.add(icon_camera);
 });
-  var Cameratext = new fabric.Text(CAMERA[syslang], { left: 165, top: 385, fontFamily: 'Times', fontSize: 15 });
-  Cameratext.setColor('black');
-  Cameratext.selectable = false;
-  Cameratext.visible = false;
-  ArrayOfObjects.push(Cameratext);
+
+var Cameratext = new fabric.Text(CAMERA[syslang], { 
+  left: 165, 
+  top: 385, 
+  fontFamily: 'Times', 
+  fontSize: 15 
+});
+Cameratext.setColor('black');
+Cameratext.selectable = false;
+Cameratext.visible = false;
+ArrayOfObjects.push(Cameratext);
   
 // LIGHTS    
-var icon_lights = fabric.Image.fromURL('images/lights.gif', function(oImg) {
+var icon_lights;
+fabric.Image.fromURL('images/lights.gif', function(oImg) {
   oImg.set({left: 369, top: 920, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'lights';
-  ArrayOfObjects.push(oImg);
+  icon_lights = oImg;
+  ArrayOfObjects.push(icon_lights);
   canvas.add(oImg);
 });
+
 var Lightstext = new fabric.Text(LIGHTS[syslang], { 
   left: 175, 
   top: 475, 
@@ -636,8 +705,8 @@ Lights.lockMovementX = Lights.lockMovementY = true;
 
 fabric.util.loadImage('images/black.gif', function (img) {
   Lights.setPatternFill({
-      source: img,
-      repeat: 'repeat'
+    source: img,
+    repeat: 'repeat'
   });
 });
 ArrayOfObjects.push(Lights);
@@ -647,14 +716,16 @@ ArrayOfObjects.push(Lights);
 //******************************************************************************************** 
 // THIRD COLUMN OF ITEMS
 // TRAFFIC    
-var icon_traffic = fabric.Image.fromURL('images/traffic.gif', function(oImg) {
+var icon_traffic;
+fabric.Image.fromURL('images/traffic.gif', function(oImg) {
   oImg.set({left: 549, top: 720, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'traffic';
-  ArrayOfObjects.push(oImg);
-  canvas.add(oImg);
+  icon_traffic = oImg;
+  ArrayOfObjects.push(icon_traffic);
+  canvas.add(icon_traffic);
 });
 
 var Traffictext = new fabric.Text(TRAFFIC[syslang], { 
@@ -690,25 +761,38 @@ fabric.util.loadImage('images/traffic.png', function (img) {
 ArrayOfObjects.push(Traffic);
 
 // ALARM    
-var icon_alarm = fabric.Image.fromURL('images/alarm.gif', function(oImg) {
+var icon_alarm_off;
+fabric.Image.fromURL('images/alarm.gif', function(oImg) {
   oImg.set({left: 549, top: 920, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'alarm';
-  ArrayOfObjects.push(oImg);
-  canvas.add(oImg);
+  icon_alarm_off = oImg;
+  ArrayOfObjects.push(icon_alarm_off);
+  canvas.add(icon_alarm_off);
 });
-  var Alarmtext = new fabric.Text(ALARM[syslang], { 
-    left: 255, 
-    top: 475, 
-    fontFamily: 'Times', 
-    fontSize: 15 
-  });
-  Alarmtext.setColor('black');
-  Alarmtext.selectable = false;
-  Alarmtext.visible = false;
-  ArrayOfObjects.push(Alarmtext);
+var icon_alarm_on;
+fabric.Image.fromURL('images/alarmOn.gif', function(oImg) {
+  oImg.set({left: 549, top: 920, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'alarmOn';
+  icon_alarm_on = oImg;
+  canvas.add(icon_alarm_on);
+});
+
+var Alarmtext = new fabric.Text(ALARM[syslang], { 
+  left: 255, 
+  top: 475, 
+  fontFamily: 'Times', 
+  fontSize: 15 
+});
+Alarmtext.setColor('black');
+Alarmtext.selectable = false;
+Alarmtext.visible = false;
+ArrayOfObjects.push(Alarmtext);
 //********************************************************************************************
   
   
@@ -716,14 +800,16 @@ var icon_alarm = fabric.Image.fromURL('images/alarm.gif', function(oImg) {
 //******************************************************************************************** 
 // FOURTH COLUMN OF ITEMS
 // TRANSPORT - CTA    
-var icon_trasportation = fabric.Image.fromURL('images/cta.gif', function(oImg) {
+var icon_trasportation;
+fabric.Image.fromURL('images/cta.gif', function(oImg) {
   oImg.set({left: 729, top: 720, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'cta';
-  ArrayOfObjects.push(oImg);
-  canvas.add(oImg);
+  icon_trasportation = oImg;
+  ArrayOfObjects.push(icon_trasportation);
+  canvas.add(icon_trasportation);
 });
 
 var Transporttext = new fabric.Text(TRANSPORT[syslang], { 
@@ -740,8 +826,6 @@ ArrayOfObjects.push(Transporttext);
 var Transport = new fabric.Rect({
   left: 185,
   top: 310,
-  //fill: 'grey',
-  //stroke: 'black',
   width: 187,
   height: 195,
   angle: 0
@@ -752,21 +836,23 @@ Transport.lockMovementX = Transport.lockMovementY = true;
 
 fabric.util.loadImage('images/transport.jpeg', function (img) {
   Transport.setPatternFill({
-      source: img,
-      repeat: 'repeat'
+    source: img,
+    repeat: 'repeat'
   });
 });  
 ArrayOfObjects.push(Transport);
 
 // EMERGENCY    
+var icon_911;
 fabric.Image.fromURL('images/911.gif', function(oImg) {
   oImg.set({left: 729, top: 935, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = '911';
-  ArrayOfObjects.push(oImg);
-  canvas.add(oImg);
+  icon_911 = oImg;
+  ArrayOfObjects.push(icon_911);
+  canvas.add(icon_911);
 });
 
 var Emergtext = new fabric.Text(EMERGENCY[syslang], { 
@@ -785,14 +871,16 @@ ArrayOfObjects.push(Emergtext);
 //******************************************************************************************** 
 // FIFTH COLUMN OF ITEMS
 // NEWS    
+var icon_news;
 fabric.Image.fromURL('images/news.gif', function(oImg) {
   oImg.set({left: 909, top: 730, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'news';
-  ArrayOfObjects.push(oImg);
-  canvas.add(oImg);
+  icon_news = oImg;
+  ArrayOfObjects.push(icon_news);
+  canvas.add(icon_news);
 });
 
 var Newstext = new fabric.Text(NEWS[syslang], { 
@@ -828,14 +916,16 @@ fabric.util.loadImage('images/news.jpg', function (img) {
 ArrayOfObjects.push(News);   
 
 // SETTINGS    
+var icon_settings;
 fabric.Image.fromURL('images/settings.gif', function(oImg) {
   oImg.set({left: 909, top: 930, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'settings';
-  ArrayOfObjects.push(oImg);
-  canvas.add(oImg);
+  icon_settings = oImg;
+  ArrayOfObjects.push(icon_settings);
+  canvas.add(icon_settings);
 });
 
 var Settingstext = new fabric.Text(SETTINGS[syslang], { 
@@ -850,14 +940,16 @@ Settingstext.visible = false;
 ArrayOfObjects.push(Settingstext);
 //********************************************************************************************
 
-var icon_restart = fabric.Image.fromURL('images/restart.png', function(oImg) {
+var icon_restart;
+fabric.Image.fromURL('images/restart.png', function(oImg) {
   oImg.set({left: 550, top: 1150, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'restart';
-  ArrayOfObjects.push(oImg);
-  canvas.add(oImg);
+  icon_restart = oImg;
+  ArrayOfObjects.push(icon_restart);
+  canvas.add(icon_restart);
 });
   
 fabric.Image.fromURL('images/alarmOn.gif', function(oImg) {
@@ -868,9 +960,8 @@ fabric.Image.fromURL('images/alarmOn.gif', function(oImg) {
   oImg.id = 'alarmOn';
   ArrayOfObjects.push(oImg);
   canvas.add(oImg);
-});
 
-    
+});
     
 //----------------------- Camera Components ---------------------------
 var AvatarOut = new fabric.Rect({
@@ -886,7 +977,7 @@ AvatarOut.visible = false;
 AvatarOut.hasControls = AvatarOut.hasBorders = AvatarOut.selectable = false;
 AvatarOut.lockMovementX = AvatarOut.lockMovementY = true;
 
-var avatar_outside = fabric.util.loadImage('images/AvatarOnOut.gif', function (img) {
+fabric.util.loadImage('images/AvatarOnOut.gif', function (img) {
   AvatarOut.setPatternFill({
     source: img,
     repeat: 'repeat'
@@ -902,15 +993,15 @@ var CameraIn = new fabric.Rect({
   height: 100,
   angle: 0
 });
-  CameraIn.visible = false;
-  CameraIn.hasControls = CameraIn.hasBorders = CameraIn.selectable = false;
-  CameraIn.lockMovementX = CameraIn.lockMovementY = true;
+CameraIn.visible = false;
+CameraIn.hasControls = CameraIn.hasBorders = CameraIn.selectable = false;
+CameraIn.lockMovementX = CameraIn.lockMovementY = true;
 
-var avatar_inside = fabric.util.loadImage('images/AvatarIn.gif', function (img) {
-    CameraIn.setPatternFill({
-        source: img,
-        repeat: 'repeat'
-    });
+fabric.util.loadImage('images/AvatarIn.gif', function (img) {
+  CameraIn.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+  });
 }); 
 ArrayOfObjects.push(CameraIn);
 
@@ -954,31 +1045,37 @@ fabric.util.loadImage('images/LiveOn.gif', function (img) {
 }); 
 ArrayOfObjects.push(LiveOnOff);
 //------------------------------------------------------------------
+var icon_doorbell;
 fabric.Image.fromURL('images/doorbell.gif', function(oImg) {
   oImg.set({left: 1485, top: 680, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'doorbell';
+  icon_doorbell = oImg;
   canvas.add(oImg);
 });
 
+var icon_write_messages;
 fabric.Image.fromURL('images/writemsg.gif', function(oImg) {
   oImg.set({left: 1470, top: 790, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'writemsg';
-  canvas.add(oImg);
+  icon_write_messages = oImg;
+  canvas.add(icon_write_messages);
 });
 
-fabric.Image.fromURL('images/np.gif', function(oImg) {
+var icon_number_pad;
+fabric.Image.fromURL('images/numberpad.gif', function(oImg) {
   oImg.set({left: 1480, top: 860, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'np';
-  canvas.add(oImg);
+  icon_number_pad = oImg;
+  canvas.add(icon_number_pad);
 });
 //********************************************************************************************
 
@@ -1012,8 +1109,7 @@ canvas.add(AvatarOnOff);
 canvas.add(LiveOnOff);
 
 //************************************** Functions *******************************************
-canvas.on('object:selected', function(e) 
-{ 
+canvas.on('object:selected', function(e) { 
   var activeObject = e.target; 
 
   //console.log(e.target);
@@ -1088,27 +1184,21 @@ canvas.on('object:selected', function(e)
       RunCamera();
       //canvas.deactivateAll();  
     }
+});
 
-  });
+AvatarOnOff.on('selected', function(){
+  if (AvatarIsActive == true)
+    RunInsideCameraLive();
+  else 
+    RunInsideCameraAvatar(); 
+});
 
-
-
-
-AvatarOnOff.on('selected', function()
-    {
-      if (AvatarIsActive == true)
-      RunInsideCameraLive();
-      else 
-      RunInsideCameraAvatar(); 
-    });
-
-LiveOnOff.on('selected', function()
-    {
-      if (AvatarIsActive == true)
-      RunInsideCameraLive();
-      else 
-      RunInsideCameraAvatar(); 
-    });
+LiveOnOff.on('selected', function(){
+  if (AvatarIsActive == true)
+    RunInsideCameraLive();
+  else 
+    RunInsideCameraAvatar(); 
+});
 
 
 //********************************************************************************************
@@ -1118,29 +1208,27 @@ LiveOnOff.on('selected', function()
 // this code deals with scaling all the elements on the canvas
 
 function zoomAll(SCALE_FACTOR) {
+  var objects = canvas.getObjects();
+  for (var i in objects) {
+    var scaleX = objects[i].scaleX;
+    var scaleY = objects[i].scaleY;
+    var left = objects[i].left;
+    var top = objects[i].top;
 
-      var objects = canvas.getObjects();
-      for (var i in objects) {
-          var scaleX = objects[i].scaleX;
-          var scaleY = objects[i].scaleY;
-          var left = objects[i].left;
-          var top = objects[i].top;
+    var tempScaleX = scaleX * SCALE_FACTOR;
+    var tempScaleY = scaleY * SCALE_FACTOR;
+    var tempLeft = left * SCALE_FACTOR;
+    var tempTop = top * SCALE_FACTOR;
 
-          var tempScaleX = scaleX * SCALE_FACTOR;
-          var tempScaleY = scaleY * SCALE_FACTOR;
-          var tempLeft = left * SCALE_FACTOR;
-          var tempTop = top * SCALE_FACTOR;
+    objects[i].scaleX = tempScaleX;
+    objects[i].scaleY = tempScaleY;
+    objects[i].left = tempLeft;
+    objects[i].top = tempTop;
 
-          objects[i].scaleX = tempScaleX;
-          objects[i].scaleY = tempScaleY;
-          objects[i].left = tempLeft;
-          objects[i].top = tempTop;
-
-          objects[i].setCoords();
-      }
-  
-      canvas.renderAll();
+    objects[i].setCoords();
   }
+  canvas.renderAll();
+}
 
 // draw everything at the appropriate scale for this canvas
 zoomAll(canvas.height / localHeight);
