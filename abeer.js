@@ -65,8 +65,7 @@ function ShowDateTime()
   canvas.remove(Timetext);
   canvas.add(Timetext);
   timeout = setTimeout(ShowDateTime,1000);
-}
-    
+}  
     
 //-------------------------------------------------------------
 function HomeSelected()
@@ -78,6 +77,7 @@ function HomeSelected()
     ShowHome();
 }
 
+//-------------------------------------------------------------
 function ShowHome()
 {
   HideUser1FromInside();
@@ -161,13 +161,11 @@ function HideHome()
       canvas.item(i).visible = true;
     }
 }
- //-------------------------------------------------------------
+
+//-------------------------------------------------------------
 function UnlockDoorOut()
  {
 
-  //
-  
-  //{
     for (var i = 0; i < canvas.getObjects().length; ++i) 
     { 
       if (canvas.item(i).id == 'LockKnobOut')
@@ -178,9 +176,9 @@ function UnlockDoorOut()
       
         canvas.item(i).visible = true;
     }
-  //}
 
  }
+
 //-------------------------------------------------------------
 function LockDoorIn()
  {
@@ -197,6 +195,7 @@ function LockDoorIn()
   }
 
  }
+
 //-------------------------------------------------------------
 function LockDoorOut()
  {
@@ -213,6 +212,7 @@ function LockDoorOut()
   }
 
  }
+
 //-------------------------------------------------------------
 function UnlockDeadbolt()
  {
@@ -229,6 +229,7 @@ function UnlockDeadbolt()
   }
 
  }
+
 //-------------------------------------------------------------
 function LockDeadbolt()
  {
@@ -244,42 +245,6 @@ function LockDeadbolt()
       canvas.item(i).visible = true;
   }
 
- }
-//-------------------------------------------------------------
- function TriggerDoorFromOutside()  //A user approached the door from outside
- {
-
-  for (var i = 0; i < canvas.getObjects().length; ++i) 
-  { 
-     if (canvas.item(i).id == 'doorbell' || canvas.item(i).id == 'writemsg' || 
-        canvas.item(i).id == 'LockKnobOut')
-      
-      canvas.item(i).visible = true;
-
-  }
- }
-//-------------------------------------------------------------
- function ResetDoorFromOutside()  //Reset the door to non signal status
- {
-  UserFingerIsRecognizable = false; 
-  document.getElementsByName('Verification')[1].disabled = false; 
-  document.getElementsByName('Verification')[2].disabled = false; 
-  document.getElementsByName('Verification')[3].disabled = false; 
-  for (var i = 0; i < canvas.getObjects().length; ++i) 
-  { 
-     if (canvas.item(i).id == 'doorbell' || canvas.item(i).id == 'writemsg'|| canvas.item(i).id == 'np' ||
-         canvas.item(i).id == 'UnlockKnobOut' || canvas.item(i).id == 'LockKnobOut')
-     {
-        canvas.item(i).visible = false;
-     }
-   }
-
-   for (var i = 0; i < canvas.getObjects().length; ++i) 
-    { 
-      if (canvas.item(i).id == 'UnlockKnobOut')
-    
-        canvas.item(i).selectable = true;
-    }
  }
       
 //------------------ Radio buttons Events Functions -------------------------
@@ -307,7 +272,8 @@ function User1FromInside()
   
   UpdateText();
 }
-  
+
+//-------------------------------------------------------------
 function HideUser1FromInside()
 {
   for (var i = 0; i < canvas.getObjects().length; ++i) 
@@ -316,6 +282,7 @@ function HideUser1FromInside()
       canvas.item(i).visible = false;
   }
 }
+
 //-------------------------------------------------------------
 function User2FromInside()
 {
@@ -341,7 +308,8 @@ function User2FromInside()
   
   UpdateText();
 }
-  
+ 
+//------------------------------------------------------------- 
 function HideUser2FromInside()
 {
 
@@ -369,7 +337,8 @@ function MultiUsersFromInside()
         canvas.item(i).visible = true;
     }
 }
-  
+
+//-------------------------------------------------------------  
 function HideUsersList()
 {
   for (var i = 0; i < canvas.getObjects().length; ++i) 
@@ -381,6 +350,7 @@ function HideUsersList()
         canvas.item(i).visible = false;
     }
 }
+
 //----------------------------------------------------------
 function NewUserFromInside()
 {
@@ -392,6 +362,7 @@ function NewUserFromInside()
   LockDeadbolt();
 }
 
+//-------------------------------------------------------------
 function NoUserFromInside()
 {
   HideHome();
@@ -404,6 +375,7 @@ function NoUserFromInside()
   document.getElementsByName('Heights')[2].disabled = true; 
   document.getElementsByName('Heights')[3].disabled = true; 
 }
+
 //-------------------------------------------------------------
 function AdjustHeight()
 {
@@ -440,8 +412,46 @@ function AdjustHeight()
        }  
   
  }
-//-------------------------------------------------------------
 
+//-------------------------------------------------------------
+ function TriggerDoorFromOutside()  //A user approached the door from outside
+ {
+
+  for (var i = 0; i < canvas.getObjects().length; ++i) 
+  { 
+     if (canvas.item(i).id == 'doorbell' || canvas.item(i).id == 'writemsg' || 
+        canvas.item(i).id == 'LockKnobOut')
+      
+      canvas.item(i).visible = true;
+
+  }
+ }
+
+//-------------------------------------------------------------
+ function ResetDoorFromOutside()  //Reset the door to non signal status
+ {
+  UserFingerIsRecognizable = false; 
+  document.getElementsByName('Verification')[1].disabled = false; 
+  document.getElementsByName('Verification')[2].disabled = false; 
+  document.getElementsByName('Verification')[3].disabled = false; 
+  for (var i = 0; i < canvas.getObjects().length; ++i) 
+  { 
+     if (canvas.item(i).id == 'doorbell' || canvas.item(i).id == 'writemsg'|| canvas.item(i).id == 'np' ||
+         canvas.item(i).id == 'UnlockKnobOut' || canvas.item(i).id == 'LockKnobOut')
+     {
+        canvas.item(i).visible = false;
+     }
+   }
+
+   for (var i = 0; i < canvas.getObjects().length; ++i) 
+    { 
+      if (canvas.item(i).id == 'UnlockKnobOut')
+    
+        canvas.item(i).selectable = true;
+    }
+ }
+ 
+//-------------------------------------------------------------
 function User1FromOutside()
 {
   ResetDoorFromOutside();
@@ -460,6 +470,7 @@ function User1FromOutside()
   }
 }
 
+//-------------------------------------------------------------
 function NewUserFromOutside()
 {
   ResetDoorFromOutside();
@@ -470,6 +481,7 @@ function NewUserFromOutside()
   document.getElementsByName('Verification')[3].checked = true; 
 }
 
+//-------------------------------------------------------------
 function NoUserFromOutside()
 {
   ResetDoorFromOutside();
@@ -478,6 +490,7 @@ function NoUserFromOutside()
   document.getElementsByName('Verification')[3].checked = true; 
 }
 
+//-------------------------------------------------------------
 function FaceRecognized()
 {
   ResetDoorFromOutside();
@@ -493,6 +506,7 @@ function FaceRecognized()
   UnlockDoorOut();
 }
 
+//-------------------------------------------------------------
 function FingerRecognized()
 {
   ResetDoorFromOutside();
@@ -500,6 +514,7 @@ function FingerRecognized()
   UserFingerIsRecognizable = true; 
 }
 
+//-------------------------------------------------------------
 function FailedVerification()
 {
   ResetDoorFromOutside();
@@ -512,6 +527,7 @@ function FailedVerification()
      }
    }
 }
+
 //------------------------------------------------------------
 //Camera Functionality
 
@@ -527,6 +543,7 @@ function RunCamera()
   RunInsideCameraAvatar();     //Avatar from inside is default
 }
 
+//-------------------------------------------------------------
 function RunOutsideCamera()
 {
   fabric.util.loadImage('images/FromOutCamera.gif', function (img) {
@@ -536,6 +553,7 @@ function RunOutsideCamera()
     });});
 }
 
+//-------------------------------------------------------------
 function RunInsideCameraAvatar()
 {
   AvatarIsActive = true;
@@ -566,6 +584,8 @@ function RunInsideCameraAvatar()
     });});
 
 }
+
+//-------------------------------------------------------------
 function RunInsideCameraLive()
 {
   console.log(" live ");
@@ -599,6 +619,7 @@ function RunInsideCameraLive()
 
 }
 
+//-------------------------------------------------------------
 function CloseCamera()
 {
   AvatarIsActive = false;
@@ -620,3 +641,4 @@ function CloseCamera()
     });
   });
 }
+//-------------------------------------------------------------
