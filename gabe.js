@@ -32,6 +32,8 @@ var ENGLISH = 0;
 var SPANISH = 1;
 
 var SYSTEM_LANGUAGE = ["ENGLISH", "SPANISH"];
+var TIME_FORMAT_12HOUR = 1;
+var TIME_FORMAT_24HOUR = 2;
 
 var MESSAGES = ["Messages", "Mensajes"];
 var CAMERA = ["Camera", "Cámara"];
@@ -77,7 +79,35 @@ function UpdateText()
   Deadbolttext.text = DEADBOLT[syslang];
 }
 
+
+var MenuItems = [];
+
+var canvas = document.getElementById('c');
+var canvaswidth  = canvas.width;
+var canvasheight = canvas.height; 
+
+// height offsets
+var tall_offset = 0;
+var medium_offset = 100;
+var short_offset = 200;
+
+var doorwidth = 555;
+var inside_door_left = 22;
+var outside_door_left = 642;
 var paneltop = 310;
+
+
+var doorknob_height = 1020;
+var doorknob_inside_leftoffset = 1110;
+
+
+var deadbolt_height_offset = 680;
+var deadbolt_left_offset = 1100;
+
+
+
+
+
 
 
 

@@ -162,10 +162,7 @@ var syslang = ENGLISH; // set to english by default
 var System_language = SYSTEM_LANGUAGE[syslang];
 
 // width for both doors
-var doorwidth = 555;
-// value for left side of rect object representing door, relative to the canvas
-var inside_left = 22;
-var outside_left = 642;
+
 
   
 var In_theme = 'default';
@@ -175,7 +172,7 @@ var Out_ornament = 'default';
 
   
 var Date_format = 1; 
-var Time_format = 1;
+var Time_format = TIME_FORMAT_12HOUR;
 var Units_format = 'Imperial';
 
   
@@ -1245,7 +1242,7 @@ function LockDeadbolt()
 
  }
 //-------------------------------------------------------------
- function TriggerDoorFromOutside()  //A user approached the door from outside
+function TriggerDoorFromOutside()  //A user approached the door from outside
  {
 
   for (var i = 0; i < canvas.getObjects().length; ++i) 
@@ -1258,7 +1255,7 @@ function LockDeadbolt()
   }
  }
 //-------------------------------------------------------------
- function ResetDoorFromOutside()  //Reset the door to non signal status
+function ResetDoorFromOutside()  //Reset the door to non signal status
  {
   UserFingerIsRecognizable = false; 
   document.getElementsByName('Verification')[1].disabled = false; 
@@ -1307,8 +1304,7 @@ function User1FromInside()
   UpdateText();
 }
   
-function HideUser1FromInside()
-{
+function HideUser1FromInside(){
   for (var i = 0; i < canvas.getObjects().length; ++i) 
   { 
     if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
@@ -1316,8 +1312,7 @@ function HideUser1FromInside()
   }
 }
 //-------------------------------------------------------------
-function User2FromInside()
-{
+function User2FromInside(){
   HideHome();
   HideUsersList();
   HideUser1FromInside();
@@ -1342,9 +1337,8 @@ function User2FromInside()
 }
   
 function HideUser2FromInside()
-{
-
-for (var i = 0; i < canvas.getObjects().length; ++i) 
+{ 
+  for (var i = 0; i < canvas.getObjects().length; ++i) 
     { 
       if (canvas.item(i).id == 'user2calender' || canvas.item(i).id == 'user2todo')
     
