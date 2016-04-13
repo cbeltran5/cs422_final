@@ -370,6 +370,7 @@ var deadbolt_unlocked = fabric.Image.fromURL('images/unlockdeadbolt.png', functi
 });
 
 
+
 var doorknob_outside_blank = fabric.Image.fromURL('images/knob.png', function(oImg) {
   oImg.set({left: 1480, top: 1030, id: this.id});
   oImg.id = 'knob';
@@ -387,8 +388,10 @@ var doorknob_outside_locked = fabric.Image.fromURL('images/lockknob.png', functi
   canvas.add(oImg);
 });
 
+
+ 
 var doorknob_outside_unlocked = fabric.Image.fromURL('images/unlockknob2.png', function(oImg) {
-  oImg.set({left: 1470, top: 1020, id: this.id});
+   oImg.set({left: 1470, top: 1020, id: this.id});
   oImg.id = 'UnlockKnobOut';
   oImg.hasControls = oImg.hasBorders = false;
   oImg.visible = false;
@@ -408,8 +411,7 @@ Deadbolttext.selectable = false;
 //********************************************************************************************
 
 
-
-
+ 
 
 //*********************** Components called by functions *************************************
 //To Do/Calender 
@@ -420,7 +422,7 @@ var calendar_user1 = fabric.Image.fromURL('images/user1calender.gif', function(o
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'user1calender';
-  canvas.add(oImg);
+   canvas.add(oImg);
 });
 
 
