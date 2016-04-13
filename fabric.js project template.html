@@ -432,41 +432,49 @@ Deadbolttext.selectable = false;
 //*********************** Components called by functions *************************************
 //To Do/Calender 
 
-var calendar_user1 = fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
+var calendar_user1;
+fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
   oImg.set({left: 220, top: 730 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'user1calender';
-   canvas.add(oImg);
+  calendar_user1 = oImg
+  canvas.add(calendar_user1);
 });
 
 
-var calendar_user2 =  fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
+var calendar_user2;
+fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
   oImg.set({left: 220, top: 730 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'user2calender';
-  canvas.add(oImg);
+  calendar_user2 = oImg;
+  canvas.add(calendar_user2);
 });
 
-var todo_list_user1 = fabric.Image.fromURL('images/user1todo.gif', function(oImg) {
+var todo_list_user1;
+fabric.Image.fromURL('images/user1todo.gif', function(oImg) {
   oImg.set({left: 660, top: 730 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'user1todo';
-  canvas.add(oImg);
+  todo_list_user1 = oImg;
+  canvas.add(todo_list_user1);
 });
 
-var todo_list_user2 = fabric.Image.fromURL('images/user2todo.gif', function(oImg) {
+var todo_list_user2;
+fabric.Image.fromURL('images/user2todo.gif', function(oImg) {
   oImg.set({left: 660, top: 730 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'user2todo';
-  canvas.add(oImg);
+  todo_list_user2 = oImg;
+  canvas.add(todo_list_user2);
 });
 
 
@@ -481,22 +489,26 @@ fabric.Image.fromURL('images/UsersList.gif', function(oImg) {
   canvas.add(list_of_users);
 });
 
-var name_user1 = fabric.Image.fromURL('images/user1name.gif', function(oImg) {
+var name_user1;
+fabric.Image.fromURL('images/user1name.gif', function(oImg) {
   oImg.set({left: 440, top: 830 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'user1name';
-  canvas.add(oImg);
+  name_user1 = oImg;
+  canvas.add(name_user1);
 });
 
-var name_user2 = fabric.Image.fromURL('images/user2name.gif', function(oImg) {
+var name_user2;
+fabric.Image.fromURL('images/user2name.gif', function(oImg) {
   oImg.set({left: 440, top: 911 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'user2name';
-  canvas.add(oImg);
+  name_user2 = oImg;
+  canvas.add(name_user2);
 });
 
 
