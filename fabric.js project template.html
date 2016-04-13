@@ -23,7 +23,6 @@ footer {
   margin: 1% 20px;
 }
 section {
-  
   float: left;
   width: auto;
   height: auto;
@@ -517,7 +516,26 @@ var PanelRect = new fabric.Rect({
   Messagestext.selectable = false;
   Messagestext.visible = false;
 
-// MIRROR    
+// MIRROR   
+var Mirror = new fabric.Rect({
+  left: 22,
+  top: 0,
+  fill: 'grey',
+  stroke: 'black',
+  width: 555,
+  height: localHeight,
+  angle: 0
+});
+  Mirror.visible = false;
+  Mirror.hasControls = Mirror.hasBorders = Mirror.selectable = false;
+  Mirror.lockMovementX = Mirror.lockMovementY = true;
+
+  fabric.util.loadImage('images/mirrorwomen.gif', function (img) {
+    Mirror.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });
+}); 
 fabric.Image.fromURL('images/mirror.gif', function(oImg) {
   oImg.set({left: 189, top: 925, id: this.id});
   oImg.visible = false;
@@ -530,6 +548,7 @@ fabric.Image.fromURL('images/mirror.gif', function(oImg) {
   Mirrortext.setColor('black');
   Mirrortext.selectable = false;
   Mirrortext.visible = false;
+
 //********************************************************************************************
   
   
@@ -562,6 +581,26 @@ fabric.Image.fromURL('images/lights.gif', function(oImg) {
   Lightstext.setColor('black');
   Lightstext.selectable = false;
   Lightstext.visible = false;
+  var Lights = new fabric.Rect({
+  left: 22,
+  top: 0,
+  fill: 'grey',
+  stroke: 'black',
+  width: 555,
+  height: localHeight,
+  angle: 0
+});
+  Lights.visible = false;
+  Lights.hasControls = Lights.hasBorders = Lights.selectable = false;
+  Lights.lockMovementX = Lights.lockMovementY = true;
+
+  fabric.util.loadImage('images/black.gif', function (img) {
+    Lights.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });
+});
+
 //********************************************************************************************
   
   
@@ -580,7 +619,25 @@ fabric.Image.fromURL('images/traffic.gif', function(oImg) {
   Traffictext.setColor('black');
   Traffictext.selectable = false;
   Traffictext.visible = false;
-  
+    var Traffic = new fabric.Rect({
+  left: 175,
+  top: 310,
+  fill: 'grey',
+  stroke: 'black',
+  width: 210,
+  height: 200,
+  angle: 0
+});
+  Traffic.visible = false;
+  Traffic.hasControls = Traffic.hasBorders = Traffic.selectable = false;
+  Traffic.lockMovementX = Traffic.lockMovementY = true;
+
+  fabric.util.loadImage('images/traffic.png', function (img) {
+    Traffic.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });
+});
 // ALARM    
 fabric.Image.fromURL('images/alarm.gif', function(oImg) {
   oImg.set({left: 549, top: 920, id: this.id});
@@ -609,10 +666,29 @@ fabric.Image.fromURL('images/cta.gif', function(oImg) {
   oImg.id = 'cta';
   canvas.add(oImg);
 });
-  var Ctatext = new fabric.Text(TRANSPORT[syslang], { left: 330, top: 385, fontFamily: 'Times', fontSize: 15 });
-  Ctatext.setColor('black');
-  Ctatext.selectable = false;
-  Ctatext.visible = false;
+  var Transporttext = new fabric.Text(TRANSPORT[syslang], { left: 330, top: 385, fontFamily: 'Times', fontSize: 15 });
+  Transporttext.setColor('black');
+  Transporttext.selectable = false;
+  Transporttext.visible = false;
+ var Transport = new fabric.Rect({
+  left: 185,
+  top: 310,
+  //fill: 'grey',
+  //stroke: 'black',
+  width: 187,
+  height: 195,
+  angle: 0
+});
+  Transport.visible = false;
+  Transport.hasControls = Transport.hasBorders = Transport.selectable = false;
+  Transport.lockMovementX = Transport.lockMovementY = true;
+
+  fabric.util.loadImage('images/transport.jpeg', function (img) {
+    Transport.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });
+});  
 
 // EMERGENCY    
 fabric.Image.fromURL('images/911.gif', function(oImg) {
@@ -646,123 +722,6 @@ fabric.Image.fromURL('images/news.gif', function(oImg) {
   Newstext.selectable = false;
   Newstext.visible = false;
 
-// SETTINGS    
-fabric.Image.fromURL('images/settings.gif', function(oImg) {
-  oImg.set({left: 909, top: 930, id: this.id});
-  oImg.visible = false;
-  oImg.hasControls = oImg.hasBorders = false;
-  oImg.lockMovementY = oImg.lockMovementX = true;
-  oImg.id = 'settings';
-  canvas.add(oImg);
-});
-  var Settingstext = new fabric.Text(SETTINGS[syslang], { left: 415, top: 475, fontFamily: 'Times', fontSize: 15 });
-  Settingstext.setColor('black');
-  Settingstext.selectable = false;
-  Settingstext.visible = false;
-//********************************************************************************************
-
-    
-    
-  
-  
-fabric.Image.fromURL('images/restart.png', function(oImg) {
-  oImg.set({left: 550, top: 1150, id: this.id});
-  oImg.visible = false;
-  oImg.hasControls = oImg.hasBorders = false;
-  oImg.lockMovementY = oImg.lockMovementX = true;
-  oImg.id = 'restart';
-  canvas.add(oImg);
-});
-  
-  fabric.Image.fromURL('images/alarmOn.gif', function(oImg) {
-  oImg.set({left: 549, top: 920, id: this.id});
-  oImg.visible = false;
-  oImg.hasControls = oImg.hasBorders = false;
-  oImg.lockMovementY = oImg.lockMovementX = true;
-  oImg.id = 'alarmOn';
-  canvas.add(oImg);
-});
-
-  
-  var Mirror = new fabric.Rect({
-  left: 22,
-  top: 0,
-  fill: 'grey',
-  stroke: 'black',
-  width: 555,
-  height: localHeight,
-  angle: 0
-});
-  Mirror.visible = false;
-  Mirror.hasControls = Mirror.hasBorders = Mirror.selectable = false;
-  Mirror.lockMovementX = Mirror.lockMovementY = true;
-
-  fabric.util.loadImage('images/mirrorwomen.gif', function (img) {
-    Mirror.setPatternFill({
-        source: img,
-        repeat: 'repeat'
-    });
-});
-  var Traffic = new fabric.Rect({
-  left: 175,
-  top: 310,
-  fill: 'grey',
-  stroke: 'black',
-  width: 210,
-  height: 200,
-  angle: 0
-});
-  Traffic.visible = false;
-  Traffic.hasControls = Traffic.hasBorders = Traffic.selectable = false;
-  Traffic.lockMovementX = Traffic.lockMovementY = true;
-
-  fabric.util.loadImage('images/traffic.png', function (img) {
-    Traffic.setPatternFill({
-        source: img,
-        repeat: 'repeat'
-    });
-});
-
-  var Lights = new fabric.Rect({
-  left: 22,
-  top: 0,
-  fill: 'grey',
-  stroke: 'black',
-  width: 555,
-  height: localHeight,
-  angle: 0
-});
-  Lights.visible = false;
-  Lights.hasControls = Lights.hasBorders = Lights.selectable = false;
-  Lights.lockMovementX = Lights.lockMovementY = true;
-
-  fabric.util.loadImage('images/black.gif', function (img) {
-    Lights.setPatternFill({
-        source: img,
-        repeat: 'repeat'
-    });
-});
-
- var Transport = new fabric.Rect({
-  left: 185,
-  top: 310,
-  //fill: 'grey',
-  //stroke: 'black',
-  width: 187,
-  height: 195,
-  angle: 0
-});
-  Transport.visible = false;
-  Transport.hasControls = Transport.hasBorders = Transport.selectable = false;
-  Transport.lockMovementX = Transport.lockMovementY = true;
-
-  fabric.util.loadImage('images/transport.jpeg', function (img) {
-    Transport.setPatternFill({
-        source: img,
-        repeat: 'repeat'
-    });
-});  
-
   var News = new fabric.Rect({
   left: 135,
   top: 310,
@@ -783,6 +742,44 @@ fabric.Image.fromURL('images/restart.png', function(oImg) {
     });
 }); 
     
+
+// SETTINGS    
+fabric.Image.fromURL('images/settings.gif', function(oImg) {
+  oImg.set({left: 909, top: 930, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'settings';
+  canvas.add(oImg);
+});
+  var Settingstext = new fabric.Text(SETTINGS[syslang], { left: 415, top: 475, fontFamily: 'Times', fontSize: 15 });
+  Settingstext.setColor('black');
+  Settingstext.selectable = false;
+  Settingstext.visible = false;
+//********************************************************************************************
+
+
+
+  
+  
+fabric.Image.fromURL('images/restart.png', function(oImg) {
+  oImg.set({left: 550, top: 1150, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'restart';
+  canvas.add(oImg);
+});
+  
+  fabric.Image.fromURL('images/alarmOn.gif', function(oImg) {
+  oImg.set({left: 549, top: 920, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'alarmOn';
+  canvas.add(oImg);
+});
+
     
     
 //----------------------- Camera Components ---------------------------
@@ -908,7 +905,7 @@ canvas.add(PanelRect);
 canvas.add(Messagestext);
 canvas.add(Cameratext);
 canvas.add(Traffictext);
-canvas.add(Ctatext);
+canvas.add(Transporttext);
 canvas.add(Newstext);
 canvas.add(Mirrortext);
 canvas.add(Lightstext);
@@ -1108,7 +1105,7 @@ function ShowHome()
   Messagestext.visible = true;
   Cameratext.visible = true;
   Traffictext.visible = true;
-  Ctatext.visible = true;
+  Transporttext.visible = true;
   Newstext.visible = true;
   Mirrortext.visible = true;
   Lightstext.visible = true;
@@ -1143,7 +1140,7 @@ function HideHome()
   Messagestext.visible = false;
   Cameratext.visible = false;
   Traffictext.visible = false;
-  Ctatext.visible = false;
+  Transporttext.visible = false;
   Newstext.visible = false;
   Mirrortext.visible = false;
   Lightstext.visible = false;

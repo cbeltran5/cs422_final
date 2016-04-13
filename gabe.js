@@ -77,5 +77,9 @@ function UpdateText()
   Deadbolttext.text = DEADBOLT[syslang];
 }
 
+var paneltop = 310;
+
+
+
 
 
