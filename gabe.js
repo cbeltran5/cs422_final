@@ -79,17 +79,19 @@ function UpdateText()
   Deadbolttext.text = DEADBOLT[syslang];
 }
 
+  
 
 var MenuItems = [];
 
-var canvas = document.getElementById('c');
 var canvaswidth  = canvas.width;
 var canvasheight = canvas.height; 
 
+
+
 // height offsets
-var tall_offset = 0;
-var medium_offset = 100;
-var short_offset = 200;
+var height_offset_tall = 0;
+var height_offset_medium = 100;
+var height_offset_short = 200;
 
 var doorwidth = 555;
 var inside_door_left = 22;

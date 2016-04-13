@@ -162,7 +162,10 @@ var syslang = ENGLISH; // set to english by default
 var System_language = SYSTEM_LANGUAGE[syslang];
 
 // width for both doors
-
+var doorwidth = 555;
+// value for left side of rect object representing door, relative to the canvas
+var inside_left = 22;
+var outside_left = 642;
 
   
 var In_theme = 'default';
@@ -172,7 +175,7 @@ var Out_ornament = 'default';
 
   
 var Date_format = 1; 
-var Time_format = TIME_FORMAT_12HOUR;
+var Time_format = 1;
 var Units_format = 'Imperial';
 
   
@@ -305,7 +308,12 @@ fabric.Image.fromURL('images/weather.gif', function(oImg) {
   canvas.add(oImg);
 });
 
-var Weathertext = new fabric.Text('49 F', { left: 475, top: 80, fontFamily: 'Calibri', fontSize: 30 });
+var Weathertext = new fabric.Text('49 F', { 
+  left: 475, 
+  top: 80, 
+  fontFamily: 'Calibri', 
+  fontSize: 30 
+});
 Weathertext.setColor('black');
 Weathertext.selectable = false;
 
@@ -313,7 +321,7 @@ Weathertext.selectable = false;
 
 
 
-//******************************* Adding In/out Door knobs  ******************************************
+//****************** Adding In/out Door knobs ******************************************
 
 fabric.Image.fromURL('images/knob.png', function(oImg) {
   oImg.set({left: 1480, top: 1030, id: this.id});
@@ -612,7 +620,12 @@ fabric.Image.fromURL('images/traffic.gif', function(oImg) {
   oImg.id = 'traffic';
   canvas.add(oImg);
 });
-  var Traffictext = new fabric.Text(TRAFFIC[syslang], { left: 255, top: 385, fontFamily: 'Times', fontSize: 15 });
+var Traffictext = new fabric.Text(TRAFFIC[syslang], { 
+  left: 255, 
+  top: 385, 
+  fontFamily: 'Times', 
+  fontSize: 15
+});
   Traffictext.setColor('black');
   Traffictext.selectable = false;
   Traffictext.visible = false;
@@ -644,7 +657,12 @@ fabric.Image.fromURL('images/alarm.gif', function(oImg) {
   oImg.id = 'alarm';
   canvas.add(oImg);
 });
-  var Alarmtext = new fabric.Text(ALARM[syslang], { left: 255, top: 475, fontFamily: 'Times', fontSize: 15 });
+  var Alarmtext = new fabric.Text(ALARM[syslang], { 
+    left: 255, 
+    top: 475, 
+    fontFamily: 'Times', 
+    fontSize: 15 
+  });
   Alarmtext.setColor('black');
   Alarmtext.selectable = false;
   Alarmtext.visible = false;
@@ -1242,7 +1260,7 @@ function LockDeadbolt()
 
  }
 //-------------------------------------------------------------
-function TriggerDoorFromOutside()  //A user approached the door from outside
+ function TriggerDoorFromOutside()  //A user approached the door from outside
  {
 
   for (var i = 0; i < canvas.getObjects().length; ++i) 
@@ -1255,7 +1273,7 @@ function TriggerDoorFromOutside()  //A user approached the door from outside
   }
  }
 //-------------------------------------------------------------
-function ResetDoorFromOutside()  //Reset the door to non signal status
+ function ResetDoorFromOutside()  //Reset the door to non signal status
  {
   UserFingerIsRecognizable = false; 
   document.getElementsByName('Verification')[1].disabled = false; 
@@ -1304,7 +1322,8 @@ function User1FromInside()
   UpdateText();
 }
   
-function HideUser1FromInside(){
+function HideUser1FromInside()
+{
   for (var i = 0; i < canvas.getObjects().length; ++i) 
   { 
     if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
@@ -1312,7 +1331,8 @@ function HideUser1FromInside(){
   }
 }
 //-------------------------------------------------------------
-function User2FromInside(){
+function User2FromInside()
+{
   HideHome();
   HideUsersList();
   HideUser1FromInside();
@@ -1337,8 +1357,9 @@ function User2FromInside(){
 }
   
 function HideUser2FromInside()
-{ 
-  for (var i = 0; i < canvas.getObjects().length; ++i) 
+{
+
+for (var i = 0; i < canvas.getObjects().length; ++i) 
     { 
       if (canvas.item(i).id == 'user2calender' || canvas.item(i).id == 'user2todo')
     
@@ -1610,26 +1631,24 @@ LiveOnOff.on('selected', function()
 
 function CloseCamera()
 {
-
   AvatarIsActive = false;
   CameraIn.visible = false;
   AvatarOut.visible = false;
   AvatarOnOff.visible = false;
   LiveOnOff.visible = false;
 
-fabric.util.loadImage('images/Doorpattern.gif', function (img) {
+  fabric.util.loadImage('images/Doorpattern.gif', function (img) {
     insideDoor.setPatternFill({
         source: img,
         repeat: 'repeat'
     });});
 
-fabric.util.loadImage('images/DoorpatternOut.gif', function (img) {
+  fabric.util.loadImage('images/DoorpatternOut.gif', function (img) {
     outsideDoor.setPatternFill({
         source: img,
         repeat: 'repeat'
-    });});
-
-
+    });
+  });
 }
 //********************************************************************************************
 
