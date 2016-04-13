@@ -479,7 +479,12 @@ var icon_home = fabric.Image.fromURL('images/home.gif', function(oImg) {
   canvas.add(oImg);
 });
 
-var Line = new fabric.Line([100, 310, 460, 310], { lfill: 'black', stroke: 'black',strokeWidth: 0.5});
+var Line = new fabric.Line([100, 310, 460, 310], { 
+  lfill: 'black', 
+  stroke: 'black',
+  strokeWidth: 0.5,
+  //selectable: true
+});
 Line.selectable = false;
 //********************************************************************************************
 
@@ -584,10 +589,15 @@ var icon_camera = fabric.Image.fromURL('images/camera.gif', function(oImg) {
   oImg.id = 'camera';
   canvas.add(oImg);
 });
-  var Cameratext = new fabric.Text(CAMERA[syslang], { left: 165, top: 385, fontFamily: 'Times', fontSize: 15 });
-  Cameratext.setColor('black');
-  Cameratext.selectable = false;
-  Cameratext.visible = false;
+var Cameratext = new fabric.Text(CAMERA[syslang], { 
+  left: 165, 
+  top: 385, 
+  fontFamily: 'Times', 
+  fontSize: 15 
+});
+Cameratext.setColor('black');
+Cameratext.selectable = false;
+Cameratext.visible = false;
   
 // LIGHTS    
 var icon_lights = fabric.Image.fromURL('images/lights.gif', function(oImg) {
@@ -726,13 +736,13 @@ Transport.lockMovementX = Transport.lockMovementY = true;
 
 fabric.util.loadImage('images/transport.jpeg', function (img) {
   Transport.setPatternFill({
-      source: img,
-      repeat: 'repeat'
+    source: img,
+    repeat: 'repeat'
   });
 });  
 
 // EMERGENCY    
-fabric.Image.fromURL('images/911.gif', function(oImg) {
+var icon_911 = fabric.Image.fromURL('images/911.gif', function(oImg) {
   oImg.set({left: 729, top: 935, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
@@ -755,7 +765,7 @@ Emergtext.visible = false;
 //******************************************************************************************** 
 // FIFTH COLUMN OF ITEMS
 // NEWS    
-fabric.Image.fromURL('images/news.gif', function(oImg) {
+var icon_news = fabric.Image.fromURL('images/news.gif', function(oImg) {
   oImg.set({left: 909, top: 730, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
@@ -827,7 +837,7 @@ var icon_restart = fabric.Image.fromURL('images/restart.png', function(oImg) {
   canvas.add(oImg);
 });
   
-fabric.Image.fromURL('images/alarmOn.gif', function(oImg) {
+var icon_alarm_on = fabric.Image.fromURL('images/alarmOn.gif', function(oImg) {
   oImg.set({left: 549, top: 920, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
