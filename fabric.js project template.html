@@ -403,7 +403,7 @@ Deadbolttext.selectable = false;
 //*********************** Components called by functions *************************************
 //To Do/Calender 
 
-fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
+var calendar_user1 = fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
   oImg.set({left: 220, top: 730 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
@@ -412,7 +412,7 @@ fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
   canvas.add(oImg);
 });
 
- fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
+var calendar_user2 =  fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
   oImg.set({left: 220, top: 730 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
@@ -421,7 +421,7 @@ fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
   canvas.add(oImg);
 });
 
- fabric.Image.fromURL('images/user1todo.gif', function(oImg) {
+var todo_list_user1 = fabric.Image.fromURL('images/user1todo.gif', function(oImg) {
   oImg.set({left: 660, top: 730 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
@@ -430,7 +430,7 @@ fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
   canvas.add(oImg);
 });
 
- fabric.Image.fromURL('images/user2todo.gif', function(oImg) {
+var todo_list_user2 = fabric.Image.fromURL('images/user2todo.gif', function(oImg) {
   oImg.set({left: 660, top: 730 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
@@ -440,7 +440,7 @@ fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
 });
 
 
- fabric.Image.fromURL('images/UsersList.gif', function(oImg) {
+var list_of_users = fabric.Image.fromURL('images/UsersList.gif', function(oImg) {
   oImg.set({left: 440, top: 730 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
@@ -449,7 +449,7 @@ fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
   canvas.add(oImg);
 });
 
- fabric.Image.fromURL('images/user1name.gif', function(oImg) {
+var name_user1 = fabric.Image.fromURL('images/user1name.gif', function(oImg) {
   oImg.set({left: 440, top: 830 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
@@ -458,7 +458,7 @@ fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
   canvas.add(oImg);
 });
 
- fabric.Image.fromURL('images/user2name.gif', function(oImg) {
+var name_user2 = fabric.Image.fromURL('images/user2name.gif', function(oImg) {
   oImg.set({left: 440, top: 911 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
@@ -467,8 +467,6 @@ fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
   canvas.add(oImg);
 });
 
-  
-  
 
 //******************************* Home Button ****************************************
 var home_topheight = 555;
@@ -504,8 +502,8 @@ PanelRect.lockMovementX = PanelRect.lockMovementY = true;
 
 fabric.util.loadImage('images/panelpattern.gif', function (img) {
   PanelRect.setPatternFill({
-      source: img,
-      repeat: 'repeat'
+    source: img,
+    repeat: 'repeat'
   });
 });
 //********************************************************************************************
@@ -523,10 +521,15 @@ var icon_messages = fabric.Image.fromURL('images/messages.gif', function(oImg) {
   oImg.id = 'messages';
   canvas.add(oImg);
 });
-  var Messagestext = new fabric.Text(MESSAGES[syslang], { left: 85, top: 385, fontFamily: 'Times', fontSize: 15 });
-  Messagestext.setColor('black');
-  Messagestext.selectable = false;
-  Messagestext.visible = false;
+var Messagestext = new fabric.Text(MESSAGES[syslang], { 
+  left: 85, 
+  top: 385, 
+  fontFamily: 'Times', 
+  fontSize: 15 
+});
+Messagestext.setColor('black');
+Messagestext.selectable = false;
+Messagestext.visible = false;
 
 // MIRROR   
 var Mirror = new fabric.Rect({
@@ -544,8 +547,8 @@ Mirror.lockMovementX = Mirror.lockMovementY = true;
 
 fabric.util.loadImage('images/mirrorwomen.gif', function (img) {
   Mirror.setPatternFill({
-      source: img,
-      repeat: 'repeat'
+    source: img,
+    ßrepeat: 'repeat'
   });
 }); 
 
@@ -557,7 +560,12 @@ var icon_mirror = fabric.Image.fromURL('images/mirror.gif', function(oImg) {
   oImg.id = 'mirror';
   canvas.add(oImg);
 });
-  var Mirrortext = new fabric.Text(MIRROR[syslang], { left: 95, top: 475, fontFamily: 'Times', fontSize: 15 });
+var Mirrortext = new fabric.Text(MIRROR[syslang], { 
+  left: 95, 
+  top: 475, 
+  fontFamily: 'Times', 
+  fontSize: 15 
+});
   Mirrortext.setColor('black');
   Mirrortext.selectable = false;
   Mirrortext.visible = false;
@@ -708,8 +716,6 @@ Transporttext.visible = false;
 var Transport = new fabric.Rect({
   left: 185,
   top: 310,
-  //fill: 'grey',
-  //stroke: 'black',
   width: 187,
   height: 195,
   angle: 0

@@ -77,7 +77,7 @@ function UpdateText()
   Emergtext.text = EMERGENCY[syslang];
   Settingstext.text = SETTINGS[syslang];
   Deadbolttext.text = DEADBOLT[syslang];
-  console.log('CALLED UPDATE TEXT');
+  // console.log('CALLED UPDATE TEXT');
 }
 
 var MenuItems = [];
