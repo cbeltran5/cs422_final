@@ -186,6 +186,9 @@ var ImgHeight = Height*2.22222222;
 var RestartIsActive = false;
 var AvatarIsActive = false;
 
+var ArrayOfObjects = [];
+var OriginalObjCoordinate = [];
+var counter = 0;
   
 
 
@@ -304,7 +307,7 @@ var icon_weather = fabric.Image.fromURL('images/weather.gif', function(oImg) {
   oImg.set({left: 800, top: 95, id: this.id});
   oImg.selectable = false;
   oImg.id = 'weather';
-  //canvas.add(oImg);
+  canvas.add(oImg);
 });
 
 var Weathertext = new fabric.Text('49 F', { 
@@ -400,8 +403,6 @@ Deadbolttext.selectable = false;
 //********************************************************************************************
 
 
- 
-
 //*********************** Components called by functions *************************************
 //To Do/Calender 
 
@@ -411,7 +412,8 @@ fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'user1calender';
-   canvas.add(oImg);
+  ArrayOfObjects.push(oImg);
+  canvas.add(oImg);
 });
 
  fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
@@ -420,6 +422,7 @@ fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'user2calender';
+  ArrayOfObjects.push(oImg);
   canvas.add(oImg);
 });
 
@@ -429,6 +432,7 @@ fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'user1todo';
+  ArrayOfObjects.push(oImg);
   canvas.add(oImg);
 });
 
@@ -438,6 +442,7 @@ fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'user2todo';
+  ArrayOfObjects.push(oImg);
   canvas.add(oImg);
 });
 
@@ -448,6 +453,7 @@ fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'userslist';
+  ArrayOfObjects.push(oImg);
   canvas.add(oImg);
 });
 
@@ -457,6 +463,7 @@ fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'user1name';
+  ArrayOfObjects.push(oImg);
   canvas.add(oImg);
 });
 
@@ -466,6 +473,7 @@ fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'user2name';
+  ArrayOfObjects.push(oImg);
   canvas.add(oImg);
 });
 
@@ -480,11 +488,13 @@ var icon_home = fabric.Image.fromURL('images/home.gif', function(oImg) {
   oImg.id = 'home';
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
+  ArrayOfObjects.push(oImg);
   canvas.add(oImg);
 });
 
 var Line = new fabric.Line([100, 310, 460, 310], { lfill: 'black', stroke: 'black',strokeWidth: 0.5});
 Line.selectable = false;
+ArrayOfObjects.push(Line);
 //********************************************************************************************
 
   
@@ -510,6 +520,7 @@ fabric.util.loadImage('images/panelpattern.gif', function (img) {
       repeat: 'repeat'
   });
 });
+ArrayOfObjects.push(PanelRect);
 //********************************************************************************************
   
   
@@ -523,12 +534,14 @@ var icon_messages = fabric.Image.fromURL('images/messages.gif', function(oImg) {
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'messages';
+  ArrayOfObjects.push(oImg);
   canvas.add(oImg);
 });
   var Messagestext = new fabric.Text(MESSAGES[syslang], { left: 85, top: 385, fontFamily: 'Times', fontSize: 15 });
   Messagestext.setColor('black');
   Messagestext.selectable = false;
   Messagestext.visible = false;
+  ArrayOfObjects.push(Messagestext);
 
 // MIRROR   
 var Mirror = new fabric.Rect({
@@ -550,19 +563,21 @@ fabric.util.loadImage('images/mirrorwomen.gif', function (img) {
       repeat: 'repeat'
   });
 }); 
-
+ 
 var icon_mirror = fabric.Image.fromURL('images/mirror.gif', function(oImg) {
   oImg.set({left: 189, top: 925, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'mirror';
+  ArrayOfObjects.push(oImg);
   canvas.add(oImg);
 });
   var Mirrortext = new fabric.Text(MIRROR[syslang], { left: 95, top: 475, fontFamily: 'Times', fontSize: 15 });
   Mirrortext.setColor('black');
   Mirrortext.selectable = false;
   Mirrortext.visible = false;
+  ArrayOfObjects.push(Mirrortext);
 
 //********************************************************************************************
   
@@ -576,12 +591,14 @@ var icon_camera = fabric.Image.fromURL('images/camera.gif', function(oImg) {
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'camera';
+  ArrayOfObjects.push(oImg);
   canvas.add(oImg);
 });
   var Cameratext = new fabric.Text(CAMERA[syslang], { left: 165, top: 385, fontFamily: 'Times', fontSize: 15 });
   Cameratext.setColor('black');
   Cameratext.selectable = false;
   Cameratext.visible = false;
+  ArrayOfObjects.push(Cameratext);
   
 // LIGHTS    
 var icon_lights = fabric.Image.fromURL('images/lights.gif', function(oImg) {
@@ -590,6 +607,7 @@ var icon_lights = fabric.Image.fromURL('images/lights.gif', function(oImg) {
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'lights';
+  ArrayOfObjects.push(oImg);
   canvas.add(oImg);
 });
 var Lightstext = new fabric.Text(LIGHTS[syslang], { 
@@ -601,6 +619,8 @@ var Lightstext = new fabric.Text(LIGHTS[syslang], {
 Lightstext.setColor('black');
 Lightstext.selectable = false;
 Lightstext.visible = false;
+ArrayOfObjects.push(Lightstext);
+
 var Lights = new fabric.Rect({
   left: 22,
   top: 0,
@@ -620,7 +640,7 @@ fabric.util.loadImage('images/black.gif', function (img) {
       repeat: 'repeat'
   });
 });
-
+ArrayOfObjects.push(Lights);
 //********************************************************************************************
   
   
@@ -633,8 +653,10 @@ var icon_traffic = fabric.Image.fromURL('images/traffic.gif', function(oImg) {
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'traffic';
+  ArrayOfObjects.push(oImg);
   canvas.add(oImg);
 });
+
 var Traffictext = new fabric.Text(TRAFFIC[syslang], { 
   left: 255, 
   top: 385, 
@@ -644,6 +666,8 @@ var Traffictext = new fabric.Text(TRAFFIC[syslang], {
 Traffictext.setColor('black');
 Traffictext.selectable = false;
 Traffictext.visible = false;
+ArrayOfObjects.push(Traffictext);
+
 var Traffic = new fabric.Rect({
   left: 175,
   top: 310,
@@ -663,6 +687,7 @@ fabric.util.loadImage('images/traffic.png', function (img) {
       repeat: 'repeat'
   });
 });
+ArrayOfObjects.push(Traffic);
 
 // ALARM    
 var icon_alarm = fabric.Image.fromURL('images/alarm.gif', function(oImg) {
@@ -671,6 +696,7 @@ var icon_alarm = fabric.Image.fromURL('images/alarm.gif', function(oImg) {
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'alarm';
+  ArrayOfObjects.push(oImg);
   canvas.add(oImg);
 });
   var Alarmtext = new fabric.Text(ALARM[syslang], { 
@@ -682,6 +708,7 @@ var icon_alarm = fabric.Image.fromURL('images/alarm.gif', function(oImg) {
   Alarmtext.setColor('black');
   Alarmtext.selectable = false;
   Alarmtext.visible = false;
+  ArrayOfObjects.push(Alarmtext);
 //********************************************************************************************
   
   
@@ -695,8 +722,10 @@ var icon_trasportation = fabric.Image.fromURL('images/cta.gif', function(oImg) {
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'cta';
+  ArrayOfObjects.push(oImg);
   canvas.add(oImg);
 });
+
 var Transporttext = new fabric.Text(TRANSPORT[syslang], { 
   left: 330, 
   top: 385, 
@@ -706,6 +735,7 @@ var Transporttext = new fabric.Text(TRANSPORT[syslang], {
 Transporttext.setColor('black');
 Transporttext.selectable = false;
 Transporttext.visible = false;
+ArrayOfObjects.push(Transporttext);
 
 var Transport = new fabric.Rect({
   left: 185,
@@ -726,6 +756,7 @@ fabric.util.loadImage('images/transport.jpeg', function (img) {
       repeat: 'repeat'
   });
 });  
+ArrayOfObjects.push(Transport);
 
 // EMERGENCY    
 fabric.Image.fromURL('images/911.gif', function(oImg) {
@@ -734,8 +765,10 @@ fabric.Image.fromURL('images/911.gif', function(oImg) {
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = '911';
+  ArrayOfObjects.push(oImg);
   canvas.add(oImg);
 });
+
 var Emergtext = new fabric.Text(EMERGENCY[syslang], { 
   left: 325, 
   top: 475, 
@@ -745,6 +778,7 @@ var Emergtext = new fabric.Text(EMERGENCY[syslang], {
 Emergtext.setColor('black');
 Emergtext.selectable = false;
 Emergtext.visible = false;
+ArrayOfObjects.push(Emergtext);
 //********************************************************************************************
   
   
@@ -757,8 +791,10 @@ fabric.Image.fromURL('images/news.gif', function(oImg) {
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'news';
+  ArrayOfObjects.push(oImg);
   canvas.add(oImg);
 });
+
 var Newstext = new fabric.Text(NEWS[syslang], { 
   left: 420, 
   top: 385,
@@ -768,6 +804,7 @@ var Newstext = new fabric.Text(NEWS[syslang], {
 Newstext.setColor('black');
 Newstext.selectable = false;
 Newstext.visible = false;
+ArrayOfObjects.push(Newstext);
 
 var News = new fabric.Rect({
   left: 135,
@@ -788,7 +825,7 @@ fabric.util.loadImage('images/news.jpg', function (img) {
     repeat: 'repeat'
   });
 }); 
-    
+ArrayOfObjects.push(News);   
 
 // SETTINGS    
 fabric.Image.fromURL('images/settings.gif', function(oImg) {
@@ -797,8 +834,10 @@ fabric.Image.fromURL('images/settings.gif', function(oImg) {
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'settings';
+  ArrayOfObjects.push(oImg);
   canvas.add(oImg);
 });
+
 var Settingstext = new fabric.Text(SETTINGS[syslang], { 
   left: 415, 
   top: 475, 
@@ -808,18 +847,16 @@ var Settingstext = new fabric.Text(SETTINGS[syslang], {
 Settingstext.setColor('black');
 Settingstext.selectable = false;
 Settingstext.visible = false;
+ArrayOfObjects.push(Settingstext);
 //********************************************************************************************
 
-
-
-  
-  
 var icon_restart = fabric.Image.fromURL('images/restart.png', function(oImg) {
   oImg.set({left: 550, top: 1150, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'restart';
+  ArrayOfObjects.push(oImg);
   canvas.add(oImg);
 });
   
@@ -829,6 +866,7 @@ fabric.Image.fromURL('images/alarmOn.gif', function(oImg) {
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'alarmOn';
+  ArrayOfObjects.push(oImg);
   canvas.add(oImg);
 });
 
@@ -854,7 +892,8 @@ var avatar_outside = fabric.util.loadImage('images/AvatarOnOut.gif', function (i
     repeat: 'repeat'
   });
 });   
-  
+ArrayOfObjects.push(AvatarOut);
+
 var CameraIn = new fabric.Rect({
   left: 100,
   top: 320,
@@ -873,6 +912,7 @@ var avatar_inside = fabric.util.loadImage('images/AvatarIn.gif', function (img) 
         repeat: 'repeat'
     });
 }); 
+ArrayOfObjects.push(CameraIn);
 
 AvatarOnOff = new fabric.Rect({
   left: 210,
@@ -892,6 +932,7 @@ fabric.util.loadImage('images/AvatarOn.gif', function (img) {
     repeat: 'repeat'
   });
 }); 
+ArrayOfObjects.push(AvatarOnOff);
 
 LiveOnOff = new fabric.Rect({
   left: 210,
@@ -911,7 +952,7 @@ fabric.util.loadImage('images/LiveOn.gif', function (img) {
     repeat: 'repeat'
   });
 }); 
-    
+ArrayOfObjects.push(LiveOnOff);
 //------------------------------------------------------------------
 fabric.Image.fromURL('images/doorbell.gif', function(oImg) {
   oImg.set({left: 1485, top: 680, id: this.id});
@@ -1103,6 +1144,7 @@ function zoomAll(SCALE_FACTOR) {
 
 // draw everything at the appropriate scale for this canvas
 zoomAll(canvas.height / localHeight);
+
 
 //})();
 

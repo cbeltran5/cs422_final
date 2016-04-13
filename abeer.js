@@ -371,6 +371,7 @@ function NoUserFromInside()
   HideUsersList();
   LockDoorIn();
   LockDeadbolt();
+  ResetCoordinates();
   document.getElementsByName('Heights')[1].disabled = true; 
   document.getElementsByName('Heights')[2].disabled = true; 
   document.getElementsByName('Heights')[3].disabled = true; 
@@ -379,39 +380,50 @@ function NoUserFromInside()
 //-------------------------------------------------------------
 function AdjustHeight()
 {
+  if (counter < 1)
+  {
+    GetOriginalCoordinate();
+    counter++;
+  }
+
    var Heights = document.getElementsByName('Heights');
   
   if(Heights[1].checked)
-     { Height = 40; 
-       ImgHeight = Height * 2.22222222;
-       console.log(Height);
-       //canvas.dispose();
-       canvas.renderAll();
-
-    for (var i = 0; i < canvas.getObjects().length; ++i) 
-    { 
-      if (canvas.item(i).id == 'home')
-    
-        console.log(canvas.item(i).top);
-    }
-
-       }  
+        Height = -100;  
   
   else if(Heights[2].checked)
-    { Height = 0; 
-       ImgHeight = Height * 2.22222222;
-       console.log(Height);
-       canvas.renderAll();
-       }    
+        Height = 0;   
   
   else if(Heights[3].checked)
-    { Height = -40; 
-       ImgHeight = Height * 2.22222222;
-       console.log(Height);
-       canvas.renderAll();
-       }  
+        Height = 100;  
   
+  for (var i = 0; i < ArrayOfObjects.length; ++i) 
+        {
+        ArrayOfObjects[i].top = OriginalObjCoordinate[i] + Height;
+        ArrayOfObjects[i].setCoords();
+        }
+
+  canvas.renderAll();
  }
+//-------------------------------------------------------------
+function GetOriginalCoordinate()
+{
+
+  for (var i = 0; i < ArrayOfObjects.length; ++i) 
+        OriginalObjCoordinate[i] = ArrayOfObjects[i].top;
+}
+
+//-------------------------------------------------------------
+function ResetCoordinates()
+{
+  for (var i = 0; i < ArrayOfObjects.length; ++i) 
+        {
+        ArrayOfObjects[i].top = OriginalObjCoordinate[i];
+        ArrayOfObjects[i].setCoords();
+        }
+
+  canvas.renderAll();
+}
 
 //-------------------------------------------------------------
  function TriggerDoorFromOutside()  //A user approached the door from outside
