@@ -69,7 +69,7 @@ function UpdateText()
   Messagestext.text = MESSAGES[syslang];
   Cameratext.text = CAMERA[syslang];
   Traffictext.text = TRAFFIC[syslang];
-  Ctatext.text = TRANSPORT[syslang];
+  Transporttext.text = TRANSPORT[syslang];
   Newstext.text = NEWS[syslang];
   Mirrortext.text = MIRROR[syslang];
   Lightstext.text = LIGHTS[syslang];
@@ -77,16 +77,10 @@ function UpdateText()
   Emergtext.text = EMERGENCY[syslang];
   Settingstext.text = SETTINGS[syslang];
   Deadbolttext.text = DEADBOLT[syslang];
+  console.log('CALLED UPDATE TEXT');
 }
 
-  
-
 var MenuItems = [];
-
-var canvaswidth  = canvas.width;
-var canvasheight = canvas.height; 
-
-
 
 // height offsets
 var height_offset_tall = 0;
