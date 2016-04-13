@@ -186,9 +186,6 @@ var ImgHeight = Height*2.22222222;
 var RestartIsActive = false;
 var AvatarIsActive = false;
 
-  
-
-
 //*******************************************************************************************
 
 //************************************ Users Profiles ***************************************
@@ -401,8 +398,6 @@ fabric.Image.fromURL('images/lockknob.png', function(oImg) {
   doorknob_outside_locked = oImg;
   canvas.add(doorknob_outside_locked);
 });
-
-
  
 var doorknob_outside_unlocked;
 fabric.Image.fromURL('images/unlockknob2.png', function(oImg) {
@@ -421,7 +416,6 @@ var Deadbolttext = new fabric.Text(DEADBOLT[syslang], {
   fontFamily: 'Calibri', 
   fontSize: 15 
 });
-
 Deadbolttext.setColor('black');
 Deadbolttext.selectable = false;
 //********************************************************************************************
@@ -515,12 +509,14 @@ fabric.Image.fromURL('images/user2name.gif', function(oImg) {
 //******************************* Home Button ****************************************
 var home_topheight = 555;
 
-var icon_home = fabric.Image.fromURL('images/home.gif', function(oImg) {
+var icon_home;
+fabric.Image.fromURL('images/home.gif', function(oImg) {
   oImg.set({left: 549, top: 555, id: this.id});
   oImg.id = 'home';
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
-  canvas.add(oImg);
+  icon_home = oImg;
+  canvas.add(icon_home);
 });
 
 var Line = new fabric.Line([100, 310, 460, 310], { 
@@ -899,10 +895,6 @@ Settingstext.selectable = false;
 Settingstext.visible = false;
 //********************************************************************************************
 
-
-
-  
-  
 var icon_restart;
 fabric.Image.fromURL('images/restart.png', function(oImg) {
   oImg.set({left: 550, top: 1150, id: this.id});
@@ -913,9 +905,6 @@ fabric.Image.fromURL('images/restart.png', function(oImg) {
   icon_restart = oImg;
   canvas.add(icon_restart);
 });
-  
-
-    
     
 //----------------------- Camera Components ---------------------------
 var AvatarOut = new fabric.Rect({
@@ -946,9 +935,9 @@ var CameraIn = new fabric.Rect({
   height: 100,
   angle: 0
 });
-  CameraIn.visible = false;
-  CameraIn.hasControls = CameraIn.hasBorders = CameraIn.selectable = false;
-  CameraIn.lockMovementX = CameraIn.lockMovementY = true;
+CameraIn.visible = false;
+CameraIn.hasControls = CameraIn.hasBorders = CameraIn.selectable = false;
+CameraIn.lockMovementX = CameraIn.lockMovementY = true;
 
 fabric.util.loadImage('images/AvatarIn.gif', function (img) {
   CameraIn.setPatternFill({
@@ -1018,14 +1007,15 @@ fabric.Image.fromURL('images/writemsg.gif', function(oImg) {
   canvas.add(icon_write_messages);
 });
 
-
+var icon_number_pad;
 fabric.Image.fromURL('images/numberpad.gif', function(oImg) {
   oImg.set({left: 1480, top: 860, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'np';
-  canvas.add(oImg);
+  icon_number_pad = oImg;
+  canvas.add(icon_number_pad);
 });
 //********************************************************************************************
 
@@ -1059,8 +1049,7 @@ canvas.add(AvatarOnOff);
 canvas.add(LiveOnOff);
 
 //************************************** Functions *******************************************
-canvas.on('object:selected', function(e) 
-{ 
+canvas.on('object:selected', function(e) { 
   var activeObject = e.target; 
 
   //console.log(e.target);
@@ -1135,22 +1124,16 @@ canvas.on('object:selected', function(e)
       RunCamera();
       //canvas.deactivateAll();  
     }
+});
 
-  });
-
-
-
-
-AvatarOnOff.on('selected', function()
-{
+AvatarOnOff.on('selected', function(){
   if (AvatarIsActive == true)
     RunInsideCameraLive();
   else 
     RunInsideCameraAvatar(); 
 });
 
-LiveOnOff.on('selected', function()
-{
+LiveOnOff.on('selected', function(){
   if (AvatarIsActive == true)
     RunInsideCameraLive();
   else 
