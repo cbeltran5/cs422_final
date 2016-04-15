@@ -395,7 +395,7 @@ function AdjustHeight()
         Height = 0;   
   
   else if(Heights[3].checked)
-        Height = 100;  
+        Height = 300;  
   
   for (var i = 0; i < ArrayOfObjects.length; ++i) 
         {
