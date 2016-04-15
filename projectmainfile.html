@@ -174,7 +174,7 @@ var In_ornament = 'default';
 var Out_theme = 'default';
 var Out_ornament = 'default';
 
-var Date_format = 1; 
+var Date_format = DATE_MONTHDDYYYY; 
 var Time_format = 1;
 var Units_format = 'Imperial';
   
@@ -196,37 +196,9 @@ var counter = 0;
 
 var User1 = new User('Adam', ENGLISH);
 var User2 = new User('Sara', SPANISH);
-
-//  
-//var User1 = {
-//  name : 'Adam',
-//  language : ENGLISH,
-//
-//  in_theme : 'wood',  
-//  out_theme : 'wood',
-//  in_ornament : 'default',
-//  out_ornament : 'default',
-//
-//  date_format : 1,
-//  time_format : 1,
-//  units_format : 'Imperial'
-//
-//};
-
-//var User2 = {
-//  name : 'Sara',
-//  language : SPANISH,
-//
-//  in_theme : 'metal',
-//  out_theme : 'metal',
-//  in_ornament : 'default',
-//  out_ornament : 'default',
-//
-//  date_format : 1,
-//  time_format : 1,
-//  units_format : 'Imperial'
-//
-//};
+var Users = [];
+Users.push(User1);
+Users.push(User2);
 //*******************************************************************************************
 
 

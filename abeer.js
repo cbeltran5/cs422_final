@@ -1,4 +1,4 @@
-function ShowDateTime()
+function ShowDateTime_BACKUP()
 {
   var currentdate = new Date();
   var year = currentdate.getFullYear();
@@ -64,6 +64,7 @@ function ShowDateTime()
   Timetext.initialize(time);
   canvas.remove(Timetext);
   canvas.add(Timetext);
+
   timeout = setTimeout(ShowDateTime,1000);
 }  
     
