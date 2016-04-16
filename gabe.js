@@ -170,13 +170,13 @@ var DECEMBER = ["December", "Diciembre"];
 ************************************************************************/
 
 
-
-
 // An array of Users
 var RegisteredUsers = [];
 
+var userscounter = 0;
 // Created a User class to hold the personal information common to all users
 function User(firstname, lastname, language) {
+  this.id = userscounter++;
   this.firstname = firstname;
   this.lastname = lastname;
   
@@ -196,31 +196,63 @@ function User(firstname, lastname, language) {
   this.out_ornament = 'default';
   
   this.myObjects = [];
+  this.myMessages = [];
+
   this.addObject = function(object) {
-    object.id = lastname;
-    myObjects.push(object);
+    object.id = this.id;
+    this.myObjects.push(object);
   }
   
   this.hideObjects = function() {
-    for( var i=0; i < myObjects.length; i++) {
-      myObjects[i].visible = true;
+    for( var i=0; i < this.myObjects.length; i++) {
+      this.myObjects[i].visible = true;
     }
   }
   
   this.showObjects = function() {
-    for( var i=0; i < myObjects.length; i++) {
-      myObjects[i].visible = false;
+    for( var i=0; i < this.myObjects.length; i++) {
+      this.myObjects[i].visible = false;
     }
   }
   
   RegisteredUsers.push(this);
-  console.log(RegisteredUsers);
+
+  AddUserToRadioChoices(this.firstname, this.id);
+}
+
+var RADIO_ID_UFI = "UsersFromInside";
+var RADIO_ID_UFO = "UsersFromOutside";
+  
+function AddUserToRadioChoices( name , value) {
+  var UsersFromInside = document.getElementById(RADIO_ID_UFI);     
+  var label = document.createElement("label");
+  var element = document.createElement("input");
+  element.setAttribute("type", "radio");
+  element.setAttribute("value", value);
+  element.setAttribute("name", "UsersIn");
+  element.setAttribute("class", "radio1");
+  element.setAttribute("onchange", "LoadUserData_Inside(this.value)");
+  label.appendChild(element);
+  label.innerHTML += " " + name + '<br/>';  
+  UsersFromInside.appendChild(label);
+  
+  var UsersFromOutside= document.getElementById(RADIO_ID_UFO); 
+  var label2 = document.createElement("label");
+  var element2 = document.createElement("input");
+  element2.setAttribute("type", "radio");
+  element2.setAttribute("value", value);
+  element2.setAttribute("name", "UsersOut");
+  element2.setAttribute("class", "radio1");
+  element2.setAttribute("onchange", "LoadUserData_Outside(this.value)");
+  label2.appendChild(element2);
+  label2.innerHTML += " " + name + '<br/>';
+  UsersFromOutside.appendChild(label2);
+  console.log(name + " " + value);
 }
 
 
-
-
-function LoadUserData(index ) {
+function LoadUserData_Inside(index ) {
+  console.log("LoadUserData(" + index + ")");
   var i, User = RegisteredUsers[ index ];
   HideHome();
   HideUsersList();
@@ -242,6 +274,14 @@ function LoadUserData(index ) {
   UpdateText();
 }
 
+function LoadUserData_Outside(index ) {
+  console.log("LoadUserData_Outside() is not yet implemented. On Todo List in gabe.js");
+  
+}
+
+function MultiUsersOutside() {
+  console.log("MultiUsersFromOutside not yet implemented. On Todo List in gabe.js");
+}
 
 // when called, this function will update the text of the respective
 // faric text object with a string that matches that object and the currently
