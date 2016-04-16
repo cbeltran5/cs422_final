@@ -1,40 +1,48 @@
+var F = 'Fahrenheit';
+var C = 'Celsius';
+var MainUnit = F;
+var TemperatureF = 49;
+
+function C2F(C) {
+  return C * 9/5 + 32;
+}
+
+function F2C(F) {
+  return (F - 32) * 5/9;
+}
+
+// An array of Users
+var Users = [];
 
 // Created a User class to hold the personal information common to all users
-function User (name, language) {
+function User(name, language) {
   this.name = name;
   this.language = language;
   
-  this.date_format = 1;
-  this.time_format = 1;
-  this.units_format = 'Imperial';
+  this.date_format = DATE_MONTHDDYYYY;
+  this.time_format = TIME_12HOUR;
   
   // fahrenheit or celsius
   // Fahrenheit by default
-  this.temerature_units = 'Fahrenheit'
+  this.temerature_units = F;
   
   this.in_theme = 'wood';
   this.out_theme = 'wood';
   
   this.in_ornament = 'default';
   this.out_ornament = 'default';
-  
-  // new User adds itself to the array of users
-  Users.push(this);
 }
-
-// An array of Users
-var Users = [];
 
 // variables for text
 // English = 1 , Spanish = 2, etc...
 var ENGLISH = 0;
 var SPANISH = 1;
 
-var SYSTEM_LANGUAGE = ["ENGLISH", "SPANISH"];
+var SYSTEM_LANGUAGE = ["English", "Spanish"];
 
 var MESSAGES = ["Messages", "Mensajes"];
 var CAMERA = ["Camera", "Cámara"];
-var TRAFFIC = ["Traffic","Tráfico"];
+var TRAFFIC = ["Traffic", "Tráfico"];
 var TRANSPORT = ["Transport", "Transporte"];
 var NEWS = ["News", "Noticias"];
 var MIRROR = ["Mirror", "Espejo"];
@@ -49,7 +57,7 @@ var JANUARY = ["January", "Enero"];
 var FEBRUARY = ["February", "Febrero"];
 var MARCH = ["March", "Marzo"];
 var APRIL = ["April", "Abril"];
-var MAY = ["May","Mayo"];
+var MAY = ["May", "Mayo"];
 var JUNE = ["June", "Junio"];
 var JULY = ["July", "Julio"];
 var AUGUST = ["August", "Agosto"];
@@ -58,13 +66,10 @@ var OCTOBER = ["October", "Octubre"];
 var NOVEMBER = ["November", "Noviembre"];
 var DECEMBER = ["December", "Diciembre"];
 
-
-
 // when called, this function will update the text of the respective
 // faric text object with a string that matches that object and the currently
 // set language
-function UpdateText() 
-{
+function UpdateText() {
   Messagestext.text = MESSAGES[syslang];
   Cameratext.text = CAMERA[syslang];
   Traffictext.text = TRAFFIC[syslang];
@@ -78,34 +83,17 @@ function UpdateText()
   Deadbolttext.text = DEADBOLT[syslang];
 }
 
-var MenuItems = [];
-
-// height offsets
-var height_offset_tall = 0;
-var height_offset_medium = 100;
-var height_offset_short = 200;
-
-var doorwidth = 555;
-var inside_door_left = 22;
-var outside_door_left = 642;
-var paneltop = 310;
-
-var doorknob_height = 1020;
-var doorknob_inside_leftoffset = 1110;
-
-
-var deadbolt_height_offset = 680;
-var deadbolt_left_offset = 1100;
-
+/************************************
+           DATE AND TIME           
+*************************************/
+var TIME_12HOUR = "12 Hour Format";
+var TIME_24HOUR = "24 Hour Format";
 var DATE_MONTHDDYYYY = "Month DD, YYYY";
 var DATE_MMDDYYYY = "MM/DD/YYYY";
 var DATE_DDMONTHYYYY = "DD Month YYYY";
 var DATE_DDMMYYYY = "DD/MM/YYYY";
 
-var TIME_12HOUR = 1;
-var TIME_24HOUR = 2;
-
-function getFormattedMonth(month)   {
+function getFormattedMonth(month) {
   month = month + 1;
   if(Date_format == DATE_MONTHDDYYYY || Date_format == DATE_DDMONTHYYYY) {
     if      (month == 1) return JANUARY[syslang];
@@ -130,9 +118,15 @@ function getFormattedMonth(month)   {
   }
   return month;
 }
-
 function getFormattedTimeString(hours, minutes){
   var AmPmDesignator = "";
+  var spacing = "";
+  // fix minutes
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  
+  // adjust if set to 12 hour format
   if(Time_format == TIME_12HOUR)  {
     if( hours >= 12) {
       AmPmDesignator = "PM";
@@ -147,11 +141,13 @@ function getFormattedTimeString(hours, minutes){
     if (hours < 10) {
       hours = "0" + hours;
     }
-  } // format hours to 12
-  if (minutes < 10) {
-    minutes = "0" + minutes;
+  } 
+  // if in 24 hour format. add spaces to center text
+  else {
+    spacing = "    ";
   }
-  return hours + ":" + minutes + " " + AmPmDesignator;
+  return spacing + hours + ":" + minutes + " " + AmPmDesignator;
+ 
 }
 function getFormattedDateString(day, month, year) {
   if(Date_format == DATE_MONTHDDYYYY ) {
@@ -167,9 +163,8 @@ function getFormattedDateString(day, month, year) {
     return "  " + day + "/" + month + "/" + year;
   }
 }
-
-function ShowDateTime()
-{ 
+function ShowDateTime(){ 
+  Time_format = TIME_12HOUR;
   var date = new Date();
   var month = getFormattedMonth(date.getMonth());
   var timestr = getFormattedTimeString(date.getHours(), date.getMinutes());

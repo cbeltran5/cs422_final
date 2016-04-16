@@ -45,20 +45,20 @@ footer {
 
 </style>
     
-    <!-- ADD SOURCE FILES HERE! -->
-	<!-- Get version 1.5.0 of Fabric.js from CDN -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.5.0/fabric.min.js" ></script>
-    <script src="enrique.js"></script>
-    <script src="gabe.js"></script>
-    <script src="abeer.js"></script>
+<!-- ADD SOURCE FILES HERE! -->
+<!-- Get version 1.5.0 of Fabric.js from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.5.0/fabric.min.js" ></script>
+<script src="enrique.js"></script>
+<script src="gabe.js"></script>
+<script src="abeer.js"></script>
 
 	 
 <body>
-		<!-- canvas tag for Fabric.js to draw into -->
+    <!-- canvas tag for Fabric.js to draw into -->
     <!-- set this to some appropriate size for your development work -->
     <!-- but keep the same aspect ratio -->
     <!-- we will use width="2714" height="2200" for presentations and evaluation -->
-		<!-- <canvas id="c" width="494" height="400" style="border:2px solid black;" ></canvas> -->
+	<!-- <canvas id="c" width="494" height="400" style="border:2px solid black;" ></canvas> -->
     <canvas id="c" width="2714" height="2200" style="border:2px solid black;" ></canvas>
     <section>
     <h1>Inside Events</h1>
@@ -80,7 +80,7 @@ footer {
       <code><form name="Heights">
       Heights:<br>
       <input type="radio" class="radio1" name="Heights" onchange="AdjustHeight()" value="Tall"> Tall<br>
-      <input type="radio" class="radio1" name="Heights" onchange="AdjustHeight()" value="Medium"> Medium<br>
+      <input type="radio" class="radio1" name="Heights" onchange="AdjustHeight()" value="Medium" checked> Medium<br>
       <input type="radio" class="radio1" name="Heights" onchange="AdjustHeight()" value="Short"> Short<br>
       </form></code> 
       </section>
@@ -94,7 +94,6 @@ footer {
 <section></section><section></section>
 <section></section><section></section>
 <section></section><section></section>
-
 
       </code>
 
@@ -175,8 +174,8 @@ var Out_theme = 'default';
 var Out_ornament = 'default';
 
 var Date_format = DATE_MONTHDDYYYY; 
-var Time_format = 1;
-var Units_format = 'Imperial';
+var Time_format = TIME_12HOUR;
+var TemperatureUnits = F;
   
 var HomeIsActive = false;
 var Current_user = null;
@@ -199,6 +198,7 @@ var User2 = new User('Sara', SPANISH);
 var Users = [];
 Users.push(User1);
 Users.push(User2);
+  
 //*******************************************************************************************
 
 
@@ -307,8 +307,6 @@ Weathertext.selectable = false;
 
 
 //****************** Adding In/out Door knobs ******************************************
-
-
 var doorknob_inside_locked; 
 fabric.Image.fromURL('images/lockknob.png', function(oImg) {
   oImg.set({left: 1120, top: 1030, id: this.id});

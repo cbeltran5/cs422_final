@@ -269,7 +269,7 @@ function User1FromInside()
 
   Date_format = User1.date_format;
   Time_format = User1.time_format;
-  Units_format = User1.units_format;
+  TemperatureUnits = User1.temerature_units;
   
   UpdateText();
 }
@@ -305,7 +305,7 @@ function User2FromInside()
 
   Date_format = User2.date_format;
   Time_format = User2.time_format;
-  Units_format = User2.units_format;
+  TemperatureUnits = User2.temerature_units;
   
   UpdateText();
 }
