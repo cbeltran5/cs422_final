@@ -379,56 +379,50 @@ function NoUserFromInside()
   LockDoorIn();
   LockDeadbolt();
   ResetCoordinates();
+  document.getElementsByName('Heights')[0].disabled = true; 
   document.getElementsByName('Heights')[1].disabled = true; 
   document.getElementsByName('Heights')[2].disabled = true; 
-  document.getElementsByName('Heights')[3].disabled = true; 
 }
 
 //-------------------------------------------------------------
-function AdjustHeight()
+function AdjustHeight(value)
 {
-  if (counter < 1)
-  {
+  if (counter < 1){
     GetOriginalCoordinate();
     counter++;
   }
-
-   var Heights = document.getElementsByName('Heights');
   
-  if(Heights[1].checked)
-        Height = -100;  
+  var offset;
+  if(value == "Tall"){
+    offset = -100;;
+  }
+  else if (value == "Medium"){
+    offset = 0;
+  }
+  else if(value == "Short") {
+    offset = 100;
+  }
   
-  else if(Heights[2].checked)
-        Height = 0;   
-  
-  else if(Heights[3].checked)
-        Height = 300;  
-  
-  for (var i = 0; i < ArrayOfObjects.length; ++i) 
-        {
-        ArrayOfObjects[i].top = OriginalObjCoordinate[i] + Height;
-        ArrayOfObjects[i].setCoords();
-        }
+  for (var i = 0; i < ArrayOfObjects.length; ++i) {
+    ArrayOfObjects[i].top = OriginalObjCoordinate[i] + offset;
+    ArrayOfObjects[i].setCoords();
+  }
 
   canvas.renderAll();
  }
 //-------------------------------------------------------------
-function GetOriginalCoordinate()
-{
-
+function GetOriginalCoordinate(){
   for (var i = 0; i < ArrayOfObjects.length; ++i) 
-        OriginalObjCoordinate[i] = ArrayOfObjects[i].top;
+    OriginalObjCoordinate[i] = ArrayOfObjects[i].top;
 }
 
 //-------------------------------------------------------------
 function ResetCoordinates()
 {
-  for (var i = 0; i < ArrayOfObjects.length; ++i) 
-        {
-        ArrayOfObjects[i].top = OriginalObjCoordinate[i];
-        ArrayOfObjects[i].setCoords();
-        }
-
+  for (var i = 0; i < ArrayOfObjects.length; ++i) {
+    ArrayOfObjects[i].top = OriginalObjCoordinate[i];
+    ArrayOfObjects[i].setCoords();
+  }
   canvas.renderAll();
 }
 

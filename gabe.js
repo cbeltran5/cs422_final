@@ -17,11 +17,6 @@ function TodoList() {
   
 }
 
-function HideOtherUsersData(skip) {
-  
-}
-
-
 /***********************************************************************
                            DATE AND TIME           
 ************************************************************************/
@@ -69,7 +64,6 @@ function getFormattedMonth(month) {
   }
   return month;
 }
-
 function getFormattedTimeString(hours, minutes){
   var AmPmDesignator = "";
   var spacing = "";
@@ -100,7 +94,6 @@ function getFormattedTimeString(hours, minutes){
   }
   return spacing + hours + ":" + minutes + " " + AmPmDesignator;
 }
-
 function getFormattedDateString(day, month, year) {
   if(Date_format == DATE_MONTHDDYYYY ) {
     return month + " " + day + ", " + year;
@@ -115,7 +108,6 @@ function getFormattedDateString(day, month, year) {
     return "  " + day + "/" + month + "/" + year;
   }
 }
-
 function ShowDateTime() { 
   Time_format = TIME_12HOUR;
   var date = new Date();
@@ -165,6 +157,23 @@ var SEPTEMBER = ["September", "Septiembre"];
 var OCTOBER = ["October", "Octubre"];
 var NOVEMBER = ["November", "Noviembre"];
 var DECEMBER = ["December", "Diciembre"];
+
+// when called, this function will update the text of the respective
+// faric text object with a string that matches that object and the currently
+// set language
+function UpdateText() {
+  Messagestext.text = MESSAGES[syslang];
+  Cameratext.text = CAMERA[syslang];
+  Traffictext.text = TRAFFIC[syslang];
+  Transporttext.text = TRANSPORT[syslang];
+  Newstext.text = NEWS[syslang];
+  Mirrortext.text = MIRROR[syslang];
+  Lightstext.text = LIGHTS[syslang];
+  Alarmtext.text = ALARM[syslang];
+  Emergtext.text = EMERGENCY[syslang];
+  Settingstext.text = SETTINGS[syslang];
+  Deadbolttext.text = DEADBOLT[syslang];
+}
 /***********************************************************************
                            END OF DATE AND TIME           
 ************************************************************************/
@@ -195,29 +204,32 @@ function User(firstname, lastname, language) {
   this.in_ornament = 'default';
   this.out_ornament = 'default';
   
-  this.myObjects = [];
-  this.myMessages = [];
-
+  this.myObjects = [];  
   this.addObject = function(object) {
     object.id = this.id;
     this.myObjects.push(object);
   }
-  
   this.hideObjects = function() {
     for( var i=0; i < this.myObjects.length; i++) {
       this.myObjects[i].visible = true;
     }
   }
-  
   this.showObjects = function() {
     for( var i=0; i < this.myObjects.length; i++) {
       this.myObjects[i].visible = false;
     }
   }
+  this.myMessages = [];
+  this.showMessages = function () {
+    console.log("showMessages is not yet implemented. see gabe.js");
+  }
+  this.hideMessages = function() {
+    console.log("hideMessages is not yet implemented. see gabe.js");
+  }
   
   RegisteredUsers.push(this);
 
-  AddUserToRadioChoices(this.firstname, this.id);
+  AddUserToRadioChoices(this.firstname + " " + this.lastname, this.id);
 }
 
 var RADIO_ID_UFI = "UsersFromInside";
@@ -247,7 +259,6 @@ function AddUserToRadioChoices( name , value) {
   label2.appendChild(element2);
   label2.innerHTML += " " + name + '<br/>';
   UsersFromOutside.appendChild(label2);
-  console.log(name + " " + value);
 }
 
 
@@ -283,21 +294,6 @@ function MultiUsersOutside() {
   console.log("MultiUsersFromOutside not yet implemented. On Todo List in gabe.js");
 }
 
-// when called, this function will update the text of the respective
-// faric text object with a string that matches that object and the currently
-// set language
-function UpdateText() {
-  Messagestext.text = MESSAGES[syslang];
-  Cameratext.text = CAMERA[syslang];
-  Traffictext.text = TRAFFIC[syslang];
-  Transporttext.text = TRANSPORT[syslang];
-  Newstext.text = NEWS[syslang];
-  Mirrortext.text = MIRROR[syslang];
-  Lightstext.text = LIGHTS[syslang];
-  Alarmtext.text = ALARM[syslang];
-  Emergtext.text = EMERGENCY[syslang];
-  Settingstext.text = SETTINGS[syslang];
-  Deadbolttext.text = DEADBOLT[syslang];
-}
+
 
 

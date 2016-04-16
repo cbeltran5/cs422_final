@@ -4,46 +4,44 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>fabric.js project template</title>
+    <title>CS 422 Project 2. Door-é-mi</title>
     
     <style>
-code {
-  background: #1D5F9A;
-  border-radius: 6px;
-  color: #fff;
-  display: block;
-  font: 44px/64px "Source Code Pro", Inconsolata, "Calibri", Terminal, "Calibri", Courier;
-  padding: 24px 15px;
-  text-align: left;
-}
-header,
-section,
-aside,
-footer {
-  margin: 1% 20px;
-}
-section {
-  float: left;
-  width: auto;
-  height: auto;
-}
-aside {
-  
-  float: left;
-  width: auto;
-  height: auto;
-}
-footer {
-  clear: both;
-  margin-bottom: 0;
-}
+      code {
+        background: #1D5F9A;
+        border-radius: 6px;
+        color: #fff;
+        display: block;
+        font: 44px/64px "Source Code Pro", Inconsolata, "Calibri", Terminal, "Calibri", Courier;
+        padding: 24px 15px;
+        text-align: left;
+      }
+      header,
+      section,
+      aside,
+      footer {
+        margin: 1% 20px;
+      }
+      section {
+        float: left;
+        width: auto;
+        height: auto;
+      }
+      aside {
+        float: left;
+        width: auto;
+        height: auto;
+      }
+      footer {
+        clear: both;
+        margin-bottom: 0;
+      }
+      .radio1 {
+        width: 40px;
+        height: 40px;
+      }
 
-.radio1 {
-    width: 40px;
-    height: 40px;
-    }
-
-</style>
+    </style>
     
 <!-- ADD SOURCE FILES HERE! -->
 <!-- Get version 1.5.0 of Fabric.js from CDN -->
@@ -62,61 +60,55 @@ footer {
     <canvas id="c" width="2714" height="2200" style="border:2px solid black;" ></canvas>
     <section>
     <h1>Inside Events</h1>
-
     <code> 
       <section>
       <code>
-      
-      <form>
-        Users:<br>
+      <form> Users:<br>
         <div id = "UsersFromInside">
-           <input type="radio" class="radio1" name="UsersIn" onchange="NoUserFromInside()" value="NoSignal" checked> No Signal<br>
+          <input type="radio" class="radio1" name="UsersIn" onchange="NoUserFromInside()" value="NoSignal" checked> No Signal<br>
           <input type="radio" class="radio1" name="UsersIn" onchange="NewUserFromInside()" value="NewUser"> Unknown Person<br>
-           <input type="radio" class="radio1" name="UsersIn" onchange="MultiUsersFromInside()" value="MultiUser"> Multiple People<br>
-         
+          <input type="radio" class="radio1" name="UsersIn" onchange="MultiUsersFromInside()" value="MultiUser"> Multiple People<br>
         </div>
 
       </form>
       </code>
       </section>
+      
       <section>
       <code>
-      <form >
-        Heights:<br>
+      <form > Heights:<br>
         <div id="Heights">
-      <input type="radio" class="radio1" name="Heights" onchange="AdjustHeight()" value="Tall"> Tall<br>
-      <input type="radio" class="radio1" name="Heights" onchange="AdjustHeight()" value="Medium" checked> Medium<br>
-      <input type="radio" class="radio1" name="Heights" onchange="AdjustHeight()" value="Short"> Short<br>
-          </div>
+          <input type="radio" class="radio1" name="Heights" onchange="AdjustHeight(this.value)" value="Tall"> Tall<br>
+          <input type="radio" class="radio1" name="Heights" onchange="AdjustHeight(this.value)" value="Medium" checked> Medium<br>
+          <input type="radio" class="radio1" name="Heights" onchange="AdjustHeight(this.value)" value="Short"> Short<br>
+        </div>
       </form>
       </code> 
       </section>
+      <section></section><section></section>
+      <section></section><section></section>
+      <section></section><section></section>
+      <section></section><section></section>
+      <section></section><section></section>
+      <section></section><section></section>
+      <section></section><section></section>
+      <section></section><section></section>
+      <section></section><section></section>
 
-<section></section><section></section>
-<section></section><section></section>
-<section></section><section></section>
-<section></section><section></section>
-<section></section><section></section>
-<section></section><section></section>
-<section></section><section></section>
-<section></section><section></section>
-<section></section><section></section>
-
-      </code>
+    </code>
     </section>
+  
+  
     <section>
     <h1>Outside Events</h1>
     <code> 
       <section>
       <code>
-        <form name="UsersOutside">
-      Users:<br>
+        <form name="UsersOutside"> Users:<br>
           <div id="UsersFromOutside">
-             <input type="radio" class="radio1" name="UsersOut" onchange="NoUserFromOutside()" value="NoSignal" checked> No Signal<br>
-             <input type="radio" class="radio1" name="UsersOut" onchange="NewUserFromOutside()" value="NewUser"> Unknown Person<br>
+            <input type="radio" class="radio1" name="UsersOut" onchange="NoUserFromOutside()" value="NoSignal" checked> No Signal<br>
+            <input type="radio" class="radio1" name="UsersOut" onchange="NewUserFromOutside()" value="NewUser"> Unknown Person<br>
             <input type="radio" class="radio1" name="UsersOut" onchange="MultiUsersOutside()" value="NewUser"> Multiple People<br>
-           
-           
           </div>
       </form></code>
       </section>
@@ -133,15 +125,11 @@ footer {
         
         </code> 
       </section>
-
-
       </code>
-  </section></body>
+  </section>
+</body>
+  
 <script>
-
-
-
-
 // the aspect ratios given here are not quite tall enough for a 36" x 80" door
 // we are assuming bottom 15 inches of the door are not part of the display. 
 // that part contains lots of necessary electronics so the bottom of the door
@@ -204,6 +192,10 @@ var counter = 0;
 var User1 = new User('Adam', 'Porter', ENGLISH);
 var User2 = new User('Sara', 'Parker', ENGLISH);
 var User3 = new User('Gabe', 'Mendoza', SPANISH);
+var User4 = new User('Enrique', 'Vaca', SPANISH);
+var User5 = new User('Carlos', 'Beltran', SPANISH);
+
+
 console.log(RegisteredUsers);
   
 //*******************************************************************************************
@@ -405,9 +397,8 @@ Deadbolttext.selectable = false;
 
 //*********************** Components called by functions *************************************
 //To Do/Calender 
-
 var calendar_user1;
-fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
+var calendar_user = new fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
   oImg.set({left: 220, top: 730 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
