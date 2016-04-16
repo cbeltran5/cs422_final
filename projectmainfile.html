@@ -193,11 +193,9 @@ var counter = 0;
 
 //************************************ Users Profiles ***************************************
 
-var User1 = new User('Adam', ENGLISH);
-var User2 = new User('Sara', SPANISH);
-var Users = [];
-Users.push(User1);
-Users.push(User2);
+var User1 = new User('Adam', 'Porter', ENGLISH);
+var User2 = new User('Sara', 'Mendoza', SPANISH);
+
   
 //*******************************************************************************************
 
@@ -253,7 +251,7 @@ fabric.util.loadImage('images/DoorpatternOut.gif', function (img) {
 //******************************* Adding Date/Time and weather ******************************
 
 var Datetext = new fabric.Text('', { 
-  left: 105, 
+  left: 102, 
   top: 112, 
   fontFamily: 'Calibri', 
   fontSize: 20 
@@ -274,7 +272,7 @@ date_rect.selectable = false;
 
 var Timetext = new fabric.Text('', { 
   left: 100, 
-  top: 80, 
+  top: 76, 
   fontFamily: 'Calibri', 
   fontSize: 30 
 });
@@ -394,6 +392,7 @@ Deadbolttext.setColor('black');
 Deadbolttext.selectable = false;
 //********************************************************************************************
 
+  
 
 //*********************** Components called by functions *************************************
 //To Do/Calender 
@@ -408,6 +407,7 @@ fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
   calendar_user1 = oImg
   ArrayOfObjects.push(calendar_user1);
   canvas.add(calendar_user1);
+  User1.addObject(calendar_user1);
 });
 
 
@@ -421,6 +421,7 @@ fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
   calendar_user2 = oImg;
   ArrayOfObjects.push(calendar_user2);
   canvas.add(calendar_user2);
+  User2.addObject(calendar_user2);
 });
 
 var todo_list_user1;
@@ -433,6 +434,7 @@ fabric.Image.fromURL('images/user1todo.gif', function(oImg) {
   todo_list_user1 = oImg;
   ArrayOfObjects.push(todo_list_user1);
   canvas.add(todo_list_user1);
+  User1.addObject(todo_list_user1);
 });
 
 var todo_list_user2;
@@ -445,6 +447,7 @@ fabric.Image.fromURL('images/user2todo.gif', function(oImg) {
   todo_list_user2 = oImg;
   ArrayOfObjects.push(todo_list_user2);
   canvas.add(todo_list_user2);
+  User1.addObject(todo_list_user2);
 });
 
 
