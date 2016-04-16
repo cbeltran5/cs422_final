@@ -85,6 +85,12 @@ function ShowHome()
   HideUser2FromInside();
   HideUsersList();
   CloseCamera();
+  HideMirror();
+  HideTraffic();
+  HideLights();
+  HideTransport();
+  HideNews();
+  
   HomeIsActive = true; 
   PanelRect.visible = true;
 
