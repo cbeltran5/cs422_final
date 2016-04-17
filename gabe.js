@@ -14,11 +14,11 @@ function F2C(F) {
 
 
 function TodoList() {
-  
+
 }
 
 /***********************************************************************
-                           DATE AND TIME           
+                           DATE AND TIME
 ************************************************************************/
 var TIME_12HOUR = "12 Hour Format";
 var TIME_24HOUR = "24 Hour Format";
@@ -30,32 +30,32 @@ var DATE_DDMMYYYY = "DD/MM/YYYY";
 function getFormattedMonth(month) {
   month = month + 1;
   if(Date_format == DATE_MONTHDDYYYY || Date_format == DATE_DDMONTHYYYY) {
-    if (month == 1) 
+    if (month == 1)
       return JANUARY[syslang];
-    else if (month == 2) 
+    else if (month == 2)
       return FEBRUARY[syslang];
-    else if (month == 3) 
+    else if (month == 3)
       return MARCH[syslang];
-    else if (month == 4) 
+    else if (month == 4)
       return APRIL[syslang];
-    else if (month == 5) 
+    else if (month == 5)
       return MAY[syslang];
-    else if (month == 6) 
+    else if (month == 6)
       return JUNE[syslang];
-    else if (month == 7) 
+    else if (month == 7)
       return JULY[syslang];
-    else if (month == 8) 
+    else if (month == 8)
       return AUGUST[syslang];
-    else if (month == 9) 
+    else if (month == 9)
       return SEPTEMBER[syslang];
-    else if (month == 10) 
+    else if (month == 10)
       return OCTOBER[syslang];
-    else if (month == 11) 
+    else if (month == 11)
       return NOVEMBER[syslang];
-    else if (month == 12) 
+    else if (month == 12)
       return DECEMBER[syslang];
   }
-  
+
   if( month < 10) {
     month = "0" + month;
   }
@@ -71,7 +71,7 @@ function getFormattedTimeString(hours, minutes){
   if (minutes < 10) {
     minutes = "0" + minutes;
   }
-  
+
   // adjust if set to 12 hour format
   if(Time_format == TIME_12HOUR)  {
     if( hours >= 12) {
@@ -87,7 +87,7 @@ function getFormattedTimeString(hours, minutes){
     if (hours < 10) {
       hours = "0" + hours;
     }
-  } 
+  }
   // if in 24 hour format. add spaces to center text
   else {
     spacing = "    ";
@@ -108,13 +108,13 @@ function getFormattedDateString(day, month, year) {
     return "  " + day + "/" + month + "/" + year;
   }
 }
-function ShowDateTime() { 
+function ShowDateTime() {
   Time_format = TIME_12HOUR;
   var date = new Date();
   var month = getFormattedMonth(date.getMonth());
   var timestr = getFormattedTimeString(date.getHours(), date.getMinutes());
   var datestr = getFormattedDateString(date.getDate(),month, date.getFullYear());
-  
+
   Datetext.initialize(datestr);
   canvas.remove(Datetext);
   canvas.add(Datetext);
@@ -124,7 +124,7 @@ function ShowDateTime() {
   canvas.add(Timetext);
 
   timeout = setTimeout(ShowDateTime,1000);
-}  
+}
 
 // variables for text
 // English = 1 , Spanish = 2, etc...
@@ -158,6 +158,17 @@ var OCTOBER = ["October", "Octubre"];
 var NOVEMBER = ["November", "Noviembre"];
 var DECEMBER = ["December", "Diciembre"];
 
+// stuff for settings
+var USERS = ["Users", "Usuarios"];
+var LANGUAGE = ["Language", "Lenguaje"];
+var DOORBELL = ["Doorbell", "Timbre"];
+var BRIGHTNESS = ["Brightness", "Brillo"];
+var THEME = ["Theme", "Tema"];
+var DATE_TIME = ["Date/Time", "Fecha/Tiempo"];
+var UNITS = ["Units", "Unidades"];
+var VOLUME = ["Volume", "Volumen"];
+var INTERCOM = ["Intercom", "Intercomunicador"];
+
 // when called, this function will update the text of the respective
 // faric text object with a string that matches that object and the currently
 // set language
@@ -175,12 +186,12 @@ function UpdateText() {
   Deadbolttext.text = DEADBOLT[syslang];
 }
 /***********************************************************************
-                           END OF DATE AND TIME           
+                           END OF DATE AND TIME
 ************************************************************************/
- 
+
 function Registered_Users() {
   this.users = [];
-  
+
   this.removeUserByID = function (id) {
     this.users.splice(id,1);
   }
@@ -193,7 +204,7 @@ function Registered_Users() {
       }
     }
   }
-  
+
   this.addUser = function(user) {
     this.users.push(user);
   }
@@ -207,24 +218,24 @@ function User(firstname, lastname, language) {
   this.id = userscounter++; // id is position in Registered Users array
   this.firstname = firstname;
   this.lastname = lastname;
-  
+
   this.language = language; // an int
-  
+
   this.date_format = DATE_MONTHDDYYYY;
   this.time_format = TIME_12HOUR;
-  
+
   // fahrenheit or celsius
   // Fahrenheit by default
   this.temerature_units = F;
-  
+
   this.in_theme = 'default';
   this.out_theme = 'default';
-  
+
   this.in_ornament = 'default';
   this.out_ornament = 'default';
-  
 
-  this.myObjects = [];  
+
+  this.myObjects = [];
   this.addObject = function(object) {
     object.id = this.id;
     this.myObjects.push(object);
@@ -239,8 +250,8 @@ function User(firstname, lastname, language) {
       this.myObjects[i].visible = false;
     }
   }
-  
-  
+
+
   this.myMessages = [];
   this.showMessages = function () {
     console.log("showMessages is not yet implemented. see gabe.js");
@@ -248,20 +259,20 @@ function User(firstname, lastname, language) {
   this.hideMessages = function() {
     console.log("hideMessages is not yet implemented. see gabe.js");
   }
-  
+
   RegisteredUsers.addUser(this);
-  
+
   this.RemoveFromRegisteredUsers = function() {
     RemoveFromRadioChoices(this.id);
     RegisteredUsers.removeUserByID(this.id);
   }
-  
+
   AddUserToRadioChoices(this.firstname + " " + this.lastname, this.id);
 }
 
 var RADIO_ID_UFI = "UsersFromInside";
 var RADIO_ID_UFO = "UsersFromOutside";
-  
+
 function RemoveFromRadioChoices(id) {
   //console.log("removing " + id);
   var remove = 3 + id;
@@ -269,11 +280,11 @@ function RemoveFromRadioChoices(id) {
   var outside = document.getElementById(RADIO_ID_UFO);
   inside.removeChild(inside.children[remove]);
   outside.removeChild(outside.children[remove]);
-  
+
 }
 
 function AddUserToRadioChoices( name , value) {
-  var UsersFromInside = document.getElementById(RADIO_ID_UFI);     
+  var UsersFromInside = document.getElementById(RADIO_ID_UFI);
   var label = document.createElement("label");
   var element = document.createElement("input");
   element.setAttribute("type", "radio");
@@ -282,10 +293,10 @@ function AddUserToRadioChoices( name , value) {
   element.setAttribute("class", "radio1");
   element.setAttribute("onchange", "LoadUserData_Inside(this.value)");
   label.appendChild(element);
-  label.innerHTML += " " + name + '<br/>';  
+  label.innerHTML += " " + name + '<br/>';
   UsersFromInside.appendChild(label);
-  
-  var UsersFromOutside= document.getElementById(RADIO_ID_UFO); 
+
+  var UsersFromOutside= document.getElementById(RADIO_ID_UFO);
   var label2 = document.createElement("label");
   var element2 = document.createElement("input");
   element2.setAttribute("type", "radio");
@@ -304,13 +315,13 @@ function LoadUserData_Inside(index ) {
   var i, User = RegisteredUsers[ index ];
   HideHome();
   HideUsersList();
-  
+
   for(i=0; i< RegisteredUsers.length; i++) {
     RegisteredUsers[i].hideObjects();
   }
-  
+
   User.showObjects();
-  syslang = User1.language;  
+  syslang = User1.language;
   In_theme = User1.in_theme;
   In_ornament = User1.in_ornament;
   Out_theme = User1.out_theme;
@@ -324,7 +335,7 @@ function LoadUserData_Inside(index ) {
 
 function LoadUserData_Outside(index ) {
   console.log("LoadUserData_Outside() is not yet implemented. On Todo List in gabe.js");
-  
+
 }
 
 function MultiUsersOutside() {

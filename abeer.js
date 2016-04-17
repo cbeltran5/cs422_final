@@ -66,16 +66,19 @@ function ShowDateTime_BACKUP()
   canvas.add(Timetext);
 
   timeout = setTimeout(ShowDateTime,1000);
-}  
-    
+}
+
 //-------------------------------------------------------------
 function HomeSelected()
 {
-  
+
   if (HomeIsActive == true)
     HideHome();
   else if(HomeIsActive == false)
     ShowHome();
+
+  if (SettingsIsActive == true)
+    hideSettings();
 }
 
 //-------------------------------------------------------------
@@ -90,22 +93,22 @@ function ShowHome()
   HideLights();
   HideTransport();
   HideNews();
-  
-  HomeIsActive = true; 
+
+  HomeIsActive = true;
   PanelRect.visible = true;
 
-  for (var i = 0; i < canvas.getObjects().length; ++i) 
-  { 
+  for (var i = 0; i < canvas.getObjects().length; ++i)
+  {
     if (canvas.item(i).id == 'messages' || canvas.item(i).id == 'camera'   ||
         canvas.item(i).id == 'traffic'  || canvas.item(i).id == 'cta'      ||
         canvas.item(i).id == 'news'     || canvas.item(i).id == 'mirror'   ||
         canvas.item(i).id == 'lights'   || canvas.item(i).id == 'alarm'    ||
         canvas.item(i).id == '911'      || canvas.item(i).id == 'settings' ||
-        canvas.item(i).id == 'restart') 
+        canvas.item(i).id == 'restart')
     {
         canvas.item(i).visible = true;
     }
-    
+
   }
 
   Messagestext.visible = true;
@@ -119,30 +122,30 @@ function ShowHome()
   Emergtext.visible = true;
   Settingstext.visible = true;
 }
-    
-    
+
+
 //-------------------------------------------------------------
 function HideHome()
 {
   //console.log(HomeIsActive);
-  HomeIsActive = false; 
+  HomeIsActive = false;
   //Here close all apps
   CloseCamera();
-  
+
   PanelRect.visible = false;
 
-  for (var i = 0; i < canvas.getObjects().length; ++i) 
-  { 
+  for (var i = 0; i < canvas.getObjects().length; ++i)
+  {
     if (canvas.item(i).id == 'messages' || canvas.item(i).id == 'camera'   ||
         canvas.item(i).id == 'traffic'  || canvas.item(i).id == 'cta'      ||
         canvas.item(i).id == 'news'     || canvas.item(i).id == 'mirror'   ||
         canvas.item(i).id == 'lights'   || canvas.item(i).id == 'alarm'    ||
         canvas.item(i).id == '911'      || canvas.item(i).id == 'settings' ||
-        canvas.item(i).id == 'restart' || canvas.item(i).id == 'alarmOn') 
+        canvas.item(i).id == 'restart' || canvas.item(i).id == 'alarmOn')
     {
       canvas.item(i).visible = false;
     }
-    
+
   }
 
   Messagestext.visible = false;
@@ -156,14 +159,14 @@ function HideHome()
   Emergtext.visible = false;
   Settingstext.visible = false;
 }
-  
+
 //-------------------------------------------------------------
  function UnlockDoorIn(){
-   for (var i = 0; i < canvas.getObjects().length; ++i) 
-   { 
+   for (var i = 0; i < canvas.getObjects().length; ++i)
+   {
     if (canvas.item(i).id == 'LockKnobIn')
         canvas.item(i).visible = false;
-    
+
     else if (canvas.item(i).id == 'UnlockKnobIn')
       canvas.item(i).visible = true;
     }
@@ -173,14 +176,14 @@ function HideHome()
 function UnlockDoorOut()
  {
 
-    for (var i = 0; i < canvas.getObjects().length; ++i) 
-    { 
+    for (var i = 0; i < canvas.getObjects().length; ++i)
+    {
       if (canvas.item(i).id == 'LockKnobOut')
-    
+
         canvas.item(i).visible = false;
-    
+
       else if (canvas.item(i).id == 'UnlockKnobOut')
-      
+
         canvas.item(i).visible = true;
     }
 
@@ -190,14 +193,14 @@ function UnlockDoorOut()
 function LockDoorIn()
  {
 
-  for (var i = 0; i < canvas.getObjects().length; ++i) 
-  { 
+  for (var i = 0; i < canvas.getObjects().length; ++i)
+  {
     if (canvas.item(i).id == 'UnlockKnobIn')
-    
+
       canvas.item(i).visible = false;
-    
+
     else if (canvas.item(i).id == 'LockKnobIn')
-      
+
       canvas.item(i).visible = true;
   }
 
@@ -207,14 +210,14 @@ function LockDoorIn()
 function LockDoorOut()
  {
 
-  for (var i = 0; i < canvas.getObjects().length; ++i) 
-  { 
+  for (var i = 0; i < canvas.getObjects().length; ++i)
+  {
     if (canvas.item(i).id == 'UnlockKnobOut')
-    
+
       canvas.item(i).visible = false;
-    
+
     else if (canvas.item(i).id == 'LockKnobOut')
-      
+
       canvas.item(i).visible = true;
   }
 
@@ -224,14 +227,14 @@ function LockDoorOut()
 function UnlockDeadbolt()
  {
 
-  for (var i = 0; i < canvas.getObjects().length; ++i) 
-  { 
+  for (var i = 0; i < canvas.getObjects().length; ++i)
+  {
     if (canvas.item(i).id == 'LockDeadbolt')
-    
+
       canvas.item(i).visible = false;
-    
+
     else if (canvas.item(i).id == 'UnlockDeadbolt')
-      
+
       canvas.item(i).visible = true;
   }
 
@@ -241,32 +244,32 @@ function UnlockDeadbolt()
 function LockDeadbolt()
  {
 
-  for (var i = 0; i < canvas.getObjects().length; ++i) 
-  { 
+  for (var i = 0; i < canvas.getObjects().length; ++i)
+  {
     if (canvas.item(i).id == 'UnlockDeadbolt')
-    
+
       canvas.item(i).visible = false;
-    
+
     else if (canvas.item(i).id == 'LockDeadbolt')
-      
+
       canvas.item(i).visible = true;
   }
 
  }
-      
+
 //------------------ Radio buttons Events Functions -------------------------
 function User1FromInside()
 {
   HideHome();
   HideUsersList();
   HideUser2FromInside();
-  
-  for (var i = 0; i < canvas.getObjects().length; ++i) { 
+
+  for (var i = 0; i < canvas.getObjects().length; ++i) {
     if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
         canvas.item(i).visible = true;
   }
 
-  syslang = User1.language;  
+  syslang = User1.language;
 
   In_theme = User1.in_theme;
   In_ornament = User1.in_ornament;
@@ -276,15 +279,15 @@ function User1FromInside()
   Date_format = User1.date_format;
   Time_format = User1.time_format;
   TemperatureUnits = User1.temerature_units;
-  
+
   UpdateText();
 }
 
 //-------------------------------------------------------------
 function HideUser1FromInside()
 {
-  for (var i = 0; i < canvas.getObjects().length; ++i) 
-  { 
+  for (var i = 0; i < canvas.getObjects().length; ++i)
+  {
     if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
       canvas.item(i).visible = false;
   }
@@ -296,9 +299,9 @@ function User2FromInside()
   HideHome();
   HideUsersList();
   HideUser1FromInside();
-  
-  for (var i = 0; i < canvas.getObjects().length; ++i) 
-  { 
+
+  for (var i = 0; i < canvas.getObjects().length; ++i)
+  {
     if (canvas.item(i).id == 'user2calender' || canvas.item(i).id == 'user2todo')
       canvas.item(i).visible = true;
   }
@@ -312,22 +315,22 @@ function User2FromInside()
   Date_format = User2.date_format;
   Time_format = User2.time_format;
   TemperatureUnits = User2.temerature_units;
-  
+
   UpdateText();
 }
- 
-//------------------------------------------------------------- 
+
+//-------------------------------------------------------------
 function HideUser2FromInside()
 {
 
-for (var i = 0; i < canvas.getObjects().length; ++i) 
-    { 
+for (var i = 0; i < canvas.getObjects().length; ++i)
+    {
       if (canvas.item(i).id == 'user2calender' || canvas.item(i).id == 'user2todo')
-    
+
         canvas.item(i).visible = false;
     }
 }
-  
+
 //-------------------------------------------------------------
 function MultiUsersFromInside()
 {
@@ -335,25 +338,25 @@ function MultiUsersFromInside()
   HideUser1FromInside();
   HideUser2FromInside();
 
-  for (var i = 0; i < canvas.getObjects().length; ++i) 
-    { 
+  for (var i = 0; i < canvas.getObjects().length; ++i)
+    {
       if (canvas.item(i).id == 'userslist' ||
-          canvas.item(i).id == 'user1name' || 
+          canvas.item(i).id == 'user1name' ||
           canvas.item(i).id == 'user2name')
-    
+
         canvas.item(i).visible = true;
     }
 }
 
-//-------------------------------------------------------------  
+//-------------------------------------------------------------
 function HideUsersList()
 {
-  for (var i = 0; i < canvas.getObjects().length; ++i) 
-    { 
+  for (var i = 0; i < canvas.getObjects().length; ++i)
+    {
       if (canvas.item(i).id == 'userslist' ||
-          canvas.item(i).id == 'user1name' || 
+          canvas.item(i).id == 'user1name' ||
           canvas.item(i).id == 'user2name')
-    
+
         canvas.item(i).visible = false;
     }
 }
@@ -379,9 +382,9 @@ function NoUserFromInside()
   LockDoorIn();
   LockDeadbolt();
   ResetCoordinates();
-  document.getElementsByName('Heights')[0].disabled = true; 
-  document.getElementsByName('Heights')[1].disabled = true; 
-  document.getElementsByName('Heights')[2].disabled = true; 
+  document.getElementsByName('Heights')[0].disabled = true;
+  document.getElementsByName('Heights')[1].disabled = true;
+  document.getElementsByName('Heights')[2].disabled = true;
 }
 
 //-------------------------------------------------------------
@@ -391,7 +394,7 @@ function AdjustHeight(value)
     GetOriginalCoordinate();
     counter++;
   }
-  
+
   var offset;
   if(value == "Tall"){
     offset = -100;;
@@ -402,7 +405,7 @@ function AdjustHeight(value)
   else if(value == "Short") {
     offset = 100;
   }
-  
+
   for (var i = 0; i < ArrayOfObjects.length; ++i) {
     ArrayOfObjects[i].top = OriginalObjCoordinate[i] + offset;
     ArrayOfObjects[i].setCoords();
@@ -412,7 +415,7 @@ function AdjustHeight(value)
  }
 //-------------------------------------------------------------
 function GetOriginalCoordinate(){
-  for (var i = 0; i < ArrayOfObjects.length; ++i) 
+  for (var i = 0; i < ArrayOfObjects.length; ++i)
     OriginalObjCoordinate[i] = ArrayOfObjects[i].top;
 }
 
@@ -430,11 +433,11 @@ function ResetCoordinates()
  function TriggerDoorFromOutside()  //A user approached the door from outside
  {
 
-  for (var i = 0; i < canvas.getObjects().length; ++i) 
-  { 
-     if (canvas.item(i).id == 'doorbell' || canvas.item(i).id == 'writemsg' || 
+  for (var i = 0; i < canvas.getObjects().length; ++i)
+  {
+     if (canvas.item(i).id == 'doorbell' || canvas.item(i).id == 'writemsg' ||
         canvas.item(i).id == 'LockKnobOut')
-      
+
       canvas.item(i).visible = true;
 
   }
@@ -443,12 +446,12 @@ function ResetCoordinates()
 //-------------------------------------------------------------
  function ResetDoorFromOutside()  //Reset the door to non signal status
  {
-  UserFingerIsRecognizable = false; 
-  document.getElementsByName('Verification')[1].disabled = false; 
-  document.getElementsByName('Verification')[2].disabled = false; 
-  document.getElementsByName('Verification')[3].disabled = false; 
-  for (var i = 0; i < canvas.getObjects().length; ++i) 
-  { 
+  UserFingerIsRecognizable = false;
+  document.getElementsByName('Verification')[1].disabled = false;
+  document.getElementsByName('Verification')[2].disabled = false;
+  document.getElementsByName('Verification')[3].disabled = false;
+  for (var i = 0; i < canvas.getObjects().length; ++i)
+  {
      if (canvas.item(i).id == 'doorbell' || canvas.item(i).id == 'writemsg'|| canvas.item(i).id == 'np' ||
          canvas.item(i).id == 'UnlockKnobOut' || canvas.item(i).id == 'LockKnobOut')
      {
@@ -456,22 +459,22 @@ function ResetCoordinates()
      }
    }
 
-   for (var i = 0; i < canvas.getObjects().length; ++i) 
-    { 
+   for (var i = 0; i < canvas.getObjects().length; ++i)
+    {
       if (canvas.item(i).id == 'UnlockKnobOut')
-    
+
         canvas.item(i).selectable = true;
     }
  }
- 
+
 //-------------------------------------------------------------
 function User1FromOutside()
 {
   ResetDoorFromOutside();
   TriggerDoorFromOutside();
   var Verification = document.getElementsByName('Verification');
-  
-  if(Verification[1].checked) 
+
+  if(Verification[1].checked)
   {
     FaceRecognized();
   }
@@ -489,18 +492,18 @@ function NewUserFromOutside()
   ResetDoorFromOutside();
   TriggerDoorFromOutside();
   FailedVerification();
-  document.getElementsByName('Verification')[1].disabled = true; 
-  document.getElementsByName('Verification')[2].disabled = true; 
-  document.getElementsByName('Verification')[3].checked = true; 
+  document.getElementsByName('Verification')[1].disabled = true;
+  document.getElementsByName('Verification')[2].disabled = true;
+  document.getElementsByName('Verification')[3].checked = true;
 }
 
 //-------------------------------------------------------------
 function NoUserFromOutside()
 {
   ResetDoorFromOutside();
-  document.getElementsByName('Verification')[1].disabled = true; 
-  document.getElementsByName('Verification')[2].disabled = true; 
-  document.getElementsByName('Verification')[3].checked = true; 
+  document.getElementsByName('Verification')[1].disabled = true;
+  document.getElementsByName('Verification')[2].disabled = true;
+  document.getElementsByName('Verification')[3].checked = true;
 }
 
 //-------------------------------------------------------------
@@ -509,10 +512,10 @@ function FaceRecognized()
   ResetDoorFromOutside();
   TriggerDoorFromOutside();
 
-  for (var i = 0; i < canvas.getObjects().length; ++i) 
-    { 
+  for (var i = 0; i < canvas.getObjects().length; ++i)
+    {
       if (canvas.item(i).id == 'UnlockKnobOut')
-    
+
         canvas.item(i).selectable = false;
     }
 
@@ -524,7 +527,7 @@ function FingerRecognized()
 {
   ResetDoorFromOutside();
   TriggerDoorFromOutside();
-  UserFingerIsRecognizable = true; 
+  UserFingerIsRecognizable = true;
 }
 
 //-------------------------------------------------------------
@@ -532,8 +535,8 @@ function FailedVerification()
 {
   ResetDoorFromOutside();
   TriggerDoorFromOutside();
-  for (var i = 0; i < canvas.getObjects().length; ++i) 
-  { 
+  for (var i = 0; i < canvas.getObjects().length; ++i)
+  {
      if (canvas.item(i).id == 'np')
      {
         canvas.item(i).visible = true;
@@ -571,7 +574,7 @@ function RunInsideCameraAvatar()
 {
   AvatarIsActive = true;
   AvatarOut.visible = true;
-  
+
   fabric.util.loadImage('images/AvatarIn.gif', function (img) {
     CameraIn.setPatternFill({
         source: img,
@@ -602,10 +605,10 @@ function RunInsideCameraAvatar()
 function RunInsideCameraLive()
 {
   console.log(" live ");
-  
+
   AvatarIsActive = false;
   AvatarOut.visible = false;
-  
+
   fabric.util.loadImage('images/LiveIn.gif', function (img) {
     CameraIn.setPatternFill({
         source: img,

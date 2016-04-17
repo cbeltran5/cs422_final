@@ -178,6 +178,7 @@ var Time_format = TIME_12HOUR;
 var TemperatureUnits = F;
 
 var HomeIsActive = false;
+var SettingsIsActive = false;
 var Current_user = null;
 var UserFingerIsRecognizable = false;
 var Height = 0;
@@ -918,6 +919,266 @@ Settingstext.setColor('black');
 Settingstext.selectable = false;
 Settingstext.visible = false;
 ArrayOfObjects.push(Settingstext);
+
+
+//********************************************************************************************
+// SETTINGS PANEL
+//********************************************************************************************
+// FIRST COLUMN OF ITEMS
+// User
+var icon_users;
+fabric.Image.fromURL('images/Settings/users.gif', function(oImg) {
+  oImg.set({left: 189, top: 730, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'settings_users';
+  icon_users = oImg;
+  ArrayOfObjects.push(icon_users);
+  canvas.add(icon_users);
+});
+
+var UsersText = new fabric.Text(USERS[syslang], {
+  left: 94,
+  top: 389,
+  fontFamily: 'Times',
+  fontSize: 15
+});
+UsersText.setColor('black');
+UsersText.selectable = false;
+UsersText.visible = false;
+ArrayOfObjects.push(UsersText);
+
+// language
+var icon_language;
+fabric.Image.fromURL('images/Settings/language.gif', function(oImg) {
+  oImg.set({left: 189, top: 925, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'settings_language';
+  icon_language = oImg;
+  ArrayOfObjects.push(icon_language);
+  canvas.add(icon_language);
+});
+
+var LanguageText = new fabric.Text(LANGUAGE[syslang], {
+  left: 95,
+  top: 475,
+  fontFamily: 'Times',
+  fontSize: 15
+});
+  LanguageText.setColor('black');
+  LanguageText.selectable = false;
+  LanguageText.visible = false;
+  ArrayOfObjects.push(LanguageText);
+
+//********************************************************************************************
+
+
+//********************************************************************************************
+// SECOND COLUMN OF ITEMS
+// Traffic
+var icon_traffic;
+fabric.Image.fromURL('images/Settings/traffic.gif', function(oImg) {
+  oImg.set({left: 369, top: 735, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'settings_traffic';
+  icon_traffic  = oImg;
+  ArrayOfObjects.push(icon_traffic);
+  canvas.add(icon_traffic);
+});
+
+var TrafficText = new fabric.Text(TRAFFIC[syslang], {
+  left: 173,
+  top: 389,
+  fontFamily: 'Times',
+  fontSize: 15
+});
+TrafficText.setColor('black');
+TrafficText.selectable = false;
+TrafficText.visible = false;
+ArrayOfObjects.push(TrafficText);
+
+// DATE/TIME
+var icon_datetime;
+fabric.Image.fromURL('images/Settings/datetime.gif', function(oImg) {
+  oImg.set({left: 369, top: 920, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'settings_datetime';
+  icon_datetime = oImg;
+  ArrayOfObjects.push(icon_datetime);
+  canvas.add(oImg);
+});
+
+var DatetimeText = new fabric.Text(DATE_TIME[syslang], {
+  left: 175,
+  top: 475,
+  fontFamily: 'Times',
+  fontSize: 15
+});
+DatetimeText.setColor('black');
+DatetimeText.selectable = false;
+DatetimeText.visible = false;
+ArrayOfObjects.push(DatetimeText);
+
+
+//********************************************************************************************
+// THIRD COLUMN OF ITEMS
+// Doorbell
+var icon_doorbell;
+fabric.Image.fromURL('images/Settings/doorbell.gif', function(oImg) {
+  oImg.set({left: 549, top: 720, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'settings_doorbell';
+  icon_doorbell = oImg;
+  ArrayOfObjects.push(icon_doorbell);
+  canvas.add(icon_doorbell);
+});
+
+var DoorbellText = new fabric.Text(DOORBELL[syslang], {
+  left: 255,
+  top: 385,
+  fontFamily: 'Times',
+  fontSize: 15
+});
+DoorbellText.setColor('black');
+DoorbellText.selectable = false;
+DoorbellText.visible = false;
+ArrayOfObjects.push(DoorbellText);
+
+// Units
+var icon_units;
+fabric.Image.fromURL('images/Settings/metric.gif', function(oImg) {
+  oImg.set({left: 549, top: 920, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'settings_units';
+  icon_units = oImg;
+  ArrayOfObjects.push(icon_units);
+  canvas.add(icon_units);
+});
+
+var UnitsText = new fabric.Text(UNITS[syslang], {
+  left: 255,
+  top: 475,
+  fontFamily: 'Times',
+  fontSize: 15
+});
+UnitsText.setColor('black');
+UnitsText.selectable = false;
+UnitsText.visible = false;
+ArrayOfObjects.push(UnitsText);
+//********************************************************************************************
+
+//********************************************************************************************
+// FOURTH COLUMN OF ITEMS
+// Brightness
+var icon_brightness;
+fabric.Image.fromURL('images/Settings/brightness.gif', function(oImg) {
+  oImg.set({left: 729, top: 720, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'settings_brightness';
+  icon_brightness = oImg;
+  ArrayOfObjects.push(icon_brightness);
+  canvas.add(icon_brightness);
+});
+
+var BrightnessText = new fabric.Text(BRIGHTNESS[syslang], {
+  left: 330,
+  top: 385,
+  fontFamily: 'Times',
+  fontSize: 15
+});
+BrightnessText.setColor('black');
+BrightnessText.selectable = false;
+BrightnessText.visible = false;
+ArrayOfObjects.push(BrightnessText);
+
+// Volume
+var icon_volume;
+fabric.Image.fromURL('images/Settings/volume.gif', function(oImg) {
+  oImg.set({left: 729, top: 935, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'settings_volume';
+  icon_volume = oImg;
+  ArrayOfObjects.push(icon_volume);
+  canvas.add(icon_volume);
+});
+
+var VolumeText = new fabric.Text(VOLUME[syslang], {
+  left: 332,
+  top: 477,
+  fontFamily: 'Times',
+  fontSize: 15
+});
+VolumeText.setColor('black');
+VolumeText.selectable = false;
+VolumeText.visible = false;
+ArrayOfObjects.push(VolumeText);
+//********************************************************************************************
+
+
+//********************************************************************************************
+// FIFTH COLUMN OF ITEMS
+// Themes
+var icon_themes;
+fabric.Image.fromURL('images/Settings/themes.gif', function(oImg) {
+  oImg.set({left: 909, top: 730, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'settings_themes';
+  icon_themes = oImg;
+  ArrayOfObjects.push(icon_themes);
+  canvas.add(icon_themes);
+});
+
+var ThemesText = new fabric.Text(THEME[syslang], {
+  left: 420,
+  top: 388,
+  fontFamily: 'Times',
+  fontSize: 15
+});
+ThemesText.setColor('black');
+ThemesText.selectable = false;
+ThemesText.visible = false;
+ArrayOfObjects.push(ThemesText);
+
+// Intercom
+var icon_intercom;
+fabric.Image.fromURL('images/Settings/tutorial.gif', function(oImg) {
+  oImg.set({left: 909, top: 930, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'settings_intercom';
+  icon_intercom = oImg;
+  ArrayOfObjects.push(icon_intercom);
+  canvas.add(icon_intercom);
+});
+
+var IntercomText = new fabric.Text(INTERCOM[syslang], {
+  left: 415,
+  top: 475,
+  fontFamily: 'Times',
+  fontSize: 15
+});
+IntercomText.setColor('black');
+IntercomText.selectable = false;
+IntercomText.visible = false;
+ArrayOfObjects.push(IntercomText);
 //********************************************************************************************
 
 var icon_restart;
@@ -1082,11 +1343,24 @@ canvas.add(Lightstext);
 canvas.add(Alarmtext);
 canvas.add(Emergtext);
 canvas.add(Settingstext);
+
 canvas.add(Lights);
 canvas.add(AvatarOut);
 canvas.add(CameraIn);
 canvas.add(AvatarOnOff);
 canvas.add(LiveOnOff);
+
+
+canvas.add(UsersText);
+canvas.add(LanguageText);
+canvas.add(TrafficText);
+canvas.add(DatetimeText);
+canvas.add(DoorbellText);
+canvas.add(UnitsText);
+canvas.add(BrightnessText);
+canvas.add(VolumeText);
+canvas.add(ThemesText);
+canvas.add(IntercomText);
 
 //************************************** Functions *******************************************
 canvas.on('object:selected', function(e) {
@@ -1134,7 +1408,10 @@ canvas.on('object:selected', function(e) {
 
   else if (activeObject.id == "doorbell")
     playDoorbellSound();
-
+  else if (activeObject.id == "settings") {
+    showSettings();
+    canvas.deactivateAll();
+  }
 
   if(activeObject.id == 'mirror')
     {
