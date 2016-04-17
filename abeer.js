@@ -336,6 +336,7 @@ for (var i = 0; i < canvas.getObjects().length; ++i)
 //-------------------------------------------------------------
 function MultiUsersFromInside()
 {
+  CURRENT_USER = null;
   HideHome();
   HideUser1FromInside();
   HideUser2FromInside();
@@ -377,11 +378,13 @@ function NewUserFromInside()
 //-------------------------------------------------------------
 function NoUserFromInside()
 {
+  CURRENT_USER = null;
   HideHome();
   HideUser1FromInside();
   HideUser2FromInside();
   HideUsersList();
   LockDoorIn();
+  LockDeadbolt();
   LockDeadbolt();
   ResetCoordinates();
   document.getElementsByName('Heights')[0].disabled = true;
@@ -502,6 +505,8 @@ function NewUserFromOutside()
 //-------------------------------------------------------------
 function NoUserFromOutside()
 {
+  CURRENT_USER = null;
+  
   ResetDoorFromOutside();
   document.getElementsByName('Verification')[1].disabled = true;
   document.getElementsByName('Verification')[2].disabled = true;
