@@ -373,11 +373,25 @@ function NewUserFromInside()
     HideHome();
 //  HideUser1FromInside();
 //  HideUser2FromInside();
-    RegisteredUsers.hideAllUsersObjects();
 
+  RegisteredUsers.hideAllUsersObjects();
   HideUsersList();
   LockDoorIn();
   LockDeadbolt();
+  LockDeadbolt();
+  ResetCoordinates();
+  HeightsRadioButtons_ENABLE();
+  
+  syslang = ENGLISH; // set to english by default
+  System_language = SYSTEM_LANGUAGE[syslang];
+  In_theme = 'default';
+  In_ornament = 'default';
+  Out_theme = 'default';
+  Out_ornament = 'default';
+
+  Date_format = DATE_MONTHDDYYYY;
+  Time_format = TIME_12HOUR;
+  TemperatureUnits = F;
 }
 
 //-------------------------------------------------------------
@@ -389,6 +403,7 @@ function NoSignalFromInside()
   HideHomeButtonAndLine();
   
   HideHome();
+
 //  HideUser1FromInside();
 //  HideUser2FromInside();
   RegisteredUsers.hideAllUsersObjects();
@@ -398,6 +413,17 @@ function NoSignalFromInside()
   LockDeadbolt();
   //ResetCoordinates();
   HeightsRadioButtons_DISABLE();
+
+  syslang = ENGLISH; // set to english by default
+  System_language = SYSTEM_LANGUAGE[syslang];
+  In_theme = 'default';
+  In_ornament = 'default';
+  Out_theme = 'default';
+  Out_ornament = 'default';
+
+  Date_format = DATE_MONTHDDYYYY;
+  Time_format = TIME_12HOUR;
+  TemperatureUnits = F;
 }
 
 //-------------------------------------------------------------
@@ -435,10 +461,13 @@ function GetOriginalCoordinate(){
 //-------------------------------------------------------------
 function ResetCoordinates()
 {
+  if (counter >= 1)
+  {
   for (var i = 0; i < ArrayOfObjects.length; ++i) {
     ArrayOfObjects[i].top = OriginalObjCoordinate[i];
     ArrayOfObjects[i].setCoords();
   }
+}
   canvas.renderAll();
 }
 
