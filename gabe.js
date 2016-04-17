@@ -245,6 +245,10 @@ function User(firstname, lastname, language) {
   this.in_ornament = 'default';
   this.out_ornament = 'default';
 
+  this.getFullName = function () {
+    return this.firstname + " " + this.lastname;
+  }
+  
   this.myObjects = [];
   this.addObject = function(object) {
     object.id = this.id;
@@ -316,28 +320,40 @@ function AddUserToRadioChoices( name , value) {
   UsersFromOutside.appendChild(label2);
 }
 
-
+var CURRENT_USER = null;
 function LoadUserData_Inside(index ) {
   console.log("LoadUserData_Inside(" + index + ")");
-  console.log("Now Loading data for " + RegisteredUsers.at(index));
+  CURRENT_USER = RegisteredUsers.at(index)
+  console.log("Now Loading data for " + CURRENT_USER.getFullName() );
+  
   var i;
   HideHome();
   HideUsersList();
+  HideUser1FromInside();
+  HideUser2FromInside();
+  HideUsersList();
+  CloseCamera();
+  HideMirror();
+  HideTraffic();
+  HideLights();
+  HideTransport();
+  HideNews();
 
   for(i=0; i< RegisteredUsers.length; i++) {
     RegisteredUsers.at(i).hideObjects();
   }
 
-  RegisteredUsers.at(i).showObjects();
-  syslang = RegisteredUsers.at(i).language;
-  In_theme = RegisteredUsers.at(i).in_theme;
-  In_ornament = RegisteredUsers.at(i).in_ornament;
-  Out_theme = RegisteredUsers.at(i).out_theme;
+  RegisteredUsers.at(index).showObjects();
+  
+  syslang = RegisteredUsers.at(index).language;
+  In_theme = RegisteredUsers.at(index).in_theme;
+  In_ornament = RegisteredUsers.at(index).in_ornament;
+  Out_theme = RegisteredUsers.at(index).out_theme;
   Out_ornament = RegisteredUsers.at(i).out_ornament;
 
-  Date_format = RegisteredUsers.at(i).date_format;
-  Time_format = RegisteredUsers.at(i).time_format;
-  TemperatureUnits = RegisteredUsers.at(i).temerature_units;
+  Date_format = RegisteredUsers.at(index).date_format;
+  Time_format = RegisteredUsers.at(index).time_format;
+  TemperatureUnits = RegisteredUsers.at(index).temerature_units;
   UpdateText();
 }
 
