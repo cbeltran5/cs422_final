@@ -372,8 +372,9 @@ function NewUserFromInside()
 }
 
 //-------------------------------------------------------------
-function NoUserFromInside()
+function NoSignalFromInside()
 {
+  console.log("NoSignalFromInside()");
   CURRENT_USER = null;
   HideHome();
   HideUser1FromInside();
@@ -383,9 +384,7 @@ function NoUserFromInside()
   LockDeadbolt();
   LockDeadbolt();
   ResetCoordinates();
-  document.getElementsByName('Heights')[0].disabled = true;
-  document.getElementsByName('Heights')[1].disabled = true;
-  document.getElementsByName('Heights')[2].disabled = true;
+  HeightsRadioButtons_DISABLE();
 }
 
 //-------------------------------------------------------------
@@ -490,6 +489,8 @@ function User1FromOutside()
 //-------------------------------------------------------------
 function NewUserFromOutside()
 {
+  HeightsRadioButtons_ENABLE(); // gabe
+  
   ResetDoorFromOutside();
   TriggerDoorFromOutside();
   FailedVerification();
