@@ -408,7 +408,7 @@ function NoSignalFromInside()
   LockDoorIn();
   LockDeadbolt();
   LockDeadbolt();
-  //ResetCoordinates();
+  ResetCoordinates();
   HeightsRadioButtons_DISABLE();
 
   syslang = ENGLISH; // set to english by default
