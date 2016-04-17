@@ -1697,7 +1697,29 @@ ResetTheme.hasControls =  false;
 ResetTheme.lockMovementX = ResetTheme.lockMovementY = true;
 ArrayOfObjects.push(ResetTheme);
 
+var EasterOrn;
+fabric.Image.fromURL('images/easter.gif', function(oImg) {
+  oImg.set({left: 1750, top: 100, id: this.id});
+  oImg.visible = false;
+  oImg.scale(1.1);
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'easter';
+  EasterOrn = oImg;
+  canvas.add(EasterOrn);
+});
 
+var XmassOrn;
+fabric.Image.fromURL('images/xmass.gif', function(oImg) {
+  oImg.set({left: 1750, top: 100, id: this.id});
+  oImg.visible = false;
+  oImg.scale(1.1);
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'easter';
+  XmassOrn = oImg;
+  canvas.add(XmassOrn);
+});
 
 //---------------------- theme function -----------------------
 function ShowThemeSettings()
@@ -1711,6 +1733,10 @@ function ShowThemeSettings()
   XmassText.visible = true;
   EasterText.visible = true;
   ResetTheme.visible = true;
+  WoodText.backgroundColor = 'white';
+  MetalText.backgroundColor = 'white';
+  XmassText.backgroundColor = 'white';
+  EasterText.backgroundColor = 'white';
 }
 
 function CloseThemeSettings()
@@ -1728,6 +1754,10 @@ function CloseThemeSettings()
 
 InsideText.on('mousedown', function ()
 {
+  WoodText.backgroundColor = 'white';
+  MetalText.backgroundColor = 'white';
+  XmassText.backgroundColor = 'white';
+  EasterText.backgroundColor = 'white';
   InsideText.setOpacity(1);
   OutsideText.setOpacity(0.3);
   ActiveSide = "Inside";
@@ -1735,13 +1765,20 @@ InsideText.on('mousedown', function ()
 
 OutsideText.on('mousedown', function ()
 {
+  WoodText.backgroundColor = 'white';
+  MetalText.backgroundColor = 'white';
+  XmassText.backgroundColor = 'white';
+  EasterText.backgroundColor = 'white';
   InsideText.setOpacity(0.3);
   OutsideText.setOpacity(1);
   ActiveSide = "Outside";
 });
-//------------
+//------------------------------------------------------
 WoodText.on('mousedown', function ()
 {
+  MetalText.backgroundColor = 'white';
+  WoodText.backgroundColor = '#85C1E9';
+
   if(ActiveSide == "Inside")
     {
       In_theme = 'Wood';
@@ -1768,6 +1805,8 @@ WoodText.on('mousedown', function ()
 //------------
 MetalText.on('mousedown', function ()
 {
+  MetalText.backgroundColor = '#85C1E9';
+  WoodText.backgroundColor = 'white';
   if(ActiveSide == "Inside")
   {
     In_theme = 'Metal'; 
@@ -1791,15 +1830,29 @@ MetalText.on('mousedown', function ()
    }
 
 });
+//----------------
+XmassText.on('mousedown', function ()
+{
+  XmassText.backgroundColor = '#85C1E9';
+  EasterText.backgroundColor = 'white';
+  XmassOrn.visible = true;
+  EasterOrn.visible = false;
+});
 
-//--------- Set Door theme ---------------
-
-
+EasterText.on('mousedown', function ()
+{
+  XmassText.backgroundColor = 'white';
+  EasterText.backgroundColor = '#85C1E9';
+  XmassOrn.visible = false;
+  EasterOrn.visible = true;
+});
 //----------
 ResetTheme.on('mousedown', function ()
 {
   In_theme = 'default';
   Out_theme = 'default';
+  XmassOrn.visible = false;
+  EasterOrn.visible = false;
 
 fabric.util.loadImage('images/Doorpattern.gif', function (img) {
     insideDoor.setPatternFill({
