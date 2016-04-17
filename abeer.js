@@ -348,7 +348,7 @@ function MultiUsersFromInside()
   LockDeadbolt();
   ResetCoordinates();
   HeightsRadioButtons_ENABLE();
-  //UncheckHeight();
+  UncheckHeight();
   
   syslang = ENGLISH; // set to english by default
   System_language = SYSTEM_LANGUAGE[syslang];
@@ -399,7 +399,7 @@ function NewUserFromInside()
   LockDeadbolt();
   ResetCoordinates();
   HeightsRadioButtons_ENABLE();
-  //UncheckHeight();
+  UncheckHeight();
   
   syslang = ENGLISH; // set to english by default
   System_language = SYSTEM_LANGUAGE[syslang];
@@ -432,7 +432,7 @@ function NoSignalFromInside()
   LockDeadbolt();
   ResetCoordinates();
   HeightsRadioButtons_DISABLE();
-  
+    UncheckHeight();
 
   syslang = ENGLISH; // set to english by default
   System_language = SYSTEM_LANGUAGE[syslang];
@@ -767,8 +767,8 @@ function SetDoorTheme()
 function UncheckHeight()
 {
 
+  document.getElementsByName('Heights')[0].checked = false;
   document.getElementsByName('Heights')[1].checked = false;
   document.getElementsByName('Heights')[2].checked = false;
-  document.getElementsByName('Heights')[3].checked = false;
 
 }

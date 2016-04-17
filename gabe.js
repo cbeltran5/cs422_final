@@ -357,18 +357,14 @@ function HeightsRadioButtons_DISABLE() {
   document.getElementsByName('Heights')[0].disabled = true; //
   document.getElementsByName('Heights')[1].disabled = true; // all by abeer
   document.getElementsByName('Heights')[2].disabled = true; //
-  document.getElementsByName('Heights')[0].checked = false;
-  document.getElementsByName('Heights')[1].checked = false;
-  document.getElementsByName('Heights')[2].checked = false;
+  
 }
 function HeightsRadioButtons_ENABLE() {
   heightsenabled = true;
   document.getElementsByName('Heights')[0].disabled = false;  //
   document.getElementsByName('Heights')[1].disabled = false;  // interpreted from abeers code
   document.getElementsByName('Heights')[2].disabled = false;  //
-  document.getElementsByName('Heights')[0].checked = false;
-  document.getElementsByName('Heights')[1].checked = false;
-  document.getElementsByName('Heights')[2].checked = false;
+  
 }
 
 var CURRENT_USER = null;
@@ -443,6 +439,7 @@ function LoadUserData_Inside(index ) {
   Time_format = RegisteredUsers.at(index).time_format;
   TemperatureUnits = RegisteredUsers.at(index).temerature_units;
   UpdateText();
+  UncheckHeight();
 }
 
 function LoadUserData_Outside(index ) {
