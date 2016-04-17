@@ -99,8 +99,8 @@
     <section>
     <h1>Outside Events</h1>
     <code>
-      
-      
+
+
       <section>
       <code>
       <form name="UsersOutside"> Users:<br>
@@ -112,7 +112,7 @@
       </form></code>
       </section>
 
-      
+
       <section>
       <code>
       <form name="Verification"> Verification1:<br>
@@ -126,7 +126,7 @@
       </form>
       </code>
       </section>
-      
+
       <section>
       <code>
       <form name="Verification"> Verification2:<br>
@@ -139,7 +139,7 @@
       </form>
       </code>
       </section>
-      
+
     </code>
     </section>
 </body>
@@ -763,6 +763,18 @@ fabric.Image.fromURL('images/alarm.gif', function(oImg) {
   ArrayOfObjects.push(icon_alarm_off);
   canvas.add(icon_alarm_off);
 });
+
+//var icon_alarm_on;
+//fabric.Image.fromURL('images/alarmOn.gif', function(oImg) {
+//  oImg.set({left: 549, top: 920, id: this.id});
+//  oImg.visible = false;
+//  oImg.hasControls = oImg.hasBorders = false;
+//  oImg.lockMovementY = oImg.lockMovementX = true;
+//  oImg.id = 'alarmOn';
+//  icon_alarm_on = oImg;
+//  canvas.add(icon_alarm_on);
+//});
+
 var icon_alarm_on;
 fabric.Image.fromURL('images/alarmOn.gif', function(oImg) {
   oImg.set({left: 549, top: 920, id: this.id});
@@ -1523,9 +1535,9 @@ ArrayOfObjects.push(IntercomText);
 
 var brightness_text = new fabric.IText('Brightness', {
   fontFamily: 'arial black',
-  fontSize: 20,
-  left: 200,
-  top: 310,
+  fontSize: 40,
+  left: 180,
+  top: 325,
   width: 100,
   height: 50
 });
@@ -1560,7 +1572,7 @@ ArrayOfObjects.push(slider_back);
 
 var slider = new fabric.Rect({
   left: 245,
-  top: 430,
+  top: 425,
   fill: 'grey',
   stroke: 'black',
   width: 37,
@@ -1582,9 +1594,9 @@ ArrayOfObjects.push(slider);
 
 var display_text = new fabric.IText('Display Timer', {
   fontFamily: 'arial black',
-  fontSize: 20,
-  left: 200,
-  top: 480,
+  fontSize: 40,
+  left: 155,
+  top: 500,
   width: 100,
   height: 50
 });
@@ -2348,7 +2360,6 @@ canvas.on('object:selected', function(e) {
     ShowThemeSettings();
   }
   else if (activeObject.id == "settings_brightness")
-    hideSettings();
     showBrightnessSettings();
 
   if(activeObject.id == 'mirror')
