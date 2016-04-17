@@ -373,7 +373,7 @@ function NewUserFromInside()
     HideHome();
 //  HideUser1FromInside();
 //  HideUser2FromInside();
-
+  ShowHomeButtonAndLine();
   RegisteredUsers.hideAllUsersObjects();
   HideUsersList();
   LockDoorIn();
