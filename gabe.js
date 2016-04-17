@@ -361,9 +361,43 @@ function HeightsRadioButtons_ENABLE() {
 
 var CURRENT_USER = null;
 
+var homebutton = null;
+function getObjectWithId(id) {
+  for (var i = 0; i < canvas.getObjects().length; ++i){
+    if (canvas.item(i).id == id) {
+      return canvas.item(i);
+    }
+  }
+}
+
+
+function ShowHomeButtonAndLine() {
+  // show home button
+  if(homebutton == null){
+    homebutton = getObjectWithId('home');
+  }
+  homebutton.visible = 'true';
+  Line.visible = true;
+}
+
+
+function HideHomeButtonAndLine() {
+  // show home button
+  if(homebutton == null){
+    homebutton = getObjectWithId('home');
+  }
+  homebutton.visible = false;
+  Line.visible = false;
+  
+}
+
 function LoadUserData_Inside(index ) {
   if(!heightsenabled)
     HeightsRadioButtons_ENABLE();   // enable radio buttons
+  
+  ShowHomeButtonAndLine();
+    
+  
   console.log("LoadUserData_Inside(" + index + ")");
   CURRENT_USER = RegisteredUsers.at(index);
   console.log("Now Loading data for " + CURRENT_USER.getFullName() );
@@ -371,8 +405,9 @@ function LoadUserData_Inside(index ) {
   var i;
   HideHome();
   HideUsersList();
-  HideUser1FromInside();
-  HideUser2FromInside();
+  //HideUser1FromInside();
+  //HideUser2FromInside();
+  RegisteredUsers.hideAllUsersObjects();
   HideUsersList();
   CloseCamera();
   HideMirror();
@@ -381,9 +416,6 @@ function LoadUserData_Inside(index ) {
   HideTransport();
   HideNews();
 
-  for(i=0; i< RegisteredUsers.length; i++) {
-    RegisteredUsers.at(i).hideObjects();
-  }
 
   RegisteredUsers.at(index).showObjects();
   

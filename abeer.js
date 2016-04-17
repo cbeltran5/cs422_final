@@ -83,8 +83,9 @@ function HomeSelected()
 //-------------------------------------------------------------
 function ShowHome()
 {
-  HideUser1FromInside();
-  HideUser2FromInside();
+//  HideUser1FromInside();
+//  HideUser2FromInside();
+  RegisteredUsers.hideAllUsersObjects();
   HideUsersList();
   CloseCamera();
   HideMirror();
@@ -96,11 +97,11 @@ function ShowHome()
   HomeIsActive = true;
   PanelRect.visible = true;
   
-  if(CURRENT_USER != null)
-  {
-    CURRENT_USER.hideObjects();
-  }
-  
+//  if(CURRENT_USER != null)
+//  {
+//    CURRENT_USER.hideObjects();
+//  }
+//  
   for (var i = 0; i < canvas.getObjects().length; ++i)
   {
     if (canvas.item(i).id == 'messages' || canvas.item(i).id == 'camera'   ||
@@ -137,7 +138,8 @@ function HideHome()
   CloseCamera();
 
   PanelRect.visible = false;
-
+  
+  
   for (var i = 0; i < canvas.getObjects().length; ++i)
   {
     if (canvas.item(i).id == 'messages' || canvas.item(i).id == 'camera'   ||
@@ -368,7 +370,7 @@ function HideUsersList()
 //----------------------------------------------------------
 function NewUserFromInside()
 {
-  HideHome();
+    HideHome();
 //  HideUser1FromInside();
 //  HideUser2FromInside();
     RegisteredUsers.hideAllUsersObjects();
@@ -383,6 +385,9 @@ function NoSignalFromInside()
 {
   console.log("NoSignalFromInside()");
   CURRENT_USER = null;
+
+  HideHomeButtonAndLine();
+  
   HideHome();
 //  HideUser1FromInside();
 //  HideUser2FromInside();
@@ -391,7 +396,7 @@ function NoSignalFromInside()
   LockDoorIn();
   LockDeadbolt();
   LockDeadbolt();
-  ResetCoordinates();
+  //ResetCoordinates();
   HeightsRadioButtons_DISABLE();
 }
 
