@@ -66,7 +66,7 @@
       <code>
       <form> Users:<br>
         <div id = "UsersFromInside">
-          <label for="NoSignalInside"><input type="radio" class="radio1" name="UsersIn" onchange="NoUserFromInside()" value="NoSignal" checked> No Signal<br></label>
+          <label for="NoSignalInside"><input type="radio" class="radio1" name="UsersIn" onchange="NoSignalFromInside()" value="NoSignal" checked> No Signal<br></label>
           <label for="UnknownPersonInside"><input type="radio" class="radio1" name="UsersIn" onchange="NewUserFromInside()" value="NewUser"> Unknown Person<br></label>
           <label for="MultiUserInside"><input type="radio" class="radio1" name="UsersIn" onchange="MultiUsersFromInside()" value="MultiUser"> Multiple People<br></label>
         </div>
@@ -192,13 +192,14 @@ var counter = 0;
 
 //************************************ Users Profiles ***************************************
 
-var User1 = new User('Gabe', 'Mendoza', ENGLISH);
-var User2 = new User('Enrique', 'Vaca', SPANISH);
-var User3 = new User('Adam', 'Porter', ENGLISH);
-var User4 = new User('Sara', 'Parker', ENGLISH);
-var User5 = new User('Carlos', 'Beltran', SPANISH);
+var User0 = new User('Gabe', 'Mendoza', ENGLISH);
+var User1 = new User('Enrique', 'Vaca', SPANISH);
+var User2 = new User('Adam', 'Porter', ENGLISH);
+var User3 = new User('Sara', 'Parker', ENGLISH);
+var User4 = new User('Carlos', 'Beltran', SPANISH);
+var User5 = new User('Some','Person', ENGLISH);
+
 User5.RemoveFromRegisteredUsers();
-var User6 = new User('Some','Person', ENGLISH);
 
 //*******************************************************************************************
 
