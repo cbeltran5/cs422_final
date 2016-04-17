@@ -60,6 +60,7 @@ function showSettings() {
   VolumeText.visible = true;
   ThemesText.visible = true;
   IntercomText.visible = true;
+  PanelRect.visible = true;
 
 }
 
@@ -91,6 +92,8 @@ function hideSettings()
   VolumeText.visible = false;
   ThemesText.visible = false;
   IntercomText.visible = false;
+  PanelRect.visible = false;
+
 
   hideUsers();
 }

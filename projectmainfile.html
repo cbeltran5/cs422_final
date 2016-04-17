@@ -2210,7 +2210,62 @@ function init_traffic_stuff() {
 
 
 //********************************************************************************************
+//------------------------------ User settings components and function ----------------
+var UserSettingList; //Just a panel
+fabric.Image.fromURL('images/Usersettinglist.jpg', function(oImg) {
+  oImg.set({left: 365, top: 690, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'Usersettinglist';
+  UserSettingList = oImg;
+  canvas.add(UserSettingList);
+  ArrayOfObjects.push(UserSettingList);
+});
 
+var UsersNames = [];
+
+function ShowUserSettings()
+{
+
+  UserSettingList.visible = true;
+  
+  //loop to get names and add them to canvas
+  for (i = 0; i < RegisteredUsers.length; i++)
+
+  {
+    var topv = 730 + (70*(i+1)/(i+1)) * (i+1);
+    var UserName = new fabric.Text('', {
+    fontFamily: 'Times',
+    fontSize: 60,
+    left: 400,
+    top: topv,
+    });
+    
+    UserName.setText(RegisteredUsers.at(i).firstname);
+    
+
+    canvas.add(UserName);
+    UserName.bringForward();
+    UsersNames.push(UserName);
+    ArrayOfObjects.push(UsersNames[i]);
+
+  }
+console.log("We are : "+ UsersNames.length);
+}
+
+
+function HideUserSettings()
+{
+
+  UserSettingList.visible = false;
+  for (i = 0; i < UsersNames.length; i++)
+  {
+    UsersNames[i].visible = false;
+  }
+
+}
+//--------------------------------------------------------------------------------------
 // add all of the elements to the canvas
 
 canvas.add(insideDoor);
@@ -2396,8 +2451,11 @@ canvas.on('object:selected', function(e) {
   }
 
   if(activeObject.id == "settings_users") {
-    usersSelected();
-    canvas.deactivateAll();
+    {
+      hideSettings();
+      ShowUserSettings();}
+    //usersSelected();
+    //canvas.deactivateAll();
   }
 });
 
