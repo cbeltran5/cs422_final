@@ -83,8 +83,6 @@ function HomeSelected()
 //-------------------------------------------------------------
 function ShowHome()
 {
-//  HideUser1FromInside();
-//  HideUser2FromInside();
   RegisteredUsers.hideAllUsersObjects();
   HideUsersList();
   CloseCamera();
@@ -350,6 +348,7 @@ function MultiUsersFromInside()
   LockDeadbolt();
   ResetCoordinates();
   HeightsRadioButtons_ENABLE();
+  UncheckHeight();
   
   syslang = ENGLISH; // set to english by default
   System_language = SYSTEM_LANGUAGE[syslang];
@@ -400,6 +399,7 @@ function NewUserFromInside()
   LockDeadbolt();
   ResetCoordinates();
   HeightsRadioButtons_ENABLE();
+  UncheckHeight();
   
   syslang = ENGLISH; // set to english by default
   System_language = SYSTEM_LANGUAGE[syslang];
@@ -432,6 +432,7 @@ function NoSignalFromInside()
   LockDeadbolt();
   ResetCoordinates();
   HeightsRadioButtons_DISABLE();
+    UncheckHeight();
 
   syslang = ENGLISH; // set to english by default
   System_language = SYSTEM_LANGUAGE[syslang];
@@ -480,13 +481,12 @@ function GetOriginalCoordinate(){
 //-------------------------------------------------------------
 function ResetCoordinates()
 {
-  if (counter >= 1)
-  {
-  for (var i = 0; i < ArrayOfObjects.length; ++i) {
-    ArrayOfObjects[i].top = OriginalObjCoordinate[i];
-    ArrayOfObjects[i].setCoords();
+  if (counter >= 1) {
+    for (var i = 0; i < ArrayOfObjects.length; ++i) {
+      ArrayOfObjects[i].top = OriginalObjCoordinate[i];
+      ArrayOfObjects[i].setCoords();
+    }
   }
-}
   canvas.renderAll();
 }
 
@@ -760,5 +760,15 @@ function SetDoorTheme()
     repeat: 'repeat'
     }); });
 
+
+}
+
+
+function UncheckHeight()
+{
+
+  document.getElementsByName('Heights')[0].checked = false;
+  document.getElementsByName('Heights')[1].checked = false;
+  document.getElementsByName('Heights')[2].checked = false;
 
 }

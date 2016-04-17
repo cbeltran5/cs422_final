@@ -11,8 +11,6 @@ function F2C(F) {
   return (F - 32) * 5 / 9;
 }
 
-
-
 function TodoList() {
 
 }
@@ -225,6 +223,7 @@ function Registered_Users() {
     this.users.splice(id,1);
     this.length--;
   }
+  
   this.removeUserByName = function( firstname, lastname) {
     var l = RegisteredUsers.length;
     for(var i=0; i < l; i++) {
@@ -237,18 +236,16 @@ function Registered_Users() {
   }
 
   this.hideAllUsersObjects = function() {
-    for(var i=0; i < this.users.length; i++)
-      {
-        console.log(i);
-        this.users[i].hideObjects();
-      }
+    for(var i=0; i < this.users.length; i++){
+      console.log(i);
+      this.users[i].hideObjects();
+    }
   }
 
   this.addUser = function(user) {
     this.users.push(user);
     this.length++;
   }
-
 }
 
 var RegisteredUsers = new Registered_Users();
@@ -312,11 +309,10 @@ function User(firstname, lastname, language) {
     console.log("Removing user with id " + this.id);
     RemoveFromRadioChoices(this.id);
     RegisteredUsers.removeUserByID(this.id);
-    for(var i =0; i < RegisteredUsers.length; i++)
-      {
-        console.log(RegisteredUsers.at(i));
-        RegisteredUsers.at(i).id = i;
-      }
+    for(var i =0; i < RegisteredUsers.length; i++){
+      console.log(RegisteredUsers.at(i));
+      RegisteredUsers.at(i).id = i;
+    }
   }
   AddUserToRadioChoices(this.firstname + " " + this.lastname, this.id);
 }
@@ -331,7 +327,6 @@ function RemoveFromRadioChoices(id) {
   var outside = document.getElementById(RADIO_ID_UFO);
   inside.removeChild(inside.children[remove]);
   outside.removeChild(outside.children[remove]);
-
 }
 
 function AddUserToRadioChoices( name , value) {
@@ -366,12 +361,14 @@ function HeightsRadioButtons_DISABLE() {
   document.getElementsByName('Heights')[0].disabled = true; //
   document.getElementsByName('Heights')[1].disabled = true; // all by abeer
   document.getElementsByName('Heights')[2].disabled = true; //
+  
 }
 function HeightsRadioButtons_ENABLE() {
   heightsenabled = true;
   document.getElementsByName('Heights')[0].disabled = false;  //
   document.getElementsByName('Heights')[1].disabled = false;  // interpreted from abeers code
   document.getElementsByName('Heights')[2].disabled = false;  //
+  
 }
 
 var CURRENT_USER = null;
@@ -394,7 +391,6 @@ function ShowHomeButtonAndLine() {
   Line.visible = true;
 }
 
-
 function HideHomeButtonAndLine() {
   // show home button
   if(homebutton == null){
@@ -402,16 +398,21 @@ function HideHomeButtonAndLine() {
   }
   homebutton.visible = false;
   Line.visible = false;
+}
 
+function ResetHeightRadioToDefault() {
+  document.getElementById('Tall').checked = false;
+  document.getElementById('Medium').checked = true;
+  document.getElementById('Short').checked = false;
+  AdjustHeight('Medium');
 }
 
 function LoadUserData_Inside(index ) {
   if(!heightsenabled)
     HeightsRadioButtons_ENABLE();   // enable radio buttons
-
+  
   ShowHomeButtonAndLine();
-
-
+  
   console.log("LoadUserData_Inside(" + index + ")");
   CURRENT_USER = RegisteredUsers.at(index);
   console.log("Now Loading data for " + CURRENT_USER.getFullName() );
@@ -419,8 +420,6 @@ function LoadUserData_Inside(index ) {
   var i;
   HideHome();
   HideUsersList();
-  //HideUser1FromInside();
-  //HideUser2FromInside();
   RegisteredUsers.hideAllUsersObjects();
   HideUsersList();
   CloseCamera();
@@ -430,9 +429,10 @@ function LoadUserData_Inside(index ) {
   HideTransport();
   HideNews();
 
-
+  ResetHeightRadioToDefault();
+  
   RegisteredUsers.at(index).showObjects();
-
+  
   syslang = RegisteredUsers.at(index).language;
   In_theme = RegisteredUsers.at(index).in_theme;
   In_ornament = RegisteredUsers.at(index).in_ornament;
@@ -443,6 +443,7 @@ function LoadUserData_Inside(index ) {
   Time_format = RegisteredUsers.at(index).time_format;
   TemperatureUnits = RegisteredUsers.at(index).temerature_units;
   UpdateText();
+  UncheckHeight();
 }
 
 function LoadUserData_Outside(index ) {
