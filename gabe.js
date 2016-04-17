@@ -401,13 +401,19 @@ function HideHomeButtonAndLine() {
 
 }
 
+function ResetHeightRadioToDefault() {
+  document.getElementById('Tall').checked = false;
+  document.getElementById('Medium').checked = true;
+  document.getElementById('Short').checked = false;
+  AdjustHeight('Medium');
+}
+
 function LoadUserData_Inside(index ) {
   if(!heightsenabled)
     HeightsRadioButtons_ENABLE();   // enable radio buttons
 
   ShowHomeButtonAndLine();
-
-
+  
   console.log("LoadUserData_Inside(" + index + ")");
   CURRENT_USER = RegisteredUsers.at(index);
   console.log("Now Loading data for " + CURRENT_USER.getFullName() );
@@ -415,8 +421,6 @@ function LoadUserData_Inside(index ) {
   var i;
   HideHome();
   HideUsersList();
-  //HideUser1FromInside();
-  //HideUser2FromInside();
   RegisteredUsers.hideAllUsersObjects();
   HideUsersList();
   CloseCamera();
@@ -426,9 +430,10 @@ function LoadUserData_Inside(index ) {
   HideTransport();
   HideNews();
 
-
+  ResetHeightRadioToDefault();
+  
   RegisteredUsers.at(index).showObjects();
-
+  
   syslang = RegisteredUsers.at(index).language;
   In_theme = RegisteredUsers.at(index).in_theme;
   In_ornament = RegisteredUsers.at(index).in_ornament;

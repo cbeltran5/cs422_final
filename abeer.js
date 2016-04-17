@@ -83,8 +83,6 @@ function HomeSelected()
 //-------------------------------------------------------------
 function ShowHome()
 {
-//  HideUser1FromInside();
-//  HideUser2FromInside();
   RegisteredUsers.hideAllUsersObjects();
   HideUsersList();
   CloseCamera();
