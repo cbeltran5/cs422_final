@@ -192,6 +192,12 @@ function UpdateText() {
 function Registered_Users() {
   this.users = [];
 
+  this.lenth = 0;
+  
+  this.at = function(index) {
+    return this.users[index];
+  }
+  
   this.removeUserByID = function (id) {
     this.users.splice(id,1);
   }
@@ -200,6 +206,7 @@ function Registered_Users() {
     for(var i=0; i < l; i++) {
       if(this.users[i].lastname == lastname && this.users[i].firstname == firstname){
         this.users[i].splice(i,1);
+        this.lenth--;
         break;
       }
     }
@@ -207,7 +214,10 @@ function Registered_Users() {
 
   this.addUser = function(user) {
     this.users.push(user);
+    this.lenth++;
+    
   }
+  
 }
 
 var RegisteredUsers = new Registered_Users();
@@ -308,25 +318,26 @@ function AddUserToRadioChoices( name , value) {
 
 
 function LoadUserData_Inside(index ) {
-  console.log("LoadUserData(" + index + ")");
+  console.log("LoadUserData_Inside(" + index + ")");
+  console.log("Now Loading data for " + RegisteredUsers.at(index));
   var i;
   HideHome();
   HideUsersList();
 
   for(i=0; i< RegisteredUsers.length; i++) {
-    RegisteredUsers[i].hideObjects();
+    RegisteredUsers.at(i).hideObjects();
   }
 
-  RegisteredUsers[ index ].showObjects();
-  syslang = RegisteredUsers[i].language;
-  In_theme = RegisteredUsers[i].in_theme;
-  In_ornament = RegisteredUsers[i].in_ornament;
-  Out_theme = RegisteredUsers[i].out_theme;
-  Out_ornament = RegisteredUsers[i].out_ornament;
+  RegisteredUsers.at(i).showObjects();
+  syslang = RegisteredUsers.at(i).language;
+  In_theme = RegisteredUsers.at(i).in_theme;
+  In_ornament = RegisteredUsers.at(i).in_ornament;
+  Out_theme = RegisteredUsers.at(i).out_theme;
+  Out_ornament = RegisteredUsers.at(i).out_ornament;
 
-  Date_format = RegisteredUsers[i].date_format;
-  Time_format = RegisteredUsers[i].time_format;
-  TemperatureUnits = RegisteredUsers[i].temerature_units;
+  Date_format = RegisteredUsers.at(i).date_format;
+  Time_format = RegisteredUsers.at(i).time_format;
+  TemperatureUnits = RegisteredUsers.at(i).temerature_units;
   UpdateText();
 }
 
