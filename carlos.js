@@ -283,6 +283,38 @@ function toggleTrafficPrimary(name)
   }
 }
 
+function showBrightnessSettings()
+{
+  brightness_text.visible = true;
+  slider_back.visible = true;
+  slider.visible = true;
+  display_text.visible = true;
+  one_min_btn.visible = true;
+  one_min_btn_text.visible = true;
+  three_min_btn.visible = true;
+  three_min_btn_text.visible = true;
+  five_min_btn.visible = true;
+  five_min_btn_text.visible = true;
+  brightness_save_btn.visible = true;
+  brightness_save_btn_text.visible = true;
+}
+
+function hideBrightnessSettings()
+{
+  brightness_text.visible = false;
+  slider_back.visible = false;
+  slider.visible = false;
+  display_text.visible = false;
+  one_min_btn.visible = false;
+  one_min_btn_text.visible = false;
+  three_min_btn.visible = false;
+  three_min_btn_text.visible = false;
+  five_min_btn.visible = false;
+  five_min_btn_text.visible = false;
+  brightness_save_btn.visible = false;
+  brightness_save_btn_text.visible = false;
+}
+
 // TODO??
 function addNewUser() {
   fabric.util.loadImage("images/Settings/post_send_key.gif", function (img) {
