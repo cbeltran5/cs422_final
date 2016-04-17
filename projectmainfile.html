@@ -1543,6 +1543,7 @@ fabric.Image.fromURL('images/numberpad.gif', function(oImg) {
 });
 
 //------------------------------- Themes components --------------------------------
+//----------------------------------------------------------------------------------
 var ActiveSide = "Inside";
 
 var InsideText = new fabric.Text("Inside", {
@@ -1773,7 +1774,7 @@ OutsideText.on('mousedown', function ()
   OutsideText.setOpacity(1);
   ActiveSide = "Outside";
 });
-//------------------------------------------------------
+//------------
 WoodText.on('mousedown', function ()
 {
   MetalText.backgroundColor = 'white';
@@ -1782,6 +1783,7 @@ WoodText.on('mousedown', function ()
   if(ActiveSide == "Inside")
     {
       In_theme = 'Wood';
+      CURRENT_USER.in_theme = In_theme;
       fabric.util.loadImage('images/wooddoor.jpg', function (img) {
       img.id = 'Wood';
       insideDoor.setPatternFill({
@@ -1793,6 +1795,7 @@ WoodText.on('mousedown', function ()
   else if(ActiveSide == "Outside")
     {
       Out_theme = 'Wood';
+      CURRENT_USER.out_theme = Out_theme;
       fabric.util.loadImage('images/wooddoor.jpg', function (img) {
       img.id = 'Wood';
       outsideDoor.setPatternFill({
@@ -1810,6 +1813,7 @@ MetalText.on('mousedown', function ()
   if(ActiveSide == "Inside")
   {
     In_theme = 'Metal'; 
+    CURRENT_USER.in_theme = In_theme;
     fabric.util.loadImage('images/metal.jpg', function (img) {
     img.id = 'Metal';
     insideDoor.setPatternFill({
@@ -1821,6 +1825,7 @@ MetalText.on('mousedown', function ()
   else if(ActiveSide == "Outside")
   {
      Out_theme = 'Metal';
+     CURRENT_USER.out_theme = Out_theme;
      fabric.util.loadImage('images/metal.jpg', function (img) {
      img.id = 'Metal';
      outsideDoor.setPatternFill({
@@ -1833,6 +1838,7 @@ MetalText.on('mousedown', function ()
 //----------------
 XmassText.on('mousedown', function ()
 {
+  CURRENT_USER.out_ornament = 'Xmass';
   XmassText.backgroundColor = '#85C1E9';
   EasterText.backgroundColor = 'white';
   XmassOrn.visible = true;
@@ -1841,6 +1847,7 @@ XmassText.on('mousedown', function ()
 
 EasterText.on('mousedown', function ()
 {
+  CURRENT_USER.out_ornament = 'Easter';
   XmassText.backgroundColor = 'white';
   EasterText.backgroundColor = '#85C1E9';
   XmassOrn.visible = false;
@@ -1851,6 +1858,8 @@ ResetTheme.on('mousedown', function ()
 {
   In_theme = 'default';
   Out_theme = 'default';
+  CURRENT_USER.out_theme = Out_theme;
+  CURRENT_USER.in_theme = In_theme;
   XmassOrn.visible = false;
   EasterOrn.visible = false;
 
