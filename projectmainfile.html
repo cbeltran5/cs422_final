@@ -66,9 +66,9 @@
       <code>
       <form> Users:<br>
         <div id = "UsersFromInside">
-          <input type="radio" class="radio1" name="UsersIn" onchange="NoUserFromInside()" value="NoSignal" checked> No Signal<br>
-          <input type="radio" class="radio1" name="UsersIn" onchange="NewUserFromInside()" value="NewUser"> Unknown Person<br>
-          <input type="radio" class="radio1" name="UsersIn" onchange="MultiUsersFromInside()" value="MultiUser"> Multiple People<br>
+          <label for="NoSignalInside"><input type="radio" class="radio1" name="UsersIn" onchange="NoUserFromInside()" value="NoSignal" checked> No Signal<br></label>
+          <label for="UnknownPersonInside"><input type="radio" class="radio1" name="UsersIn" onchange="NewUserFromInside()" value="NewUser"> Unknown Person<br></label>
+          <label for="MultiUserInside"><input type="radio" class="radio1" name="UsersIn" onchange="MultiUsersFromInside()" value="MultiUser"> Multiple People<br></label>
         </div>
 
       </form>
@@ -79,23 +79,25 @@
       <code>
       <form > Heights:<br>
         <div id="Heights">
-          <input type="radio" class="radio1" name="Heights" onchange="AdjustHeight(this.value)" value="Tall"> Tall<br>
-          <input type="radio" class="radio1" name="Heights" onchange="AdjustHeight(this.value)" value="Medium" checked> Medium<br>
-          <input type="radio" class="radio1" name="Heights" onchange="AdjustHeight(this.value)" value="Short"> Short<br>
+          <label for="Tall"><input type="radio" class="radio1" name="Heights" onchange="AdjustHeight(this.value)" value="Tall"> Tall<br></label>
+          <label for="Medium"><input type="radio" class="radio1" name="Heights" onchange="AdjustHeight(this.value)" value="Medium" checked> Medium<br></label>
+          <label for="Short"><input type="radio" class="radio1" name="Heights" onchange="AdjustHeight(this.value)" value="Short"> Short<br></label>
         </div>
       </form>
       </code>
       </section>
-      <section></section><section></section>
-      <section></section><section></section>
-      <section></section><section></section>
-      <section></section><section></section>
-      <section></section><section></section>
-      <section></section><section></section>
-      <section></section><section></section>
-      <section></section><section></section>
-      <section></section><section></section>
-
+      <section></section>
+      <section></section>
+      <section></section>
+      <section></section>
+      <section></section>
+      <section></section>
+      <section></section>
+      <section></section>
+      <section></section>
+      <section></section>
+      <section></section>
+      <section></section>
     </code>
     </section>
 
@@ -105,12 +107,12 @@
     <code>
       <section>
       <code>
-        <form name="UsersOutside"> Users:<br>
-          <div id="UsersFromOutside">
-            <input type="radio" class="radio1" name="UsersOut" onchange="NoUserFromOutside()" value="NoSignal" checked> No Signal<br>
-            <input type="radio" class="radio1" name="UsersOut" onchange="NewUserFromOutside()" value="NewUser"> Unknown Person<br>
-            <input type="radio" class="radio1" name="UsersOut" onchange="MultiUsersOutside()" value="NewUser"> Multiple People<br>
-          </div>
+      <form name="UsersOutside"> Users:<br>
+        <div id="UsersFromOutside">
+          <label for="NoSignal"><input type="radio" class="radio1" name="UsersOut" onchange="NoUserFromOutside()" value="NoSignal" checked> No Signal<br></label>
+          <label for="Unknown Person"><input type="radio" class="radio1" name="UsersOut" onchange="NewUserFromOutside()" value="NewUser"> Unknown Person<br></label>
+          <label for="Multiple People"><input type="radio" class="radio1" name="UsersOut" onchange="MultiUsersOutside()" value="NewUser"> Multiple People<br></label>
+        </div>
       </form></code>
       </section>
 
@@ -125,8 +127,18 @@
       </form>
 
         </code>
-      </section>
+
+      <form name="Verification"> Verification:<br>
+        <div id="Verification">
+          <label for="FacialRecognition"><input type="radio" class="radio1" name="Verification" onchange="FaceRecognized()" value="Face"> Face<br></label>
+          <label for="FingerPrints"><input type="radio" class="radio1" name="Verification" onchange="FingerRecognized()" value="FingerPrint"> FingerPrint<br></label>
+          <label for="None"><input type="radio" class="radio1" name="Verification" onchange="FailedVerification()" value="None" checked> None<br></label>
+        </div>
+      </form>
+
       </code>
+      </section>
+      </code  >
   </section>
 </body>
 
@@ -199,6 +211,8 @@ var User5 = new User('Carlos', 'Beltran', SPANISH);
 
 console.log(RegisteredUsers);
 
+User5.RemoveFromRegisteredUsers();
+//
 //*******************************************************************************************
 
 
@@ -309,6 +323,9 @@ Weathertext.selectable = false;
 //****************** Adding In/out Door knobs ******************************************
 var doorknob_inside_locked;
 fabric.Image.fromURL('images/lockknob.png', function(oImg) {
+var doorknob_inside_locked;
+//var XXX = new ...
+  fabric.Image.fromURL('images/lockknob.png', function(oImg) {
   oImg.set({left: 1120, top: 1030, id: this.id});
   oImg.id = 'LockKnobIn';
   oImg.hasControls = oImg.hasBorders = false;
@@ -316,7 +333,11 @@ fabric.Image.fromURL('images/lockknob.png', function(oImg) {
   oImg.lockMovementY = oImg.lockMovementX = true;
   doorknob_inside_locked = oImg;
   canvas.add(doorknob_inside_locked);
+//    console.log(doorknob_inside_locked);
 });
+//  console.log("XXX");
+//  console.log(XXX);
+//console.log(doorknob_inside_locked);
 
 var doorknob_inside_unlocked;
 fabric.Image.fromURL('images/unlockknob2.png', function(oImg) {

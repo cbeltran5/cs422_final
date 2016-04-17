@@ -177,15 +177,34 @@ function UpdateText() {
 /***********************************************************************
                            END OF DATE AND TIME           
 ************************************************************************/
+ 
+function Registered_Users() {
+  this.users = [];
+  
+  this.removeUserByID = function (id) {
+    this.users.splice(id,1);
+  }
+  this.removeUserByName = function( firstname, lastname) {
+    var l = RegisteredUsers.length;
+    for(var i=0; i < l; i++) {
+      if(this.users[i].lastname == lastname && this.users[i].firstname == firstname){
+        this.users[i].splice(i,1);
+        break;
+      }
+    }
+  }
+  
+  this.addUser = function(user) {
+    this.users.push(user);
+  }
+}
 
-
-// An array of Users
-var RegisteredUsers = [];
+var RegisteredUsers = new Registered_Users();
 
 var userscounter = 0;
 // Created a User class to hold the personal information common to all users
 function User(firstname, lastname, language) {
-  this.id = userscounter++;
+  this.id = userscounter++; // id is position in Registered Users array
   this.firstname = firstname;
   this.lastname = lastname;
   
@@ -204,6 +223,7 @@ function User(firstname, lastname, language) {
   this.in_ornament = 'default';
   this.out_ornament = 'default';
   
+
   this.myObjects = [];  
   this.addObject = function(object) {
     object.id = this.id;
@@ -219,6 +239,8 @@ function User(firstname, lastname, language) {
       this.myObjects[i].visible = false;
     }
   }
+  
+  
   this.myMessages = [];
   this.showMessages = function () {
     console.log("showMessages is not yet implemented. see gabe.js");
@@ -227,14 +249,29 @@ function User(firstname, lastname, language) {
     console.log("hideMessages is not yet implemented. see gabe.js");
   }
   
-  RegisteredUsers.push(this);
-
+  RegisteredUsers.addUser(this);
+  
+  this.RemoveFromRegisteredUsers = function() {
+    RemoveFromRadioChoices(this.id);
+    RegisteredUsers.removeUserByID(this.id);
+  }
+  
   AddUserToRadioChoices(this.firstname + " " + this.lastname, this.id);
 }
 
 var RADIO_ID_UFI = "UsersFromInside";
 var RADIO_ID_UFO = "UsersFromOutside";
   
+function RemoveFromRadioChoices(id) {
+  //console.log("removing " + id);
+  var remove = 3 + id;
+  var inside = document.getElementById(RADIO_ID_UFI);
+  var outside = document.getElementById(RADIO_ID_UFO);
+  inside.removeChild(inside.children[remove]);
+  outside.removeChild(outside.children[remove]);
+  
+}
+
 function AddUserToRadioChoices( name , value) {
   var UsersFromInside = document.getElementById(RADIO_ID_UFI);     
   var label = document.createElement("label");
