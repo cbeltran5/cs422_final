@@ -342,9 +342,8 @@ function MultiUsersFromInside()
 {
   CURRENT_USER = null;
   HideHome();
-  HideUser1FromInside();
-  HideUser2FromInside();
-
+  ShowHomeButtonAndLine();
+  RegisteredUsers.hideAllUsersObjects();
   for (var i = 0; i < canvas.getObjects().length; ++i)
     {
       if (canvas.item(i).id == 'userslist' ||
@@ -373,6 +372,7 @@ function NewUserFromInside()
     HideHome();
 //  HideUser1FromInside();
 //  HideUser2FromInside();
+  HideHome();
   ShowHomeButtonAndLine();
   RegisteredUsers.hideAllUsersObjects();
   HideUsersList();

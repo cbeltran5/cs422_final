@@ -381,7 +381,6 @@ function getObjectWithId(id) {
   }
 }
 
-
 function ShowHomeButtonAndLine() {
   // show home button
   if(homebutton == null){
