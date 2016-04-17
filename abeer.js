@@ -95,7 +95,7 @@ function ShowHome()
   HideLights();
   HideTransport();
   HideNews();
-
+  CloseThemeSettings();
   HomeIsActive = true;
   PanelRect.visible = true;
 
@@ -595,11 +595,11 @@ function RunInsideCameraAvatar()
         repeat: 'repeat'
     });});
 
-  fabric.util.loadImage('images/DoorpatternOut.gif', function (img) {
-    outsideDoor.setPatternFill({
-        source: img,
-        repeat: 'repeat'
-    });});
+  //fabric.util.loadImage('images/DoorpatternOut.gif', function (img) {
+   // outsideDoor.setPatternFill({
+    //    source: img,
+   //     repeat: 'repeat'
+   // });});
 
 }
 
@@ -646,17 +646,56 @@ function CloseCamera()
   AvatarOnOff.visible = false;
   LiveOnOff.visible = false;
 
-  fabric.util.loadImage('images/Doorpattern.gif', function (img) {
-    insideDoor.setPatternFill({
-        source: img,
-        repeat: 'repeat'
-    });});
-
-  fabric.util.loadImage('images/DoorpatternOut.gif', function (img) {
-    outsideDoor.setPatternFill({
-        source: img,
-        repeat: 'repeat'
-    });
-  });
+  SetDoorTheme();
 }
 //-------------------------------------------------------------
+function SetDoorTheme()
+{
+  if( In_theme == 'default')
+    fabric.util.loadImage('images/Doorpattern.gif', function (img) {
+    insideDoor.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+    });});
+
+  else if ( In_theme == 'Wood')
+    fabric.util.loadImage('images/wooddoor.jpg', function (img) {
+    img.id = 'Wood';
+    insideDoor.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+    }); });
+
+  else if ( In_theme == 'Metal')
+    fabric.util.loadImage('images/metal.jpg', function (img) {
+    img.id = 'Metal';
+    insideDoor.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+    }); });
+
+  if( Out_theme == 'default')
+    fabric.util.loadImage('images/DoorpatternOut.gif', function (img) {
+    outsideDoor.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+    });});
+
+  else if ( Out_theme == 'Wood')
+    fabric.util.loadImage('images/wooddoor.jpg', function (img) {
+    img.id = 'Wood';
+    outsideDoor.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+    }); });
+
+  else if ( Out_theme == 'Metal')
+    fabric.util.loadImage('images/metal.jpg', function (img) {
+    img.id = 'Metal';
+    outsideDoor.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+    }); });
+
+
+}
