@@ -77,10 +77,7 @@ function HomeSelected()
   else if(HomeIsActive == false)
     ShowHome();
 
-  if (SettingsIsActive == true)
-    hideSettings();
-  else if (usersActive)
-    hideUsers();
+  checkSettings();
 }
 
 //-------------------------------------------------------------
@@ -336,6 +333,7 @@ for (var i = 0; i < canvas.getObjects().length; ++i)
 //-------------------------------------------------------------
 function MultiUsersFromInside()
 {
+  CURRENT_USER = null;
   HideHome();
   HideUser1FromInside();
   HideUser2FromInside();
@@ -358,7 +356,6 @@ function HideUsersList()
       if (canvas.item(i).id == 'userslist' ||
           canvas.item(i).id == 'user1name' ||
           canvas.item(i).id == 'user2name')
-
         canvas.item(i).visible = false;
     }
 }
@@ -377,11 +374,13 @@ function NewUserFromInside()
 //-------------------------------------------------------------
 function NoUserFromInside()
 {
+  CURRENT_USER = null;
   HideHome();
   HideUser1FromInside();
   HideUser2FromInside();
   HideUsersList();
   LockDoorIn();
+  LockDeadbolt();
   LockDeadbolt();
   ResetCoordinates();
   document.getElementsByName('Heights')[0].disabled = true;
@@ -502,6 +501,8 @@ function NewUserFromOutside()
 //-------------------------------------------------------------
 function NoUserFromOutside()
 {
+  CURRENT_USER = null;
+  
   ResetDoorFromOutside();
   document.getElementsByName('Verification')[1].disabled = true;
   document.getElementsByName('Verification')[2].disabled = true;

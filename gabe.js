@@ -184,6 +184,17 @@ function UpdateText() {
   Emergtext.text = EMERGENCY[syslang];
   Settingstext.text = SETTINGS[syslang];
   Deadbolttext.text = DEADBOLT[syslang];
+  
+  UsersText.text = USERS[syslang];
+  LanguageText.text = LANGUAGE[syslang];
+  TrafficText.text = TRAFFIC[syslang];
+  DatetimeText.text = DATE_TIME[syslang];
+  DoorbellText.text = DOORBELL[syslang];
+  UnitsText.text = UNITS[syslang];
+  BrightnessText.text = BRIGHTNESS[syslang];
+  VolumeText.text = VOLUME[syslang];
+  ThemesText.text = THEME[syslang];
+  IntercomText.text = INTERCOM[syslang];
 }
 /***********************************************************************
                            END OF DATE AND TIME
@@ -192,6 +203,12 @@ function UpdateText() {
 function Registered_Users() {
   this.users = [];
 
+  this.lenth = 0;
+  
+  this.at = function(index) {
+    return this.users[index];
+  }
+  
   this.removeUserByID = function (id) {
     this.users.splice(id,1);
   }
@@ -200,6 +217,7 @@ function Registered_Users() {
     for(var i=0; i < l; i++) {
       if(this.users[i].lastname == lastname && this.users[i].firstname == firstname){
         this.users[i].splice(i,1);
+        this.lenth--;
         break;
       }
     }
@@ -207,13 +225,17 @@ function Registered_Users() {
 
   this.addUser = function(user) {
     this.users.push(user);
+    this.lenth++;
+    
   }
+  
 }
 
 var RegisteredUsers = new Registered_Users();
 
 var userscounter = 0;
 // Created a User class to hold the personal information common to all users
+
 function User(firstname, lastname, language) {
   this.id = userscounter++; // id is position in Registered Users array
   this.firstname = firstname;
@@ -234,7 +256,10 @@ function User(firstname, lastname, language) {
   this.in_ornament = 'default';
   this.out_ornament = 'default';
 
-
+  this.getFullName = function () {
+    return this.firstname + " " + this.lastname;
+  }
+  
   this.myObjects = [];
   this.addObject = function(object) {
     object.id = this.id;
@@ -242,16 +267,14 @@ function User(firstname, lastname, language) {
   }
   this.hideObjects = function() {
     for( var i=0; i < this.myObjects.length; i++) {
-      this.myObjects[i].visible = true;
+      this.myObjects[i].visible = false;
     }
   }
   this.showObjects = function() {
     for( var i=0; i < this.myObjects.length; i++) {
-      this.myObjects[i].visible = false;
+      this.myObjects[i].visible = true;
     }
   }
-
-
   this.myMessages = [];
   this.showMessages = function () {
     console.log("showMessages is not yet implemented. see gabe.js");
@@ -266,7 +289,6 @@ function User(firstname, lastname, language) {
     RemoveFromRadioChoices(this.id);
     RegisteredUsers.removeUserByID(this.id);
   }
-
   AddUserToRadioChoices(this.firstname + " " + this.lastname, this.id);
 }
 
@@ -309,27 +331,40 @@ function AddUserToRadioChoices( name , value) {
   UsersFromOutside.appendChild(label2);
 }
 
-
+var CURRENT_USER = null;
 function LoadUserData_Inside(index ) {
-  console.log("LoadUserData(" + index + ")");
-  var i, User = RegisteredUsers[ index ];
+  console.log("LoadUserData_Inside(" + index + ")");
+  CURRENT_USER = RegisteredUsers.at(index)
+  console.log("Now Loading data for " + CURRENT_USER.getFullName() );
+  
+  var i;
   HideHome();
   HideUsersList();
+  HideUser1FromInside();
+  HideUser2FromInside();
+  HideUsersList();
+  CloseCamera();
+  HideMirror();
+  HideTraffic();
+  HideLights();
+  HideTransport();
+  HideNews();
 
   for(i=0; i< RegisteredUsers.length; i++) {
-    RegisteredUsers[i].hideObjects();
+    RegisteredUsers.at(i).hideObjects();
   }
 
-  User.showObjects();
-  syslang = User1.language;
-  In_theme = User1.in_theme;
-  In_ornament = User1.in_ornament;
-  Out_theme = User1.out_theme;
-  Out_ornament = User1.out_ornament;
+  RegisteredUsers.at(index).showObjects();
+  
+  syslang = RegisteredUsers.at(index).language;
+  In_theme = RegisteredUsers.at(index).in_theme;
+  In_ornament = RegisteredUsers.at(index).in_ornament;
+  Out_theme = RegisteredUsers.at(index).out_theme;
+  Out_ornament = RegisteredUsers.at(i).out_ornament;
 
-  Date_format = User1.date_format;
-  Time_format = User1.time_format;
-  TemperatureUnits = User1.temerature_units;
+  Date_format = RegisteredUsers.at(index).date_format;
+  Time_format = RegisteredUsers.at(index).time_format;
+  TemperatureUnits = RegisteredUsers.at(index).temerature_units;
   UpdateText();
 }
 
@@ -341,6 +376,7 @@ function LoadUserData_Outside(index ) {
 function MultiUsersOutside() {
   console.log("MultiUsersFromOutside not yet implemented. On Todo List in gabe.js");
 }
+
 
 
 

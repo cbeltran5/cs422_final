@@ -167,7 +167,6 @@ var doorwidth = 555;
 var inside_left = 22;
 var outside_left = 642;
 
-
 var In_theme = 'default';
 var In_ornament = 'default';
 var Out_theme = 'default';
@@ -179,7 +178,6 @@ var TemperatureUnits = F;
 
 var HomeIsActive = false;
 var SettingsIsActive = false;
-var Current_user = null;
 var UserFingerIsRecognizable = false;
 var Height = 0;
 var ImgHeight = Height*2.22222222;
@@ -200,7 +198,8 @@ var User3 = new User('Adam', 'Porter', ENGLISH);
 var User4 = new User('Sara', 'Parker', ENGLISH);
 var User5 = new User('Carlos', 'Beltran', SPANISH);
 User5.RemoveFromRegisteredUsers();
-//
+var User6 = new User('Some','Person', ENGLISH);
+
 //*******************************************************************************************
 
 
@@ -1091,6 +1090,140 @@ TrafficText.selectable = false;
 TrafficText.visible = false;
 ArrayOfObjects.push(TrafficText);
 
+// options
+var traffic_option_work = new fabric.Rect({
+  left: 165,
+  top: 330,
+  fill: 'grey',
+  stroke: 'black',
+  width: 182,
+  height: 51,
+  angle: 0
+});
+traffic_option_work.visible = false;
+traffic_option_work.hasControls = traffic_option_work.hasBorders =  traffic_option_work.selectable = false;
+traffic_option_work.lockMovementX = traffic_option_work.lockMovementY = true;
+traffic_option_work.id = 'traffic_option_work';
+
+fabric.util.loadImage('images/Settings/traffic_option_work.gif', function (img) {
+  traffic_option_work.setPatternFill({
+    source: img,
+    repeat: 'no-repeat'
+  });
+});
+ArrayOfObjects.push(traffic_option_work);
+
+var traffic_option_barber = new fabric.Rect({
+  left: 165,
+  top: 390,
+  fill: 'grey',
+  stroke: 'black',
+  width: 182,
+  height: 51,
+  angle: 0
+});
+traffic_option_barber.visible = false;
+traffic_option_barber.hasControls = traffic_option_barber.hasBorders =  traffic_option_barber.selectable = false;
+traffic_option_barber.lockMovementX = traffic_option_barber.lockMovementY = true;
+traffic_option_barber.id = 'traffic_option_work';
+
+fabric.util.loadImage('images/Settings/traffic_option_barber.gif', function (img) {
+  traffic_option_barber.setPatternFill({
+    source: img,
+    repeat: 'no-repeat'
+  });
+});
+ArrayOfObjects.push(traffic_option_barber);
+
+var traffic_option_moms = new fabric.Rect({
+  left: 165,
+  top: 451,
+  fill: 'grey',
+  stroke: 'black',
+  width: 182,
+  height: 51,
+  angle: 0
+});
+traffic_option_moms.visible = false;
+traffic_option_moms.hasControls = traffic_option_moms.hasBorders =  traffic_option_moms.selectable = false;
+traffic_option_moms.lockMovementX = traffic_option_moms.lockMovementY = true;
+traffic_option_moms.id = 'traffic_option_work';
+
+fabric.util.loadImage('images/Settings/traffic_option_moms.gif', function (img) {
+  traffic_option_moms.setPatternFill({
+    source: img,
+    repeat: 'no-repeat'
+  });
+});
+ArrayOfObjects.push(traffic_option_moms);
+
+// Stars
+var traffic_star1 = new fabric.Rect({
+  left: 165,
+  top: 335,
+  fill: 'grey',
+  stroke: 'black',
+  width: 50,
+  height: 45,
+  angle: 0
+});
+traffic_star1.visible = false;
+traffic_star1.hasControls = traffic_star1.hasBorders = false;
+traffic_star1.lockMovementX = traffic_star1.lockMovementY = true;
+traffic_star1.id = 'traffic_star1';
+
+fabric.util.loadImage('images/Settings/traffic_star.gif', function (img) {
+  traffic_star1.setPatternFill({
+    source: img,
+    repeat: 'no-repeat'
+  });
+});
+ArrayOfObjects.push(traffic_star1);
+
+var traffic_star2 = new fabric.Rect({
+  left: 165,
+  top: 450,
+  fill: 'grey',
+  stroke: 'black',
+  width: 230,
+  height: 175,
+  angle: 0
+});
+traffic_star2.visible = false;
+traffic_star2.hasControls = traffic_star2.hasBorders = false;
+traffic_star2.lockMovementX = traffic_star2.lockMovementY = true;
+traffic_star2.id = 'traffic_star2';
+
+fabric.util.loadImage('images/Settings/traffic_star.gif', function (img) {
+  traffic_star2.setPatternFill({
+    source: img,
+    repeat: 'no-repeat'
+  });
+});
+ArrayOfObjects.push(traffic_star2);
+
+var traffic_add_btn = new fabric.Rect({
+  left: 165,
+  top: 400,
+  fill: 'grey',
+  stroke: 'black',
+  width: 74,
+  height: 51,
+  angle: 0
+});
+traffic_add_btn.visible = false;
+traffic_add_btn.hasControls = traffic_add_btn.hasBorders = false;
+traffic_add_btn.lockMovementX = traffic_add_btn.lockMovementY = true;
+traffic_add_btn.id = 'traffic_star2';
+
+fabric.util.loadImage('images/Settings/traffic_add_btn.gif', function (img) {
+  traffic_add_btn.setPatternFill({
+    source: img,
+    repeat: 'no-repeat'
+  });
+});
+ArrayOfObjects.push(traffic_add_btn);
+
 // DATE/TIME
 var icon_datetime;
 fabric.Image.fromURL('images/Settings/datetime.gif', function(oImg) {
@@ -1680,6 +1813,12 @@ fabric.util.loadImage('images/DoorpatternOut.gif', function (img) {
     });});
 });
 
+//********************************************************************************************
+function init_traffic_stuff() {
+
+
+}
+
 
 //********************************************************************************************
 
@@ -1728,6 +1867,12 @@ canvas.add(UserPanel);
 canvas.add(sendKey);
 canvas.add(input_sendKey);
 canvas.add(post_sendKey);
+canvas.add(traffic_star2);
+canvas.add(traffic_star1);
+canvas.add(traffic_option_work);
+canvas.add(traffic_option_barber);
+canvas.add(traffic_option_moms);
+canvas.add(traffic_add_btn);
 
 
 //For themes texts and components
@@ -1797,6 +1942,14 @@ canvas.on('object:selected', function(e) {
     showInputSendKey();
   else if(activeObject.id == "input_send_key")
     showPostSendKey();
+  else if (activeObject.id == "settings_traffic")
+    showTrafficInitAdd();
+  else if (activeObject.id == "traffic_init_add")
+    showTrafficInputAdd();
+  else if (activeObject.id == "traffic_input_add")
+    showTrafficPostAdd();
+  else if(activeObject.id == "traffic_star1" || activeObject.id == "traffic_star2")
+    toggleTrafficPrimary();
 
   else if (activeObject.id == "settings_themes")
   {

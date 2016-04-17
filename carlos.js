@@ -1,7 +1,31 @@
 var audio = new Audio('sounds/doorbell.mp3');
 var usersActive = false;
+var trafficSettingsActive = false;
+var doorbellSettingsActive = false;
+var brightnessSettingsActive = false;
+var themeSettingsActive = false;
 var current_user_name = "Gabe";
 var newUserAdded = false;
+
+// traffic settings
+var user_traffic_settings = {};
+var stars = [];
+var user_traffic_options = [];
+
+function checkSettings() {
+  if (SettingsIsActive == true)
+    hideSettings();
+  else if (usersActive)
+    hideUsers();
+  else if (trafficSettingsActive)
+    hideTrafficSettings();
+  else if (doorbellSettingsActive)
+    hideDoorbellSettings();
+  else if (brightnessSettingsActive)
+    hideBrightnessSettings();
+  else if (themeSettingsActive)
+    hideThemeSettings();
+}
 
 function playDoorbellSound() {
   audio.currentTime=0;
@@ -24,7 +48,6 @@ function showSettings() {
     {
         canvas.item(i).visible = true;
     }
-
   }
 
   UsersText.visible = true;
@@ -136,6 +159,44 @@ function showPostSendKey()
   addNewUser();
   input_sendKey.visible = false;
   post_sendKey.visible = true;
+}
+
+function showTrafficInitAdd()
+{
+  hideSettings();
+  trafficSettingsActive = true;
+  traffic_add_btn.visible = true;
+  for (var i = 0; i < user_traffic_settings[CURRENT_USER.first_name].length; ++i) {
+    if (user_traffic_options[Current_user.first_name][i] == "primary")
+      filename = "images/Settings/traffic_star_primary.gif"
+    else
+      filename = "images/Settings/traffic_star.gif"
+
+    fabric.util.loadImage(filename, function (img) {
+      stars[i].setPatternFill({
+        source: img,
+        repeat: 'no-repeat'
+      });
+    });
+
+    stars[i].visible = true;
+    user_traffic_options[i].visible = true;
+  }
+}
+
+function showTrafficInputAdd()
+{
+
+}
+
+function showTrafficPostAdd()
+{
+
+}
+
+function toggleTrafficPrimary()
+{
+
 }
 
 // TODO??
