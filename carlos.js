@@ -285,6 +285,10 @@ function toggleTrafficPrimary(name)
 
 function showBrightnessSettings()
 {
+
+  hideSettings();
+  PanelRect.visible = false;
+
   brightness_text.visible = true;
   slider_back.visible = true;
   slider.visible = true;
