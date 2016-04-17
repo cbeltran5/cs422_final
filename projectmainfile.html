@@ -119,15 +119,6 @@
       <section>
       <code>
 
-        <form name="Verification">
-      Verification:<br>
-      <input type="radio" class="radio1" name="Verification" onchange="FaceRecognized()" value="Face"> Face<br>
-      <input type="radio" class="radio1" name="Verification" onchange="FingerRecognized()" value="FingerPrint"> FingerPrint<br>
-      <input type="radio" class="radio1" name="Verification" onchange="FailedVerification()" value="None" checked> None<br>
-      </form>
-
-        </code>
-
       <form name="Verification"> Verification:<br>
         <div id="Verification">
           <label for="FacialRecognition"><input type="radio" class="radio1" name="Verification" onchange="FaceRecognized()" value="Face"> Face<br></label>
@@ -207,10 +198,6 @@ var User2 = new User('Sara', 'Parker', ENGLISH);
 var User3 = new User('Gabe', 'Mendoza', SPANISH);
 var User4 = new User('Enrique', 'Vaca', SPANISH);
 var User5 = new User('Carlos', 'Beltran', SPANISH);
-
-
-console.log(RegisteredUsers);
-
 User5.RemoveFromRegisteredUsers();
 //
 //*******************************************************************************************
@@ -321,8 +308,6 @@ Weathertext.selectable = false;
 
 
 //****************** Adding In/out Door knobs ******************************************
-var doorknob_inside_locked;
-fabric.Image.fromURL('images/lockknob.png', function(oImg) {
 var doorknob_inside_locked;
 //var XXX = new ...
   fabric.Image.fromURL('images/lockknob.png', function(oImg) {
@@ -1140,6 +1125,7 @@ canvas.on('object:selected', function(e) {
 
   else if(activeObject.id == 'alarm')
       AlarmOn();
+
   else if(activeObject.id == 'user1name')
      {HideUsersList(); User1FromInside();}
 
@@ -1147,7 +1133,7 @@ canvas.on('object:selected', function(e) {
      {HideUsersList(); User2FromInside();}
 
   else if (activeObject.id == "doorbell")
-      playDoorbellSound();
+    playDoorbellSound();
 
 
   if(activeObject.id == 'mirror')
