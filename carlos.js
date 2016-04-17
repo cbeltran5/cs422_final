@@ -23,6 +23,8 @@ function checkSettings() {
     hideBrightnessSettings();
   else if (themeSettingsActive)
     hideThemeSettings();
+
+
 }
 
 function playDoorbellSound() {
@@ -200,6 +202,8 @@ function hideTrafficSettings()
     stars[i].visible = false;
     user_traffic_options[i].visible = false;
   }
+
+  hideTrafficInputAdd();
 }
 
 function showTrafficInputAdd()
