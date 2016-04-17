@@ -105,6 +105,8 @@
     <section>
     <h1>Outside Events</h1>
     <code>
+      
+      
       <section>
       <code>
       <form name="UsersOutside"> Users:<br>
@@ -116,21 +118,37 @@
       </form></code>
       </section>
 
+      
       <section>
       <code>
-
-      <form name="Verification"> Verification:<br>
-        <div id="Verification">
-          <label for="FacialRecognition"><input type="radio" class="radio1" name="Verification" onchange="FaceRecognized()" value="Face"> Face<br></label>
-          <label for="FingerPrints"><input type="radio" class="radio1" name="Verification" onchange="FingerRecognized()" value="FingerPrint"> FingerPrint<br></label>
+      <form name="Verification"> Verification1:<br>
+        <div id="Verification1">
           <label for="None"><input type="radio" class="radio1" name="Verification" onchange="FailedVerification()" value="None" checked> None<br></label>
+          <label for="FacialRecognition"><input type="radio" class="radio1" name="Verification" onchange="FaceRecognized()" value="Face"> Phone/KeyFOB<br></label>
+          <label for="FacialRecognition"><input type="radio" class="radio1" name="Verification" onchange="FaceRecognized()" value="Face"> Facial Recognition<br></label>
+          <label for="FingerPrints"><input type="radio" class="radio1" name="Verification" onchange="FingerRecognized()" value="FingerPrint"> FingerPrint<br></label>
+          <label for="FingerPrints"><input type="radio" class="radio1" name="Verification" onchange="FingerRecognized()" value="FingerPrint"> Number Pad<br></label>
         </div>
       </form>
-
       </code>
       </section>
-      </code  >
-  </section>
+      
+      <section>
+      <code>
+      <form name="Verification"> Verification2:<br>
+        <div id="Verification2">
+          <label for="None"><input type="radio" class="radio1" name="Verification" onchange="FailedVerification()" value="None" checked> None<br></label>
+          <label for="FacialRecognition"><input type="radio" class="radio1" name="Verification" onchange="FaceRecognized()" value="Face"> Phone/KeyFOB<br></label>
+          <label for="FacialRecognition"><input type="radio" class="radio1" name="Verification" onchange="FaceRecognized()" value="Face"> Facial Recognition<br></label>
+          <label for="FingerPrints"><input type="radio" class="radio1" name="Verification" onchange="FingerRecognized()" value="FingerPrint"> FingerPrint<br></label>
+          <label for="FingerPrints"><input type="radio" class="radio1" name="Verification" onchange="FingerRecognized()" value="FingerPrint"> Number Pad<br></label>
+        </div>
+      </form>
+      </code>
+      </section>
+      
+    </code>
+    </section>
 </body>
 
 <script>
@@ -753,17 +771,16 @@ fabric.Image.fromURL('images/alarm.gif', function(oImg) {
   ArrayOfObjects.push(icon_alarm_off);
   canvas.add(icon_alarm_off);
 });
-  
-//var icon_alarm_on;
-//fabric.Image.fromURL('images/alarmOn.gif', function(oImg) {
-//  oImg.set({left: 549, top: 920, id: this.id});
-//  oImg.visible = false;
-//  oImg.hasControls = oImg.hasBorders = false;
-//  oImg.lockMovementY = oImg.lockMovementX = true;
-//  oImg.id = 'alarmOn';
-//  icon_alarm_on = oImg;
-//  canvas.add(icon_alarm_on);
-//});
+var icon_alarm_on;
+fabric.Image.fromURL('images/alarmOn.gif', function(oImg) {
+  oImg.set({left: 549, top: 920, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'alarmOn';
+  icon_alarm_on = oImg;
+  canvas.add(icon_alarm_on);
+});
 
 var Alarmtext = new fabric.Text(ALARM[syslang], {
   left: 255,
