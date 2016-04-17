@@ -172,9 +172,6 @@ function showTrafficSettings()
 
     object_index = CURRENT_USER.traffic_options[i];
 
-    console.log(stars[i].id);
-    console.log(CURRENT_USER.traffic_primary);
-
     if (stars[i].id == CURRENT_USER.traffic_primary) {
       filename = "images/Settings/traffic_star_primary.gif"
     }
@@ -247,8 +244,6 @@ function saveTrafficOption()
 
 function toggleTrafficPrimary(name)
 {
-
-  console.log(CURRENT_USER.traffic_options.length);
 
   if (CURRENT_USER.traffic_options.length != 2)
     return;
