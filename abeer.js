@@ -344,6 +344,25 @@ function MultiUsersFromInside()
   HideHome();
   ShowHomeButtonAndLine();
   RegisteredUsers.hideAllUsersObjects();
+  HideUsersList();
+  LockDoorIn();
+  LockDeadbolt();
+  LockDeadbolt();
+  ResetCoordinates();
+  HeightsRadioButtons_ENABLE();
+  
+  syslang = ENGLISH; // set to english by default
+  System_language = SYSTEM_LANGUAGE[syslang];
+  In_theme = 'default';
+  In_ornament = 'default';
+  Out_theme = 'default';
+  Out_ornament = 'default';
+
+  Date_format = DATE_MONTHDDYYYY;
+  Time_format = TIME_12HOUR;
+  TemperatureUnits = F;
+
+
   for (var i = 0; i < canvas.getObjects().length; ++i)
     {
       if (canvas.item(i).id == 'userslist' ||
@@ -369,7 +388,7 @@ function HideUsersList()
 //----------------------------------------------------------
 function NewUserFromInside()
 {
-    HideHome();
+  
 //  HideUser1FromInside();
 //  HideUser2FromInside();
   HideHome();
