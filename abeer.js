@@ -79,6 +79,8 @@ function HomeSelected()
 
   if (SettingsIsActive == true)
     hideSettings();
+  else if (usersActive)
+    hideUsers();
 }
 
 //-------------------------------------------------------------

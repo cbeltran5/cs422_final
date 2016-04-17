@@ -1,4 +1,7 @@
 var audio = new Audio('sounds/doorbell.mp3');
+var usersActive = false;
+var current_user_name = "Gabe";
+var newUserAdded = false;
 
 function playDoorbellSound() {
   audio.currentTime=0;
@@ -65,4 +68,84 @@ function hideSettings()
   VolumeText.visible = false;
   ThemesText.visible = false;
   IntercomText.visible = false;
+
+  hideUsers();
+}
+
+function usersSelected()
+{
+  if (usersActive)
+    hideUsers();
+  else
+    showUsers();
+}
+
+function showUsers()
+{
+
+  hideSettings();
+  usersActive = true;
+  UserPanel.visible = true;
+
+  PanelRect.visible = false;
+}
+
+function hideUsers()
+{
+  usersActive = false;
+  UserPanel.visible = false;
+  sendKey.visible = false;
+  input_sendKey.visible = false;
+  post_sendKey.visible = false;
+}
+
+function switchActiveUser()
+{
+  if (current_user_name == "Enrique") {
+    filename = "images/Settings/users_gabe_active.gif"
+    current_user_name = "Gabe";
+  }
+  else {
+    filename = "images/Settings/users_enrique_active.gif"
+    current_user_name = "Enrique";
+  }
+
+  fabric.util.loadImage(filename, function (img) {
+    UserPanel.setPatternFill({
+      source: img,
+      repeat: 'repeat'
+    });
+  });
+}
+
+function showSendKey()
+{
+  hideUsers();
+  usersActive = true;
+  sendKey.visible = true
+}
+
+function showInputSendKey()
+{
+  sendKey.visible = false;
+  input_sendKey.visible = true;
+}
+
+function showPostSendKey()
+{
+  addNewUser();
+  input_sendKey.visible = false;
+  post_sendKey.visible = true;
+}
+
+// TODO??
+function addNewUser() {
+  fabric.util.loadImage("images/Settings/post_send_key.gif", function (img) {
+    UserPanel.setPatternFill({
+      source: img,
+      repeat: 'no-repeat'
+    });
+  });
+  UserPanel.width = 255;
+  UserPanel.height = 214;
 }

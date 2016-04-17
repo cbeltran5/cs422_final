@@ -1,0 +1,10 @@
+bug when changing the height to short, the ALarmON icon does not go down with the rest of the menu
+
+//gabe.js
+when changing user in radio buttons...
+
+// not really a bug
+if something will be done with Current_user, then look at switchActiveUser() in carlos.js, you'll have to update current_user. I also only supported 2 possible active users.
+
+// possible TODO
+addNewUser() in carlos.js, if we're supporting dynamic users

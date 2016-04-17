@@ -194,10 +194,10 @@ var counter = 0;
 
 //************************************ Users Profiles ***************************************
 
-var User1 = new User('Adam', 'Porter', ENGLISH);
-var User2 = new User('Sara', 'Parker', ENGLISH);
-var User3 = new User('Gabe', 'Mendoza', SPANISH);
-var User4 = new User('Enrique', 'Vaca', SPANISH);
+var User1 = new User('Gabe', 'Mendoza', ENGLISH);
+var User2 = new User('Enrique', 'Vaca', SPANISH);
+var User3 = new User('Adam', 'Porter', ENGLISH);
+var User4 = new User('Sara', 'Parker', ENGLISH);
 var User5 = new User('Carlos', 'Beltran', SPANISH);
 User5.RemoveFromRegisteredUsers();
 //
@@ -949,6 +949,95 @@ UsersText.selectable = false;
 UsersText.visible = false;
 ArrayOfObjects.push(UsersText);
 
+var UserPanel = new fabric.Rect({
+  left: 155,
+  top: 310,
+  fill: 'grey',
+  stroke: 'black',
+  width: 274,
+  height: 194,
+  angle: 0
+});
+UserPanel.visible = false;
+UserPanel.hasControls = UserPanel.hasBorders = false;
+UserPanel.lockMovementX = UserPanel.lockMovementY = true;
+UserPanel.id = 'user_panel';
+
+fabric.util.loadImage('images/Settings/users_gabe_active.gif', function (img) {
+  UserPanel.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+  });
+});
+ArrayOfObjects.push(UserPanel);
+
+var sendKey = new fabric.Rect({
+  left: 165,
+  top: 315,
+  fill: 'grey',
+  stroke: 'black',
+  width: 230,
+  height: 175,
+  angle: 0
+});
+sendKey.visible = false;
+sendKey.hasControls = sendKey.hasBorders = false;
+sendKey.lockMovementX = sendKey.lockMovementY = true;
+sendKey.id = 'sendKey';
+
+fabric.util.loadImage('images/Settings/init_send_key.gif', function (img) {
+  sendKey.setPatternFill({
+    source: img,
+    repeat: 'no-repeat'
+  });
+});
+ArrayOfObjects.push(sendKey);
+
+var input_sendKey = new fabric.Rect({
+  left: 165,
+  top: 315,
+  fill: 'grey',
+  stroke: 'black',
+  width: 230,
+  height: 175,
+  angle: 0
+});
+input_sendKey.visible = false;
+input_sendKey.hasControls = input_sendKey.hasBorders = false;
+input_sendKey.lockMovementX = input_sendKey.lockMovementY = true;
+input_sendKey.id = 'input_send_key';
+
+fabric.util.loadImage('images/Settings/input_send_key.gif', function (img) {
+  input_sendKey.setPatternFill({
+    source: img,
+    repeat: 'no-repeat'
+  });
+});
+ArrayOfObjects.push(input_sendKey);
+
+var post_sendKey = new fabric.Rect({
+  left: 160,
+  top: 310,
+  fill: 'grey',
+  stroke: 'black',
+  width: 255,
+  height: 214,
+  angle: 0
+});
+post_sendKey.visible = false;
+post_sendKey.hasControls = post_sendKey.hasBorders = false;
+post_sendKey.lockMovementX = post_sendKey.lockMovementY = true;
+post_sendKey.id = 'post_sendKey';
+
+fabric.util.loadImage('images/Settings/post_send_key.gif', function (img) {
+  post_sendKey.setPatternFill({
+    source: img,
+    repeat: 'no-repeat'
+  });
+});
+ArrayOfObjects.push(post_sendKey);
+
+
 // language
 var icon_language;
 fabric.Image.fromURL('images/Settings/language.gif', function(oImg) {
@@ -1361,6 +1450,10 @@ canvas.add(BrightnessText);
 canvas.add(VolumeText);
 canvas.add(ThemesText);
 canvas.add(IntercomText);
+canvas.add(UserPanel);
+canvas.add(sendKey);
+canvas.add(input_sendKey);
+canvas.add(post_sendKey);
 
 //************************************** Functions *******************************************
 canvas.on('object:selected', function(e) {
@@ -1412,6 +1505,12 @@ canvas.on('object:selected', function(e) {
     showSettings();
     canvas.deactivateAll();
   }
+  else if (activeObject.id == "user_panel")
+    showSendKey();
+  else if (activeObject.id == "sendKey")
+    showInputSendKey();
+  else if(activeObject.id == "input_send_key")
+    showPostSendKey();
 
   if(activeObject.id == 'mirror')
     {
@@ -1439,11 +1538,16 @@ canvas.on('object:selected', function(e) {
       canvas.deactivateAll();
     }
 
-   if(activeObject.id == 'camera')
-    {
-      RunCamera();
-      //canvas.deactivateAll();
-    }
+  if(activeObject.id == 'camera')
+  {
+    RunCamera();
+    //canvas.deactivateAll();
+  }
+
+  if(activeObject.id == "settings_users") {
+    usersSelected();
+    canvas.deactivateAll();
+  }
 });
 
 AvatarOnOff.on('selected', function(){
