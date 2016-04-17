@@ -223,6 +223,14 @@ function Registered_Users() {
       }
     }
   }
+  
+  this.hideAllUsersObjects = function() {
+    for(var i=0; i < this.users.length; i++)
+      {
+        console.log(i);
+        this.users[i].hideObjects();
+      }
+  }
 
   this.addUser = function(user) {
     this.users.push(user);
@@ -400,6 +408,10 @@ function MultiUsersOutside() {
   console.log("MultiUsersFromOutside not yet implemented. On Todo List in gabe.js");
 }
 
+
+function DateTime_Settings() {
+  
+}
 
 
 

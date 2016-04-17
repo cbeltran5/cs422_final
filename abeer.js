@@ -95,7 +95,12 @@ function ShowHome()
   CloseThemeSettings();
   HomeIsActive = true;
   PanelRect.visible = true;
-
+  
+  if(CURRENT_USER != null)
+  {
+    CURRENT_USER.hideObjects();
+  }
+  
   for (var i = 0; i < canvas.getObjects().length; ++i)
   {
     if (canvas.item(i).id == 'messages' || canvas.item(i).id == 'camera'   ||
@@ -364,8 +369,10 @@ function HideUsersList()
 function NewUserFromInside()
 {
   HideHome();
-  HideUser1FromInside();
-  HideUser2FromInside();
+//  HideUser1FromInside();
+//  HideUser2FromInside();
+    RegisteredUsers.hideAllUsersObjects();
+
   HideUsersList();
   LockDoorIn();
   LockDeadbolt();
@@ -377,8 +384,9 @@ function NoSignalFromInside()
   console.log("NoSignalFromInside()");
   CURRENT_USER = null;
   HideHome();
-  HideUser1FromInside();
-  HideUser2FromInside();
+//  HideUser1FromInside();
+//  HideUser2FromInside();
+  RegisteredUsers.hideAllUsersObjects();
   HideUsersList();
   LockDoorIn();
   LockDeadbolt();
