@@ -223,7 +223,7 @@ function Registered_Users() {
     this.users.splice(id,1);
     this.length--;
   }
-  
+
   this.removeUserByName = function( firstname, lastname) {
     var l = RegisteredUsers.length;
     for(var i=0; i < l; i++) {
@@ -275,6 +275,9 @@ function User(firstname, lastname, language) {
 
   this.traffic_options = [];
   this.traffic_primary = "";
+
+  this.brightness_pref = 1;
+  this.display_timer_pref = "five_min_btn";
 
   this.getFullName = function () {
     return this.firstname + " " + this.lastname;
@@ -361,14 +364,14 @@ function HeightsRadioButtons_DISABLE() {
   document.getElementsByName('Heights')[0].disabled = true; //
   document.getElementsByName('Heights')[1].disabled = true; // all by abeer
   document.getElementsByName('Heights')[2].disabled = true; //
-  
+
 }
 function HeightsRadioButtons_ENABLE() {
   heightsenabled = true;
   document.getElementsByName('Heights')[0].disabled = false;  //
   document.getElementsByName('Heights')[1].disabled = false;  // interpreted from abeers code
   document.getElementsByName('Heights')[2].disabled = false;  //
-  
+
 }
 
 var CURRENT_USER = null;
@@ -410,9 +413,9 @@ function ResetHeightRadioToDefault() {
 function LoadUserData_Inside(index ) {
   if(!heightsenabled)
     HeightsRadioButtons_ENABLE();   // enable radio buttons
-  
+
   ShowHomeButtonAndLine();
-  
+
   console.log("LoadUserData_Inside(" + index + ")");
   CURRENT_USER = RegisteredUsers.at(index);
   console.log("Now Loading data for " + CURRENT_USER.getFullName() );
@@ -430,9 +433,9 @@ function LoadUserData_Inside(index ) {
   HideNews();
 
   ResetHeightRadioToDefault();
-  
+
   RegisteredUsers.at(index).showObjects();
-  
+
   syslang = RegisteredUsers.at(index).language;
   In_theme = RegisteredUsers.at(index).in_theme;
   In_ornament = RegisteredUsers.at(index).in_ornament;

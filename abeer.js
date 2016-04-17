@@ -88,18 +88,18 @@ function ShowHome()
   CloseCamera();
   HideMirror();
   HideTraffic();
-  HideLights();
+  // HideLights();
   HideTransport();
   HideNews();
   CloseThemeSettings();
   HomeIsActive = true;
   PanelRect.visible = true;
-  
+
 //  if(CURRENT_USER != null)
 //  {
 //    CURRENT_USER.hideObjects();
 //  }
-//  
+//
   for (var i = 0; i < canvas.getObjects().length; ++i)
   {
     if (canvas.item(i).id == 'messages' || canvas.item(i).id == 'camera'   ||
@@ -136,8 +136,8 @@ function HideHome()
   CloseCamera();
 
   PanelRect.visible = false;
-  
-  
+
+
   for (var i = 0; i < canvas.getObjects().length; ++i)
   {
     if (canvas.item(i).id == 'messages' || canvas.item(i).id == 'camera'   ||
@@ -349,7 +349,7 @@ function MultiUsersFromInside()
   ResetCoordinates();
   HeightsRadioButtons_ENABLE();
   UncheckHeight();
-  
+
   syslang = ENGLISH; // set to english by default
   System_language = SYSTEM_LANGUAGE[syslang];
   In_theme = 'default';
@@ -387,7 +387,7 @@ function HideUsersList()
 //----------------------------------------------------------
 function NewUserFromInside()
 {
-  
+
 //  HideUser1FromInside();
 //  HideUser2FromInside();
   HideHome();
@@ -400,7 +400,7 @@ function NewUserFromInside()
   ResetCoordinates();
   HeightsRadioButtons_ENABLE();
   UncheckHeight();
-  
+
   syslang = ENGLISH; // set to english by default
   System_language = SYSTEM_LANGUAGE[syslang];
   In_theme = 'default';
@@ -420,7 +420,7 @@ function NoSignalFromInside()
   CURRENT_USER = null;
 
   HideHomeButtonAndLine();
-  
+
   HideHome();
 
 //  HideUser1FromInside();
@@ -551,7 +551,7 @@ function User1FromOutside()
 function NewUserFromOutside()
 {
   HeightsRadioButtons_ENABLE(); // gabe
-  
+
   ResetDoorFromOutside();
   TriggerDoorFromOutside();
   FailedVerification();
@@ -564,7 +564,7 @@ function NewUserFromOutside()
 function NoUserFromOutside()
 {
   CURRENT_USER = null;
-  
+
   ResetDoorFromOutside();
   document.getElementsByName('Verification')[1].disabled = true;
   document.getElementsByName('Verification')[2].disabled = true;

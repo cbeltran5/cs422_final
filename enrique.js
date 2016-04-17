@@ -3,9 +3,9 @@
  var LightsIsActive = false;
  var TransportIsActive = false;
  var NewsIsActive = false;
- 
 
-//------------------------------------------------------------- 
+
+//-------------------------------------------------------------
 function MirrorSelected(){
   if (MirrorIsActive == true)
     HideMirror();
@@ -14,17 +14,17 @@ function MirrorSelected(){
 }
 
 function ShowMirror(){
-  MirrorIsActive = true; 
+  MirrorIsActive = true;
   Mirror.visible = true;
   HomeSelected();
 }
 
 function HideMirror(){
-  MirrorIsActive = false; 
+  MirrorIsActive = false;
   Mirror.visible = false;
 }
 
-//------------------------------------------------------------- 
+//-------------------------------------------------------------
 function TrafficSelected(){
   if (TrafficIsActive == true)
     HideTraffic();
@@ -33,16 +33,16 @@ function TrafficSelected(){
 }
 
 function ShowTraffic(){
-  TrafficIsActive = true; 
+  TrafficIsActive = true;
   Traffic.visible = true;
   HomeSelected();
 }
 
 function HideTraffic(){
-  TrafficIsActive = false; 
+  TrafficIsActive = false;
   Traffic.visible = false;
 }
-//------------------------------------------------------------- 
+//-------------------------------------------------------------
 function LightsSelected(){
   if (LightsIsActive == true)
     HideLights();
@@ -51,17 +51,18 @@ function LightsSelected(){
 }
 
 function ShowLights(){
-  LightsIsActive = true; 
+  LightsIsActive = true;
   Lights.visible = true;
+  Lights.opacity = 1.0;
   HomeSelected();
 }
 
 function HideLights(){
-  LightsIsActive = false; 
+  LightsIsActive = false;
   Lights.visible = false;
 }
 
-//------------------------------------------------------------- 
+//-------------------------------------------------------------
 function TransportSelected(){
   if (TransportIsActive == true)
     HideTransport();
@@ -70,17 +71,17 @@ function TransportSelected(){
 }
 
 function ShowTransport(){
-  TransportIsActive = true; 
+  TransportIsActive = true;
   Transport.visible = true;
   HomeSelected();
 }
 
 function HideTransport(){
-  TransportIsActive = false; 
+  TransportIsActive = false;
   Transport.visible = false;
 }
 
-//------------------------------------------------------------- 
+//-------------------------------------------------------------
 function NewsSelected(){
   if (NewsIsActive == true)
     HideNews();
@@ -89,27 +90,27 @@ function NewsSelected(){
 }
 
 function ShowNews(){
-  NewsIsActive = true; 
+  NewsIsActive = true;
   News.visible = true;
   HomeSelected();
 }
 
 function HideNews(){
-  NewsIsActive = false; 
+  NewsIsActive = false;
   News.visible = false;
 }
- 
 
-//------------------------------------------------------------- 
+
+//-------------------------------------------------------------
 function RestartSystem(){
-  for (var i = 0; i < canvas.getObjects().length; ++i) { 
-    if (canvas.item(i).id == 'restart') 
+  for (var i = 0; i < canvas.getObjects().length; ++i) {
+    if (canvas.item(i).id == 'restart')
       location.reload();
     }
 }
  //-------------------------------------------------------------
 function AlarmOn(){
-  for (var i = 0; i < canvas.getObjects().length; ++i) { 
+  for (var i = 0; i < canvas.getObjects().length; ++i) {
     if (canvas.item(i).id == 'alarm'){
       canvas.item(i).visible = false;
     }
@@ -119,7 +120,7 @@ function AlarmOn(){
 }
  //-------------------------------------------------------------
 function AlarmOff(){
-  for (var i = 0; i < canvas.getObjects().length; ++i) { 
+  for (var i = 0; i < canvas.getObjects().length; ++i) {
     if (canvas.item(i).id == 'alarmOn'){
       canvas.item(i).visible = false;
     }
@@ -127,4 +128,3 @@ function AlarmOff(){
       canvas.item(i).visible = true;
   }
 }
- 
