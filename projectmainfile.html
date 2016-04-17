@@ -1527,6 +1527,204 @@ IntercomText.visible = false;
 ArrayOfObjects.push(IntercomText);
 //********************************************************************************************
 
+// BRIGHTNESSSSS
+
+var brightness_text = new fabric.IText('Brightness', {
+  fontFamily: 'arial black',
+  fontSize: 20,
+  left: 200,
+  top: 310,
+  width: 100,
+  height: 50
+});
+brightness_text.visible = false;
+brightness_text.hasControls = brightness_text.hasBorders = brightness_text.selectable = false;
+brightness_text.lockMovementX = brightness_text.lockMovementY = true;
+brightness_text.id = 'brightness_text';
+
+ArrayOfObjects.push(brightness_text);
+
+var slider_back = new fabric.Rect({
+  left: 165,
+  top: 430,
+  fill: 'grey',
+  stroke: 'black',
+  width: 213,
+  height: 14,
+  angle: 0
+});
+slider_back.visible = false;
+slider_back.hasControls = slider_back.hasBorders = false;
+slider_back.lockMovementX = slider_back.lockMovementY = true;
+slider_back.id = 'slider_back';
+
+fabric.util.loadImage('images/Settings/slider_back.gif', function (img) {
+  slider_back.setPatternFill({
+    source: img,
+    repeat: 'no-repeat'
+  });
+});
+ArrayOfObjects.push(slider_back);
+
+var slider = new fabric.Rect({
+  left: 245,
+  top: 430,
+  fill: 'grey',
+  stroke: 'black',
+  width: 37,
+  height: 38,
+  angle: 0
+});
+slider.visible = false;
+slider.hasControls = slider.hasBorders = false;
+slider.lockMovementY = true;
+slider.id = 'slider_back';
+
+fabric.util.loadImage('images/Settings/slider.gif', function (img) {
+  slider.setPatternFill({
+    source: img,
+    repeat: 'no-repeat'
+  });
+});
+ArrayOfObjects.push(slider);
+
+var display_text = new fabric.IText('Display Timer', {
+  fontFamily: 'arial black',
+  fontSize: 20,
+  left: 200,
+  top: 480,
+  width: 100,
+  height: 50
+});
+display_text.visible = false;
+display_text.hasControls = display_text.hasBorders = display_text.selectable = false;
+display_text.lockMovementX = display_text.lockMovementY = true;
+display_text.id = 'brightness_text';
+
+ArrayOfObjects.push(display_text);
+
+var one_min_btn = new fabric.Rect({
+  left: 165,
+  top: 500,
+  fill: 'white',
+  stroke: 'black',
+  width: 60,
+  height: 50,
+  angle: 0
+});
+one_min_btn.visible = false;
+one_min_btn.hasControls = one_min_btn.hasBorders = false;
+one_min_btn.lockMovementX = one_min_btn.lockMovementY = true;
+one_min_btn.id = 'one_min_btn';
+
+var one_min_btn_text = new fabric.IText('1 min', {
+  fontFamily: 'arial black',
+  fontSize: 20,
+  left: 170,
+  top: 515,
+  width: 60,
+  height: 50
+});
+one_min_btn_text.visible = false;
+one_min_btn_text.hasControls = one_min_btn_text.hasBorders = false;
+one_min_btn_text.lockMovementX = one_min_btn_text.lockMovementY = true;
+one_min_btn_text.id = 'one_min_btn_text';
+
+ArrayOfObjects.push(one_min_btn_text);
+ArrayOfObjects.push(one_min_btn);
+
+var three_min_btn = new fabric.Rect({
+  left: 210,
+  top: 500,
+  fill: 'white',
+  stroke: 'blue',
+  width: 60,
+  height: 50,
+  angle: 0
+});
+three_min_btn.visible = false;
+three_min_btn.hasControls = three_min_btn.hasBorders = false;
+three_min_btn.lockMovementX = three_min_btn.lockMovementY = true;
+three_min_btn.id = 'three_min_btn';
+
+var three_min_btn_text = new fabric.IText('3 min', {
+  fontFamily: 'arial black',
+  fontSize: 20,
+  left: 210,
+  top: 500,
+  width: 60,
+  height: 50
+});
+three_min_btn_text.visible = false;
+three_min_btn_text.hasControls = three_min_btn_text.hasBorders = false;
+three_min_btn_text.lockMovementX = three_min_btn_text.lockMovementY = true;
+three_min_btn_text.id = 'three_min_btn_text';
+
+ArrayOfObjects.push(three_min_btn_text);
+ArrayOfObjects.push(three_min_btn);
+
+var five_min_btn = new fabric.Rect({
+  left: 270,
+  top: 500,
+  fill: 'white',
+  stroke: 'black',
+  width: 60,
+  height: 50,
+  angle: 0
+});
+five_min_btn.visible = false;
+five_min_btn.hasControls = five_min_btn.hasBorders = false;
+five_min_btn.lockMovementX = five_min_btn.lockMovementY = true;
+five_min_btn.id = 'five_min_btn';
+
+var five_min_btn_text = new fabric.IText('5 min', {
+  fontFamily: 'arial black',
+  fontSize: 20,
+  left: 270,
+  top: 515,
+  width: 60,
+  height: 50
+});
+five_min_btn_text.visible = false;
+five_min_btn_text.hasControls = five_min_btn_text.hasBorders = false;
+five_min_btn_text.lockMovementX = five_min_btn_text.lockMovementY = true;
+five_min_btn_text.id = 'five_min_btn_text';
+
+ArrayOfObjects.push(five_min_btn);
+ArrayOfObjects.push(five_min_btn_text);
+
+var brightness_save_btn = new fabric.Rect({
+  left: 300,
+  top: 550,
+  fill: 'white',
+  stroke: 'black',
+  width: 65,
+  height: 46,
+  angle: 0
+});
+brightness_save_btn.visible = false;
+brightness_save_btn.hasControls = brightness_save_btn.hasBorders = false;
+brightness_save_btn.lockMovementX = brightness_save_btn.lockMovementY = true;
+brightness_save_btn.id = 'brightness_save_btn';
+
+var brightness_save_btn_text = new fabric.IText('Save', {
+  fontFamily: 'arial black',
+  fontSize: 20,
+  left: 165,
+  top: 550 ,
+  width: 65,
+  height: 46
+});
+brightness_save_btn_text.visible = false;
+brightness_save_btn_text.hasControls = brightness_save_btn_text.hasBorders = false;
+brightness_save_btn_text.lockMovementX = brightness_save_btn_text.lockMovementY = true;
+brightness_save_btn_text.id = 'brightness_save_btn_text';
+
+ArrayOfObjects.push(brightness_save_btn_text);
+ArrayOfObjects.push(brightness_save_btn);
+
+//********************************************************************************************
+
 var icon_restart;
 fabric.Image.fromURL('images/restart.png', function(oImg) {
   oImg.set({left: 550, top: 1150, id: this.id});
@@ -1698,13 +1896,13 @@ OutsideText.hasControls = OutsideText.hasBorders = false;
 OutsideText.lockMovementX = OutsideText.lockMovementY = true;
 ArrayOfObjects.push(OutsideText);
 
-var ThemesDroplist = new fabric.Text('  Themes         ', { 
+var ThemesDroplist = new fabric.Text('  Themes         ', {
   backgroundColor: 'lightgrey',
   borderColor: 'black',
   fontFamily: 'Times',
   fontSize: 23,
   padding: 5,
-  left: 135, 
+  left: 135,
   top: 365 ,
   width: 150,
   height: 50
@@ -1717,13 +1915,13 @@ ThemesDroplist.lockMovementX = ThemesDroplist.lockMovementY = true;
 ArrayOfObjects.push(ThemesDroplist);
 
 
-var OrnamentDroplist = new fabric.Text('  Ornaments    ', { 
+var OrnamentDroplist = new fabric.Text('  Ornaments    ', {
   backgroundColor: 'lightgrey',
   borderColor: 'black',
   fontFamily: 'Times',
   fontSize: 23,
   padding: 5,
-  left: 285, 
+  left: 285,
   top: 365 ,
   width: 150,
   height: 50
@@ -1736,12 +1934,12 @@ ThemesDroplist.lockMovementX = OrnamentDroplist.lockMovementY = true;
 ArrayOfObjects.push(OrnamentDroplist);
 
 
-var WoodText = new fabric.Text('  Wood            ', { 
+var WoodText = new fabric.Text('  Wood            ', {
   backgroundColor: 'white',
   fontFamily: 'Times',
   fontSize: 23,
   padding: 5,
-  left: 135, 
+  left: 135,
   top: 400 ,
   width: 150,
   height: 50
@@ -1753,12 +1951,12 @@ WoodText.hasControls =  false;
 WoodText.lockMovementX = WoodText.lockMovementY = true;
 ArrayOfObjects.push(WoodText);
 
-var MetalText = new fabric.Text('  Metal            ', { 
+var MetalText = new fabric.Text('  Metal            ', {
   backgroundColor: 'white',
   fontFamily: 'Times',
   fontSize: 23,
   padding: 5,
-  left: 135, 
+  left: 135,
   top: 430 ,
   width: 150,
   height: 50
@@ -1770,12 +1968,12 @@ MetalText.hasControls =  false;
 MetalText.lockMovementX = MetalText.lockMovementY = true;
 ArrayOfObjects.push(MetalText);
 
-var XmassText = new fabric.Text('  Xmass           ', { 
+var XmassText = new fabric.Text('  Xmass           ', {
   backgroundColor: 'white',
   fontFamily: 'Times',
   fontSize: 23,
   padding: 5,
-  left: 285, 
+  left: 285,
   top: 400 ,
   width: 150,
   height: 50
@@ -1787,12 +1985,12 @@ XmassText.hasControls =  false;
 XmassText.lockMovementX = XmassText.lockMovementY = true;
 ArrayOfObjects.push(XmassText);
 
-var EasterText = new fabric.Text('  Easter            ', { 
+var EasterText = new fabric.Text('  Easter            ', {
   backgroundColor: 'white',
   fontFamily: 'Times',
   fontSize: 23,
   padding: 5,
-  left: 285, 
+  left: 285,
   top: 430 ,
   width: 150,
   height: 50
@@ -1804,12 +2002,12 @@ EasterText.hasControls =  false;
 EasterText.lockMovementX = EasterText.lockMovementY = true;
 ArrayOfObjects.push(EasterText);
 
-var ResetTheme = new fabric.Text('  Reset  ', { 
+var ResetTheme = new fabric.Text('  Reset  ', {
   backgroundColor: 'lightgrey',
   fontFamily: 'Times',
   fontSize: 23,
   padding: 5,
-  left: 235, 
+  left: 235,
   top: 470 ,
   width: 150,
   height: 50
@@ -1935,7 +2133,7 @@ MetalText.on('mousedown', function ()
   WoodText.backgroundColor = 'white';
   if(ActiveSide == "Inside")
   {
-    In_theme = 'Metal'; 
+    In_theme = 'Metal';
     CURRENT_USER.in_theme = In_theme;
     fabric.util.loadImage('images/metal.jpg', function (img) {
     img.id = 'Metal';
@@ -2067,6 +2265,19 @@ canvas.add(traffic_save_btn_text);
 canvas.add(traffic_star2);
 canvas.add(traffic_star1);
 
+canvas.add(brightness_text);
+canvas.add(slider_back);
+canvas.add(slider);
+canvas.add(display_text);
+canvas.add(one_min_btn);
+canvas.add(one_min_btn_text);
+canvas.add(three_min_btn);
+canvas.add(three_min_btn_text);
+canvas.add(five_min_btn);
+canvas.add(five_min_btn_text);
+canvas.add(brightness_save_btn);
+canvas.add(brightness_save_btn_text);
+
 
 //For themes texts and components
 canvas.add(InsideText);
@@ -2144,6 +2355,10 @@ canvas.on('object:selected', function(e) {
     hideSettings();
     ShowThemeSettings();
   }
+  else if (activeObject.id == "settings_brightness")
+    hideSettings();
+    showBrightnessSettings();
+
   if(activeObject.id == 'mirror')
     {
       MirrorSelected();

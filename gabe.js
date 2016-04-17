@@ -170,6 +170,8 @@ var ADD = ["Add", "Anadir"];
 var SAVE = ["Save", "Guardar"];
 var INPUT_NAME = ["Type your name...", "Escriba su nombre"];
 var INPUT_ADDRESS = ["The address...", "La direccion"];
+var BRIGHTNESS = ["Brightness", "Brillo"];
+var DISPLAY = ["Display Timer", "Minutero de Pantalla "];
 
 // when called, this function will update the text of the respective
 // faric text object with a string that matches that object and the currently
@@ -201,6 +203,8 @@ function UpdateText() {
   traffic_add_btn_text.text = ADD[syslang];
   traffic_input_address_text.text = INPUT_ADDRESS[syslang];
   traffic_input_name_text.text = INPUT_NAME[syslang];
+  brightness_text.text = BRIGHTNESS[syslang];
+  display_text.text = DISPLAY[syslang];
 
 }
 /***********************************************************************
