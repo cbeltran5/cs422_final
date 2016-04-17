@@ -753,16 +753,17 @@ fabric.Image.fromURL('images/alarm.gif', function(oImg) {
   ArrayOfObjects.push(icon_alarm_off);
   canvas.add(icon_alarm_off);
 });
-var icon_alarm_on;
-fabric.Image.fromURL('images/alarmOn.gif', function(oImg) {
-  oImg.set({left: 549, top: 920, id: this.id});
-  oImg.visible = false;
-  oImg.hasControls = oImg.hasBorders = false;
-  oImg.lockMovementY = oImg.lockMovementX = true;
-  oImg.id = 'alarmOn';
-  icon_alarm_on = oImg;
-  canvas.add(icon_alarm_on);
-});
+  
+//var icon_alarm_on;
+//fabric.Image.fromURL('images/alarmOn.gif', function(oImg) {
+//  oImg.set({left: 549, top: 920, id: this.id});
+//  oImg.visible = false;
+//  oImg.hasControls = oImg.hasBorders = false;
+//  oImg.lockMovementY = oImg.lockMovementX = true;
+//  oImg.id = 'alarmOn';
+//  icon_alarm_on = oImg;
+//  canvas.add(icon_alarm_on);
+//});
 
 var Alarmtext = new fabric.Text(ALARM[syslang], {
   left: 255,
