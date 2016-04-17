@@ -38,7 +38,7 @@ function showSettings() {
 
   for (var i = 0; i < canvas.getObjects().length; ++i)
   {
-    if (canvas.item(i).id == 'settings_users' || canvas.item(i).id == 'settings_language'   ||
+    if (canvas.item(i).id == 'settings_users' || canvas.item(i).id ==       'settings_language'   ||
         canvas.item(i).id == 'settings_traffic'  || canvas.item(i).id == 'settings_datetime'      ||
         canvas.item(i).id == 'settings_doorbell'     || canvas.item(i).id == 'settings_units'   ||
         canvas.item(i).id == 'settings_brightness'   || canvas.item(i).id == 'settings_volume'    ||
@@ -103,7 +103,6 @@ function usersSelected()
 
 function showUsers()
 {
-
   hideSettings();
   usersActive = true;
   UserPanel.visible = true;
