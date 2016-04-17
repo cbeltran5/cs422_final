@@ -322,7 +322,6 @@ function User(firstname, lastname, language) {
 
 var RADIO_ID_UFI = "UsersFromInside";
 var RADIO_ID_UFO = "UsersFromOutside";
-
 function RemoveFromRadioChoices(id) {
   //console.log("removing " + id);
   var remove = 3 + id;
@@ -462,6 +461,35 @@ function MultiUsersOutside() {
 function DateTime_Settings() {
 
 }
+
+
+function VerifyFirst(value) {
+  console.log("first " + value);
+  if(value == "None") {
+    var elements = document.getElementsByName("verifysecond");
+    for(var i=0; i< elements.length; i++){
+      elements[i].disabled= true;
+    }
+  }
+  else {
+    var elements = document.getElementsByName("verifysecond");
+    for(var i=0; i< elements.length; i++){
+      if(elements[i].value == value){
+        elements[i].disabled = true;
+      }
+      else {
+        elements[i].disabled = false;
+      }
+    }
+  }
+  
+}
+
+function VerifySecond(value) {
+  console.log("second " + value);
+  
+}
+
 
 
 
