@@ -214,6 +214,7 @@ var RegisteredUsers = new Registered_Users();
 
 var userscounter = 0;
 // Created a User class to hold the personal information common to all users
+
 function User(firstname, lastname, language) {
   this.id = userscounter++; // id is position in Registered Users array
   this.firstname = firstname;
@@ -234,7 +235,6 @@ function User(firstname, lastname, language) {
   this.in_ornament = 'default';
   this.out_ornament = 'default';
 
-
   this.myObjects = [];
   this.addObject = function(object) {
     object.id = this.id;
@@ -242,16 +242,14 @@ function User(firstname, lastname, language) {
   }
   this.hideObjects = function() {
     for( var i=0; i < this.myObjects.length; i++) {
-      this.myObjects[i].visible = true;
+      this.myObjects[i].visible = false;
     }
   }
   this.showObjects = function() {
     for( var i=0; i < this.myObjects.length; i++) {
-      this.myObjects[i].visible = false;
+      this.myObjects[i].visible = true;
     }
   }
-
-
   this.myMessages = [];
   this.showMessages = function () {
     console.log("showMessages is not yet implemented. see gabe.js");
@@ -266,7 +264,6 @@ function User(firstname, lastname, language) {
     RemoveFromRadioChoices(this.id);
     RegisteredUsers.removeUserByID(this.id);
   }
-
   AddUserToRadioChoices(this.firstname + " " + this.lastname, this.id);
 }
 
@@ -312,7 +309,7 @@ function AddUserToRadioChoices( name , value) {
 
 function LoadUserData_Inside(index ) {
   console.log("LoadUserData(" + index + ")");
-  var i, User = RegisteredUsers[ index ];
+  var i;
   HideHome();
   HideUsersList();
 
@@ -320,16 +317,16 @@ function LoadUserData_Inside(index ) {
     RegisteredUsers[i].hideObjects();
   }
 
-  User.showObjects();
-  syslang = User1.language;
-  In_theme = User1.in_theme;
-  In_ornament = User1.in_ornament;
-  Out_theme = User1.out_theme;
-  Out_ornament = User1.out_ornament;
+  RegisteredUsers[ index ].showObjects();
+  syslang = RegisteredUsers[i].language;
+  In_theme = RegisteredUsers[i].in_theme;
+  In_ornament = RegisteredUsers[i].in_ornament;
+  Out_theme = RegisteredUsers[i].out_theme;
+  Out_ornament = RegisteredUsers[i].out_ornament;
 
-  Date_format = User1.date_format;
-  Time_format = User1.time_format;
-  TemperatureUnits = User1.temerature_units;
+  Date_format = RegisteredUsers[i].date_format;
+  Time_format = RegisteredUsers[i].time_format;
+  TemperatureUnits = RegisteredUsers[i].temerature_units;
   UpdateText();
 }
 
@@ -341,6 +338,7 @@ function LoadUserData_Outside(index ) {
 function MultiUsersOutside() {
   console.log("MultiUsersFromOutside not yet implemented. On Todo List in gabe.js");
 }
+
 
 
 
