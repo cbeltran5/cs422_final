@@ -184,6 +184,17 @@ function UpdateText() {
   Emergtext.text = EMERGENCY[syslang];
   Settingstext.text = SETTINGS[syslang];
   Deadbolttext.text = DEADBOLT[syslang];
+  
+  UsersText.text = USERS[syslang];
+  LanguageText.text = LANGUAGE[syslang];
+  TrafficText.text = TRAFFIC[syslang];
+  DatetimeText.text = DATE_TIME[syslang];
+  DoorbellText.text = DOORBELL[syslang];
+  UnitsText.text = UNITS[syslang];
+  BrightnessText.text = BRIGHTNESS[syslang];
+  VolumeText.text = VOLUME[syslang];
+  ThemesText.text = THEME[syslang];
+  IntercomText.text = INTERCOM[syslang];
 }
 /***********************************************************************
                            END OF DATE AND TIME

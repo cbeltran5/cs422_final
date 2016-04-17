@@ -356,7 +356,6 @@ function HideUsersList()
       if (canvas.item(i).id == 'userslist' ||
           canvas.item(i).id == 'user1name' ||
           canvas.item(i).id == 'user2name')
-
         canvas.item(i).visible = false;
     }
 }
