@@ -80,8 +80,8 @@
       <form > Heights:<br>
         <div id="Heights">
           <label for="Tall"><input type="radio" class="radio1" name="Heights" id='Tall' onchange="AdjustHeight(this.value)" value="Tall"> Tall<br></label>
-          <label for="Medium"><input type="radio" class="radio1" name="Heights" id='Medium'onchange="AdjustHeight(this.value)" value="Medium" checked> Medium<br></label>
-          <label for="Short"><input type="radio" class="radio1" name="Heights" id='Short'onchange="AdjustHeight(this.value)" value="Short"> Short<br></label>
+          <label for="Medium"><input type="radio" class="radio1" name="Heights" id='Medium' onchange="AdjustHeight(this.value)" value="Medium" checked> Medium<br></label>
+          <label for="Short"><input type="radio" class="radio1" name="Heights" id='Short' onchange="AdjustHeight(this.value)" value="Short"> Short<br></label>
         </div>
       </form>
       </code>
@@ -117,11 +117,11 @@
       <code>
       <form name="Verification"> Verification1:<br>
         <div id="Verification1">
-          <label for="None"><input type="radio" class="radio1" name="Verification1" onchange="FailedVerification()" value="None" checked> None<br></label>
-          <label for="FacialRecognition"><input type="radio" class="radio1" name="Verification1" onchange="FaceRecognized()" value="Phone/KeyFob"> Phone/KeyFOB<br></label>
-          <label for="FacialRecognition"><input type="radio" class="radio1" name="Verification1" onchange="FaceRecognized()" value="Face"> Facial Recognition<br></label>
-          <label for="FingerPrints"><input type="radio" class="radio1" name="Verification1" onchange="FingerRecognized()" value="FingerPrint"> FingerPrint<br></label>
-          <label for="FingerPrints"><input type="radio" class="radio1" name="Verification1" onchange="FingerRecognized()" value="FingerPrint"> Number Pad<br></label>
+          <label for="None"><input type="radio" class="radio1" name="verifyfirst" onchange="VerifyFirst(this.value)" id="noneA" value="None" checked> None<br></label>
+          <label for="Phone/KeyFOB"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="pkfobA" value="Phone/KeyFob"> Phone/KeyFOB<br></label>
+          <label for="FacialRecognition"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="faceA" value="FacialRecognition"> Facial Recognition<br></label>
+          <label for="FingerPrints"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="fingerA" value="FingerPrint"> FingerPrint<br></label>
+          <label for="NumberPad"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="numberA" value="NumberPad"> Number Pad<br></label>
         </div>
       </form>
       </code>
@@ -131,10 +131,11 @@
       <code>
       <form name="Verification"> Verification2:<br>
         <div id="Verification2">
-          <label for="FacialRecognition"><input type="radio" class="radio1" name="Verification" onchange="FaceRecognized()" value="Phone/KeyFob" disabled> Phone/KeyFOB<br></label>
-          <label for="FacialRecognition"><input type="radio" class="radio1" name="Verification" onchange="FaceRecognized()" value="Face" disabled> Facial Recognition<br></label>
-          <label for="FingerPrints"><input type="radio" class="radio1" name="Verification" onchange="FingerRecognized()" value="FingerPrint" disabled> FingerPrint<br></label>
-          <label for="FingerPrints"><input type="radio" class="radio1" name="Verification" onchange="FingerRecognized()" value="FingerPrint" disabled> Number Pad<br></label>
+          <label for="None"><input type="radio" class="radio1"  name="verifysecond" onchange="VerifySecond(this.value)" id="noneB" value="None" disabled checked> None<br></label>
+          <label for="Phone/KeyFOB"><input type="radio" class="radio1" name="verifysecond"  onchange="VerifySecond(this.value)" id="pkfobB" value="Phone/KeyFob" disabled> Phone/KeyFOB<br></label>
+          <label for="FacialRecognition"><input type="radio" class="radio1" name="verifysecond"  onchange="VerifySecond(this.value)" id="faceB" value="FacialRecognition" disabled> Facial Recognition<br></label>
+          <label for="FingerPrints"><input type="radio" class="radio1" name="verifysecond" onchange="VerifySecond(this.value)" id="fingerB" value="FingerPrint" disabled> FingerPrint<br></label>
+          <label for="NumberPad"><input type="radio" class="radio1" name="verifysecond"  onchange="VerifySecond(this.value)" id="numberB" value="NumberPad" disabled> Number Pad<br></label>
         </div>
       </form>
       </code>
@@ -145,6 +146,11 @@
 </body>
 
 <script>
+  
+
+  
+
+
 // the aspect ratios given here are not quite tall enough for a 36" x 80" door
 // we are assuming bottom 15 inches of the door are not part of the display.
 // that part contains lots of necessary electronics so the bottom of the door
