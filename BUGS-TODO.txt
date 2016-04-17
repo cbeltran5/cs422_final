@@ -8,3 +8,7 @@ if something will be done with Current_user, then look at switchActiveUser() in 
 
 // possible TODO
 addNewUser() in carlos.js, if we're supporting dynamic users
+
+
+TODO
+change abeer.js/MultiUsersFromInside() to dynamically add people to that list on runtime. possibly work with a fabric.text and fabric.rect for each user. 
