@@ -168,6 +168,10 @@ var DATE_TIME = ["Date/Time", "Fecha/Tiempo"];
 var UNITS = ["Units", "Unidades"];
 var VOLUME = ["Volume", "Volumen"];
 var INTERCOM = ["Intercom", "Intercomunicador"];
+var ADD = ["Add", "Anadir"];
+var SAVE = ["Save", "Guardar"];
+var INPUT_NAME = ["Type your name...", "Escriba su nombre"];
+var INPUT_ADDRESS = ["The address...", "La direccion"];
 
 // when called, this function will update the text of the respective
 // faric text object with a string that matches that object and the currently
@@ -184,6 +188,20 @@ function UpdateText() {
   Emergtext.text = EMERGENCY[syslang];
   Settingstext.text = SETTINGS[syslang];
   Deadbolttext.text = DEADBOLT[syslang];
+  UsersText.text = USERS[syslang];
+  LanguageText.text = LANGUAGE[syslang];
+  TrafficText.text = TRAFFIC[syslang];
+  DatetimeText.text = DATE_TIME[syslang];
+  DoorbellText.text = DOORBELL[syslang];
+  UnitsText.text = UNITS[syslang];
+  BrightnessText.text = BRIGHTNESS[syslang];
+  VolumeText.text = VOLUME[syslang];
+  ThemesText.text = THEME[syslang];
+  IntercomText.text = INTERCOM[syslang];
+  traffic_save_btn_text.text = SAVE[syslang];
+  traffic_add_btn_text.text = ADD[syslang];
+  traffic_input_address_text.text = INPUT_ADDRESS[syslang];
+  traffic_input_name_text.text = INPUT_NAME[syslang];
 }
 /***********************************************************************
                            END OF DATE AND TIME
@@ -193,11 +211,11 @@ function Registered_Users() {
   this.users = [];
 
   this.lenth = 0;
-  
+
   this.at = function(index) {
     return this.users[index];
   }
-  
+
   this.removeUserByID = function (id) {
     this.users.splice(id,1);
   }
@@ -215,9 +233,9 @@ function Registered_Users() {
   this.addUser = function(user) {
     this.users.push(user);
     this.lenth++;
-    
+
   }
-  
+
 }
 
 var RegisteredUsers = new Registered_Users();
@@ -245,10 +263,13 @@ function User(firstname, lastname, language) {
   this.in_ornament = 'default';
   this.out_ornament = 'default';
 
+  this.traffic_options = [];
+  this.traffic_primary = "";
+
   this.getFullName = function () {
     return this.firstname + " " + this.lastname;
   }
-  
+
   this.myObjects = [];
   this.addObject = function(object) {
     object.id = this.id;
@@ -325,7 +346,7 @@ function LoadUserData_Inside(index ) {
   console.log("LoadUserData_Inside(" + index + ")");
   CURRENT_USER = RegisteredUsers.at(index)
   console.log("Now Loading data for " + CURRENT_USER.getFullName() );
-  
+
   var i;
   HideHome();
   HideUsersList();
@@ -344,7 +365,7 @@ function LoadUserData_Inside(index ) {
   }
 
   RegisteredUsers.at(index).showObjects();
-  
+
   syslang = RegisteredUsers.at(index).language;
   In_theme = RegisteredUsers.at(index).in_theme;
   In_ornament = RegisteredUsers.at(index).in_ornament;

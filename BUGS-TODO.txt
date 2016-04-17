@@ -8,3 +8,5 @@ if something will be done with Current_user, then look at switchActiveUser() in 
 
 // possible TODO
 addNewUser() in carlos.js, if we're supporting dynamic users
+
+bug in showTrafficSettings(), sometimes one of the blocks aren't rendered.

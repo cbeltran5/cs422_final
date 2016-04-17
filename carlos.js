@@ -4,11 +4,9 @@ var trafficSettingsActive = false;
 var doorbellSettingsActive = false;
 var brightnessSettingsActive = false;
 var themeSettingsActive = false;
-var current_user_name = "Gabe";
 var newUserAdded = false;
 
 // traffic settings
-var user_traffic_settings = {};
 var stars = [];
 var user_traffic_options = [];
 
@@ -124,7 +122,7 @@ function hideUsers()
 
 function switchActiveUser()
 {
-  if (current_user_name == "Enrique") {
+  if (CURRE == "Enrique") {
     filename = "images/Settings/users_gabe_active.gif"
     current_user_name = "Gabe";
   }
@@ -161,42 +159,130 @@ function showPostSendKey()
   post_sendKey.visible = true;
 }
 
-function showTrafficInitAdd()
+function showTrafficSettings()
 {
   hideSettings();
+  PanelRect.visible = false;
+
   trafficSettingsActive = true;
   traffic_add_btn.visible = true;
-  for (var i = 0; i < user_traffic_settings[CURRENT_USER.first_name].length; ++i) {
-    if (user_traffic_options[Current_user.first_name][i] == "primary")
+  traffic_add_btn_text.visible = true;
+
+  for (var i = 0; i < CURRENT_USER.traffic_options.length; i++) {
+
+    object_index = CURRENT_USER.traffic_options[i];
+
+    console.log(stars[i].id);
+    console.log(CURRENT_USER.traffic_primary);
+
+    if (stars[i].id == CURRENT_USER.traffic_primary) {
       filename = "images/Settings/traffic_star_primary.gif"
+    }
     else
       filename = "images/Settings/traffic_star.gif"
 
     fabric.util.loadImage(filename, function (img) {
-      stars[i].setPatternFill({
+      stars[i-1].setPatternFill({
         source: img,
         repeat: 'no-repeat'
       });
     });
 
     stars[i].visible = true;
-    user_traffic_options[i].visible = true;
+    user_traffic_options[object_index].top = stars[i].top;
+    user_traffic_options[object_index].visible = true;
+  }
+}
+
+function hideTrafficSettings()
+{
+  traffic_add_btn.visible = false;
+  traffic_add_btn_text.visible = false;
+
+  for (var i = 0; i < CURRENT_USER.traffic_options.length; ++i) {
+    stars[i].visible = false;
+    user_traffic_options[i].visible = false;
   }
 }
 
 function showTrafficInputAdd()
 {
 
+  hideTrafficSettings();
+
+  traffic_input_name.visible = true;
+  traffic_input_name_text.visible = true;
+  traffic_input_address.visible = true;
+  traffic_input_address_text.visible = true;
+  traffic_save_btn.visible = true;
+  traffic_save_btn_text.visible = true;
 }
 
-function showTrafficPostAdd()
+function hideTrafficInputAdd()
 {
-
+  traffic_input_name.visible = false;
+  traffic_input_name_text.visible = false;
+  traffic_input_address.visible = false;
+  traffic_input_address_text.visible = false;
+  traffic_save_btn.visible = false;
+  traffic_save_btn_text.visible = false;
 }
 
-function toggleTrafficPrimary()
+function saveTrafficOption()
+{
+  hideTrafficInputAdd();
+
+  var rand = Math.random() * 2 | 0;
+  options_count = CURRENT_USER.traffic_options.length;
+    if (options_count < 2){
+    CURRENT_USER.traffic_options.push([rand]);
+    if (CURRENT_USER.traffic_options.length == 1)
+      CURRENT_USER.traffic_primary = "traffic_star1"
+  }
+  else {
+    CURRENT_USER.traffic_options.pop();
+  }
+  showTrafficSettings();
+}
+
+function toggleTrafficPrimary(name)
 {
 
+  console.log(CURRENT_USER.traffic_options.length);
+
+  if (CURRENT_USER.traffic_options.length != 2)
+    return;
+
+  if (CURRENT_USER.traffic_primary == "traffic_star1") {
+    CURRENT_USER.traffic_primary = "traffic_star2";
+    fabric.util.loadImage("images/Settings/traffic_star.gif", function (img) {
+      stars[0].setPatternFill({
+        source: img,
+        repeat: 'no-repeat'
+      });
+    });
+    fabric.util.loadImage("images/Settings/traffic_star_primary.gif", function (img) {
+      stars[1].setPatternFill({
+        source: img,
+        repeat: 'no-repeat'
+      });
+    });
+  }
+  else {
+    CURRENT_USER.traffic_primary = "traffic_star1";
+    fabric.util.loadImage("images/Settings/traffic_star_primary.gif", function (img) {
+      stars[0].setPatternFill({
+        source: img,
+        repeat: 'no-repeat'
+      });
+    });
+    fabric.util.loadImage("images/Settings/traffic_star.gif", function (img) {
+      stars[1].setPatternFill({
+        source: img,
+        repeat: 'no-repeat'
+      });
+    });
+  }
 }
 
 // TODO??

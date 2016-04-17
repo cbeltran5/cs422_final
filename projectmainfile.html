@@ -1093,11 +1093,11 @@ ArrayOfObjects.push(TrafficText);
 // options
 var traffic_option_work = new fabric.Rect({
   left: 165,
-  top: 330,
+  top: 335,
   fill: 'grey',
   stroke: 'black',
-  width: 182,
-  height: 51,
+  width: 180,
+  height: 50,
   angle: 0
 });
 traffic_option_work.visible = false;
@@ -1118,8 +1118,8 @@ var traffic_option_barber = new fabric.Rect({
   top: 390,
   fill: 'grey',
   stroke: 'black',
-  width: 182,
-  height: 51,
+  width: 180,
+  height: 50,
   angle: 0
 });
 traffic_option_barber.visible = false;
@@ -1137,17 +1137,17 @@ ArrayOfObjects.push(traffic_option_barber);
 
 var traffic_option_moms = new fabric.Rect({
   left: 165,
-  top: 451,
+  top: 335,
   fill: 'grey',
   stroke: 'black',
-  width: 182,
-  height: 51,
+  width: 180,
+  height: 50,
   angle: 0
 });
 traffic_option_moms.visible = false;
 traffic_option_moms.hasControls = traffic_option_moms.hasBorders =  traffic_option_moms.selectable = false;
 traffic_option_moms.lockMovementX = traffic_option_moms.lockMovementY = true;
-traffic_option_moms.id = 'traffic_option_work';
+traffic_option_moms.id = 'traffic_option_moms';
 
 fabric.util.loadImage('images/Settings/traffic_option_moms.gif', function (img) {
   traffic_option_moms.setPatternFill({
@@ -1156,6 +1156,10 @@ fabric.util.loadImage('images/Settings/traffic_option_moms.gif', function (img) 
   });
 });
 ArrayOfObjects.push(traffic_option_moms);
+
+user_traffic_options.push(traffic_option_moms);
+user_traffic_options.push(traffic_option_work);
+user_traffic_options.push(traffic_option_barber);
 
 // Stars
 var traffic_star1 = new fabric.Rect({
@@ -1182,11 +1186,11 @@ ArrayOfObjects.push(traffic_star1);
 
 var traffic_star2 = new fabric.Rect({
   left: 165,
-  top: 450,
+  top: 430,
   fill: 'grey',
   stroke: 'black',
-  width: 230,
-  height: 175,
+  width: 50,
+  height: 45,
   angle: 0
 });
 traffic_star2.visible = false;
@@ -1202,10 +1206,13 @@ fabric.util.loadImage('images/Settings/traffic_star.gif', function (img) {
 });
 ArrayOfObjects.push(traffic_star2);
 
+stars.push(traffic_star1);
+stars.push(traffic_star2);
+
 var traffic_add_btn = new fabric.Rect({
   left: 165,
-  top: 400,
-  fill: 'grey',
+  top: 500,
+  fill: 'white',
   stroke: 'black',
   width: 74,
   height: 51,
@@ -1214,15 +1221,113 @@ var traffic_add_btn = new fabric.Rect({
 traffic_add_btn.visible = false;
 traffic_add_btn.hasControls = traffic_add_btn.hasBorders = false;
 traffic_add_btn.lockMovementX = traffic_add_btn.lockMovementY = true;
-traffic_add_btn.id = 'traffic_star2';
+traffic_add_btn.id = 'traffic_add_btn';
 
-fabric.util.loadImage('images/Settings/traffic_add_btn.gif', function (img) {
-  traffic_add_btn.setPatternFill({
-    source: img,
-    repeat: 'no-repeat'
-  });
+var traffic_add_btn_text = new fabric.IText('Add', {
+  fontFamily: 'arial black',
+  fontSize: 20,
+  left: 170,
+  top: 515,
+  width: 100,
+  height: 50
 });
+traffic_add_btn_text.visible = false;
+traffic_add_btn_text.hasControls = traffic_add_btn_text.hasBorders = false;
+traffic_add_btn_text.lockMovementX = traffic_add_btn_text.lockMovementY = true;
+traffic_add_btn_text.id = 'traffic_add_btn_text';
+
 ArrayOfObjects.push(traffic_add_btn);
+ArrayOfObjects.push(traffic_add_btn_text);
+
+var traffic_save_btn = new fabric.Rect({
+  left: 165,
+  top: 500,
+  fill: 'white',
+  stroke: 'black',
+  width: 65,
+  height: 46,
+  angle: 0
+});
+traffic_save_btn.visible = false;
+traffic_save_btn.hasControls = traffic_save_btn.hasBorders = false;
+traffic_save_btn.lockMovementX = traffic_save_btn.lockMovementY = true;
+traffic_save_btn.id = 'traffic_save_btn';
+
+var traffic_save_btn_text = new fabric.IText('Save', {
+  fontFamily: 'arial black',
+  fontSize: 20,
+  left: 165,
+  top: 510 ,
+  width: 100,
+  height: 50
+});
+traffic_save_btn_text.visible = false;
+traffic_save_btn_text.hasControls = traffic_save_btn_text.hasBorders = false;
+traffic_save_btn_text.lockMovementX = traffic_save_btn_text.lockMovementY = true;
+traffic_save_btn_text.id = 'traffic_save_btn_text';
+
+ArrayOfObjects.push(traffic_save_btn);
+ArrayOfObjects.push(traffic_save_btn_text);
+
+var traffic_input_name = new fabric.Rect({
+  left: 165,
+  top: 330,
+  fill: 'white',
+  stroke: 'black',
+  width: 250,
+  height: 50,
+  angle: 0
+});
+traffic_input_name.visible = false;
+traffic_input_name.hasControls = traffic_input_name.hasBorders = traffic_input_name.selectable = false;
+traffic_input_name.lockMovementX = traffic_input_name.lockMovementY = true;
+traffic_input_name.id = 'traffic_input_name';
+
+var traffic_input_name_text = new fabric.IText('Type your name...', {
+  fontFamily: 'arial black',
+  fontSize: 20,
+  left: 170,
+  top: 340 ,
+  width: 100,
+  height: 50
+});
+traffic_input_name_text.visible = false;
+traffic_input_name_text.hasControls = traffic_input_name_text.hasBorders = traffic_input_name_text.selectable = false;
+traffic_input_name_text.lockMovementX = traffic_input_name_text.lockMovementY = true;
+traffic_input_name_text.id = 'traffic_input_name_text';
+
+ArrayOfObjects.push(traffic_input_name);
+ArrayOfObjects.push(traffic_input_name_text);
+
+var traffic_input_address = new fabric.Rect({
+  left: 165,
+  top: 400,
+  fill: 'white',
+  stroke: 'black',
+  width: 275,
+  height: 75,
+  angle: 0
+});
+traffic_input_address.visible = false;
+traffic_input_address.hasControls = traffic_input_address.hasBorders = traffic_input_address.selectable = false;
+traffic_input_address.lockMovementX = traffic_input_address.lockMovementY = true;
+traffic_input_address.id = 'traffic_input_address';
+
+var traffic_input_address_text = new fabric.IText('The address...', {
+  fontFamily: 'arial black',
+  fontSize: 20,
+  left: 170,
+  top: 410 ,
+  width: 100,
+  height: 50
+});
+traffic_input_address_text.visible = false;
+traffic_input_address_text.hasControls = traffic_input_address_text.hasBorders = traffic_input_address_text.selectable = false;
+traffic_input_address_text.lockMovementX = traffic_input_address_text.lockMovementY = true;
+traffic_input_address_text.id = 'traffic_input_address_text';
+
+ArrayOfObjects.push(traffic_input_address);
+ArrayOfObjects.push(traffic_input_address_text);
 
 // DATE/TIME
 var icon_datetime;
@@ -1595,12 +1700,19 @@ canvas.add(UserPanel);
 canvas.add(sendKey);
 canvas.add(input_sendKey);
 canvas.add(post_sendKey);
-canvas.add(traffic_star2);
-canvas.add(traffic_star1);
 canvas.add(traffic_option_work);
 canvas.add(traffic_option_barber);
 canvas.add(traffic_option_moms);
 canvas.add(traffic_add_btn);
+canvas.add(traffic_save_btn);
+canvas.add(traffic_input_name);
+canvas.add(traffic_input_name_text);
+canvas.add(traffic_input_address);
+canvas.add(traffic_input_address_text);
+canvas.add(traffic_add_btn_text);
+canvas.add(traffic_save_btn_text);
+canvas.add(traffic_star2);
+canvas.add(traffic_star1);
 
 //************************************** Functions *******************************************
 canvas.on('object:selected', function(e) {
@@ -1610,6 +1722,7 @@ canvas.on('object:selected', function(e) {
   if(activeObject.id == 'home'){
     HomeSelected();
     canvas.deactivateAll();
+    CURRENT_USER.hideObjects();
   }
   else if(activeObject.id == 'LockKnobIn')
     UnlockDoorIn();
@@ -1652,20 +1765,14 @@ canvas.on('object:selected', function(e) {
     showSettings();
     canvas.deactivateAll();
   }
-  else if (activeObject.id == "user_panel")
-    showSendKey();
-  else if (activeObject.id == "sendKey")
-    showInputSendKey();
-  else if(activeObject.id == "input_send_key")
-    showPostSendKey();
   else if (activeObject.id == "settings_traffic")
-    showTrafficInitAdd();
-  else if (activeObject.id == "traffic_init_add")
+    showTrafficSettings();
+  else if (activeObject.id == "traffic_add_btn" || activeObject.id == "traffic_add_btn_text")
     showTrafficInputAdd();
-  else if (activeObject.id == "traffic_input_add")
-    showTrafficPostAdd();
+  else if (activeObject.id == "traffic_save_btn" || activeObject.id == "traffic_save_btn_text")
+    saveTrafficOption();
   else if(activeObject.id == "traffic_star1" || activeObject.id == "traffic_star2")
-    toggleTrafficPrimary();
+    toggleTrafficPrimary(activeObject.id);
 
   if(activeObject.id == 'mirror')
     {
