@@ -503,6 +503,7 @@ fabric.Image.fromURL('images/home.gif', function(oImg) {
   oImg.id = 'home';
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.visible = false;
   icon_home = oImg;
   ArrayOfObjects.push(icon_home);
   canvas.add(icon_home);
@@ -512,7 +513,7 @@ var Line = new fabric.Line([100, 310, 460, 310], {
   lfill: 'black',
   stroke: 'black',
   strokeWidth: 0.5,
-  //selectable: true
+  visible: false
 });
 Line.selectable = false;
 ArrayOfObjects.push(Line);
