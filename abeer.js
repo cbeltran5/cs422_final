@@ -481,13 +481,12 @@ function GetOriginalCoordinate(){
 //-------------------------------------------------------------
 function ResetCoordinates()
 {
-  if (counter >= 1)
-  {
-  for (var i = 0; i < ArrayOfObjects.length; ++i) {
-    ArrayOfObjects[i].top = OriginalObjCoordinate[i];
-    ArrayOfObjects[i].setCoords();
+  if (counter >= 1) {
+    for (var i = 0; i < ArrayOfObjects.length; ++i) {
+      ArrayOfObjects[i].top = OriginalObjCoordinate[i];
+      ArrayOfObjects[i].setCoords();
+    }
   }
-}
   canvas.renderAll();
 }
 

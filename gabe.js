@@ -391,7 +391,6 @@ function ShowHomeButtonAndLine() {
   Line.visible = true;
 }
 
-
 function HideHomeButtonAndLine() {
   // show home button
   if(homebutton == null){
@@ -411,8 +410,7 @@ function ResetHeightRadioToDefault() {
 function LoadUserData_Inside(index ) {
   if(!heightsenabled)
     HeightsRadioButtons_ENABLE();   // enable radio buttons
-    HeightsRadioButtons_ENABLE();
-    ResetCoordinates();
+  
   ShowHomeButtonAndLine();
   
   console.log("LoadUserData_Inside(" + index + ")");
