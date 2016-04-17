@@ -11,8 +11,6 @@ function F2C(F) {
   return (F - 32) * 5 / 9;
 }
 
-
-
 function TodoList() {
 
 }
@@ -221,6 +219,7 @@ function Registered_Users() {
     this.users.splice(id,1);
     this.length--;
   }
+  
   this.removeUserByName = function( firstname, lastname) {
     var l = RegisteredUsers.length;
     for(var i=0; i < l; i++) {
@@ -233,18 +232,16 @@ function Registered_Users() {
   }
 
   this.hideAllUsersObjects = function() {
-    for(var i=0; i < this.users.length; i++)
-      {
-        console.log(i);
-        this.users[i].hideObjects();
-      }
+    for(var i=0; i < this.users.length; i++){
+      console.log(i);
+      this.users[i].hideObjects();
+    }
   }
 
   this.addUser = function(user) {
     this.users.push(user);
     this.length++;
   }
-
 }
 
 var RegisteredUsers = new Registered_Users();
@@ -308,11 +305,10 @@ function User(firstname, lastname, language) {
     console.log("Removing user with id " + this.id);
     RemoveFromRadioChoices(this.id);
     RegisteredUsers.removeUserByID(this.id);
-    for(var i =0; i < RegisteredUsers.length; i++)
-      {
-        console.log(RegisteredUsers.at(i));
-        RegisteredUsers.at(i).id = i;
-      }
+    for(var i =0; i < RegisteredUsers.length; i++){
+      console.log(RegisteredUsers.at(i));
+      RegisteredUsers.at(i).id = i;
+    }
   }
   AddUserToRadioChoices(this.firstname + " " + this.lastname, this.id);
 }
@@ -327,7 +323,6 @@ function RemoveFromRadioChoices(id) {
   var outside = document.getElementById(RADIO_ID_UFO);
   inside.removeChild(inside.children[remove]);
   outside.removeChild(outside.children[remove]);
-
 }
 
 function AddUserToRadioChoices( name , value) {
@@ -398,7 +393,6 @@ function HideHomeButtonAndLine() {
   }
   homebutton.visible = false;
   Line.visible = false;
-
 }
 
 function ResetHeightRadioToDefault() {
