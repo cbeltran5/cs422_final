@@ -83,8 +83,9 @@ function HomeSelected()
 //-------------------------------------------------------------
 function ShowHome()
 {
-  HideUser1FromInside();
-  HideUser2FromInside();
+//  HideUser1FromInside();
+//  HideUser2FromInside();
+  RegisteredUsers.hideAllUsersObjects();
   HideUsersList();
   CloseCamera();
   HideMirror();
@@ -92,10 +93,15 @@ function ShowHome()
   HideLights();
   HideTransport();
   HideNews();
-
+  CloseThemeSettings();
   HomeIsActive = true;
   PanelRect.visible = true;
-
+  
+//  if(CURRENT_USER != null)
+//  {
+//    CURRENT_USER.hideObjects();
+//  }
+//  
   for (var i = 0; i < canvas.getObjects().length; ++i)
   {
     if (canvas.item(i).id == 'messages' || canvas.item(i).id == 'camera'   ||
@@ -132,7 +138,8 @@ function HideHome()
   CloseCamera();
 
   PanelRect.visible = false;
-
+  
+  
   for (var i = 0; i < canvas.getObjects().length; ++i)
   {
     if (canvas.item(i).id == 'messages' || canvas.item(i).id == 'camera'   ||
@@ -356,7 +363,6 @@ function HideUsersList()
       if (canvas.item(i).id == 'userslist' ||
           canvas.item(i).id == 'user1name' ||
           canvas.item(i).id == 'user2name')
-
         canvas.item(i).visible = false;
     }
 }
@@ -364,29 +370,34 @@ function HideUsersList()
 //----------------------------------------------------------
 function NewUserFromInside()
 {
-  HideHome();
-  HideUser1FromInside();
-  HideUser2FromInside();
+    HideHome();
+//  HideUser1FromInside();
+//  HideUser2FromInside();
+    RegisteredUsers.hideAllUsersObjects();
+
   HideUsersList();
   LockDoorIn();
   LockDeadbolt();
 }
 
 //-------------------------------------------------------------
-function NoUserFromInside()
+function NoSignalFromInside()
 {
+  console.log("NoSignalFromInside()");
   CURRENT_USER = null;
+
+  HideHomeButtonAndLine();
+  
   HideHome();
-  HideUser1FromInside();
-  HideUser2FromInside();
+//  HideUser1FromInside();
+//  HideUser2FromInside();
+  RegisteredUsers.hideAllUsersObjects();
   HideUsersList();
   LockDoorIn();
   LockDeadbolt();
   LockDeadbolt();
-  ResetCoordinates();
-  document.getElementsByName('Heights')[0].disabled = true;
-  document.getElementsByName('Heights')[1].disabled = true;
-  document.getElementsByName('Heights')[2].disabled = true;
+  //ResetCoordinates();
+  HeightsRadioButtons_DISABLE();
 }
 
 //-------------------------------------------------------------
@@ -491,6 +502,8 @@ function User1FromOutside()
 //-------------------------------------------------------------
 function NewUserFromOutside()
 {
+  HeightsRadioButtons_ENABLE(); // gabe
+  
   ResetDoorFromOutside();
   TriggerDoorFromOutside();
   FailedVerification();
@@ -597,11 +610,11 @@ function RunInsideCameraAvatar()
         repeat: 'repeat'
     });});
 
-  fabric.util.loadImage('images/DoorpatternOut.gif', function (img) {
-    outsideDoor.setPatternFill({
-        source: img,
-        repeat: 'repeat'
-    });});
+  //fabric.util.loadImage('images/DoorpatternOut.gif', function (img) {
+   // outsideDoor.setPatternFill({
+    //    source: img,
+   //     repeat: 'repeat'
+   // });});
 
 }
 
@@ -648,17 +661,56 @@ function CloseCamera()
   AvatarOnOff.visible = false;
   LiveOnOff.visible = false;
 
-  fabric.util.loadImage('images/Doorpattern.gif', function (img) {
-    insideDoor.setPatternFill({
-        source: img,
-        repeat: 'repeat'
-    });});
-
-  fabric.util.loadImage('images/DoorpatternOut.gif', function (img) {
-    outsideDoor.setPatternFill({
-        source: img,
-        repeat: 'repeat'
-    });
-  });
+  SetDoorTheme();
 }
 //-------------------------------------------------------------
+function SetDoorTheme()
+{
+  if( In_theme == 'default')
+    fabric.util.loadImage('images/Doorpattern.gif', function (img) {
+    insideDoor.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+    });});
+
+  else if ( In_theme == 'Wood')
+    fabric.util.loadImage('images/wooddoor.jpg', function (img) {
+    img.id = 'Wood';
+    insideDoor.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+    }); });
+
+  else if ( In_theme == 'Metal')
+    fabric.util.loadImage('images/metal.jpg', function (img) {
+    img.id = 'Metal';
+    insideDoor.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+    }); });
+
+  if( Out_theme == 'default')
+    fabric.util.loadImage('images/DoorpatternOut.gif', function (img) {
+    outsideDoor.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+    });});
+
+  else if ( Out_theme == 'Wood')
+    fabric.util.loadImage('images/wooddoor.jpg', function (img) {
+    img.id = 'Wood';
+    outsideDoor.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+    }); });
+
+  else if ( Out_theme == 'Metal')
+    fabric.util.loadImage('images/metal.jpg', function (img) {
+    img.id = 'Metal';
+    outsideDoor.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+    }); });
+
+
+}

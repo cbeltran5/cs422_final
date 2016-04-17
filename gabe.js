@@ -188,6 +188,7 @@ function UpdateText() {
   Emergtext.text = EMERGENCY[syslang];
   Settingstext.text = SETTINGS[syslang];
   Deadbolttext.text = DEADBOLT[syslang];
+
   UsersText.text = USERS[syslang];
   LanguageText.text = LANGUAGE[syslang];
   TrafficText.text = TRAFFIC[syslang];
@@ -202,6 +203,7 @@ function UpdateText() {
   traffic_add_btn_text.text = ADD[syslang];
   traffic_input_address_text.text = INPUT_ADDRESS[syslang];
   traffic_input_name_text.text = INPUT_NAME[syslang];
+
 }
 /***********************************************************************
                            END OF DATE AND TIME
@@ -209,8 +211,7 @@ function UpdateText() {
 
 function Registered_Users() {
   this.users = [];
-
-  this.lenth = 0;
+  this.length = 0;
 
   this.at = function(index) {
     return this.users[index];
@@ -218,22 +219,30 @@ function Registered_Users() {
 
   this.removeUserByID = function (id) {
     this.users.splice(id,1);
+    this.length--;
   }
   this.removeUserByName = function( firstname, lastname) {
     var l = RegisteredUsers.length;
     for(var i=0; i < l; i++) {
       if(this.users[i].lastname == lastname && this.users[i].firstname == firstname){
         this.users[i].splice(i,1);
-        this.lenth--;
+        this.length--;
         break;
       }
     }
   }
 
+  this.hideAllUsersObjects = function() {
+    for(var i=0; i < this.users.length; i++)
+      {
+        console.log(i);
+        this.users[i].hideObjects();
+      }
+  }
+
   this.addUser = function(user) {
     this.users.push(user);
-    this.lenth++;
-
+    this.length++;
   }
 
 }
@@ -296,8 +305,14 @@ function User(firstname, lastname, language) {
   RegisteredUsers.addUser(this);
 
   this.RemoveFromRegisteredUsers = function() {
+    console.log("Removing user with id " + this.id);
     RemoveFromRadioChoices(this.id);
     RegisteredUsers.removeUserByID(this.id);
+    for(var i =0; i < RegisteredUsers.length; i++)
+      {
+        console.log(RegisteredUsers.at(i));
+        RegisteredUsers.at(i).id = i;
+      }
   }
   AddUserToRadioChoices(this.firstname + " " + this.lastname, this.id);
 }
@@ -341,17 +356,69 @@ function AddUserToRadioChoices( name , value) {
   UsersFromOutside.appendChild(label2);
 }
 
+var heightsenabled = false;
+function HeightsRadioButtons_DISABLE() {
+  heightsenabled = false;
+  document.getElementsByName('Heights')[0].disabled = true; //
+  document.getElementsByName('Heights')[1].disabled = true; // all by abeer
+  document.getElementsByName('Heights')[2].disabled = true; //
+}
+function HeightsRadioButtons_ENABLE() {
+  heightsenabled = true;
+  document.getElementsByName('Heights')[0].disabled = false;  //
+  document.getElementsByName('Heights')[1].disabled = false;  // interpreted from abeers code
+  document.getElementsByName('Heights')[2].disabled = false;  //
+}
+
 var CURRENT_USER = null;
+
+var homebutton = null;
+function getObjectWithId(id) {
+  for (var i = 0; i < canvas.getObjects().length; ++i){
+    if (canvas.item(i).id == id) {
+      return canvas.item(i);
+    }
+  }
+}
+
+
+function ShowHomeButtonAndLine() {
+  // show home button
+  if(homebutton == null){
+    homebutton = getObjectWithId('home');
+  }
+  homebutton.visible = 'true';
+  Line.visible = true;
+}
+
+
+function HideHomeButtonAndLine() {
+  // show home button
+  if(homebutton == null){
+    homebutton = getObjectWithId('home');
+  }
+  homebutton.visible = false;
+  Line.visible = false;
+
+}
+
 function LoadUserData_Inside(index ) {
+  if(!heightsenabled)
+    HeightsRadioButtons_ENABLE();   // enable radio buttons
+
+  ShowHomeButtonAndLine();
+
+
   console.log("LoadUserData_Inside(" + index + ")");
-  CURRENT_USER = RegisteredUsers.at(index)
+  CURRENT_USER = RegisteredUsers.at(index);
   console.log("Now Loading data for " + CURRENT_USER.getFullName() );
 
   var i;
   HideHome();
   HideUsersList();
-  HideUser1FromInside();
-  HideUser2FromInside();
+  //HideUser1FromInside();
+  //HideUser2FromInside();
+  RegisteredUsers.hideAllUsersObjects();
   HideUsersList();
   CloseCamera();
   HideMirror();
@@ -360,9 +427,6 @@ function LoadUserData_Inside(index ) {
   HideTransport();
   HideNews();
 
-  for(i=0; i< RegisteredUsers.length; i++) {
-    RegisteredUsers.at(i).hideObjects();
-  }
 
   RegisteredUsers.at(index).showObjects();
 
@@ -370,7 +434,7 @@ function LoadUserData_Inside(index ) {
   In_theme = RegisteredUsers.at(index).in_theme;
   In_ornament = RegisteredUsers.at(index).in_ornament;
   Out_theme = RegisteredUsers.at(index).out_theme;
-  Out_ornament = RegisteredUsers.at(i).out_ornament;
+  Out_ornament = RegisteredUsers.at(index).out_ornament;
 
   Date_format = RegisteredUsers.at(index).date_format;
   Time_format = RegisteredUsers.at(index).time_format;
@@ -387,6 +451,10 @@ function MultiUsersOutside() {
   console.log("MultiUsersFromOutside not yet implemented. On Todo List in gabe.js");
 }
 
+
+function DateTime_Settings() {
+
+}
 
 
 

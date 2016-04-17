@@ -66,7 +66,7 @@
       <code>
       <form> Users:<br>
         <div id = "UsersFromInside">
-          <label for="NoSignalInside"><input type="radio" class="radio1" name="UsersIn" onchange="NoUserFromInside()" value="NoSignal" checked> No Signal<br></label>
+          <label for="NoSignalInside"><input type="radio" class="radio1" name="UsersIn" onchange="NoSignalFromInside()" value="NoSignal" checked> No Signal<br></label>
           <label for="UnknownPersonInside"><input type="radio" class="radio1" name="UsersIn" onchange="NewUserFromInside()" value="NewUser"> Unknown Person<br></label>
           <label for="MultiUserInside"><input type="radio" class="radio1" name="UsersIn" onchange="MultiUsersFromInside()" value="MultiUser"> Multiple People<br></label>
         </div>
@@ -192,13 +192,14 @@ var counter = 0;
 
 //************************************ Users Profiles ***************************************
 
-var User1 = new User('Gabe', 'Mendoza', ENGLISH);
-var User2 = new User('Enrique', 'Vaca', SPANISH);
-var User3 = new User('Adam', 'Porter', ENGLISH);
-var User4 = new User('Sara', 'Parker', ENGLISH);
-var User5 = new User('Carlos', 'Beltran', SPANISH);
+var User0 = new User('Gabe', 'Mendoza', ENGLISH);
+var User1 = new User('Enrique', 'Vaca', SPANISH);
+var User2 = new User('Adam', 'Porter', ENGLISH);
+var User3 = new User('Sara', 'Parker', ENGLISH);
+var User4 = new User('Carlos', 'Beltran', SPANISH);
+var User5 = new User('Some','Person', ENGLISH);
+
 User5.RemoveFromRegisteredUsers();
-var User6 = new User('Some','Person', ENGLISH);
 
 //*******************************************************************************************
 
@@ -356,8 +357,6 @@ fabric.Image.fromURL('images/unlockdeadbolt.png', function(oImg) {
   canvas.add(deadbolt_unlocked);
 });
 
-
-
 var doorknob_outside_blank;
 fabric.Image.fromURL('images/knob.png', function(oImg) {
   oImg.set({left: 1480, top: 1030, id: this.id});
@@ -454,7 +453,7 @@ fabric.Image.fromURL('images/user2todo.gif', function(oImg) {
   todo_list_user2 = oImg;
   ArrayOfObjects.push(todo_list_user2);
   canvas.add(todo_list_user2);
-  User1.addObject(todo_list_user2);
+  User2.addObject(todo_list_user2);
 });
 
 
@@ -1051,7 +1050,7 @@ fabric.Image.fromURL('images/Settings/language.gif', function(oImg) {
 });
 
 var LanguageText = new fabric.Text(LANGUAGE[syslang], {
-  left: 95,
+  left: 84,
   top: 475,
   fontFamily: 'Times',
   fontSize: 15
@@ -1343,7 +1342,7 @@ fabric.Image.fromURL('images/Settings/datetime.gif', function(oImg) {
 });
 
 var DatetimeText = new fabric.Text(DATE_TIME[syslang], {
-  left: 175,
+  left: 160,
   top: 475,
   fontFamily: 'Times',
   fontSize: 15
@@ -1646,6 +1645,331 @@ fabric.Image.fromURL('images/numberpad.gif', function(oImg) {
   canvas.add(icon_number_pad);
 });
 
+//------------------------------- Themes components --------------------------------
+var ActiveSide = "Inside";
+
+var InsideText = new fabric.Text("Inside", {
+  left: 180,
+  top: 330,
+  fontFamily: 'Times',
+  fontSize: 25,
+  opacity: 1
+});
+InsideText.setColor('black');
+InsideText.selectable = true;
+InsideText.visible = false;
+InsideText.hasControls = InsideText.hasBorders = false;
+InsideText.lockMovementX = InsideText.lockMovementY = true;
+ArrayOfObjects.push(InsideText);
+
+
+var OutsideText = new fabric.Text("Outside", {
+  left: 310,
+  top: 330,
+  fontFamily: 'Times',
+  fontSize: 25,
+  opacity: 0.3
+});
+OutsideText.setColor('black');
+OutsideText.selectable = true;
+OutsideText.visible = false;
+OutsideText.hasControls = OutsideText.hasBorders = false;
+OutsideText.lockMovementX = OutsideText.lockMovementY = true;
+ArrayOfObjects.push(OutsideText);
+
+var ThemesDroplist = new fabric.Text('  Themes         ', { 
+  backgroundColor: 'lightgrey',
+  borderColor: 'black',
+  fontFamily: 'Times',
+  fontSize: 23,
+  padding: 5,
+  left: 135, 
+  top: 365 ,
+  width: 150,
+  height: 50
+});
+ThemesDroplist.selectable = true;
+ThemesDroplist.visible = false;
+ThemesDroplist.hasBorders = true;
+ThemesDroplist.hasControls =  false;
+ThemesDroplist.lockMovementX = ThemesDroplist.lockMovementY = true;
+ArrayOfObjects.push(ThemesDroplist);
+
+
+var OrnamentDroplist = new fabric.Text('  Ornaments    ', { 
+  backgroundColor: 'lightgrey',
+  borderColor: 'black',
+  fontFamily: 'Times',
+  fontSize: 23,
+  padding: 5,
+  left: 285, 
+  top: 365 ,
+  width: 150,
+  height: 50
+});
+OrnamentDroplist.selectable = true;
+OrnamentDroplist.visible = false;
+OrnamentDroplist.hasBorders = true;
+OrnamentDroplist.hasControls =  false;
+ThemesDroplist.lockMovementX = OrnamentDroplist.lockMovementY = true;
+ArrayOfObjects.push(OrnamentDroplist);
+
+
+var WoodText = new fabric.Text('  Wood            ', { 
+  backgroundColor: 'white',
+  fontFamily: 'Times',
+  fontSize: 23,
+  padding: 5,
+  left: 135, 
+  top: 400 ,
+  width: 150,
+  height: 50
+});
+WoodText.selectable = true;
+WoodText.visible = false;
+WoodText.hasBorders = false;
+WoodText.hasControls =  false;
+WoodText.lockMovementX = WoodText.lockMovementY = true;
+ArrayOfObjects.push(WoodText);
+
+var MetalText = new fabric.Text('  Metal            ', { 
+  backgroundColor: 'white',
+  fontFamily: 'Times',
+  fontSize: 23,
+  padding: 5,
+  left: 135, 
+  top: 430 ,
+  width: 150,
+  height: 50
+});
+MetalText.selectable = true;
+MetalText.visible = false;
+MetalText.hasBorders = false;
+MetalText.hasControls =  false;
+MetalText.lockMovementX = MetalText.lockMovementY = true;
+ArrayOfObjects.push(MetalText);
+
+var XmassText = new fabric.Text('  Xmass           ', { 
+  backgroundColor: 'white',
+  fontFamily: 'Times',
+  fontSize: 23,
+  padding: 5,
+  left: 285, 
+  top: 400 ,
+  width: 150,
+  height: 50
+});
+XmassText.selectable = true;
+XmassText.visible = false;
+XmassText.hasBorders = false;
+XmassText.hasControls =  false;
+XmassText.lockMovementX = XmassText.lockMovementY = true;
+ArrayOfObjects.push(XmassText);
+
+var EasterText = new fabric.Text('  Easter            ', { 
+  backgroundColor: 'white',
+  fontFamily: 'Times',
+  fontSize: 23,
+  padding: 5,
+  left: 285, 
+  top: 430 ,
+  width: 150,
+  height: 50
+});
+EasterText.selectable = true;
+EasterText.visible = false;
+EasterText.hasBorders = false;
+EasterText.hasControls =  false;
+EasterText.lockMovementX = EasterText.lockMovementY = true;
+ArrayOfObjects.push(EasterText);
+
+var ResetTheme = new fabric.Text('  Reset  ', { 
+  backgroundColor: 'lightgrey',
+  fontFamily: 'Times',
+  fontSize: 23,
+  padding: 5,
+  left: 235, 
+  top: 470 ,
+  width: 150,
+  height: 50
+});
+ResetTheme.selectable = true;
+ResetTheme.visible = false;
+ResetTheme.hasBorders = false;
+ResetTheme.hasControls =  false;
+ResetTheme.lockMovementX = ResetTheme.lockMovementY = true;
+ArrayOfObjects.push(ResetTheme);
+
+var EasterOrn;
+fabric.Image.fromURL('images/easter.gif', function(oImg) {
+  oImg.set({left: 1750, top: 100, id: this.id});
+  oImg.visible = false;
+  oImg.scale(1.1);
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'easter';
+  EasterOrn = oImg;
+  canvas.add(EasterOrn);
+});
+
+var XmassOrn;
+fabric.Image.fromURL('images/xmass.gif', function(oImg) {
+  oImg.set({left: 1750, top: 100, id: this.id});
+  oImg.visible = false;
+  oImg.scale(1.1);
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'easter';
+  XmassOrn = oImg;
+  canvas.add(XmassOrn);
+});
+
+//---------------------- theme function -----------------------
+function ShowThemeSettings()
+{
+  InsideText.visible = true;
+  OutsideText.visible = true;
+  ThemesDroplist.visible = true;
+  OrnamentDroplist.visible = true;
+  WoodText.visible = true;
+  MetalText.visible = true;
+  XmassText.visible = true;
+  EasterText.visible = true;
+  ResetTheme.visible = true;
+  WoodText.backgroundColor = 'white';
+  MetalText.backgroundColor = 'white';
+  XmassText.backgroundColor = 'white';
+  EasterText.backgroundColor = 'white';
+}
+
+function CloseThemeSettings()
+{
+  InsideText.visible = false;
+  OutsideText.visible = false;
+  ThemesDroplist.visible = false;
+  OrnamentDroplist.visible = false;
+  WoodText.visible = false;
+  MetalText.visible = false;
+  XmassText.visible = false;
+  EasterText.visible = false;
+  ResetTheme.visible = false;
+}
+
+InsideText.on('mousedown', function ()
+{
+  WoodText.backgroundColor = 'white';
+  MetalText.backgroundColor = 'white';
+  XmassText.backgroundColor = 'white';
+  EasterText.backgroundColor = 'white';
+  InsideText.setOpacity(1);
+  OutsideText.setOpacity(0.3);
+  ActiveSide = "Inside";
+});
+
+OutsideText.on('mousedown', function ()
+{
+  WoodText.backgroundColor = 'white';
+  MetalText.backgroundColor = 'white';
+  XmassText.backgroundColor = 'white';
+  EasterText.backgroundColor = 'white';
+  InsideText.setOpacity(0.3);
+  OutsideText.setOpacity(1);
+  ActiveSide = "Outside";
+});
+//------------------------------------------------------
+WoodText.on('mousedown', function ()
+{
+  MetalText.backgroundColor = 'white';
+  WoodText.backgroundColor = '#85C1E9';
+
+  if(ActiveSide == "Inside")
+    {
+      In_theme = 'Wood';
+      fabric.util.loadImage('images/wooddoor.jpg', function (img) {
+      img.id = 'Wood';
+      insideDoor.setPatternFill({
+      source: img,
+      repeat: 'repeat'
+      }); });
+    }
+
+  else if(ActiveSide == "Outside")
+    {
+      Out_theme = 'Wood';
+      fabric.util.loadImage('images/wooddoor.jpg', function (img) {
+      img.id = 'Wood';
+      outsideDoor.setPatternFill({
+      source: img,
+      repeat: 'repeat'
+      }); });
+    }
+});
+
+//------------
+MetalText.on('mousedown', function ()
+{
+  MetalText.backgroundColor = '#85C1E9';
+  WoodText.backgroundColor = 'white';
+  if(ActiveSide == "Inside")
+  {
+    In_theme = 'Metal'; 
+    fabric.util.loadImage('images/metal.jpg', function (img) {
+    img.id = 'Metal';
+    insideDoor.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+    }); });
+  }
+
+  else if(ActiveSide == "Outside")
+  {
+     Out_theme = 'Metal';
+     fabric.util.loadImage('images/metal.jpg', function (img) {
+     img.id = 'Metal';
+     outsideDoor.setPatternFill({
+     source: img,
+     repeat: 'repeat'
+     }); });
+   }
+
+});
+//----------------
+XmassText.on('mousedown', function ()
+{
+  XmassText.backgroundColor = '#85C1E9';
+  EasterText.backgroundColor = 'white';
+  XmassOrn.visible = true;
+  EasterOrn.visible = false;
+});
+
+EasterText.on('mousedown', function ()
+{
+  XmassText.backgroundColor = 'white';
+  EasterText.backgroundColor = '#85C1E9';
+  XmassOrn.visible = false;
+  EasterOrn.visible = true;
+});
+//----------
+ResetTheme.on('mousedown', function ()
+{
+  In_theme = 'default';
+  Out_theme = 'default';
+  XmassOrn.visible = false;
+  EasterOrn.visible = false;
+
+fabric.util.loadImage('images/Doorpattern.gif', function (img) {
+    insideDoor.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+    });});
+
+fabric.util.loadImage('images/DoorpatternOut.gif', function (img) {
+    outsideDoor.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+    });});
+});
+
 //********************************************************************************************
 function init_traffic_stuff() {
 
@@ -1714,6 +2038,18 @@ canvas.add(traffic_save_btn_text);
 canvas.add(traffic_star2);
 canvas.add(traffic_star1);
 
+
+//For themes texts and components
+canvas.add(InsideText);
+canvas.add(OutsideText);
+canvas.add(ThemesDroplist);
+canvas.add(OrnamentDroplist);
+canvas.add(WoodText);
+canvas.add(MetalText);
+canvas.add(XmassText);
+canvas.add(EasterText);
+canvas.add(ResetTheme);
+
 //************************************** Functions *******************************************
 canvas.on('object:selected', function(e) {
   var activeObject = e.target;
@@ -1774,6 +2110,11 @@ canvas.on('object:selected', function(e) {
   else if(activeObject.id == "traffic_star1" || activeObject.id == "traffic_star2")
     toggleTrafficPrimary(activeObject.id);
 
+  else if (activeObject.id == "settings_themes")
+  {
+    hideSettings();
+    ShowThemeSettings();
+  }
   if(activeObject.id == 'mirror')
     {
       MirrorSelected();
