@@ -100,6 +100,7 @@ function ShowHome(){
   HideUserSettings();
   HideUserData();
   Hide911();
+  HideVideoTour();
   PanelRect.visible = true;
   icon_settings.selectable = true;
 
@@ -156,6 +157,7 @@ function HideHome()
   if(LanguageSettingIsActive == true)
   HideLangaugeSetting();
   Hide911();
+  HideVideoTour();
   
   PanelRect.visible = false;
   

@@ -58,6 +58,11 @@
     <!-- but keep the same aspect ratio -->
     <!-- we will use width="2714" height="2200" for presentations and evaluation -->
 	<!-- <canvas id="c" width="494" height="400" style="border:2px solid black;" ></canvas> -->
+
+  <video id="video1" style="display: none">
+  <source src="tutorial.mp4">
+  </video>
+
     <canvas id="c" width="2714" height="2200" style="border:2px solid black;" ></canvas>
     <section>
     <h1>Inside Events</h1>
@@ -2938,7 +2943,110 @@ function Run911Call()
 
 
 }
+// ------------------- vidoe tutorial ----------------
 
+var VideoElement1 = document.getElementById('video1');
+var video1 = new fabric.Image(VideoElement1, {
+  left: 150,
+  top: 312,
+  width: 250,
+  height: 200,
+});
+video1.visible = false;
+video1.hasControls = video1.hasBorders = video1.selectable = false;
+video1.lockMovementX = video1.lockMovementY = true;
+
+fabric.Image.fromURL('images/play.gif', function(oImg) {
+  oImg.set({left: 547, top: 1152, borderColor: 'silver', id: this.id});
+  oImg.hasControls = false;
+  oImg.hasBorders = false;
+  oImg.lockMovementY = true;
+  oImg.lockMovementX = true;
+  oImg.visible = false;
+  oImg.scale(0.55);
+  oImg.id = 'play';
+  canvas.add(oImg);
+  });
+
+fabric.Image.fromURL('images/pause.gif', function(oImg) {
+  oImg.set({left: 547, top: 1152, borderColor: 'silver', id: this.id});
+  oImg.hasControls = false;
+  oImg.hasBorders = false;
+  oImg.lockMovementY = true;
+  oImg.lockMovementX = true;
+  oImg.visible = false;
+  oImg.scale(0.55);
+  oImg.id = 'pause';
+  canvas.add(oImg);
+  });
+
+
+function ShowVideoTour()
+{
+  hideSettings();
+  video1.visible = true;
+  for (var i = 0; i < canvas.getObjects().length; ++i) 
+  { 
+    if (canvas.item(i).id == 'play') 
+    {
+      canvas.item(i).visible = true;
+    }
+    
+    
+  }
+
+}
+
+function HideVideoTour()
+{
+  video1.visible = false;
+  for (var i = 0; i < canvas.getObjects().length; ++i) 
+  { 
+    if (canvas.item(i).id == 'play' || canvas.item(i).id == 'pause' ) 
+    {
+      canvas.item(i).visible = false;
+    }
+    
+  }
+
+}
+
+function play()
+{
+  video1.getElement().play();
+
+  for (var i = 0; i < canvas.getObjects().length; ++i) 
+  { 
+    if (canvas.item(i).id == 'play') 
+    {
+      canvas.item(i).visible = false;
+    }
+    else if (canvas.item(i).id == 'pause') 
+    {
+      canvas.item(i).visible = true;
+    }
+
+    
+  }
+}
+
+function pause()
+{
+  video1.getElement().pause();
+  for (var i = 0; i < canvas.getObjects().length; ++i) 
+  { 
+    if (canvas.item(i).id == 'pause') 
+    {
+      canvas.item(i).visible = false;
+    }
+    else if (canvas.item(i).id == 'play') 
+    {
+      canvas.item(i).visible = true;
+    }
+
+    
+  }
+}
 //----------------------- All components for Language settings -------------------------
 
 var LangaugePanel = new fabric.Rect({
@@ -3464,7 +3572,7 @@ canvas.add(TimeFormat1);
 canvas.add(TimeFormat2);
 canvas.add(SaveDateTimeFormatButton);
 
-
+canvas.add(video1);
 //************************************** Functions *******************************************
 canvas.on({
   'object:moving': function(e) {
@@ -3666,6 +3774,17 @@ canvas.on({
     else if(activeObject.id == 'settings_language') {
       ShowLangaugeSetting();
       LanguageSettingIsActive = true;
+    }
+    else if(activeObject.id == 'settings_intercom') {
+      ShowVideoTour();
+    }
+
+    else if(activeObject.id == 'play') {
+      play();
+    }
+
+    else if(activeObject.id == 'pause') {
+      pause();
     }
 
     canvas.deactivateAll();
