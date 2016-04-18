@@ -251,6 +251,15 @@ function Registered_Users() {
     this.users.push(user);
     this.length++;
   }
+  
+  this.verifyPin = function(pin) {
+    for(var i=0; i< this.users.length; i++){
+      if(this.users[i].pin == pin) {
+        return this.users[i].id; // return id of user if found.
+      }
+    }
+    return -1; // pin is not registered to a known user
+  }
 }
 
 var RegisteredUsers = new Registered_Users();
@@ -259,13 +268,13 @@ var RegisteredUsers = new Registered_Users();
 var userscounter = 0;
 // Created a User class to hold the personal information common to all users
 
-function User(firstname, lastname, language) {
+function User(firstname, lastname, language, pin) {
   this.id = userscounter++; // id is position in Registered Users array
   this.firstname = firstname;
   this.lastname = lastname;
-
+  this.pin = pin;
   this.language = language; // an int
-
+  
   this.date_format = DATE_MONTHDDYYYY;
   this.time_format = TIME_12HOUR;
 
@@ -290,7 +299,7 @@ function User(firstname, lastname, language) {
   this.getFullName = function () {
     return this.firstname + " " + this.lastname;
   }
-
+  
   this.myObjects = [];
   this.addObject = function(object) {
     object.id = this.id;
@@ -344,6 +353,7 @@ function RemoveFromRadioChoices(id) {
   outside.removeChild(outside.children[remove]);
 }
 
+
 function AddUserToRadioChoices( name , value) {
   var UsersFromInside = document.getElementById(RADIO_ID_UFI);
   var label = document.createElement("label");
@@ -356,7 +366,7 @@ function AddUserToRadioChoices( name , value) {
   label.appendChild(element);
   label.innerHTML += " " + name + '<br/>';
   UsersFromInside.appendChild(label);
-
+  
   var UsersFromOutside= document.getElementById(RADIO_ID_UFO);
   var label2 = document.createElement("label");
   var element2 = document.createElement("input");
@@ -477,9 +487,13 @@ function TriggerDoorFromOutside(){  //A user approached the door from outside
   }
 }
 
+var stepone = document.getElementsByName("verifyfirst");
+var steptwo = document.getElementsByName("verifysecond");
+var verify = document.getElementsByName("verify");
+
 function LoadUserData_Outside(index ) {
   console.log("LoadUserData_Outside() is not yet implemented. On Todo List in gabe.js");
-    for(var i=0; i <stepone.length; i++ ){
+  for(var i=0; i <stepone.length; i++ ){
     stepone[i].disabled = false;
     stepone[i].checked = false;
   }
@@ -539,9 +553,7 @@ function ShowVolumeSettings() {
   volumepanel.visible = true;
   volumeslider.visible = true;
 }
-var stepone = document.getElementsByName("verifyfirst");
-var steptwo = document.getElementsByName("verifysecond");
-var verify = document.getElementsByName("verify");
+
 
 function VerifyFirst(value) {
   console.log("first " + value);
@@ -576,16 +588,23 @@ function VerifySecond(value) {
 }
 
 function Verify(value) {
-  console.log("verify " + value);
+  console.log("Verify: " + value);
 }
 
 function NumberPadEvent() {
   console.log("NUMBERPAD");
-  var text = prompt("Please Enter your 4 digit pin", "0123");
-  if(text.length != 4){
+  var pin = prompt("Please Enter your 4 digit pin", "0123");
+  if(pin.length != 4){
     NumberPadEvent();
   }
-
+  else {
+    var id;
+    if((id = RegisteredUsers.verifyPin(pin)) != -1) {
+      console.log("VERIFIED. userID: " + id);
+      document.getElementsByName("UsersOut")[id + 3].checked = true;
+      LoadUserData_Outside(id);
+    }
+  }
 }
 
 

@@ -140,8 +140,8 @@
       <code>
       <form name="Verification"> Verification:<br>
         <div id="Verification2">
-          <label for="Success"><input type="radio" class="radio1"  name="verify" onchange="Verify(this.value)" id="success" value="None" disabled > Success<br></label>
-          <label for="Failure"><input type="radio" class="radio1" name="verify"  onchange="Verify(this.value)" id="failure" value="Phone/KeyFob" disabled> Fail<br></label>
+          <label for="Success"><input type="radio" class="radio1"  name="verify" onchange="Verify(this.value)" id="success" value="sucess" disabled > Success<br></label>
+          <label for="Failure"><input type="radio" class="radio1" name="verify"  onchange="Verify(this.value)" id="failure" value="fail" disabled> Fail<br></label>
         </div>
       </form>
       </code>
@@ -217,10 +217,10 @@ var UsersNames = [];
 
 //************************************ Users Profiles ***************************************
 
-var User0 = new User('Gabe', 'Mendoza', ENGLISH);
-var User1 = new User('Enrique', 'Vaca', SPANISH);
-var User2 = new User('Abeer','A.', ENGLISH);
-var User3 = new User('Carlos', 'Beltran', SPANISH);
+var User0 = new User('Gabe', 'Mendoza', ENGLISH, 2345);
+var User1 = new User('Enrique', 'Vaca', SPANISH, 8973);
+var User2 = new User('Abeer','A.', ENGLISH, 9876);
+var User3 = new User('Carlos', 'Beltran', SPANISH, 4985);
  
 
 
@@ -3068,12 +3068,10 @@ canvas.on({
       MessageBoxSelected();
       canvas.deactivateAll();
     }
-    
     else if(activeObject.id == 'messageBox'){
       HomeSelected();
       canvas.deactivateAll();
     }
-    
     else if(activeObject.id == 'accept'){
       AcceptSelected();
       canvas.deactivateAll();
