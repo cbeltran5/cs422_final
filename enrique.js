@@ -6,7 +6,19 @@
  var TransportIsActive = false;
  var NewsIsActive = false;
 
+function BringUpPrompt() {
+ var text = prompt("Please enter your name", "hello!");
+ console.log(text);
+}
 
+function AcceptSelected(){
+ AcceptIsActive = true; 
+ MessageHelloOutside.visible = true;
+ accept_button.visible = false;
+ MessageBox.visible = false;
+ //HomeSelected();
+   BringUpPrompt();
+}
 //------------------------------------------------------------- 
 function MessageBoxSelected(){
   if (MessagesIsActive == true)
@@ -31,7 +43,7 @@ function HideMessageBox(){
 // Line 2377
 
 //------------------------------------------------------------- 
-
+/*
 function AcceptSelected(){
   AcceptIsActive = true; 
   MessageHelloOutside.visible = true;
@@ -53,7 +65,7 @@ function HideMessageHelloOutside(){
   //accept_button.visible = false;
 }
 
-
+*/
 
 //-------------------------------------------------------------
 function MirrorSelected(){
