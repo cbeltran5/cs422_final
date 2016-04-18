@@ -2652,10 +2652,10 @@ function HideUserSettings()
 //********************************************************************************************
 //------------------------------ Volume ----------------  
 
-  var panelleft = 72;
-  var paneltop= 310;
-  var panelwidth = 410;
-  var panelheight = 200;
+  var panelleft = 72 + 20;
+  var paneltop= 350;
+  var panelwidth = 410 - 40;
+  var panelheight = 150;
 
 var volumepanel = new fabric.Rect({
   left: panelleft,
@@ -2666,33 +2666,33 @@ var volumepanel = new fabric.Rect({
   height: panelheight,
   angle: 0
 });
-volumepanel.visible = false;
+volumepanel.visible = true;
 volumepanel.hasControls = volumepanel.hasBorders = volumepanel.selectable = false;
 volumepanel.lockMovementX = volumepanel.lockMovementY = true;
   
 var volumebar = new fabric.Rect({
   left: panelleft + 50,
-  top: paneltop + 89,
+  top: paneltop + 64,
   fill: '#656565',
   stroke: 'darkgrey',
   width: panelwidth - 100,
   height: 20,
   angle: 0
 });
-volumebar.visible = false;
+volumebar.visible = true;
 volumebar.hasControls = volumebar.hasBorders = volumebar.selectable = false;
 volumebar.lockMovementX = volumebar.lockMovementY = true;
 
 var volumeslider = new fabric.Rect( {
   left: panelleft + 50,
-  top: paneltop + 75,
+  top: paneltop + 50,
   fill: 'white',
   stroke: 'darkgrey',
   width: 20,
   height: 50,
   angle: 0
 });
-volumeslider.visible = false;
+volumeslider.visible = true;
 volumeslider.hasControls = volumeslider.hasBorders = false;
 volumeslider.lockMovementY = true;
 
@@ -2907,6 +2907,10 @@ canvas.add(MetalText);
 canvas.add(XmassText);
 canvas.add(EasterText);
 canvas.add(ResetTheme);
+  
+canvas.add(volumepanel);
+canvas.add(volumebar);
+canvas.add(volumeslider);
 
 //************************************** Functions *******************************************
 canvas.on({
