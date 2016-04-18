@@ -223,6 +223,8 @@ function LoadLocks() {
       unlockdeadbolt = temp;
     } 
     else if(temp.id == 'knob'){
+      console.log("knob");
+      console.log(temp);
       knob = temp;
     }
   }
@@ -301,7 +303,7 @@ function UnlockDeadbolt(){
 //    else if (canvas.item(i).id == 'UnlockDeadbolt')
 //      canvas.item(i).visible = true;
 //  }
-   if(arelocksloaded == false) {
+  if(arelocksloaded == false) {
     LoadLocks();
   }
   lockdeadbolt.visible = false;

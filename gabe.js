@@ -546,7 +546,7 @@ function NoOneOutside() {
 
 function UnKnownPersonFromOutside() {
   TriggerDoorFromOutside();
-  console.log("UnknownPersonFromOutside not yet implemented. On Todo List in gabe.js");
+//  console.log("UnknownPersonFromOutside not yet implemented. On Todo List in gabe.js");
   for(var i=0; i<stepone.length; i++) {
       stepone[i].disabled = false;
       stepone[i].checked = false;
@@ -706,6 +706,8 @@ function NumberPadEvent() {
   }
   return id;
 }
+
+
 
 var langselected = null;
 function isLangSelected( obj) {
