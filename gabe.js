@@ -165,7 +165,7 @@ var THEME = ["Theme", "Tema"];
 var DATE_TIME = ["Date/Time", "Fecha/Tiempo"];
 var UNITS = ["Units", "Unidades"];
 var VOLUME = ["Volume", "Volumen"];
-var INTERCOM = ["Intercom", "Intercomunicador"];
+var INTERCOM = ["Intercom", "Intercom."];
 var ADD = ["Add", "Anadir"];
 var SAVE = ["Save", "Guardar"];
 var INPUT_NAME = ["Type your name...", "Escriba su nombre"];
@@ -214,7 +214,6 @@ function UpdateText() {
   traffic_input_name_text.text = INPUT_NAME[syslang];
   brightness_text.text = BRIGHTNESS[syslang];
   display_text.text = DISPLAY[syslang];
-  brightness_save_btn_text.text = SAVE[syslang];
   doorbell_cancel_btn_text.text = CANCEL[syslang];
   doorbell_save_btn_text.text = SAVE[syslang];
   doorbell_mute_option_text.text = MUTE[syslang];
@@ -258,7 +257,7 @@ function Registered_Users() {
     this.users.push(user);
     this.length++;
   }
-  
+
   this.verifyPin = function(pin) {
     for(var i=0; i< this.users.length; i++){
       if(this.users[i].pin == pin) {
@@ -280,7 +279,7 @@ function User(firstname, lastname, language, pin) {
   this.lastname = lastname;
   this.pin = pin;
   this.language = language; // an int
-  
+
   this.date_format = DATE_MONTHDDYYYY;
   this.time_format = TIME_12HOUR;
 
@@ -299,16 +298,16 @@ function User(firstname, lastname, language, pin) {
 
   this.brightness_pref = 1;
   this.display_timer_pref = "three";
-  
+
   this.vpercent = "50";
   this.sliderleft = 591;
-  
+
   this.doorbell_pref = "Ding";
 
   this.getFullName = function () {
     return this.firstname + " " + this.lastname;
   }
-  
+
   this.myObjects = [];
   this.addObject = function(object) {
     object.id = this.id;
@@ -324,20 +323,20 @@ function User(firstname, lastname, language, pin) {
       this.myObjects[i].visible = true;
     }
   }
-  
+
   this.myMessages = [];
   this.showMessages = function () {
     console.log("showMessages is not yet implemented. see gabe.js");
   }
-  
+
   this.hideMessages = function() {
     console.log("hideMessages is not yet implemented. see gabe.js");
   }
-  
+
   this.addMessage = function (msg) {
     this.myMessages.push(msg);
   }
-  
+
 
   RegisteredUsers.addUser(this);
 
@@ -377,7 +376,7 @@ function AddUserToRadioChoices( name , value) {
   label.appendChild(element);
   label.innerHTML += " " + name + '<br/>';
   UsersFromInside.appendChild(label);
-  
+
   var UsersFromOutside= document.getElementById(RADIO_ID_UFO);
   var label2 = document.createElement("label");
   var element2 = document.createElement("input");
@@ -429,7 +428,7 @@ function HideHomeButtonAndLine() {
   }
   homebutton.visible = false;
   Line.visible = false;
-  
+
 }
 
 function ResetHeightRadioToDefault() {
@@ -469,6 +468,7 @@ function LoadUserData_Inside(index) {
   HideVolumeSettings();
   HideLangaugeSetting();
   backbutton.visible = false;
+
   
 //>>>>>>> 8abc788b98fda319a20da301b55b73527e72e2be
   LanguageSettingIsActive = false;
@@ -492,7 +492,7 @@ function LoadUserData_Inside(index) {
   Date_format = RegisteredUsers.at(index).date_format;
   Time_format = RegisteredUsers.at(index).time_format;
   TemperatureUnits = RegisteredUsers.at(index).temerature_units;
-  
+
   UpdateText();
   UncheckHeight();
   SetDoorTheme();
@@ -508,7 +508,7 @@ function randomIntFromInterval(min,max)
 function TriggerDoorFromOutside(){  //A user approached the door from outside
   for (var i = 0; i < canvas.getObjects().length; ++i){
     if (canvas.item(i).id == 'doorbell' || canvas.item(i).id == 'writemsg' ||
-      canvas.item(i).id == 'LockKnobOut' || canvas.item(i).id == 'numberpad') 
+      canvas.item(i).id == 'LockKnobOut' || canvas.item(i).id == 'numberpad')
     {
       canvas.item(i).visible = true;
     }
@@ -539,7 +539,7 @@ function NoOneOutside() {
   verify[0].disabled = true;
   verify[1].checked = false;
   verify[1].disabled = true;
-  
+
   for (var i = 0; i < canvas.getObjects().length; ++i){
     if (canvas.item(i).id == 'doorbell' || canvas.item(i).id == 'writemsg'|| canvas.item(i).id == 'numberpad' || canvas.item(i).id == 'UnlockKnobOut' || canvas.item(i).id == 'LockKnobOut')
     {
@@ -560,14 +560,14 @@ function UnKnownPersonFromOutside() {
       steptwo[i].checked = false;
   }
   verify[0].checked = false;
-  verify[0].disabled = true; 
+  verify[0].disabled = true;
   verify[1].checked = false;
   verify[1].disabled = true;
 }
 
 function MultiUsersOutside() {
   console.log("MultiUsersFromOutside not yet implemented. On Todo List in gabe.js");
-  
+
 }
 
 
@@ -607,7 +607,7 @@ function VerifyFirst(value) {
   }
   else {
     if(value == "NumberPad" ) {
-      var ret; 
+      var ret;
       if( pin == null ) {
         ret = NumberPadEvent();
         if(ret != -1) {    // correct pin
@@ -620,7 +620,7 @@ function VerifyFirst(value) {
       }
       pin = null;
     }
-    
+
     for(var i=0; i< steptwo.length; i++){
       if(steptwo[i].value == value || stepone[i].disabled == true){
         steptwo[i].disabled = true;
@@ -646,7 +646,7 @@ function VerifySecond(value) {
   }
   else {
     if(value == "NumberPad" ) {
-      var ret; 
+      var ret;
       if( pin == null ) {
         console.log("Pin is null");
         ret = NumberPadEvent();
@@ -683,21 +683,21 @@ function VerifySecond(value) {
 function Verify(value) {
   console.log("Verify: " + value);
   if(value == "success") {
-    
+
   }
 }
 
 function NumberPadEvent() {
   console.log("NUMBERPAD");
   pin = prompt("Please Enter your 4 digit pin", "0123");
-  
+
   if(pin == null ) {
     return -1;
   }
   else if(pin.length != 4){
     NumberPadEvent();
   }
-  
+
   var id;
   if((id = RegisteredUsers.verifyPin(pin)) != -1) {
     console.log("VERIFIED. userID: " + id);
@@ -737,10 +737,10 @@ function SaveLanguageSettings(lang) {
   if(CURRENT_USER != null ) {
     var changed;
     if(lang > 1){
-      console.log(LanguageArr[lang].text + " is not supported at this time."); 
+      console.log(LanguageArr[lang].text + " is not supported at this time.");
       changed = false;
     }
-    else { // 0 or 1 
+    else { // 0 or 1
       CURRENT_USER.language = lang;
       syslang = lang;
       UpdateText();
@@ -748,7 +748,7 @@ function SaveLanguageSettings(lang) {
       console.log("Changed language to " + LanguageArr[lang].text + "!");
     }
     HideLangaugeSetting();
-    
+
     ShowLangFeedBack(LanguageArr[lang].text,changed);
     mBackButton.addToBackStack(ShowLanguageSetting, HideLangFeedBack);
   }
@@ -763,7 +763,7 @@ function SaveLanguageSettings(lang) {
 
 
 function ChangeUnits() {
-  
+
 }
 
 
