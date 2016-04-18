@@ -94,6 +94,7 @@ function ShowHome()
   HideTransport();
   HideNews();
   HideMessageBox();
+  hideSettings();
   CloseThemeSettings();
   HideUserSettings();
   HideUserData();
@@ -293,17 +294,10 @@ function User1FromInside()
         canvas.item(i).visible = true;
   }
 
-  syslang = User1.language;
-
-  In_theme = User1.in_theme;
-  In_ornament = User1.in_ornament;
-  Out_theme = User1.out_theme;
-  Out_ornament = User1.out_ornament;
-
-  Date_format = User1.date_format;
-  Time_format = User1.time_format;
-  TemperatureUnits = User1.temerature_units;
-
+  LoadUserData_Inside(2);
+  //document.getElementsByName('UsersFromInside')[2].checked = true; 
+  //document.getElementsByName('Verification')[1].disabled = false;
+  //console.log(CURRENT_USER.firstname);
   UpdateText();
 }
 
@@ -324,22 +318,15 @@ function User2FromInside()
   HideUsersList();
   HideUser1FromInside();
 
-  for (var i = 0; i < canvas.getObjects().length; ++i)
-  {
-    if (canvas.item(i).id == 'user2calender' || canvas.item(i).id == 'user2todo')
-      canvas.item(i).visible = true;
+  for (var i = 0; i < canvas.getObjects().length; ++i) {
+    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user2todo')
+        canvas.item(i).visible = true;
   }
-  syslang = User2.language;
 
-  In_theme = User2.in_theme;
-  In_ornament = User2.in_ornament;
-  Out_theme = User2.out_theme;
-  Out_ornament = User2.out_ornament;
-
-  Date_format = User2.date_format;
-  Time_format = User2.time_format;
-  TemperatureUnits = User2.temerature_units;
-
+  LoadUserData_Inside(0);
+  //document.getElementsByName('UsersFromInside')[2].checked = true; 
+  //document.getElementsByName('Verification')[1].disabled = false;
+  //console.log(CURRENT_USER.firstname);
   UpdateText();
 }
 
