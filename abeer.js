@@ -98,7 +98,6 @@ function ShowHome(){
   HideUserSettings();
   HideUserData();
   Hide911();
-  HomeIsActive = true;
   PanelRect.visible = true;
   icon_settings.selectable = true;
 
@@ -146,8 +145,10 @@ function HideHome()
   //Here close all apps
   CloseCamera();
   HideUserSettings();
+  hideSettings();
   HideUserData();
   CloseThemeSettings();
+  //HideLangaugeSetting();
   Hide911();
 
   

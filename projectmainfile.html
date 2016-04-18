@@ -550,7 +550,7 @@ var PanelRect = new fabric.Rect({
   left: 72,
   top: 310,
   fill: 'lightgrey',
-  stroke: 'darkgrey',
+  //stroke: 'darkgrey',
   width: 410,
   height: 200,
   angle: 0
@@ -559,7 +559,7 @@ PanelRect.visible = false;
 PanelRect.hasControls = PanelRect.hasBorders = PanelRect.selectable = false;
 PanelRect.lockMovementX = PanelRect.lockMovementY = true;
 
-fabric.util.loadImage('images/panelpattern.gif', function (img) {
+fabric.util.loadImage('images/background.jpg', function (img) {
   PanelRect.setPatternFill({
     source: img,
     repeat: 'repeat'
@@ -2943,6 +2943,400 @@ function Run911Call()
 
 
 }
+
+//----------------------- All components for Language settings -------------------------
+
+var LangaugePanel = new fabric.Rect({
+  left: 72,
+  top: 310,
+  fill: 'lightgrey',
+  //stroke: 'darkgrey',
+  width: 410,
+  height: 200,
+  angle: 0
+});
+LangaugePanel.visible = false;
+LangaugePanel.hasControls = LangaugePanel.hasBorders = LangaugePanel.selectable = false;
+LangaugePanel.lockMovementX = LangaugePanel.lockMovementY = true;
+
+fabric.util.loadImage('images/LangBackground.jpg', function (img) {
+  LangaugePanel.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+  });
+});
+
+ArrayOfObjects.push(LangaugePanel);
+//++++++++++++++++++++++++++++
+var EnglishLang = new fabric.Text('English', {
+  left: 100,
+  top: 380,
+  fontFamily: 'Times',
+  fontSize: 15
+});
+EnglishLang.setColor('black');
+EnglishLang.selectable = true;
+EnglishLang.visible = false;
+EnglishLang.hasControls = EnglishLang.hasBorders = false;
+EnglishLang.lockMovementX = EnglishLang.lockMovementY = true;
+ArrayOfObjects.push(EnglishLang);
+
+//+++++
+
+var SpanishLang = new fabric.Text('Español', {
+  left: 180,
+  top: 380,
+  fontFamily: 'Times',
+  fontSize: 15
+});
+SpanishLang.setColor('black');
+SpanishLang.selectable = true;
+SpanishLang.visible = false;
+SpanishLang.hasControls = SpanishLang.hasBorders = false;
+SpanishLang.lockMovementX = SpanishLang.lockMovementY = true;
+ArrayOfObjects.push(SpanishLang);
+
+//++++++
+
+var ArabicLang = new fabric.Text('عربي', {
+  left: 260,
+  top: 380,
+  fontFamily: 'Times',
+  fontSize: 15
+});
+ArabicLang.setColor('black');
+ArabicLang.selectable = true;
+ArabicLang.visible = false;
+ArabicLang.hasControls = ArabicLang.hasBorders = false;
+ArabicLang.lockMovementX = ArabicLang.lockMovementY = true;
+ArrayOfObjects.push(ArabicLang);
+
+//++++++
+
+var HindiLang = new fabric.Text('हिंदी', {
+  left: 330,
+  top: 380,
+  fontFamily: 'Times',
+  fontSize: 15
+});
+HindiLang.setColor('black');
+HindiLang.selectable = true;
+HindiLang.visible = false;
+HindiLang.hasControls = HindiLang.hasBorders = false;
+HindiLang.lockMovementX = HindiLang.lockMovementY = true;
+ArrayOfObjects.push(HindiLang);
+
+//++++++
+
+var ChineseLang = new fabric.Text('中文', {
+  left: 400,
+  top: 380,
+  fontFamily: 'Times',
+  fontSize: 15
+});
+ChineseLang.setColor('black');
+ChineseLang.selectable = true;
+ChineseLang.visible = false;
+ChineseLang.hasControls = ChineseLang.hasBorders = false;
+ChineseLang.lockMovementX = ChineseLang.lockMovementY = true;
+ArrayOfObjects.push(ChineseLang);
+
+//++++++
+
+var PersianLang = new fabric.Text('فارسی', {
+  left: 100,
+  top: 420,
+  fontFamily: 'Times',
+  fontSize: 15
+});
+PersianLang.setColor('black');
+PersianLang.selectable = true;
+PersianLang.visible = false;
+PersianLang.hasControls = PersianLang.hasBorders = false;
+PersianLang.lockMovementX = PersianLang.lockMovementY = true;
+ArrayOfObjects.push(PersianLang);
+
+//+++++
+
+var RomanLang = new fabric.Text('hrvatski', {
+  left: 180,
+  top: 420,
+  fontFamily: 'Times',
+  fontSize: 15
+});
+RomanLang.setColor('black');
+RomanLang.selectable = true;
+RomanLang.visible = false;
+RomanLang.hasControls = RomanLang.hasBorders = false;
+RomanLang.lockMovementX = RomanLang.lockMovementY = true;
+ArrayOfObjects.push(RomanLang);
+
+//++++++
+
+var RussianLang = new fabric.Text('русский', {
+  left: 260,
+  top: 420,
+  fontFamily: 'Times',
+  fontSize: 15
+});
+RussianLang.setColor('black');
+RussianLang.selectable = true;
+RussianLang.visible = false;
+RussianLang.hasControls = RussianLang.hasBorders = false;
+RussianLang.lockMovementX = RussianLang.lockMovementY = true;
+ArrayOfObjects.push(RussianLang);
+
+//++++++
+
+var ItalianLang = new fabric.Text('italiano', {
+  left: 330,
+  top: 420,
+  fontFamily: 'Times',
+  fontSize: 15
+});
+ItalianLang.setColor('black');
+ItalianLang.selectable = true;
+ItalianLang.visible = false;
+ItalianLang.hasControls = ItalianLang.hasBorders = false;
+ItalianLang.lockMovementX = ItalianLang.lockMovementY = true;
+ArrayOfObjects.push(ItalianLang);
+
+//++++++
+
+var SlovakLang = new fabric.Text('slovenský', {
+  left: 400,
+  top: 420,
+  fontFamily: 'Times',
+  fontSize: 15
+});
+SlovakLang.setColor('black');
+SlovakLang.selectable = true;
+SlovakLang.visible = false;
+SlovakLang.hasControls = SlovakLang.hasBorders = false;
+SlovakLang.lockMovementX = SlovakLang.lockMovementY = true;
+ArrayOfObjects.push(SlovakLang);
+
+//++++++
+var SaveLangButton = new fabric.Text('  Save Language  ', {
+  left: 220,
+  top: 470,
+  backgroundColor: '#B3B4B4',
+  fontFamily: 'Times',
+  fontWeight: 'bold',
+  fontSize: 15
+});
+SaveLangButton.setColor('black');
+SaveLangButton.selectable = true;
+SaveLangButton.visible = false;
+SaveLangButton.hasControls = SaveLangButton.hasBorders = false;
+SaveLangButton.lockMovementX = SaveLangButton.lockMovementY = true;
+ArrayOfObjects.push(SaveLangButton);
+
+//-------------------- Components for date time format----------------------------------
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+var DateTimePanel = new fabric.Rect({
+  left: 72,
+  top: 310,
+  fill: 'lightgrey',
+  //stroke: 'darkgrey',
+  width: 410,
+  height: 200,
+  angle: 0
+});
+DateTimePanel.visible = false;
+DateTimePanel.hasControls = DateTimePanel.hasBorders = DateTimePanel.selectable = false;
+DateTimePanel.lockMovementX = DateTimePanel.lockMovementY = true;
+
+fabric.util.loadImage('images/DateTimeBackground.jpg', function (img) {
+  DateTimePanel.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+  });
+});
+
+ArrayOfObjects.push(DateTimePanel);
+//++++++++++++++++
+
+var DateFormatText = new fabric.Text(' Date Format  ', {
+  left: 150,
+  top: 320,
+  fontFamily: 'Times',
+  fontWeight: 'bold',
+  fontSize: 15
+});
+DateFormatText.setColor('black');
+DateFormatText.selectable = true;
+DateFormatText.visible = false;
+DateFormatText.hasControls = DateFormatText.hasBorders = false;
+DateFormatText.lockMovementX = DateFormatText.lockMovementY = true;
+ArrayOfObjects.push(DateFormatText);
+
+//+++++++
+
+var TimeFormatText = new fabric.Text(' Date Format  ', {
+  left: 300,
+  top: 320,
+  fontFamily: 'Times',
+  fontWeight: 'bold',
+  fontSize: 15
+});
+TimeFormatText.setColor('black');
+TimeFormatText.selectable = true;
+TimeFormatText.visible = false;
+TimeFormatText.hasControls = TimeFormatText.hasBorders = false;
+TimeFormatText.lockMovementX = TimeFormatText.lockMovementY = true;
+ArrayOfObjects.push(TimeFormatText);
+
+//+++++++
+
+
+var DateFormat1 = new fabric.Text('  Month DD, YYYY  ', {
+  left: 150,
+  top: 350,
+  backgroundColor: 'silver',
+  fontFamily: 'Times',
+  fontSize: 15
+});
+DateFormat1.setColor('black');
+DateFormat1.selectable = true;
+DateFormat1.visible = false;
+DateFormat1.hasControls = DateFormat1.hasBorders = false;
+DateFormat1.lockMovementX = DateFormat1.lockMovementY = true;
+ArrayOfObjects.push(DateFormat1);
+
+//++++++++
+
+var DateFormat2 = new fabric.Text('  MM/DD/YYYY       ', {
+  left: 150,
+  top: 380,
+  backgroundColor: 'silver',
+  fontFamily: 'Times',
+  fontSize: 15
+});
+DateFormat2.setColor('black');
+DateFormat2.selectable = true;
+DateFormat2.visible = false;
+DateFormat2.hasControls = DateFormat2.hasBorders = false;
+DateFormat2.lockMovementX = DateFormat2.lockMovementY = true;
+ArrayOfObjects.push(DateFormat2);
+
+//+++++++
+
+var DateFormat3 = new fabric.Text('  DD Month YYYY   ', {
+  left: 150,
+  top: 410,
+  backgroundColor: 'silver',
+  fontFamily: 'Times',
+  fontSize: 15
+});
+DateFormat3.setColor('black');
+DateFormat3.selectable = true;
+DateFormat3.visible = false;
+DateFormat3.hasControls = DateFormat3.hasBorders = false;
+DateFormat3.lockMovementX = DateFormat3.lockMovementY = true;
+ArrayOfObjects.push(DateFormat3);
+
+//+++++++
+
+var DateFormat4 = new fabric.Text('  DD/MM/YYYY       ', {
+  left: 150,
+  top: 440,
+  backgroundColor: 'silver',
+  fontFamily: 'Times',
+  fontSize: 15
+});
+DateFormat4.setColor('black');
+DateFormat4.selectable = true;
+DateFormat4.visible = false;
+DateFormat4.hasControls = DateFormat4.hasBorders = false;
+DateFormat4.lockMovementX = DateFormat4.lockMovementY = true;
+ArrayOfObjects.push(DateFormat4);
+
+//+++++++
+
+var TimeFormat1 = new fabric.Text('  12 Hour Format  ', {
+  left: 300,
+  top: 350,
+  backgroundColor: 'silver',
+  fontFamily: 'Times',
+  fontSize: 15
+});
+TimeFormat1.setColor('black');
+TimeFormat1.selectable = true;
+TimeFormat1.visible = false;
+TimeFormat1.hasControls = TimeFormat1.hasBorders = false;
+TimeFormat1.lockMovementX = TimeFormat1.lockMovementY = true;
+ArrayOfObjects.push(TimeFormat1);
+
+//++++++++
+
+var TimeFormat2 = new fabric.Text('  24 Hour Format  ', {
+  left: 300,
+  top: 380,
+  backgroundColor: 'silver',
+  fontFamily: 'Times',
+  fontSize: 15
+});
+TimeFormat2.setColor('black');
+TimeFormat2.selectable = true;
+TimeFormat2.visible = false;
+TimeFormat2.hasControls = TimeFormat2.hasBorders = false;
+TimeFormat2.lockMovementX = TimeFormat2.lockMovementY = true;
+ArrayOfObjects.push(TimeFormat2);
+
+//+++++++++
+
+var SaveDateTimeFormatButton = new fabric.Text('  Save Format  ', {
+  left: 220,
+  top: 475,
+  backgroundColor: '#B3B4B4',
+  fontFamily: 'Times',
+  fontWeight: 'bold',
+  fontSize: 15
+});
+SaveDateTimeFormatButton.setColor('black');
+SaveDateTimeFormatButton.selectable = true;
+SaveDateTimeFormatButton.visible = false;
+SaveDateTimeFormatButton.hasControls = SaveDateTimeFormatButton.hasBorders = false;
+SaveDateTimeFormatButton.lockMovementX = SaveDateTimeFormatButton.lockMovementY = true;
+ArrayOfObjects.push(SaveDateTimeFormatButton);
+
+
+// ----------------- Some hide functions -----------------------------------------------
+
+function ShowLangaugeSetting()
+{
+    HideHome();
+    LangaugePanel.visible = true;
+    EnglishLang.visible = true;
+    SpanishLang.visible = true;
+    ArabicLang.visible = true;
+    HindiLang.visible = true;
+    ChineseLang.visible = true;
+    PersianLang.visible = true;
+    ItalianLang.visible = true;
+    RomanLang.visible = true;
+    RussianLang.visible = true;
+    SlovakLang.visible = true;
+    SaveLangButton.visible = true;
+}
+
+function HideLangaugeSetting()
+{
+    ShowHome();
+    LangaugePanel.visible = false;
+    EnglishLang.visible = false;
+    SpanishLang.visible = false;
+    ArabicLang.visible = false;
+    HindiLang.visible = false;
+    ChineseLang.visible = false;
+    PersianLang.visible = false;
+    ItalianLang.visible = false;
+    RomanLang.visible = false;
+    RussianLang.visible = false;
+    SlovakLang.visible = false;
+    SaveLangButton.visible = false;
+}
 //--------------------------------------------------------------------------------------
 // add all of the elements to the canvas
 
@@ -3047,7 +3441,33 @@ canvas.add(volumepanel);
 canvas.add(volumebar);
 canvas.add(volumeslider);
 
+//Language settings comp
 
+canvas.add(LangaugePanel);
+canvas.add(EnglishLang);
+canvas.add(SpanishLang);
+canvas.add(ArabicLang);
+canvas.add(HindiLang);
+canvas.add(ChineseLang);
+canvas.add(PersianLang);
+canvas.add(ItalianLang);
+canvas.add(RomanLang);
+canvas.add(RussianLang);
+canvas.add(SlovakLang);
+canvas.add(SaveLangButton);
+
+// Date and time
+
+canvas.add(DateTimePanel);
+canvas.add(DateFormatText);
+canvas.add(TimeFormatText);
+canvas.add(DateFormat1);
+canvas.add(DateFormat2);
+canvas.add(DateFormat3);
+canvas.add(DateFormat4);
+canvas.add(TimeFormat1);
+canvas.add(TimeFormat2);
+canvas.add(SaveDateTimeFormatButton);
 
 
 //************************************** Functions *******************************************
@@ -3250,6 +3670,10 @@ canvas.on({
     else if(activeObject.id == 'numberpad') {
       NumberPadEvent();
     }
+    else if(activeObject.id == 'settings_language') {
+      ShowLangaugeSetting();
+    }
+
     canvas.deactivateAll();
   }
 });

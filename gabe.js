@@ -442,6 +442,7 @@ function LoadUserData_Inside(index) {
   HideNews();
   hideSettings();
   Hide911();
+  
 
 
   ResetHeightRadioToDefault();
