@@ -211,17 +211,21 @@ var ArrayOfObjects = [];
 var OriginalObjCoordinate = [];
 var counter = 0;
 HeightsRadioButtons_DISABLE();
+var UsersNames = [];
 
+var panelleft = 72;
+var panelheight = 200;
+var panelwidth = 410;
+var paneltop = 310;
 //*******************************************************************************************
 
 //************************************ Users Profiles ***************************************
 
 var User0 = new User('Gabe', 'Mendoza', ENGLISH);
 var User1 = new User('Enrique', 'Vaca', SPANISH);
-var User2 = new User('Adam', 'Porter', ENGLISH);
-var User3 = new User('Sara', 'Parker', ENGLISH);
-var User4 = new User('Carlos', 'Beltran', SPANISH);
-var User5 = new User('Abeer','A.', ENGLISH);
+var User2 = new User('Abeer','A.', ENGLISH);
+var User3 = new User('Carlos', 'Beltran', SPANISH);
+ 
 
 
 //*******************************************************************************************
@@ -547,12 +551,12 @@ ArrayOfObjects.push(Line);
 //********************************************************************************************
 // Main panel components
 var PanelRect = new fabric.Rect({
-  left: 72,
-  top: 310,
+  left: panelleft,
+  top: paneltop,
   fill: 'lightgrey',
   stroke: 'darkgrey',
-  width: 410,
-  height: 200,
+  width: panelwidth,
+  height: panelheight,
   angle: 0
 });
 PanelRect.visible = false;
@@ -595,6 +599,62 @@ Messagestext.setColor('black');
 Messagestext.selectable = false;
 Messagestext.visible = false;
 ArrayOfObjects.push(Messagestext);
+
+var MessageBox = new fabric.Rect({
+  left: 175,
+  top: 310,
+  //id: this.id,
+  fill: 'grey',
+  stroke: 'black',
+  width: 210,
+  height: 200,
+  angle: 0
+});
+MessageBox.visible = false;
+MessageBox.hasControls = MessageBox.hasBorders = MessageBox.selectable = false;
+MessageBox.lockMovementX = MessageBox.lockMovementY = true;
+MessageBox.id = 'messageBox';
+fabric.util.loadImage('images/chalkboard.jpeg', function (img) {
+  MessageBox.setPatternFill({
+      source: img,
+      repeat: 'no-repeat'
+  });
+});
+ArrayOfObjects.push(MessageBox);
+  
+var accept_button;
+fabric.Image.fromURL('images/accept.png', function(oImg) {
+  oImg.set({left: 505, top: 1150, width: 210, height: 120,id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'accept';
+  accept_button = oImg;
+  ArrayOfObjects.push(accept_button);
+  canvas.add(accept_button);
+});
+
+var MessageHelloOutside = new fabric.Rect({
+  left: 810,
+  top: 310,
+  //id: this.id,
+  fill: 'grey',
+  stroke: 'black',
+  width: 210,
+  height: 200,
+  angle: 0
+});
+
+MessageHelloOutside.visible = false;
+MessageHelloOutside.hasControls = MessageHelloOutside.hasBorders = MessageHelloOutside.selectable = false;
+MessageHelloOutside.lockMovementX = MessageHelloOutside.lockMovementY = true;
+fabric.util.loadImage('images/chalkboard_hello.jpeg', function (img) {
+  MessageHelloOutside.setPatternFill({
+      source: img,
+      repeat: 'repeat'
+  });
+});
+ArrayOfObjects.push(MessageHelloOutside);  
 
 // MIRROR
 var Mirror = new fabric.Rect({
@@ -939,6 +999,7 @@ fabric.Image.fromURL('images/settings.gif', function(oImg) {
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'settings';
   icon_settings = oImg;
+  icon_settings.selectable = false;
   ArrayOfObjects.push(icon_settings);
   canvas.add(icon_settings);
 });
@@ -2342,7 +2403,8 @@ MetalText.on('mousedown', function ()
 //----------------
 XmassText.on('mousedown', function ()
 {
-  CURRENT_USER.out_ornament = 'Xmass';
+  Out_ornament = 'Xmass';
+  CURRENT_USER.out_ornament = Out_ornament;
   XmassText.backgroundColor = '#85C1E9';
   EasterText.backgroundColor = 'white';
   XmassOrn.visible = true;
@@ -2351,7 +2413,8 @@ XmassText.on('mousedown', function ()
 
 EasterText.on('mousedown', function ()
 {
-  CURRENT_USER.out_ornament = 'Easter';
+  Out_ornament = 'Easter';
+  CURRENT_USER.out_ornament = Out_ornament;
   XmassText.backgroundColor = 'white';
   EasterText.backgroundColor = '#85C1E9';
   XmassOrn.visible = false;
@@ -2361,8 +2424,12 @@ EasterText.on('mousedown', function ()
 ResetTheme.on('mousedown', function (){
   In_theme = 'default';
   Out_theme = 'default';
+  Out_ornament = 'default';
+  
+
   CURRENT_USER.out_theme = Out_theme;
   CURRENT_USER.in_theme = In_theme;
+  CURRENT_USER.out_ornament = Out_ornament;
   XmassOrn.visible = false;
   EasterOrn.visible = false;
 
@@ -2400,6 +2467,124 @@ fabric.Image.fromURL('images/Usersettinglist.jpg', function(oImg) {
   ArrayOfObjects.push(UserSettingList);
 });
 
+var UserFName = new fabric.Text('', {
+    fontFamily: 'Times',
+    fontSize: 50,
+    left: 400,
+    top: 800,
+    });
+UserFName.selectable = true;
+UserFName.visible = true;
+UserFName.hasBorders = false;
+UserFName.hasControls =  false;
+UserFName.lockMovementX = UserFName.lockMovementY = true;
+ArrayOfObjects.push(UserFName);
+
+
+var UserLName = new fabric.Text('', {
+    fontFamily: 'Times',
+    fontSize: 50,
+    left: 400,
+    top: 850,
+    });
+UserLName.selectable = true;
+UserLName.visible = true;
+UserLName.hasBorders = false;
+UserLName.hasControls =  false;
+UserLName.lockMovementX = UserLName.lockMovementY = true;
+ArrayOfObjects.push(UserLName);
+
+
+
+var UserLang = new fabric.Text('', {
+    fontFamily: 'Times',
+    fontSize: 50,
+    left: 400,
+    top: 900,
+    });
+UserLang.selectable = true;
+UserLang.visible = true;
+UserLang.hasBorders = false;
+UserLang.hasControls =  false;
+UserLang.lockMovementX = UserLang.lockMovementY = true;
+ArrayOfObjects.push(UserLang);
+
+
+
+var UserTimeFormat = new fabric.Text('', {
+    fontFamily: 'Times',
+    fontSize: 50,
+    left: 400,
+    top: 950,
+    });
+UserTimeFormat.selectable = true;
+UserTimeFormat.visible = true;
+UserTimeFormat.hasBorders = false;
+UserTimeFormat.hasControls =  false;
+UserTimeFormat.lockMovementX = UserTimeFormat.lockMovementY = true;
+ArrayOfObjects.push(UserTimeFormat);
+
+
+
+var UserDateFormat = new fabric.Text('', {
+    fontFamily: 'Times',
+    fontSize: 50,
+    left: 400,
+    top: 1000,
+    });
+UserDateFormat.selectable = true;
+UserDateFormat.visible = true;
+UserDateFormat.hasBorders = false;
+UserDateFormat.hasControls =  false;
+UserDateFormat.lockMovementX = UserDateFormat.lockMovementY = true;
+ArrayOfObjects.push(UserDateFormat);
+
+
+var BackButtFromUSerData = new fabric.Text('Back', {
+    fontFamily: 'Times',
+    background: 'darkgrey',
+    fontSize: 60,
+    left: 550,
+    top: 1080,
+    });
+BackButtFromUSerData.selectable = true;
+BackButtFromUSerData.visible = true;
+BackButtFromUSerData.hasBorders = false;
+BackButtFromUSerData.hasControls =  false;
+BackButtFromUSerData.lockMovementX = BackButtFromUSerData.lockMovementY = true;
+ArrayOfObjects.push(BackButtFromUSerData);
+
+BackButtFromUSerData.on('selected', function()
+  {
+    HideUserData();
+    ShowUserSettings();
+  });
+
+var UserSettingMsg = new fabric.Text(' Not Allowed to Adjust Settings', {
+    fontFamily: 'Times',
+    background: 'darkgrey',
+    fontSize: 60,
+    left: 450,
+    top: 1050,
+    });
+UserSettingMsg.selectable = false;
+UserSettingMsg.visible = false;
+UserSettingMsg.hasBorders = false;
+UserSettingMsg.hasControls =  false;
+UserSettingMsg.lockMovementX = UserSettingMsg.lockMovementY = true;
+ArrayOfObjects.push(UserSettingMsg);
+
+
+
+//console.log( "My array length b: "+ArrayOfObjects.length);
+
+function ShowUserSettings()
+{
+  UsersNames = [];
+
+  UserSettingList.visible = true;
+  //UserSettingMsg.visible = false;
+
 var UsersNames = [];
 function ShowUserSettings(){
   UserSettingList.visible = true;
@@ -2413,6 +2598,15 @@ function ShowUserSettings(){
       left: 400,
       top: topv,
     });
+    
+    UserName.setText(RegisteredUsers.at(i).firstname);
+    if(CURRENT_USER.id == RegisteredUsers.at(i).id)
+      UserName.selectable = true;
+    else
+      {
+      UserName.selectable = false;
+      UserName.opacity = 0.3;
+    }
 
     UserName.setText(RegisteredUsers.at(i).firstname);
     canvas.add(UserName);
@@ -2421,25 +2615,138 @@ function ShowUserSettings(){
     console.log(UserName);
     //ArrayOfObjects.push(UsersNames);
   }
-  console.log("We are : "+ UsersNames.length);
+
+console.log( "My array length a: " + ArrayOfObjects.length);
+
+
+for (i = 0; i < UsersNames.length; i++)
+
+  {
+    UsersNames[i].id = i;
+  }
+
 }
 
-
-function HideUserSettings()
-{
-
+function HideUserSettings(){
   UserSettingList.visible = false;
   for (i = 0; i < UsersNames.length; i++) {
     UsersNames[i].visible = false;
   }
+}
+
+  
+//********************************************************************************************
+//------------------------------ Volume ----------------  
+
+var volumepanel = new fabric.Rect({
+  left: panelleft,
+  top: paneltop,
+  fill: 'lightgrey',
+  stroke: 'darkgrey',
+  width: panelwidth,
+  height: panelheight,
+  angle: 0
+});
+volumepanel.visible = false;
+volumepanel.hasControls = volumepanel.hasBorders = volumepanel.selectable = false;
+volumepanel.lockMovementX = volumepanel.lockMovementY = true;
+  
+var volumebar = new fabric.Rect({
+  left: panelleft + 50,
+  top: paneltop + 89,
+  fill: '#656565',
+  stroke: 'darkgrey',
+  width: panelwidth - 100,
+  height: 20,
+  angle: 0
+});
+volumebar.visible = false;
+volumebar.hasControls = volumebar.hasBorders = volumebar.selectable = false;
+volumebar.lockMovementX = volumebar.lockMovementY = true;
+
+var volumeslider = new fabric.Rect( {
+  left: panelleft + 50,
+  top: paneltop + 75,
+  fill: 'white',
+  stroke: 'darkgrey',
+  width: 20,
+  height: 50,
+  angle: 0
+});
+volumeslider.visible = false;
+volumeslider.hasControls = volumeslider.hasBorders = false;
+volumeslider.lockMovementY = true;
+
+canvas.on("object:moving", function() {
+  var leftBound = volumebar.left;
+  var rightBound = leftBound + volumebar.width*2.22 - volumeslider.width*2.22;
+  volumeslider.setLeft( Math.min( Math.max(volumeslider.left, leftBound) , rightBound));      
+});
+
+  
+
+
+function ShowUserData(id)
+{
+  HideUserSettings();
+  UserSettingList.visible = true;
+  UserFName.setText(RegisteredUsers.at(id).firstname);
+  canvas.add(UserFName);
+  UserLName.setText(RegisteredUsers.at(id).lastname);
+  canvas.add(UserLName);
+
+  UserTimeFormat.setText(RegisteredUsers.at(id).time_format);
+  canvas.add(UserTimeFormat);
+
+  UserDateFormat.setText(RegisteredUsers.at(id).date_format);
+  canvas.add(UserDateFormat);
+
+  
+  if (RegisteredUsers.at(id).language == 0)
+  UserLang.setText("English");
+  else if (RegisteredUsers.at(id).language == 1)
+  UserLang.setText("Spanish");
+  canvas.add(UserLang);
+
+  canvas.add(BackButtFromUSerData);
+
 
 }
+
+function HideUserData()
+{
+  //UserSettingList.visible = false;
+  //UserFName.setText(RegisteredUsers.at(id).firstname);
+  canvas.remove(UserFName);
+ // UserLName.setText(RegisteredUsers.at(id).lastname);
+  canvas.remove(UserLName);
+
+  //UserTimeFormat.setText(RegisteredUsers.at(id).time_format);
+  canvas.remove(UserTimeFormat);
+
+ // UserDateFormat.setText(RegisteredUsers.at(id).date_format);
+  canvas.remove(UserDateFormat);
+
+  
+  //if (RegisteredUsers.at(id).language == 0)
+  //UserLang.setText("English");
+  //else if (RegisteredUsers.at(id).language == 1)
+  //UserLang.setText("Spanish");
+  canvas.remove(UserLang);
+
+  canvas.remove(BackButtFromUSerData);
+
+  canvas.renderAll();
+}
+
 //--------------------------------------------------------------------------------------
 // add all of the elements to the canvas
 
 canvas.add(insideDoor);
 canvas.add(outsideDoor);
 canvas.add(date_rect);
+canvas.add(MessageBox);
+canvas.add(MessageHelloOutside);
 canvas.add(Mirror);
 canvas.add(Traffic);
 canvas.add(Transport);
@@ -2529,6 +2836,14 @@ canvas.add(XmassText);
 canvas.add(EasterText);
 canvas.add(ResetTheme);
 
+canvas.add(volumepanel);
+canvas.add(volumebar);
+canvas.add(volumeslider);
+
+
+
+
+
 //************************************** Functions *******************************************
 canvas.on({
   'object:moving': function(e) {
@@ -2590,7 +2905,7 @@ canvas.on({
       playDoorbellSound();
     else if (activeObject.id == "settings") {
       showSettings();
-      canvas.deactivateAll();
+      //canvas.deactivateAll();
     }
     else if (activeObject.id == "settings_traffic") {
       showTrafficSettings();
@@ -2641,7 +2956,79 @@ canvas.on({
       showSettings();
     }
 
+    else if (activeObject.id == 0)
+    {
+      ShowUserData(0);
+    }
 
+    else if (activeObject.id == 1)
+    {
+      ShowUserData(1);
+    }
+
+    else if (activeObject.id == 2)
+    {
+      ShowUserData(2);
+    }
+
+    else if (activeObject.id == 3)
+    {
+      ShowUserData(3);
+    }
+
+    else if (activeObject.id == 4)
+    {
+      ShowUserData(4);
+    }
+
+    else if (activeObject.id == 5)
+    {
+      ShowUserData(5);
+    }
+
+    else if (activeObject.id == 6)
+    {
+      ShowUserData(6);
+    }
+
+
+    else if (activeObject.id == 7)
+    {
+      ShowUserData(7);
+    }
+
+    else if (activeObject.id == 8)
+    {
+      ShowUserData(8);
+    }
+
+    else if (activeObject.id == 9)
+    {
+      ShowUserData(9);
+    }
+
+    else if (activeObject.id == 10)
+    {
+      ShowUserData(10);
+    }
+    if(activeObject.id == 'messages')
+      {
+      MessageBoxSelected();
+      canvas.deactivateAll();
+      }
+    
+    if(activeObject.id == 'messageBox')
+      {
+      HomeSelected();
+      canvas.deactivateAll();
+     }
+    
+  
+    if(activeObject.id == 'accept')
+      {
+      AcceptSelected();
+      canvas.deactivateAll();
+      }
 
     if(activeObject.id == 'mirror')
       {

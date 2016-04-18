@@ -33,4 +33,5 @@ Gabe
   Units - Weather
   Volume
   Tutorial
+  protect settings from unknown persons
 

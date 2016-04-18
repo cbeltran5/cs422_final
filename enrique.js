@@ -1,8 +1,58 @@
  var MirrorIsActive = false;
+ var MessagesIsActive = false;
+ var AcceptIsActive = false;
  var TrafficIsActive = false;
  var LightsIsActive = false;
  var TransportIsActive = false;
  var NewsIsActive = false;
+
+
+//------------------------------------------------------------- 
+function MessageBoxSelected(){
+  if (MessagesIsActive == true)
+    HideMessageBox();
+  else if(MessagesIsActive == false)
+    ShowMessageBox();
+}
+
+function ShowMessageBox(){
+  MessagesIsActive = true; 
+  MessageBox.visible = true;
+  accept_button.visible = true;
+  MessageHelloOutside.visible = false;
+  HomeSelected();
+}
+
+function HideMessageBox(){
+  MessagesIsActive = false; 
+  MessageBox.visible = false;
+  accept_button.visible = false;
+}
+// Line 2377
+
+//------------------------------------------------------------- 
+
+function AcceptSelected(){
+  AcceptIsActive = true; 
+  MessageHelloOutside.visible = true;
+  accept_button.visible = false;
+  MessageBox.visible = false;
+  //HomeSelected();
+}
+
+function ShowMessageHelloOutside(){
+  AcceptIsActive = true; 
+  MessageHelloOutside.visible = true;
+  //accept_button.visible = true;
+  HomeSelected();
+}
+
+function HideMessageHelloOutside(){
+  AcceptIsActive = false; 
+  MessageHelloOutside.visible = false;
+  //accept_button.visible = false;
+}
+
 
 
 //-------------------------------------------------------------
