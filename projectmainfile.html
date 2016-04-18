@@ -1647,10 +1647,12 @@ fabric.Image.fromURL('images/Settings/brightness.gif', function(oImg) {
 });
 
 var BrightnessText = new fabric.Text(BRIGHTNESS[syslang], {
-  left: 330,
-  top: 385,
+  left: 360,
+  top: 395,
   fontFamily: 'Times',
-  fontSize: 15
+  fontSize: 15,
+  originX: "center",
+  originY: "center"
 });
 BrightnessText.setColor('black');
 BrightnessText.selectable = false;
@@ -1723,10 +1725,10 @@ fabric.Image.fromURL('images/Settings/tutorial.gif', function(oImg) {
 });
 
 var IntercomText = new fabric.Text(INTERCOM[syslang], {
-  left: 415,
-  top: 475,
+  left: 410,
+  top: 480,
   fontFamily: 'Times',
-  fontSize: 15
+  fontSize: 15,
 });
 IntercomText.setColor('black');
 IntercomText.selectable = false;
@@ -1737,12 +1739,14 @@ ArrayOfObjects.push(IntercomText);
 // BRIGHTNESSSSS
 
 var brightness_text = new fabric.IText('Brightness', {
-  fontFamily: 'arial black',
+  fontFamily: 'Calibri',
   fontSize: 30,
-  left: 185,
-  top: 325,
+  left: 270,
+  top: 340,
   width: 100,
-  height: 50
+  height: 50,
+  originX: "center",
+  originY: "center"
 });
 brightness_text.visible = false;
 brightness_text.hasControls = brightness_text.hasBorders = brightness_text.selectable = false;
@@ -1794,12 +1798,14 @@ fabric.util.loadImage('images/Settings/slider.gif', function (img) {
 ArrayOfObjects.push(slider);
 
 var display_text = new fabric.IText('Display Timer', {
-  fontFamily: 'arial black',
+  fontFamily: 'Calibri',
   fontSize: 30,
-  left: 165,
-  top: 405,
+  left: 270,
+  top: 415,
   width: 100,
-  height: 50
+  height: 50,
+  originX: "center",
+  originY: "center"
 });
 display_text.visible = false;
 display_text.hasControls = display_text.hasBorders = display_text.selectable = false;
@@ -1824,9 +1830,9 @@ one_min_btn.lockMovementX = one_min_btn.lockMovementY = true;
 one_min_btn.id = 'one_min_btn';
 
 var one_min_btn_text = new fabric.IText('1 min', {
-  fontFamily: 'arial black',
+  fontFamily: 'Calibri',
   fontSize: 25,
-  left: 117,
+  left: 127,
   top: 465,
   width: 60,
   height: 50
@@ -1855,9 +1861,9 @@ three_min_btn.lockMovementX = three_min_btn.lockMovementY = true;
 three_min_btn.id = 'three_min_btn';
 
 var three_min_btn_text = new fabric.IText('3 min', {
-  fontFamily: 'arial black',
+  fontFamily: 'Calibri',
   fontSize: 25,
-  left: 237,
+  left: 247,
   top: 465,
   width: 60,
   height: 50
@@ -1886,9 +1892,9 @@ five_min_btn.lockMovementX = five_min_btn.lockMovementY = true;
 five_min_btn.id = 'five_min_btn';
 
 var five_min_btn_text = new fabric.IText('5 min', {
-  fontFamily: 'arial black',
+  fontFamily: 'Calibri',
   fontSize: 25,
-  left: 357,
+  left: 367,
   top: 465,
   width: 60,
   height: 50
@@ -3826,10 +3832,6 @@ canvas.on({
       updateDisplayTimer("one");
     else if (activeObject.id == "three_min_btn" || activeObject.id == "three_min_btn_text")
       updateDisplayTimer("three");
-    else if (activeObject.id == "brightness_save_btn" || activeObject.id == "brightness_save_btn_text"){
-      hideBrightnessSettings(true);
-      showSettings();
-    }
 
     else if (activeObject.id == "settings_doorbell") {
       showDoorbellSettings();
