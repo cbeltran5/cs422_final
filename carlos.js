@@ -189,6 +189,13 @@ function showTrafficSettings()
   traffic_add_btn.visible = true;
   traffic_add_btn_text.visible = true;
 
+  if (CURRENT_USER.traffic_options.length != 2) {
+    traffic_add_btn_text.text = ADD[syslang];
+  }
+  else {
+    traffic_add_btn_text.text = CLEAR[syslang];
+  }
+
   for (var i = 0; i < CURRENT_USER.traffic_options.length; i++) {
 
     object_index = CURRENT_USER.traffic_options[i];
@@ -212,6 +219,15 @@ function showTrafficSettings()
   }
 }
 
+function re_hide_traffic_options() {
+  for (var i = 0; i < CURRENT_USER.traffic_options.length; i++) {
+    object_index = CURRENT_USER.traffic_options[i];
+    stars[i].visible = false;
+    user_traffic_options[object_index].visible = false;
+  }
+  CURRENT_USER.traffic_options = [];
+}
+
 function hideTrafficSettings()
 {
   traffic_add_btn.visible = false;
@@ -229,14 +245,23 @@ function hideTrafficSettings()
 function showTrafficInputAdd()
 {
 
+  if (CURRENT_USER.traffic_options.length == 2) {
+    re_hide_traffic_options();
+    hideTrafficSettings();
+    showTrafficSettings();
+    return;
+  }
+
   hideTrafficSettings();
 
   traffic_input_name.visible = true;
   traffic_input_name_text.visible = true;
   traffic_input_address.visible = true;
   traffic_input_address_text.visible = true;
+
   traffic_save_btn.visible = true;
   traffic_save_btn_text.visible = true;
+
 }
 
 function hideTrafficInputAdd()
@@ -256,12 +281,11 @@ function saveTrafficOption()
   var rand = Math.random() * 2 | 0;
   options_count = CURRENT_USER.traffic_options.length;
 
-  if (options_count < 2){
+  if (options_count < 2)
     CURRENT_USER.traffic_options.push([rand]);
 
   if (CURRENT_USER.traffic_options.length == 1)
     CURRENT_USER.traffic_primary = "traffic_star1"
-  }
 
   showTrafficSettings();
 }
