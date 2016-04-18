@@ -2706,11 +2706,9 @@ canvas.on("object:moving", function() {
   volumeslider.setLeft( Math.min( Math.max(volumeslider.left, leftBound) , rightBound));      
 });
 
-  
 
 
-function ShowUserData(id)
-{
+function ShowUserData(id){
   HideUserSettings();
   UserSettingList.visible = true;
   UserFName.setText(RegisteredUsers.at(id).firstname);
@@ -2732,12 +2730,9 @@ function ShowUserData(id)
   canvas.add(UserLang);
 
   canvas.add(BackButtFromUSerData);
-
-
 }
 
-function HideUserData()
-{
+function HideUserData(){
   //UserSettingList.visible = false;
   //UserFName.setText(RegisteredUsers.at(id).firstname);
   canvas.remove(UserFName);
@@ -2763,8 +2758,7 @@ function HideUserData()
 }
 
 
-function ShowUserData(id)
-{
+function ShowUserData(id){
   HideUserSettings();
   UserSettingList.visible = true;
   UserFName.setText(RegisteredUsers.at(id).firstname);
@@ -3068,6 +3062,9 @@ canvas.on({
     else if(activeObject.id == "settings_users"){
       hideSettings();
       ShowUserSettings();
+    }
+    else if(activeObject.id == 'settings_volume'){
+      VolumeSettings();
     }
   }
 });

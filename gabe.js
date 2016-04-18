@@ -494,8 +494,6 @@ function VerifyFirst(value) {
 
 function VerifySecond(value) {
   console.log("second " + value);
-
-
   if(value == "None") {
     verify[0].disabled = true;
     verify[1].disabled = true;
@@ -511,6 +509,9 @@ function Verify(value) {
 
 }
 
-
+function VolumeSettings() {
+  console.log("Volume Settings");
+  
+}
 
 
