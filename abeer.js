@@ -98,9 +98,11 @@ function ShowHome(){
   HideUserSettings();
   HideUserData();
   Hide911();
-  HomeIsActive = true;
   PanelRect.visible = true;
   icon_settings.selectable = true;
+
+  if(LanguageSettingIsActive == true)
+  HideLangaugeSetting();
 
   for (var i = 0; i < canvas.getObjects().length; ++i)
   {
@@ -146,8 +148,11 @@ function HideHome()
   //Here close all apps
   CloseCamera();
   HideUserSettings();
+  hideSettings();
   HideUserData();
   CloseThemeSettings();
+  if(LanguageSettingIsActive == true)
+  HideLangaugeSetting();
   Hide911();
   
   PanelRect.visible = false;

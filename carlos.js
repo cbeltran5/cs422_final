@@ -109,8 +109,7 @@ function hideSettings(){
   ThemesText.visible = false;
   IntercomText.visible = false;
   PanelRect.visible = false;
-
-
+    
   hideUsers();
 }
 
