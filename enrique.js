@@ -16,6 +16,7 @@ function AcceptSelected(){
  MessageHelloOutside.visible = true;
  accept_button.visible = false;
  MessageBox.visible = false;
+ CloseMessageSettings();
  //HomeSelected();
    BringUpPrompt();
 }

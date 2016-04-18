@@ -100,8 +100,8 @@
       <code>
       <form name="UsersOutside"> Users:<br>
         <div id="UsersFromOutside">
-          <label for="NoSignal"><input type="radio" class="radio1" name="UsersOut" onchange="NoUserFromOutside()" value="NoSignal" checked> No Signal<br></label>
-          <label for="Unknown Person"><input type="radio" class="radio1" name="UsersOut" onchange="NewUserFromOutside()" value="NewUser"> Unknown Person<br></label>
+          <label for="NoSignal"><input type="radio" class="radio1" name="UsersOut" onchange="NoOneOutside()" value="NoSignal" checked> No Signal<br></label>
+          <label for="Unknown Person"><input type="radio" class="radio1" name="UsersOut" onchange="UnKnownPersonFromOutside()" value="NewUser"> Unknown Person<br></label>
           <label for="Multiple People"><input type="radio" class="radio1" name="UsersOut" onchange="MultiUsersOutside()" value="NewUser"> Multiple People<br></label>
         </div>
       </form></code>
@@ -110,13 +110,13 @@
 
       <section>
       <code>
-      <form name="Verification"> Step One:<br>
+      <form name="Verification"> Form One:<br>
         <div id="Verification1">
-          <label for="None"><input type="radio" class="radio1" name="verifyfirst" onchange="VerifyFirst(this.value)" id="noneA" value="None" checked> None<br></label>
-          <label for="Phone/KeyFOB"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="pkfobA" value="Phone/KeyFob"> Phone/KeyFOB<br></label>
-          <label for="FacialRecognition"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="faceA" value="FacialRecognition"> Facial Recognition<br></label>
-          <label for="FingerPrints"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="fingerA" value="FingerPrint"> Finger Print<br></label>
-          <label for="NumberPad"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="numberA" value="NumberPad"> Number Pad<br></label>
+          <label for="None"><input type="radio" class="radio1" name="verifyfirst" onchange="VerifyFirst(this.value)" id="noneA" value="None" disabled> None<br></label>
+          <label for="Phone/KeyFOB"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="pkfobA" value="Phone/KeyFob" disabled> Phone/KeyFOB<br></label>
+          <label for="FacialRecognition"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="faceA" value="FacialRecognition" disabled> Facial Recognition<br></label>
+          <label for="FingerPrints"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="fingerA" value="FingerPrint" disabled> Finger Print<br></label>
+          <label for="NumberPad"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="numberA" value="NumberPad" disabled> Number Pad<br></label>
         </div>
       </form>
       </code>
@@ -124,9 +124,9 @@
 
       <section>
       <code>
-      <form name="Verification"> Step Two:<br>
+      <form name="Verification"> Form Two:<br>
         <div id="Verification2">
-          <label for="None"><input type="radio" class="radio1"  name="verifysecond" onchange="VerifySecond(this.value)" id="noneB" value="None" disabled checked> None<br></label>
+          <label for="None"><input type="radio" class="radio1"  name="verifysecond" onchange="VerifySecond(this.value)" id="noneB" value="None" disabled> None<br></label>
           <label for="Phone/KeyFOB"><input type="radio" class="radio1" name="verifysecond"  onchange="VerifySecond(this.value)" id="pkfobB" value="Phone/KeyFob" disabled> Phone/KeyFOB<br></label>
           <label for="FacialRecognition"><input type="radio" class="radio1" name="verifysecond"  onchange="VerifySecond(this.value)" id="faceB" value="FacialRecognition" disabled> Facial Recognition<br></label>
           <label for="FingerPrints"><input type="radio" class="radio1" name="verifysecond" onchange="VerifySecond(this.value)" id="fingerB" value="FingerPrint" disabled> Finger Print<br></label>
@@ -596,9 +596,82 @@ Messagestext.selectable = false;
 Messagestext.visible = false;
 ArrayOfObjects.push(Messagestext);
 
+var MessagesDroplist = new fabric.Text('  Type of Message       ', {
+  backgroundColor: 'lightgrey',
+  borderColor: 'black',
+  fontFamily: 'Times',
+  fontSize: 23,
+  padding: 5,
+  left: 175,
+  top: 310 ,
+  width: 150,
+  height: 50
+});
+MessagesDroplist.selectable = true;
+MessagesDroplist.visible = false;
+MessagesDroplist.hasBorders = true;
+MessagesDroplist.hasControls =  false;
+MessagesDroplist.lockMovementX = MessagesDroplist.lockMovementY = true;
+ArrayOfObjects.push(MessagesDroplist);
+
+var PublicText = new fabric.Text('  Public                        ', {
+  backgroundColor: 'white',
+  fontFamily: 'Times',
+  fontSize: 23,
+  padding: 5,
+  left: 175,
+  top: 345 ,
+  width: 150,
+  height: 50
+});
+PublicText.selectable = true;
+PublicText.visible = false;
+PublicText.hasBorders = false;
+PublicText.hasControls =  false;
+PublicText.lockMovementX = PublicText.lockMovementY = true;
+ArrayOfObjects.push(PublicText);
+
+var PrivateText = new fabric.Text('  Private                       ', {
+  backgroundColor: 'white',
+  fontFamily: 'Times',
+  fontSize: 23,
+  padding: 5,
+  left: 175,
+  top: 375 ,
+  width: 150,
+  height: 50
+});
+PrivateText.selectable = true;
+PrivateText.visible = false;
+PrivateText.hasBorders = false;
+PrivateText.hasControls =  false;
+PrivateText.lockMovementX = PrivateText.lockMovementY = true;
+ArrayOfObjects.push(PrivateText);
+
+function ShowMessageSettings()
+{
+  MessagesDroplist.visible = true;
+  
+  PublicText.visible = true;
+  PrivateText.visible = true;
+  
+  PublicText.backgroundColor = 'white';
+  PrivateText.backgroundColor = 'white';
+  
+}
+
+function CloseMessageSettings()
+{
+  MessagesDroplist.visible = false;
+  
+  PublicText.visible = false;
+  PrivateText.visible = false;
+  
+}
+
 var MessageBox = new fabric.Rect({
   left: 175,
-  top: 310,
+  top: 400,
   //id: this.id,
   fill: 'grey',
   stroke: 'black',
@@ -620,7 +693,7 @@ ArrayOfObjects.push(MessageBox);
   
 var accept_button;
 fabric.Image.fromURL('images/accept.png', function(oImg) {
-  oImg.set({left: 505, top: 1150, width: 210, height: 120,id: this.id});
+  oImg.set({left: 505, top: 1350, width: 210, height: 120,id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
@@ -2448,7 +2521,15 @@ function init_traffic_stuff() {
 
 
 }
-
+  
+function getObjectWithId(id) {
+  for (var i = 0; i < canvas.getObjects().length; ++i){
+    if (canvas.item(i).id == id) {
+      console.log(id);
+      return canvas.item(i);
+    }
+  }
+}
 
 //********************************************************************************************
 //------------------------------ User settings components and function ----------------
@@ -2579,30 +2660,26 @@ ArrayOfObjects.push(UserSettingMsg);
 
 
 //console.log( "My array length b: "+ArrayOfObjects.length);
-function ShowUserSettings()
-{
 
+function ShowUserSettings(){
+  mBackButton.addToBackStack(showSettings,HideUserData);
   UsersNames = [];
-
   UserSettingList.visible = true;
   //UserSettingMsg.visible = false;
   //loop to get names and add them to canvas
-  for (i = 0; i < RegisteredUsers.length; i++)
-
-  {
+  for (i = 0; i < RegisteredUsers.length; i++){
     var topv = 730 + (70*(i+1)/(i+1)) * (i+1);
     var UserName = new fabric.Text('', {
-    fontFamily: 'Times',
-    fontSize: 60,
-    left: 400,
-    top: topv,
+      fontFamily: 'Times',
+      fontSize: 60,
+      left: 400,
+      top: topv,
     });
     
     UserName.setText(RegisteredUsers.at(i).firstname);
     if(CURRENT_USER.id == RegisteredUsers.at(i).id)
       UserName.selectable = true;
-    else
-      {
+    else{
       UserName.selectable = false;
       UserName.opacity = 0.3;
     }
@@ -2611,28 +2688,23 @@ function ShowUserSettings()
     UserName.bringForward();
     UsersNames.push(UserName);
     ArrayOfObjects.push(UsersNames[i]);
-
   }
-//console.log("We are : "+ UsersNames.length);
-//console.log("here : "+ UsersNames[1].top);
-//console.log( "My array length a: " + ArrayOfObjects.length);
 
-for (i = 0; i < UsersNames.length; i++)
+  console.log("We are : "+ UsersNames.length);
+  console.log("here : "+ UsersNames[1].top);
+  console.log( "My array length a: " + ArrayOfObjects.length);
 
-  {
+
+  for (i = 0; i < UsersNames.length; i++) {
     UsersNames[i].id = i;
   }
-
 }
 
-function HideUserSettings()
-{
-
+function HideUserSettings(){
   UserSettingList.visible = false;
   for (i = 0; i < UsersNames.length; i++) {
     UsersNames[i].visible = false;
   }
-
 }
 
 
@@ -2694,8 +2766,46 @@ canvas.on("object:moving", function() {
   volumeslider.setLeft( Math.min( Math.max(volumeslider.left, leftBound) , rightBound));      
 });
 
+  
+  
+//********************************************************************************************
+// Back Button
+  
+var backbutton = null;
+fabric.Image.fromURL('images/backbutton.png', function(oImg) {
+  oImg.set({left: 550, top: 1155, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'backbutton';
+  oImg.scaleX = 0.5;
+  oImg.scaleY = 0.5;
+  canvas.add(oImg);
+  ArrayOfObjects.push(oImg);
+});
 
 
+function BackButton() {
+  this.hidefunctions = [];
+  this.howigothere = []
+  
+  this.addToBackStack = function( returnTo, hidefunction){
+    this.hidefunctions.push(hidefunction);
+    this.howigothere.push(returnTo);
+    console.log(returnTo.name);
+    console.log(hidefunction.name);
+  }
+  
+  this.goBack = function() {
+    var hide = this.hidefunctions.pop();
+    var returnto = this.howigothere.pop();
+    hide();
+    returnto();
+  }
+}
+var mBackButton = new BackButton();
+
+  
 function ShowUserData(id){
   HideUserSettings();
   UserSettingList.visible = true;
@@ -2709,12 +2819,8 @@ function ShowUserData(id){
 
   UserDateFormat.setText(RegisteredUsers.at(id).date_format);
   canvas.add(UserDateFormat);
+  UserLang.setText(SYSTEM_LANGUAGE[RegisteredUsers.at(id).language]);
 
-  
-  if (RegisteredUsers.at(id).language == 0)
-  UserLang.setText("English");
-  else if (RegisteredUsers.at(id).language == 1)
-  UserLang.setText("Spanish");
   canvas.add(UserLang);
 
   canvas.add(BackButtFromUSerData);
@@ -2835,6 +2941,7 @@ function Run911Call()
   CancelEmergency2.visible = true;
   CallingOn.visible = true
 
+
 }
 //--------------------------------------------------------------------------------------
 // add all of the elements to the canvas
@@ -2843,6 +2950,9 @@ canvas.add(insideDoor);
 canvas.add(outsideDoor);
 canvas.add(date_rect);
 canvas.add(MessageBox);
+canvas.add(MessagesDroplist);
+canvas.add(PublicText);
+canvas.add(PrivateText);
 canvas.add(MessageHelloOutside);
 canvas.add(Mirror);
 canvas.add(Traffic);
@@ -2959,6 +3069,7 @@ canvas.on({
     //console.log(e.target);
     if(activeObject.id == 'home'){
       HomeSelected();
+      
       canvas.deactivateAll();
       if(CURRENT_USER != null)
         CURRENT_USER.hideObjects();
@@ -3002,11 +3113,13 @@ canvas.on({
       playDoorbellSound();
     else if (activeObject.id == "settings") {
       showSettings();
+      mBackButton.addToBackStack( HomeSelected,hideSettings);
       //canvas.deactivateAll();
     }
     else if (activeObject.id == "settings_traffic") {
       showTrafficSettings();
       hideSettings();
+      mBackButton.addToBackStack(showSettings, hideTrafficSettings);
     }
     else if (activeObject.id == "traffic_add_btn" || activeObject.id == "traffic_add_btn_text")
       showTrafficInputAdd();
@@ -3015,14 +3128,14 @@ canvas.on({
     else if(activeObject.id == "traffic_star1" || activeObject.id == "traffic_star2")
       toggleTrafficPrimary(activeObject.id);
 
-    else if (activeObject.id == "settings_themes")
-    {
+    else if (activeObject.id == "settings_themes"){
       hideSettings();
       ShowThemeSettings();
     }
     else if (activeObject.id == "settings_brightness") {
       showBrightnessSettings();
       hideSettings();
+      mBackButton.addToBackStack(showSettings, hideBrightnessSettings);
     }
     else if (activeObject.id == "five_min_btn" || activeObject.id == "five_min_btn_text")
       updateDisplayTimer("five");
@@ -3037,6 +3150,7 @@ canvas.on({
     else if (activeObject.id == "settings_doorbell") {
       showDoorbellSettings();
       hideSettings();
+      mBackButton.addToBackStack(showSettings, hideDoorbellSettings);
     }
     else if (activeObject.id == "doorbell_dingdong_option" || activeObject.id == "doorbell_dingdong_option_text")
       toggle_doobell_option("ding-dong");
@@ -3054,6 +3168,7 @@ canvas.on({
     }
 
     else if(activeObject.id == 'messages'){
+      ShowMessageSettings();
       MessageBoxSelected();
       canvas.deactivateAll();
     }
@@ -3066,64 +3181,15 @@ canvas.on({
     else if(activeObject.id == 'accept'){
       AcceptSelected();
       canvas.deactivateAll();
+    }
+    else if( -1 < activeObject.id && activeObject.id < 11) {
+      for(var i=0; i < 11; i ++ ){
+        if (activeObject.id == i){
+          ShowUserData(i);   
+          break;
+        }
       }
-
-    else if (activeObject.id == 0)
-    {
-      ShowUserData(0);
     }
-
-    else if (activeObject.id == 1)
-    {
-      ShowUserData(1);
-    }
-
-    else if (activeObject.id == 2)
-    {
-      ShowUserData(2);
-    }
-
-    else if (activeObject.id == 3)
-    {
-      ShowUserData(3);
-    }
-
-    else if (activeObject.id == 4)
-    {
-      ShowUserData(4);
-    }
-
-    else if (activeObject.id == 5)
-    {
-      ShowUserData(5);
-    }
-
-    else if (activeObject.id == 6)
-    {
-      ShowUserData(6);
-    }
-
-
-    else if (activeObject.id == 7)
-    {
-      ShowUserData(7);
-    }
-
-    else if (activeObject.id == 8)
-    {
-      ShowUserData(8);
-    }
-
-    else if (activeObject.id == 9)
-    {
-      ShowUserData(9);
-    }
-
-    else if (activeObject.id == 10)
-    {
-      ShowUserData(10);
-    }
-    
     else if(activeObject.id == 'mirror'){
         MirrorSelected();
         canvas.deactivateAll();
@@ -3153,8 +3219,13 @@ canvas.on({
       ShowUserSettings();
     }
     else if(activeObject.id == 'settings_volume'){
-      VolumeSettings();
+      ShowVolumeSettings();
+      mBackButton.addToBackStack( showSettings, HideVolumeSettings);
     }
+    else if(activeObject.id == 'backbutton'){
+      mBackButton.goBack();
+    }
+
 
     else if(activeObject.id == '911'){
       HideHome();
@@ -3176,7 +3247,10 @@ canvas.on({
       Run911Call();
     }
 
-
+    else if(activeObject.id == 'numberpad') {
+      NumberPadEvent();
+    }
+    canvas.deactivateAll();
   }
 });
 
@@ -3231,9 +3305,9 @@ function zoomAll(SCALE_FACTOR) {
 // draw everything at the appropriate scale for this canvas
 zoomAll(canvas.height / localHeight);
 
-
-
-
+if(backbutton == null) {
+  backbutton = getObjectWithId('backbutton'); 
+}
 //})();
 
 </script>

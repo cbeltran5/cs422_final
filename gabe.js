@@ -255,6 +255,7 @@ function Registered_Users() {
 
 var RegisteredUsers = new Registered_Users();
 
+
 var userscounter = 0;
 // Created a User class to hold the personal information common to all users
 
@@ -377,6 +378,7 @@ function HeightsRadioButtons_DISABLE() {
   document.getElementsByName('Heights')[2].disabled = true; //
 
 }
+
 function HeightsRadioButtons_ENABLE() {
   heightsenabled = true;
   document.getElementsByName('Heights')[0].disabled = false;  //
@@ -388,13 +390,7 @@ function HeightsRadioButtons_ENABLE() {
 var CURRENT_USER = null;
 
 var homebutton = null;
-function getObjectWithId(id) {
-  for (var i = 0; i < canvas.getObjects().length; ++i){
-    if (canvas.item(i).id == id) {
-      return canvas.item(i);
-    }
-  }
-}
+
 
 function ShowHomeButtonAndLine() {
   // show home button
@@ -403,8 +399,6 @@ function ShowHomeButtonAndLine() {
   }
   homebutton.visible = 'true';
   Line.visible = true;
-
-
 }
 
 function HideHomeButtonAndLine() {
@@ -468,13 +462,65 @@ function LoadUserData_Inside(index) {
   SetDoorTheme();
 }
 
+function randomIntFromInterval(min,max)
+{
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
+
+//-------------------------------------------------------------
+function TriggerDoorFromOutside(){  //A user approached the door from outside
+  for (var i = 0; i < canvas.getObjects().length; ++i){
+    if (canvas.item(i).id == 'doorbell' || canvas.item(i).id == 'writemsg' ||
+      canvas.item(i).id == 'LockKnobOut' || canvas.item(i).id == 'numberpad') 
+    {
+      canvas.item(i).visible = true;
+    }
+  }
+}
+
 function LoadUserData_Outside(index ) {
   console.log("LoadUserData_Outside() is not yet implemented. On Todo List in gabe.js");
+    for(var i=0; i <stepone.length; i++ ){
+    stepone[i].disabled = false;
+    stepone[i].checked = false;
+  }
+  TriggerDoorFromOutside();
+}
 
+function NoOneOutside() {
+  for(var i=0; i <stepone.length; i++ ){
+    stepone[i].disabled = true;
+    stepone[i].checked = false;
+    steptwo[i].disabled = true;
+    steptwo[i].checked = false;
+  }
+  verify[0].checked = false;
+  verify[0].disabled = true;
+  verify[1].checked = false;
+  verify[1].disabled = true;
+  
+  for (var i = 0; i < canvas.getObjects().length; ++i){
+    if (canvas.item(i).id == 'doorbell' || canvas.item(i).id == 'writemsg'|| canvas.item(i).id == 'numberpad' || canvas.item(i).id == 'UnlockKnobOut' || canvas.item(i).id == 'LockKnobOut')
+    {
+      canvas.item(i).visible = false;
+    }
+  }
+}
+
+function UnKnownPersonFromOutside() {
+  TriggerDoorFromOutside();
+  console.log("UnknownPersonFromOutside not yet implemented. On Todo List in gabe.js");
+  stepone[0].checked = false;
+  stepone[0].disabled = false;
+  stepone[1].disabled = false;
+  stepone[2].disabled = false;
+  stepone[3].disabled = false;
+  stepone[4].disabled = false;
 }
 
 function MultiUsersOutside() {
   console.log("MultiUsersFromOutside not yet implemented. On Todo List in gabe.js");
+  
 }
 
 
@@ -482,6 +528,19 @@ function DateTime_Settings() {
 
 }
 
+function HideVolumeSettings() {
+  volumebar.visible = false;
+  volumepanel.visible = false;
+  volumeslider.visible = false;
+}
+
+function ShowVolumeSettings() {
+  hideSettings();
+  volumebar.visible = true;
+  volumepanel.visible = true;
+  volumeslider.visible = true;
+}
+var stepone = document.getElementsByName("verifyfirst");
 var steptwo = document.getElementsByName("verifysecond");
 var verify = document.getElementsByName("verify");
 
@@ -495,7 +554,7 @@ function VerifyFirst(value) {
   }
   else {
     for(var i=0; i< steptwo.length; i++){
-      if(steptwo[i].value == value){
+      if(steptwo[i].value == value || stepone[i].disabled == true){
         steptwo[i].disabled = true;
       }
       else {
@@ -521,8 +580,14 @@ function Verify(value) {
   console.log("verify " + value);
 }
 
-function VolumeSettings() {
-  console.log("Volume Settings");
+function NumberPadEvent() {
+  console.log("NUMBERPAD");
+  var text = prompt("Please Enter your 4 digit pin", "0123");
+  if(text.length != 4){
+    NumberPadEvent();
+  }
+
 }
+
 
 

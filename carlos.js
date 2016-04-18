@@ -41,6 +41,8 @@ function playDoorbellSound() {
 }
 
 function showSettings() {
+  //backbutton.visible = true;
+
   SettingsIsActive = true;
   HideHome();
 
@@ -53,9 +55,14 @@ function showSettings() {
         canvas.item(i).id == 'settings_traffic'  || canvas.item(i).id == 'settings_datetime'      ||
         canvas.item(i).id == 'settings_doorbell'     || canvas.item(i).id == 'settings_units'   ||
         canvas.item(i).id == 'settings_brightness'   || canvas.item(i).id == 'settings_volume'    ||
-        canvas.item(i).id == 'settings_themes'      || canvas.item(i).id == 'settings_intercom')
+        canvas.item(i).id == 'settings_themes'      || canvas.item(i).id == 'settings_intercom' ||
+       canvas.item(i).id == 'backbutton')
     {
         canvas.item(i).visible = true;
+        if(canvas.item(i).id == 'backbutton') {
+        backbutton = canvas.item(i);
+        //console.log(backbutton);
+      }
     }
   }
 
@@ -74,15 +81,12 @@ function showSettings() {
 
 }
 
-function hideSettings()
-{
-
+function hideSettings(){
   SettingsIsActive = false;
   //UserSettingMsg.bringForward();
   //UserSettingMsg.visible = false;
 
-  for (var i = 0; i < canvas.getObjects().length; ++i)
-  {
+  for (var i = 0; i < canvas.getObjects().length; ++i){
     if (canvas.item(i).id == 'settings_users' || canvas.item(i).id == 'settings_language'   ||
         canvas.item(i).id == 'settings_traffic'  || canvas.item(i).id == 'settings_datetime'      ||
         canvas.item(i).id == 'settings_doorbell'     || canvas.item(i).id == 'settings_units'   ||
