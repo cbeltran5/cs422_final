@@ -174,6 +174,7 @@ var BRIGHTNESS = ["Brightness", "Brillo"];
 var DISPLAY = ["Display Timer", "Minutero de Pantalla "];
 var CANCEL = ["Cancel", "Cancelar"];
 var MUTE = ["Mute", "Mudo"];
+var CLEAR = ["Clear", "Borrar"];
 
 var GREAT = ["Great!", "Estupendo!"];
 var SORRY = ["Sorry!", "Lo Siento!"];
@@ -461,6 +462,8 @@ function LoadUserData_Inside(index) {
   HideLangaugeSetting();
   backbutton.visible = false;
 
+  LanguageSettingIsActive = false;
+  MessagesIsActive = false;
   LanguageSettingIsActive = false;
   MessagesIsActive = false;
 

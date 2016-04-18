@@ -1435,7 +1435,7 @@ stars.push(traffic_star1);
 stars.push(traffic_star2);
 
 var traffic_add_btn = new fabric.Rect({
-  left: 165,
+  left: 155,
   top: 500,
   fill: 'white',
   stroke: 'black',
@@ -1450,13 +1450,14 @@ traffic_add_btn.lockMovementX = traffic_add_btn.lockMovementY = true;
 traffic_add_btn.id = 'traffic_add_btn';
 
 var traffic_add_btn_text = new fabric.IText('Add', {
-  fontFamily: 'arial black',
-  fontSize: 20,
+  fontFamily: 'Calibri',
+  fontSize: 25,
   left: 170,
   top: 515,
   width: 100,
   height: 50
 });
+
 traffic_add_btn_text.visible = false;
 traffic_add_btn_text.hasControls = traffic_add_btn_text.hasBorders = false;
 traffic_add_btn_text.lockMovementX = traffic_add_btn_text.lockMovementY = true;
@@ -1481,9 +1482,9 @@ traffic_save_btn.lockMovementX = traffic_save_btn.lockMovementY = true;
 traffic_save_btn.id = 'traffic_save_btn';
 
 var traffic_save_btn_text = new fabric.IText('Save', {
-  fontFamily: 'arial black',
-  fontSize: 20,
-  left: 165,
+  fontFamily: 'Calibri',
+  fontSize: 25,
+  left: 175,
   top: 510 ,
   width: 100,
   height: 50
@@ -1512,10 +1513,10 @@ traffic_input_name.lockMovementX = traffic_input_name.lockMovementY = true;
 traffic_input_name.id = 'traffic_input_name';
 
 var traffic_input_name_text = new fabric.IText('Type your name...', {
-  fontFamily: 'arial black',
-  fontSize: 20,
-  left: 170,
-  top: 340 ,
+  fontFamily: 'Calibri',
+  fontSize: 25,
+  left: 175,
+  top: 345 ,
   width: 100,
   height: 50
 });
@@ -1542,11 +1543,11 @@ traffic_input_address.hasControls = traffic_input_address.hasBorders = traffic_i
 traffic_input_address.lockMovementX = traffic_input_address.lockMovementY = true;
 traffic_input_address.id = 'traffic_input_address';
 
-var traffic_input_address_text = new fabric.IText('The address...', {
-  fontFamily: 'arial black',
-  fontSize: 20,
-  left: 170,
-  top: 410 ,
+var traffic_input_address_text = new fabric.IText('Address...', {
+  fontFamily: 'Calibri',
+  fontSize: 25,
+  left: 175,
+  top: 415 ,
   width: 100,
   height: 50
 });
@@ -2897,7 +2898,7 @@ var mBackButton = new BackButton();
 
 
 function ShowUserData(id){
-  
+
   HideUserSettings();
   UserSettingList.visible = true;
   UserFName.setText(RegisteredUsers.at(id).firstname);
@@ -2919,7 +2920,7 @@ function ShowUserData(id){
 }
 
 function ShowUserDataForMsg(id){
-  
+
   MsgTo = id;
 }
 function HideUserData(){
@@ -3717,7 +3718,7 @@ MessageBox.id = 'messageBox';
 //});
 ArrayOfObjects.push(MessageBox);
 
-  
+
 /*var accept_button;
 fabric.Image.fromURL('images/post.jpg', function(oImg) {
   oImg.set({left: 505, top: 1350, width: 210, height: 120,id: this.id});
@@ -3738,7 +3739,7 @@ var Post = new fabric.Text('    Post    ', {
   fontFamily: 'Times',
   fontSize: 23,
   padding: 5,
-  left: 230, 
+  left: 230,
   top: 530,
   width: 150,
   height: 50,
@@ -3756,7 +3757,7 @@ var OK = new fabric.Text('    OK    ', {
   fontFamily: 'Times',
   fontSize: 23,
   padding: 5,
-  left: 230, 
+  left: 230,
   top: 530,
   width: 150,
   height: 50,
@@ -3774,7 +3775,7 @@ var OKOut= new fabric.Text('    OK    ', {
   fontFamily: 'Times',
   fontSize: 23,
   padding: 5,
-  left: 890, 
+  left: 890,
   top: 470,
   width: 150,
   height: 50,
@@ -3787,7 +3788,7 @@ OKOut.hasControls =  false;
 OKOut.lockMovementX = OK.lockMovementY = true;
 
 
-var MsgBox = new fabric.IText('Type...', { 
+var MsgBox = new fabric.IText('Type...', {
   fontFamily: 'Times',
   fontSize: 18,
   left: 165,
@@ -3811,7 +3812,7 @@ var MsgOutsideText = new fabric.Text('', {
       fontFamily: 'Times',
       fontSize: 25,
       padding: 5,
-      left: 830, 
+      left: 830,
       top: 350,
       width: 150,
       height: 50,
@@ -3839,7 +3840,7 @@ function ShowMessageSettings()
   PublicText.setOpacity(1);
   PrivateText.backgroundColor = 'white';
   PrivateText.setOpacity(0.3);
-  
+
   //HomeSelected();
 }
 
@@ -3888,7 +3889,7 @@ PublicText.on('mousedown', function ()
 
 PrivateText.on('mousedown', function ()
 {
-  
+
   MsgMode = 'Private';
   PublicText.backgroundColor = 'white';
   PublicText.setOpacity(0.3);
@@ -3902,7 +3903,7 @@ PrivateText.on('mousedown', function ()
   ShowUsers();
 
 
-  OK.visible = true; 
+  OK.visible = true;
   console.log("bbb" + MessagesIsActive);
   //MessageBoxSelected();
 });
@@ -3970,9 +3971,9 @@ function ShowUsers(){
       left: 400,
       top: topv,
     });
-    
+
     UserNameMsg.setText(RegisteredUsers.at(i).firstname);
-   
+
     //UserNameMsg.on('mousedown', function ()
     //{
      // CloseMessageSettings();
@@ -4023,6 +4024,19 @@ ArrayOfObjects.push(MessageHelloOutside);  */
 //------------- I did Messages above here here go above it for langauge setting -------------------
 //--------------------------------------------------------------------------------------
 // add all of the elements to the canvas
+function ShowDateTimeSettings()
+{
+    DateTimePanel.visible = true;
+    DateFormatText.visible = true;
+    TimeFormatText.visible = true;
+    DateFormat1.visible = true;
+    DateFormat2.visible = true;
+    DateFormat3.visible = true;
+    DateFormat4.visible = true;
+    TimeFormat1.visible = true;
+    TimeFormat2.visible = true;
+    SaveDateTimeFormatButton.visible = true;
+}
 
 canvas.add(insideDoor);
 canvas.add(outsideDoor);
@@ -4032,7 +4046,7 @@ canvas.add(MessagesDroplist);
 canvas.add(PublicText);
 canvas.add(PrivateText);
 canvas.add(Post);
-canvas.add(OK); 
+canvas.add(OK);
 canvas.add(OKOut);
 canvas.add(MsgBox);
 canvas.add(UserSettingList);
@@ -4264,6 +4278,8 @@ canvas.on({ 'object:selected': function(e) {
       hideSettings();
       mBackButton.addToBackStack(showSettings, hideDoorbellSettings);
     }
+    else if (activeObject.id == "traffic_save_btn_text" || activeObject.id == "traffic_save_btn")
+      saveTrafficOption();
     else if (activeObject.id == "doorbell_dingdong_option" || activeObject.id == "doorbell_dingdong_option_text")
       toggle_doobell_option("ding-dong");
     else if (activeObject.id == "doorbell_ding_option" || activeObject.id == "doorbell_ding_option_text")
@@ -4303,7 +4319,7 @@ canvas.on({ 'object:selected': function(e) {
         if (activeObject.id == i){
 
           {UsersNames[i].backgroundColor = '#5DADE2';
-            ShowUserData(i);   
+            ShowUserData(i);
           break;}
         }
       }
@@ -4320,6 +4336,17 @@ canvas.on({ 'object:selected': function(e) {
       }
       for(var i=0; i < UsersNamesMsg.length; i ++ ){
         if(i != MsgTo) {
+
+            UsersNamesMsg[i].backgroundColor = '#5DADE2';
+            MsgTo = i;
+            console.log("MsgTo : " + MsgTo);
+            break;
+          }
+        }
+
+          for(var i=0; i < UsersNamesMsg.length; i ++ ){
+
+            if(i!=MsgTo)
             UsersNamesMsg[i].backgroundColor = 'white';
         }
       }
@@ -4386,6 +4413,11 @@ canvas.on({ 'object:selected': function(e) {
     else if(activeObject.id == 'settings_language') {
       ShowLanguageSetting();
       LanguageSettingIsActive = true;
+    }
+
+    else if(activeObject.id == 'settings_datetime')
+    {
+        ShowDateTimeSettings();
     }
 
     if( (langselected = isLangSelected(activeObject)) != null ){
