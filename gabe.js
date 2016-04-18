@@ -519,8 +519,16 @@ function Verify(value) {
   console.log("verify " + value);
 }
 
-function VolumeSettings() {
-  console.log("Volume Settings");
+function HideVolumeSettings() {
+  volumebar.visible = false;
+  volumepanel.visible = false;
+  volumeslider.visible = false;
+}
+
+function ShowVolumeSettings() {
+  volumebar.visible = true;
+  volumepanel.visible = true;
+  volumeslider.visible = true;
 }
 
 

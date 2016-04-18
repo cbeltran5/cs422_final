@@ -2575,29 +2575,24 @@ ArrayOfObjects.push(UserSettingMsg);
 
 
 //console.log( "My array length b: "+ArrayOfObjects.length);
-function ShowUserSettings()
-{
+function ShowUserSettings(){
   UsersNames = [];
-
   UserSettingList.visible = true;
   //UserSettingMsg.visible = false;
   //loop to get names and add them to canvas
-  for (i = 0; i < RegisteredUsers.length; i++)
-
-  {
+  for (i = 0; i < RegisteredUsers.length; i++){
     var topv = 730 + (70*(i+1)/(i+1)) * (i+1);
     var UserName = new fabric.Text('', {
-    fontFamily: 'Times',
-    fontSize: 60,
-    left: 400,
-    top: topv,
+      fontFamily: 'Times',
+      fontSize: 60,
+      left: 400,
+      top: topv,
     });
     
     UserName.setText(RegisteredUsers.at(i).firstname);
     if(CURRENT_USER.id == RegisteredUsers.at(i).id)
       UserName.selectable = true;
-    else
-      {
+    else{
       UserName.selectable = false;
       UserName.opacity = 0.3;
     }
@@ -2606,28 +2601,21 @@ function ShowUserSettings()
     UserName.bringForward();
     UsersNames.push(UserName);
     ArrayOfObjects.push(UsersNames[i]);
-
   }
-console.log("We are : "+ UsersNames.length);
-console.log("here : "+ UsersNames[1].top);
-console.log( "My array length a: " + ArrayOfObjects.length);
+  console.log("We are : "+ UsersNames.length);
+  console.log("here : "+ UsersNames[1].top);
+  console.log( "My array length a: " + ArrayOfObjects.length);
 
-for (i = 0; i < UsersNames.length; i++)
-
-  {
+  for (i = 0; i < UsersNames.length; i++) {
     UsersNames[i].id = i;
   }
-
 }
 
-function HideUserSettings()
-{
-
+function HideUserSettings(){
   UserSettingList.visible = false;
   for (i = 0; i < UsersNames.length; i++) {
     UsersNames[i].visible = false;
   }
-
 }
 
 
@@ -2689,8 +2677,23 @@ canvas.on("object:moving", function() {
   volumeslider.setLeft( Math.min( Math.max(volumeslider.left, leftBound) , rightBound));      
 });
 
+  
+  
+//********************************************************************************************
+// Back Button
+  
+  
 
-
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 function ShowUserData(id){
   HideUserSettings();
   UserSettingList.visible = true;
@@ -2733,6 +2736,9 @@ function HideUserData(){
   canvas.renderAll();
 }
 
+  
+  
+  
 //--------------------------------------------------------------------------------------
 // add all of the elements to the canvas
 
@@ -3047,7 +3053,7 @@ canvas.on({
       ShowUserSettings();
     }
     else if(activeObject.id == 'settings_volume'){
-      VolumeSettings();
+      ShowVolumeSettings();
     }
   }
 });
