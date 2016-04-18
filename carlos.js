@@ -41,6 +41,7 @@ function playDoorbellSound() {
 }
 
 function showSettings() {
+  mBackButton.addToBackStack( HomeSelected,hideSettings);
   SettingsIsActive = true;
   HideHome();
 
@@ -74,15 +75,12 @@ function showSettings() {
 
 }
 
-function hideSettings()
-{
-
+function hideSettings(){
   SettingsIsActive = false;
   //UserSettingMsg.bringForward();
   //UserSettingMsg.visible = false;
 
-  for (var i = 0; i < canvas.getObjects().length; ++i)
-  {
+  for (var i = 0; i < canvas.getObjects().length; ++i){
     if (canvas.item(i).id == 'settings_users' || canvas.item(i).id == 'settings_language'   ||
         canvas.item(i).id == 'settings_traffic'  || canvas.item(i).id == 'settings_datetime'      ||
         canvas.item(i).id == 'settings_doorbell'     || canvas.item(i).id == 'settings_units'   ||

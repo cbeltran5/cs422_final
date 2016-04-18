@@ -2695,14 +2695,26 @@ fabric.Image.fromURL('images/backbutton.png', function(oImg) {
   ArrayOfObjects.push(oImg);
 });
  
-var close_functions = [];
-var how_igot_here = [];
+
 function BackButton() {
-  var hide = close_functions.pop();
-  var ret = how_igot_here.pop();
-  hide();
-  ret();
+  this.hidefunctions = [];
+  this.howigothere = []
+  
+  this.addToBackStack = function( returnTo, hidefunction){
+    this.hidefunctions.push(hidefunction);
+    this.howigothere.push(returnTo);
+  }
+  
+  this.goBack = function() {
+    var hide = this.hidefunction.pop();
+    var returnto = this.howigothere.pop();
+    hide();
+    returnto();
+  }
 }
+  
+var mBackButton = new BackButton();
+
 
 
   
@@ -2719,12 +2731,8 @@ function ShowUserData(id){
 
   UserDateFormat.setText(RegisteredUsers.at(id).date_format);
   canvas.add(UserDateFormat);
+  UserLang.setText(SYSTEM_LANGUAGE[RegisteredUsers.at(id).language]);
 
-  
-  if (RegisteredUsers.at(id).language == 0)
-  UserLang.setText("English");
-  else if (RegisteredUsers.at(id).language == 1)
-  UserLang.setText("Spanish");
   canvas.add(UserLang);
 
   canvas.add(BackButtFromUSerData);
@@ -2915,7 +2923,6 @@ canvas.on({
     else if (activeObject.id == "doorbell")
       playDoorbellSound();
     else if (activeObject.id == "settings") {
-      how_igot_here.push(showSettings);
       showSettings();
       //canvas.deactivateAll();
     }
@@ -3071,7 +3078,7 @@ canvas.on({
       ShowVolumeSettings();
     }
     else if(activeObject.id == 'backbutton'){
-      BackButton();
+      mBackButton.goBack();
     }
   }
 });

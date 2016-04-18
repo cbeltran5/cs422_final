@@ -255,6 +255,7 @@ function Registered_Users() {
 
 var RegisteredUsers = new Registered_Users();
 
+
 var userscounter = 0;
 // Created a User class to hold the personal information common to all users
 
@@ -403,8 +404,6 @@ function ShowHomeButtonAndLine() {
   }
   homebutton.visible = 'true';
   Line.visible = true;
-
-
 }
 
 function HideHomeButtonAndLine() {
@@ -527,7 +526,8 @@ function HideVolumeSettings() {
 }
 
 function ShowVolumeSettings() {
-  close_functions.push(HideVolumeSettings);
+  hideSettings();
+  mBackButton.AddToBackStack( showSettings, HideVolumeSettings);
   volumebar.visible = true;
   volumepanel.visible = true;
   volumeslider.visible = true;
