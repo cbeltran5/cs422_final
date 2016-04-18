@@ -44,7 +44,6 @@ function showSettings() {
   SettingsIsActive = true;
   HideHome();
 
-  
   PanelRect.visible = true;
 
   for (var i = 0; i < canvas.getObjects().length; ++i)
@@ -71,15 +70,12 @@ function showSettings() {
   IntercomText.visible = true;
   PanelRect.visible = true;
 
-
 }
 
 function hideSettings()
 {
 
   SettingsIsActive = false;
-  //UserSettingMsg.bringForward();
-  //UserSettingMsg.visible = false;
 
   for (var i = 0; i < canvas.getObjects().length; ++i)
   {

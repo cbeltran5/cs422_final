@@ -83,8 +83,6 @@ function HomeSelected()
 //-------------------------------------------------------------
 function ShowHome()
 {
-  
-
   RegisteredUsers.hideAllUsersObjects();
   HideUsersList();
   CloseCamera();
@@ -96,10 +94,8 @@ function ShowHome()
   HideMessageBox();
   CloseThemeSettings();
   HideUserSettings();
-  HideUserData();
   HomeIsActive = true;
   PanelRect.visible = true;
-  icon_settings.selectable = true;
 
 //  if(CURRENT_USER != null)
 //  {
@@ -112,19 +108,10 @@ function ShowHome()
         canvas.item(i).id == 'traffic'  || canvas.item(i).id == 'cta'      ||
         canvas.item(i).id == 'news'     || canvas.item(i).id == 'mirror'   ||
         canvas.item(i).id == 'lights'   || canvas.item(i).id == 'alarm'    ||
-        canvas.item(i).id == '911'      ||
+        canvas.item(i).id == '911'      || canvas.item(i).id == 'settings' ||
         canvas.item(i).id == 'restart')
     {
         canvas.item(i).visible = true;
-    }
-
-    else if(canvas.item(i).id == 'settings')
-    {
-      canvas.item(i).visible = true;
-      if(CURRENT_USER == null)
-          canvas.item(i).selectable = false;
-      else
-          canvas.item(i).selectable = true;
     }
 
   }
@@ -149,11 +136,6 @@ function HideHome()
   HomeIsActive = false;
   //Here close all apps
   CloseCamera();
-  HideUserSettings();
-  HideUserData();
-  CloseThemeSettings();
-
-  
 
   PanelRect.visible = false;
 
@@ -410,7 +392,6 @@ function NewUserFromInside()
 
 //  HideUser1FromInside();
 //  HideUser2FromInside();
-  CURRENT_USER = null;
   HideHome();
   ShowHomeButtonAndLine();
   RegisteredUsers.hideAllUsersObjects();
@@ -432,8 +413,7 @@ function NewUserFromInside()
   Date_format = DATE_MONTHDDYYYY;
   Time_format = TIME_12HOUR;
   TemperatureUnits = F;
-  SetDoorTheme();
-  
+  CURRENT_USER = null;
 }
 
 //-------------------------------------------------------------
@@ -467,7 +447,6 @@ function NoSignalFromInside()
   Date_format = DATE_MONTHDDYYYY;
   Time_format = TIME_12HOUR;
   TemperatureUnits = F;
-  SetDoorTheme();
 }
 
 //-------------------------------------------------------------
@@ -639,7 +618,7 @@ function RunCamera()
 {
 
   HideHome();
-  AvatarIsActive = false;
+
   AvatarOnOff.visible = true;
   LiveOnOff.visible = true;
   CameraIn.visible = true;
@@ -650,7 +629,6 @@ function RunCamera()
 //-------------------------------------------------------------
 function RunOutsideCamera()
 {
-  SetDoorTheme();
   fabric.util.loadImage('images/FromOutCamera.gif', function (img) {
     insideDoor.setPatternFill({
         source: img,
@@ -663,7 +641,6 @@ function RunInsideCameraAvatar()
 {
   AvatarIsActive = true;
   AvatarOut.visible = true;
-  RunOutsideCamera();
 
   fabric.util.loadImage('images/AvatarIn.gif', function (img) {
     CameraIn.setPatternFill({
@@ -695,7 +672,7 @@ function RunInsideCameraAvatar()
 function RunInsideCameraLive()
 {
   console.log(" live ");
-  RunOutsideCamera();
+
   AvatarIsActive = false;
   AvatarOut.visible = false;
 
@@ -784,27 +761,6 @@ function SetDoorTheme()
     source: img,
     repeat: 'repeat'
     }); });
-
-
- if( Out_ornament == 'Easter')
-    
-    {
-      EasterOrn.visible = true;
-      XmassOrn.visible = false;
-    }
-
-else if( Out_ornament == 'Xmass')
-    {
-      XmassOrn.visible = true;
-      EasterOrn.visible = false;
-    }
-    
-else if( Out_ornament == 'default')
-    {
-      EasterOrn.visible = false;
-      XmassOrn.visible = false;
-    }
-
 
 
 }

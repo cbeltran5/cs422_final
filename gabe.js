@@ -398,8 +398,6 @@ function ShowHomeButtonAndLine() {
   }
   homebutton.visible = 'true';
   Line.visible = true;
-
-
 }
 
 function HideHomeButtonAndLine() {
@@ -409,7 +407,6 @@ function HideHomeButtonAndLine() {
   }
   homebutton.visible = false;
   Line.visible = false;
-  
 }
 
 function ResetHeightRadioToDefault() {
@@ -423,7 +420,6 @@ function LoadUserData_Inside(index ) {
   if(!heightsenabled)
     HeightsRadioButtons_ENABLE();   // enable radio buttons
 
-  HideHome();
   ShowHomeButtonAndLine();
 
   console.log("LoadUserData_Inside(" + index + ")");
@@ -442,7 +438,6 @@ function LoadUserData_Inside(index ) {
   HideTransport();
   HideNews();
 
-
   ResetHeightRadioToDefault();
 
   RegisteredUsers.at(index).showObjects();
@@ -458,7 +453,6 @@ function LoadUserData_Inside(index ) {
   TemperatureUnits = RegisteredUsers.at(index).temerature_units;
   UpdateText();
   UncheckHeight();
-  SetDoorTheme();
 }
 
 function LoadUserData_Outside(index ) {
