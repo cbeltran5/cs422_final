@@ -101,6 +101,9 @@ function ShowHome(){
   PanelRect.visible = true;
   icon_settings.selectable = true;
 
+  if(LanguageSettingIsActive == true)
+  HideLangaugeSetting();
+
   for (var i = 0; i < canvas.getObjects().length; ++i)
   {
     if (canvas.item(i).id == 'messages' || canvas.item(i).id == 'camera'   ||
@@ -148,7 +151,8 @@ function HideHome()
   hideSettings();
   HideUserData();
   CloseThemeSettings();
-  //HideLangaugeSetting();
+  if(LanguageSettingIsActive == true)
+  HideLangaugeSetting();
   Hide911();
   
   PanelRect.visible = false;

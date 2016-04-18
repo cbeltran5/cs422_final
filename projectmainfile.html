@@ -201,6 +201,7 @@ var TemperatureUnits = F;
 
 var HomeIsActive = false;
 var SettingsIsActive = false;
+var LanguageSettingIsActive = false;
 var UserFingerIsRecognizable = false;
 var Height = 0;
 var ImgHeight = Height*2.22222222;
@@ -3323,7 +3324,7 @@ function ShowLangaugeSetting()
 
 function HideLangaugeSetting()
 {
-    ShowHome();
+    //ShowHome();
     LangaugePanel.visible = false;
     EnglishLang.visible = false;
     SpanishLang.visible = false;
@@ -3670,6 +3671,7 @@ canvas.on({
     }
     else if(activeObject.id == 'settings_language') {
       ShowLangaugeSetting();
+      LanguageSettingIsActive = true;
     }
 
     canvas.deactivateAll();
