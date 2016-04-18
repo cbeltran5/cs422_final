@@ -677,6 +677,52 @@ PublicText.on('mousedown', function ()
   MessageBoxSelected();
 });
 
+function ShowUsers(){
+  mBackButton.addToBackStack(showSettings,HideUserData);
+  UsersNames = [];
+  UserSettingList.visible = true;
+  //UserSettingMsg.visible = false;
+  //loop to get names and add them to canvas
+  for (i = 0; i < RegisteredUsers.length; i++){
+    var topv = 730 + (70*(i+1)/(i+1)) * (i+1);
+    var UserName = new fabric.Text('', {
+      fontFamily: 'Times',
+      fontSize: 60,
+      left: 400,
+      top: topv,
+    });
+    
+    UserName.setText(RegisteredUsers.at(i).firstname);
+   
+    UserName.on('mousedown', function ()
+    {
+      CloseMessageSettings();
+      MessageBoxSelected();
+    });
+    canvas.add(UserName);
+    UserName.bringForward();
+    UsersNames.push(UserName);
+    ArrayOfObjects.push(UsersNames[i]);
+  }
+
+  console.log("We are : "+ UsersNames.length);
+  console.log("here : "+ UsersNames[1].top);
+  console.log( "My array length a: " + ArrayOfObjects.length);
+
+
+  for (i = 0; i < UsersNames.length; i++) {
+    UsersNames[i].id = i;
+  }
+}
+
+
+PrivateText.on('mousedown', function ()
+{
+  CloseMessageSettings();
+  ShowUsers();
+  //MessageBoxSelected();
+});
+
 var MessageBox = new fabric.Rect({
   left: 175,
   top: 400,
