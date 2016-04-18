@@ -175,9 +175,16 @@ var DISPLAY = ["Display Timer", "Minutero de Pantalla "];
 var CANCEL = ["Cancel", "Cancelar"];
 var MUTE = ["Mute", "Mudo"];
 
+var GREAT = ["Great!", "Estupendo!"];
+var SORRY = ["Sorry!", "Lo Siento!"];
+var NOWSET =["Your language is now set to ", "Su idioma fue configurado para "];
+var NOTSET =["Your language was not set to ", "Su idioma no fue configurado para "]
+var RETURNMSG=["Please press the back arrow to return to language settings.",
+               "Presione la flecha para volver a la configuración de idioma."];
 // when called, this function will update the text of the respective
 // faric text object with a string that matches that object and the currently
 // set language
+
 function UpdateText() {
   Messagestext.text = MESSAGES[syslang];
   Cameratext.text = CAMERA[syslang];
@@ -211,7 +218,7 @@ function UpdateText() {
   doorbell_cancel_btn_text.text = CANCEL[syslang];
   doorbell_save_btn_text.text = SAVE[syslang];
   doorbell_mute_option_text.text = MUTE[syslang];
-
+  VolumeSettingsText.text = VOLUME[syslang];
 }
 /***********************************************************************
                            END OF DATE AND TIME
@@ -292,7 +299,10 @@ function User(firstname, lastname, language, pin) {
 
   this.brightness_pref = 1;
   this.display_timer_pref = "three";
-
+  
+  this.vpercent = "50";
+  this.sliderleft = 591;
+  
   this.doorbell_pref = "Ding";
 
   this.getFullName = function () {
@@ -319,9 +329,11 @@ function User(firstname, lastname, language, pin) {
   this.showMessages = function () {
     console.log("showMessages is not yet implemented. see gabe.js");
   }
+  
   this.hideMessages = function() {
     console.log("hideMessages is not yet implemented. see gabe.js");
   }
+  
   this.addMessage = function (msg) {
     this.myMessages.push(msg);
   }
@@ -451,13 +463,22 @@ function LoadUserData_Inside(index) {
   HideNews();
   hideSettings();
   Hide911();
+//<<<<<<< HEAD
   CloseMessageSettings();
+//=======
+  HideVolumeSettings();
+  HideLangaugeSetting();
+  backbutton.visible = false;
+  
+//>>>>>>> 8abc788b98fda319a20da301b55b73527e72e2be
   LanguageSettingIsActive = false;
   MessagesIsActive = false;
 
   
-
-
+  volumeslider.left = CURRENT_USER.sliderleft;
+  volumeslider.setLeft(CURRENT_USER.sliderleft);
+  volumePercentage.text = "" + CURRENT_USER.vpercent + "%";
+  volumeslider.setCoords();
   ResetHeightRadioToDefault();
 
   RegisteredUsers.at(index).showObjects();
@@ -471,9 +492,11 @@ function LoadUserData_Inside(index) {
   Date_format = RegisteredUsers.at(index).date_format;
   Time_format = RegisteredUsers.at(index).time_format;
   TemperatureUnits = RegisteredUsers.at(index).temerature_units;
+  
   UpdateText();
   UncheckHeight();
   SetDoorTheme();
+  canvas.renderAll();
 }
 
 function randomIntFromInterval(min,max)
@@ -556,6 +579,8 @@ function HideVolumeSettings() {
   volumebar.visible = false;
   volumepanel.visible = false;
   volumeslider.visible = false;
+  VolumeSettingsText.visible = false;
+  volumePercentage.visible = false;
 }
 
 function ShowVolumeSettings() {
@@ -563,6 +588,8 @@ function ShowVolumeSettings() {
   volumebar.visible = true;
   volumepanel.visible = true;
   volumeslider.visible = true;
+  VolumeSettingsText.visible = true;
+  volumePercentage.visible = true;
 }
 
 var steponeselected = false;
@@ -685,6 +712,66 @@ function NumberPadEvent() {
   }
   return id;
 }
+
+var langselected = null;
+function isLangSelected( obj) {
+  for(var i=0; i< LanguageArr.length; i++){
+    if(obj == LanguageArr[i]){
+      return i;
+    }
+  }
+  return null;
+}
+
+function HighlightLang() {
+  console.log("Highlight Lang");
+}
+
+var tempsyslang;
+function SaveLanguageSettings(lang) {
+  console.log("SAVE LANG");
+  if(lang == null) {
+    console.log("lang is null");
+    return;
+  }
+  if(CURRENT_USER != null ) {
+    var changed;
+    if(lang > 1){
+      console.log(LanguageArr[lang].text + " is not supported at this time."); 
+      changed = false;
+    }
+    else { // 0 or 1 
+      CURRENT_USER.language = lang;
+      syslang = lang;
+      UpdateText();
+      changed = true;
+      console.log("Changed language to " + LanguageArr[lang].text + "!");
+    }
+    HideLangaugeSetting();
+    
+    ShowLangFeedBack(LanguageArr[lang].text,changed);
+    mBackButton.addToBackStack(ShowLanguageSetting, HideLangFeedBack);
+  }
+  else {
+    Console.log("Current user is null");
+  }
+}
+//textDecoration: 'underline'
+
+
+
+
+
+function ChangeUnits() {
+  
+}
+
+
+
+
+
+
+
 
 
 

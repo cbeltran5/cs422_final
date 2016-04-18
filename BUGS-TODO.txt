@@ -3,11 +3,7 @@ bug when changing the height to short, the ALarmON icon does not go down with th
 //gabe.js
 when changing user in radio buttons...
 
-// possible TODO
-addNewUser() in carlos.js, if we're supporting dynamic users
-
-// BUG
-bug in showTrafficSettings(), sometimes one of the blocks aren't rendered.
-
-TODO
-change abeer.js/MultiUsersFromInside() to dynamically add people to that list on runtime. possibly work with a fabric.text and fabric.rect for each user.
+//GABE TODO
+-finish volume settings
+-language settings
+-date/time settings

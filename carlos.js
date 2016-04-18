@@ -14,10 +14,11 @@ var stars = [];
 var user_traffic_options = [];
 
 function checkSettings() {
+  // sometimes isn't called... just force it every time
   hideTrafficInputAdd();
-  if (SettingsIsActive == true) {
+
+  if (SettingsIsActive)
     hideSettings();
-  }
   else if (usersActive)
     hideUsers();
   else if (trafficSettingsActive)
@@ -25,7 +26,7 @@ function checkSettings() {
   else if (doorbellSettingsActive)
     hideDoorbellSettings();
   else if (brightnessSettingsActive)
-    hideBrightnessSettings(false);
+    hideBrightnessSettings(true);
   else if (themeSettingsActive)
     hideThemeSettings();
 }
@@ -46,7 +47,7 @@ function showSettings() {
   SettingsIsActive = true;
   HideHome();
 
-  
+
   PanelRect.visible = true;
 
   for (var i = 0; i < canvas.getObjects().length; ++i)
@@ -109,7 +110,7 @@ function hideSettings(){
   ThemesText.visible = false;
   IntercomText.visible = false;
   PanelRect.visible = false;
-    
+
   hideUsers();
 }
 
@@ -320,8 +321,6 @@ function showBrightnessSettings()
   three_min_btn_text.visible = true;
   five_min_btn.visible = true;
   five_min_btn_text.visible = true;
-  brightness_save_btn.visible = true;
-  brightness_save_btn_text.visible = true;
 
   toggle_display_buttons(CURRENT_USER.display_timer_pref);
   update_brightness(-500);
@@ -363,8 +362,6 @@ function hideBrightnessSettings(save)
   three_min_btn_text.visible = false;
   five_min_btn.visible = false;
   five_min_btn_text.visible = false;
-  brightness_save_btn.visible = false;
-  brightness_save_btn_text.visible = false;
 
   brightnessSettingsActive = false;
 
