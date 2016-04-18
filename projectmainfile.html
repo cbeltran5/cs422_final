@@ -2657,6 +2657,7 @@ ArrayOfObjects.push(UserSettingMsg);
 
 //console.log( "My array length b: "+ArrayOfObjects.length);
 function ShowUserSettings(){
+  mBackButton.addToBackStack(showSettings,HideUserData);
   UsersNames = [];
   UserSettingList.visible = true;
   //UserSettingMsg.visible = false;
@@ -2795,7 +2796,6 @@ function BackButton() {
     returnto();
   }
 }
-  
 var mBackButton = new BackButton();
 
   
@@ -3014,6 +3014,7 @@ canvas.on({
     else if (activeObject.id == "settings_traffic") {
       showTrafficSettings();
       hideSettings();
+      mBackButton.addToBackStack(showSettings, hideTrafficSettings);
     }
     else if (activeObject.id == "traffic_add_btn" || activeObject.id == "traffic_add_btn_text")
       showTrafficInputAdd();
@@ -3022,14 +3023,14 @@ canvas.on({
     else if(activeObject.id == "traffic_star1" || activeObject.id == "traffic_star2")
       toggleTrafficPrimary(activeObject.id);
 
-    else if (activeObject.id == "settings_themes")
-    {
+    else if (activeObject.id == "settings_themes"){
       hideSettings();
       ShowThemeSettings();
     }
     else if (activeObject.id == "settings_brightness") {
       showBrightnessSettings();
       hideSettings();
+      mBackButton.addToBackStack(showSettings, hideBrightnessSettings);
     }
     else if (activeObject.id == "five_min_btn" || activeObject.id == "five_min_btn_text")
       updateDisplayTimer("five");
@@ -3044,6 +3045,7 @@ canvas.on({
     else if (activeObject.id == "settings_doorbell") {
       showDoorbellSettings();
       hideSettings();
+      mBackButton.addToBackStack(showSettings, hideDoorbellSettings);
     }
     else if (activeObject.id == "doorbell_dingdong_option" || activeObject.id == "doorbell_dingdong_option_text")
       toggle_doobell_option("ding-dong");
@@ -3159,9 +3161,12 @@ canvas.on({
     else if(activeObject.id == "settings_users"){
       hideSettings();
       ShowUserSettings();
+
     }
     else if(activeObject.id == 'settings_volume'){
       ShowVolumeSettings();
+      mBackButton.addToBackStack( showSettings, HideVolumeSettings);
+
     }
     else if(activeObject.id == 'backbutton'){
       mBackButton.goBack();

@@ -378,6 +378,7 @@ function HeightsRadioButtons_DISABLE() {
   document.getElementsByName('Heights')[2].disabled = true; //
 
 }
+
 function HeightsRadioButtons_ENABLE() {
   heightsenabled = true;
   document.getElementsByName('Heights')[0].disabled = false;  //
@@ -521,7 +522,6 @@ function HideVolumeSettings() {
 
 function ShowVolumeSettings() {
   hideSettings();
-  mBackButton.AddToBackStack( showSettings, HideVolumeSettings);
   volumebar.visible = true;
   volumepanel.visible = true;
   volumeslider.visible = true;
