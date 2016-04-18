@@ -211,6 +211,7 @@ var ArrayOfObjects = [];
 var OriginalObjCoordinate = [];
 var counter = 0;
 HeightsRadioButtons_DISABLE();
+var UsersNames = [];
 
 //*******************************************************************************************
 
@@ -218,10 +219,9 @@ HeightsRadioButtons_DISABLE();
 
 var User0 = new User('Gabe', 'Mendoza', ENGLISH);
 var User1 = new User('Enrique', 'Vaca', SPANISH);
-var User2 = new User('Adam', 'Porter', ENGLISH);
-var User3 = new User('Sara', 'Parker', ENGLISH);
-var User4 = new User('Carlos', 'Beltran', SPANISH);
-var User5 = new User('Abeer','A.', ENGLISH);
+var User2 = new User('Abeer','A.', ENGLISH);
+var User3 = new User('Carlos', 'Beltran', SPANISH);
+ 
 
 
 //*******************************************************************************************
@@ -995,6 +995,7 @@ fabric.Image.fromURL('images/settings.gif', function(oImg) {
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'settings';
   icon_settings = oImg;
+  icon_settings.selectable = false;
   ArrayOfObjects.push(icon_settings);
   canvas.add(icon_settings);
 });
@@ -2398,7 +2399,8 @@ MetalText.on('mousedown', function ()
 //----------------
 XmassText.on('mousedown', function ()
 {
-  CURRENT_USER.out_ornament = 'Xmass';
+  Out_ornament = 'Xmass';
+  CURRENT_USER.out_ornament = Out_ornament;
   XmassText.backgroundColor = '#85C1E9';
   EasterText.backgroundColor = 'white';
   XmassOrn.visible = true;
@@ -2407,7 +2409,8 @@ XmassText.on('mousedown', function ()
 
 EasterText.on('mousedown', function ()
 {
-  CURRENT_USER.out_ornament = 'Easter';
+  Out_ornament = 'Easter';
+  CURRENT_USER.out_ornament = Out_ornament;
   XmassText.backgroundColor = 'white';
   EasterText.backgroundColor = '#85C1E9';
   XmassOrn.visible = false;
@@ -2417,8 +2420,12 @@ EasterText.on('mousedown', function ()
 ResetTheme.on('mousedown', function (){
   In_theme = 'default';
   Out_theme = 'default';
+  Out_ornament = 'default';
+  
+
   CURRENT_USER.out_theme = Out_theme;
   CURRENT_USER.in_theme = In_theme;
+  CURRENT_USER.out_ornament = Out_ornament;
   XmassOrn.visible = false;
   EasterOrn.visible = false;
 
@@ -2455,6 +2462,7 @@ fabric.Image.fromURL('images/Usersettinglist.jpg', function(oImg) {
   canvas.add(UserSettingList);
   ArrayOfObjects.push(UserSettingList);
 });
+
 
 
 var UserFName = new fabric.Text('', {
@@ -2567,39 +2575,29 @@ ArrayOfObjects.push(UserSettingMsg);
 
 
 //console.log( "My array length b: "+ArrayOfObjects.length);
-var UsersNames = [];
 function ShowUserSettings()
 {
   UsersNames = [];
 
   UserSettingList.visible = true;
   //UserSettingMsg.visible = false;
-}
-
-var UsersNames = [];
-function ShowUserSettings(){
-  UserSettingList.visible = true;
   //loop to get names and add them to canvas
-  for (i = 0; i < RegisteredUsers.length; i++){
-    var topv = 730 + (70 * (i+1));
-  //var topv = 730 + (70*(i+1)/(i+1)) * (i+1);
+  for (i = 0; i < RegisteredUsers.length; i++)
+
+  {
+    var topv = 730 + (70*(i+1)/(i+1)) * (i+1);
     var UserName = new fabric.Text('', {
-      fontFamily: 'Times',
-      fontSize: 60,
-      left: 400,
-      top: topv,
+    fontFamily: 'Times',
+    fontSize: 60,
+    left: 400,
+    top: topv,
     });
+    
     UserName.setText(RegisteredUsers.at(i).firstname);
     if(CURRENT_USER.id == RegisteredUsers.at(i).id)
       UserName.selectable = true;
-    else{
-      UserName.selectable = false;
-      UserName.opacity = 0.3;
-    }
-    UserName.setText(RegisteredUsers.at(i).firstname);
-    if(CURRENT_USER.id == RegisteredUsers.at(i).id)
-      UserName.selectable = true;
-    else{
+    else
+      {
       UserName.selectable = false;
       UserName.opacity = 0.3;
     }
@@ -2608,35 +2606,19 @@ function ShowUserSettings(){
     UserName.bringForward();
     UsersNames.push(UserName);
     ArrayOfObjects.push(UsersNames[i]);
-  }
-  console.log("We are : "+ UsersNames.length);
-  console.log("here : "+ UsersNames[1].top);
-  console.log( "My array length a: " + ArrayOfObjects.length);
 
-  for (i = 0; i < UsersNames.length; i++){
+  }
+console.log("We are : "+ UsersNames.length);
+console.log("here : "+ UsersNames[1].top);
+console.log( "My array length a: " + ArrayOfObjects.length);
+
+for (i = 0; i < UsersNames.length; i++)
+
+  {
     UsersNames[i].id = i;
   }
 
-  console.log( "My array length a: " + ArrayOfObjects.length);
-  for (i = 0; i < UsersNames.length; i++){
-      UsersNames[i].id = i;
-  }
 }
-// FIX ME
-//function HideUserSettings() 
-//{
-//
-//
-//    UserName.setText(RegisteredUsers.at(i).firstname);
-//    canvas.add(UserName);
-//    UserName.bringForward();
-//    UsersNames.push(UserName);
-//    console.log(UserName);
-//    //ArrayOfObjects.push(UsersNames);
-//  }
-//  console.log("We are : "+ UsersNames.length);
-//}
-
 
 function HideUserSettings()
 {
@@ -2647,6 +2629,7 @@ function HideUserSettings()
   }
 
 }
+
 
   
 //********************************************************************************************
@@ -2758,7 +2741,9 @@ function HideUserData(){
 }
 
 
-function ShowUserData(id){
+
+function ShowUserData(id)
+{
   HideUserSettings();
   UserSettingList.visible = true;
   UserFName.setText(RegisteredUsers.at(id).firstname);
@@ -2910,6 +2895,8 @@ canvas.add(volumepanel);
 canvas.add(volumebar);
 canvas.add(volumeslider);
 
+
+
 //************************************** Functions *******************************************
 canvas.on({
   'object:moving': function(e) {
@@ -2970,7 +2957,7 @@ canvas.on({
       playDoorbellSound();
     else if (activeObject.id == "settings") {
       showSettings();
-      canvas.deactivateAll();
+      //canvas.deactivateAll();
     }
     else if (activeObject.id == "settings_traffic") {
       showTrafficSettings();
@@ -3034,7 +3021,64 @@ canvas.on({
     else if(activeObject.id == 'accept'){
       AcceptSelected();
       canvas.deactivateAll();
+      }
+
+    else if (activeObject.id == 0)
+    {
+      ShowUserData(0);
     }
+
+    else if (activeObject.id == 1)
+    {
+      ShowUserData(1);
+    }
+
+    else if (activeObject.id == 2)
+    {
+      ShowUserData(2);
+    }
+
+    else if (activeObject.id == 3)
+    {
+      ShowUserData(3);
+    }
+
+    else if (activeObject.id == 4)
+    {
+      ShowUserData(4);
+    }
+
+    else if (activeObject.id == 5)
+    {
+      ShowUserData(5);
+    }
+
+    else if (activeObject.id == 6)
+    {
+      ShowUserData(6);
+    }
+
+
+    else if (activeObject.id == 7)
+    {
+      ShowUserData(7);
+    }
+
+    else if (activeObject.id == 8)
+    {
+      ShowUserData(8);
+    }
+
+    else if (activeObject.id == 9)
+    {
+      ShowUserData(9);
+    }
+
+    else if (activeObject.id == 10)
+    {
+      ShowUserData(10);
+    }
+    
     else if(activeObject.id == 'mirror'){
         MirrorSelected();
         canvas.deactivateAll();
