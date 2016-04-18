@@ -427,8 +427,8 @@ Deadbolttext.selectable = false;
 //*********************** Components called by functions *************************************
 //To Do/Calender
 var calendar_user1;
-var calendar_user = new fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
-  oImg.set({left: 220, top: 730 + ImgHeight, id: this.id});
+var calendar_user = new fabric.Image.fromURL('images/usercalender.gif', function(oImg) {
+  oImg.set({left: 220, top: 750 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
@@ -441,8 +441,8 @@ var calendar_user = new fabric.Image.fromURL('images/user1calender.gif', functio
 
 
 var calendar_user2;
-fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
-  oImg.set({left: 220, top: 730 + ImgHeight, id: this.id});
+fabric.Image.fromURL('images/usercalender.gif', function(oImg) {
+  oImg.set({left: 220, top: 750 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
@@ -455,7 +455,7 @@ fabric.Image.fromURL('images/user1calender.gif', function(oImg) {
 
 var todo_list_user1;
 fabric.Image.fromURL('images/user1todo.gif', function(oImg) {
-  oImg.set({left: 660, top: 730 + ImgHeight, id: this.id});
+  oImg.set({left: 630, top: 750 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
@@ -467,8 +467,8 @@ fabric.Image.fromURL('images/user1todo.gif', function(oImg) {
 });
 
 var todo_list_user2;
-fabric.Image.fromURL('images/user2todo.gif', function(oImg) {
-  oImg.set({left: 660, top: 730 + ImgHeight, id: this.id});
+fabric.Image.fromURL('images/user1todo.gif', function(oImg) {
+  oImg.set({left: 630, top: 750 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
@@ -851,6 +851,7 @@ fabric.Image.fromURL('images/alarmOn.gif', function(oImg) {
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'alarmOn';
   icon_alarm_on = oImg;
+  ArrayOfObjects.push(icon_alarm_on);
   canvas.add(icon_alarm_on);
 });
 
@@ -2555,7 +2556,10 @@ ArrayOfObjects.push(BackButtFromUSerData);
 BackButtFromUSerData.on('selected', function()
   {
     HideUserData();
-    ShowUserSettings();
+    //ShowUserSettings();
+    for (i = 0; i < UsersNames.length; i++) {
+    UsersNames[i].visible = true;
+  }
   });
 
 var UserSettingMsg = new fabric.Text(' Not Allowed to Adjust Settings', {
@@ -2577,6 +2581,7 @@ ArrayOfObjects.push(UserSettingMsg);
 //console.log( "My array length b: "+ArrayOfObjects.length);
 function ShowUserSettings()
 {
+
   UsersNames = [];
 
   UserSettingList.visible = true;
@@ -2608,9 +2613,9 @@ function ShowUserSettings()
     ArrayOfObjects.push(UsersNames[i]);
 
   }
-console.log("We are : "+ UsersNames.length);
-console.log("here : "+ UsersNames[1].top);
-console.log( "My array length a: " + ArrayOfObjects.length);
+//console.log("We are : "+ UsersNames.length);
+//console.log("here : "+ UsersNames[1].top);
+//console.log( "My array length a: " + ArrayOfObjects.length);
 
 for (i = 0; i < UsersNames.length; i++)
 
@@ -2730,9 +2735,107 @@ function HideUserData(){
 
   canvas.remove(UserLang);
   canvas.remove(BackButtFromUSerData);
-  canvas.renderAll();
+  //canvas.renderAll();
 }
 
+//----------------------------- 911 -------------------------------------------
+var Panel911;
+fabric.Image.fromURL('images/calling911.jpg', function(oImg) {
+  oImg.set({left: 420, top: 690, id: this.id});
+  oImg.visible = false;
+  //oImg.scale(1.1);
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.selectable = false;
+  oImg.id = '911Panel';
+  Panel911 = oImg;
+  ArrayOfObjects.push(Panel911);
+  canvas.add(Panel911);
+});
+
+var CancelEmergency;
+fabric.Image.fromURL('images/cancel911.jpg', function(oImg) {
+  oImg.set({left: 488, top: 845, id: this.id});
+  oImg.visible = false;
+  //oImg.scale(1.1);
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.selectable = true;
+  oImg.id = 'CancelEmergency';
+  CancelEmergency = oImg;
+  ArrayOfObjects.push(CancelEmergency);
+  canvas.add(CancelEmergency);
+});
+
+var CancelEmergency2;
+fabric.Image.fromURL('images/cancel911.jpg', function(oImg) {
+  oImg.set({left: 488, top: 943, id: this.id});
+  oImg.visible = false;
+  //oImg.scale(1.1);
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.selectable = true;
+  oImg.id = 'CancelEmergency2';
+  CancelEmergency2 = oImg;
+  ArrayOfObjects.push(CancelEmergency2);
+  canvas.add(CancelEmergency2);
+});
+
+var YesEmergency;
+fabric.Image.fromURL('images/yes911.jpg', function(oImg) {
+  oImg.set({left: 488, top: 943, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.selectable = true;
+  oImg.id = 'YesEmergency';
+  YesEmergency = oImg;
+  ArrayOfObjects.push(YesEmergency);
+  canvas.add(YesEmergency);
+});
+
+var CallingOn;
+fabric.Image.fromURL('images/911call.gif', function(oImg) {
+  oImg.set({left: 510, top: 743, id: this.id});
+  oImg.visible = false;
+  oImg.scale(0.5);
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.selectable = true;
+  oImg.id = 'CallingOn';
+  CallingOn = oImg;
+  ArrayOfObjects.push(CallingOn);
+  canvas.add(CallingOn);
+});
+
+
+
+
+function Show911()
+{
+  Panel911.visible = true;
+  CancelEmergency.visible = true;
+  YesEmergency.visible = true;
+
+}
+function Hide911()
+{
+  Panel911.visible = false;
+  CancelEmergency.visible = false;
+  CancelEmergency2.visible = false;
+  YesEmergency.visible = false;
+  CallingOn.visible = false
+}
+
+function Run911Call()
+{
+  //Panel911.visible = false;
+  //CancelEmergency.visible = false;
+  //YesEmergency.visible = false;
+  CancelEmergency2.visible = true;
+  CallingOn.visible = true
+
+}
 //--------------------------------------------------------------------------------------
 // add all of the elements to the canvas
 
@@ -2833,6 +2936,7 @@ canvas.add(ResetTheme);
 canvas.add(volumepanel);
 canvas.add(volumebar);
 canvas.add(volumeslider);
+
 
 
 
@@ -3051,6 +3155,28 @@ canvas.on({
     else if(activeObject.id == 'settings_volume'){
       VolumeSettings();
     }
+
+    else if(activeObject.id == '911'){
+      HideHome();
+      Show911();
+
+    }
+
+    else if(activeObject.id == 'CancelEmergency'){
+      Hide911();
+      ShowHome();
+    }
+
+    else if(activeObject.id == 'CancelEmergency2'){
+      Hide911();
+      ShowHome();
+    }
+    else if(activeObject.id == 'YesEmergency'){
+      Hide911();
+      Run911Call();
+    }
+
+
   }
 });
 
@@ -3069,6 +3195,10 @@ LiveOnOff.on('selected', function(){
 });
 
 
+//CancelEmergency.on('selected', function()
+// {
+    
+// });
 //********************************************************************************************
 
 

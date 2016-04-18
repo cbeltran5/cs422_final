@@ -421,7 +421,7 @@ function ResetHeightRadioToDefault() {
   document.getElementById('Tall').checked = false;
   document.getElementById('Medium').checked = true;
   document.getElementById('Short').checked = false;
-  AdjustHeight('Medium');
+  //AdjustHeight('Medium');
 }
 
 function LoadUserData_Inside(index) {
@@ -447,6 +447,7 @@ function LoadUserData_Inside(index) {
   HideTransport();
   HideNews();
   hideSettings();
+  Hide911();
 
 
   ResetHeightRadioToDefault();
