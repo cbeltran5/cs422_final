@@ -100,8 +100,8 @@
       <code>
       <form name="UsersOutside"> Users:<br>
         <div id="UsersFromOutside">
-          <label for="NoSignal"><input type="radio" class="radio1" name="UsersOut" onchange="NoUserFromOutside()" value="NoSignal" checked> No Signal<br></label>
-          <label for="Unknown Person"><input type="radio" class="radio1" name="UsersOut" onchange="NewUserFromOutside()" value="NewUser"> Unknown Person<br></label>
+          <label for="NoSignal"><input type="radio" class="radio1" name="UsersOut" onchange="NoOneOutside()" value="NoSignal" checked> No Signal<br></label>
+          <label for="Unknown Person"><input type="radio" class="radio1" name="UsersOut" onchange="UnKnownPersonFromOutside()" value="NewUser"> Unknown Person<br></label>
           <label for="Multiple People"><input type="radio" class="radio1" name="UsersOut" onchange="MultiUsersOutside()" value="NewUser"> Multiple People<br></label>
         </div>
       </form></code>
@@ -110,13 +110,13 @@
 
       <section>
       <code>
-      <form name="Verification"> Step One:<br>
+      <form name="Verification"> Form One:<br>
         <div id="Verification1">
-          <label for="None"><input type="radio" class="radio1" name="verifyfirst" onchange="VerifyFirst(this.value)" id="noneA" value="None" checked> None<br></label>
-          <label for="Phone/KeyFOB"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="pkfobA" value="Phone/KeyFob"> Phone/KeyFOB<br></label>
-          <label for="FacialRecognition"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="faceA" value="FacialRecognition"> Facial Recognition<br></label>
-          <label for="FingerPrints"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="fingerA" value="FingerPrint"> Finger Print<br></label>
-          <label for="NumberPad"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="numberA" value="NumberPad"> Number Pad<br></label>
+          <label for="None"><input type="radio" class="radio1" name="verifyfirst" onchange="VerifyFirst(this.value)" id="noneA" value="None" disabled> None<br></label>
+          <label for="Phone/KeyFOB"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="pkfobA" value="Phone/KeyFob" disabled> Phone/KeyFOB<br></label>
+          <label for="FacialRecognition"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="faceA" value="FacialRecognition" disabled> Facial Recognition<br></label>
+          <label for="FingerPrints"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="fingerA" value="FingerPrint" disabled> Finger Print<br></label>
+          <label for="NumberPad"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="numberA" value="NumberPad" disabled> Number Pad<br></label>
         </div>
       </form>
       </code>
@@ -124,9 +124,9 @@
 
       <section>
       <code>
-      <form name="Verification"> Step Two:<br>
+      <form name="Verification"> Form Two:<br>
         <div id="Verification2">
-          <label for="None"><input type="radio" class="radio1"  name="verifysecond" onchange="VerifySecond(this.value)" id="noneB" value="None" disabled checked> None<br></label>
+          <label for="None"><input type="radio" class="radio1"  name="verifysecond" onchange="VerifySecond(this.value)" id="noneB" value="None" disabled> None<br></label>
           <label for="Phone/KeyFOB"><input type="radio" class="radio1" name="verifysecond"  onchange="VerifySecond(this.value)" id="pkfobB" value="Phone/KeyFob" disabled> Phone/KeyFOB<br></label>
           <label for="FacialRecognition"><input type="radio" class="radio1" name="verifysecond"  onchange="VerifySecond(this.value)" id="faceB" value="FacialRecognition" disabled> Facial Recognition<br></label>
           <label for="FingerPrints"><input type="radio" class="radio1" name="verifysecond" onchange="VerifySecond(this.value)" id="fingerB" value="FingerPrint" disabled> Finger Print<br></label>
@@ -3077,64 +3077,15 @@ canvas.on({
     else if(activeObject.id == 'accept'){
       AcceptSelected();
       canvas.deactivateAll();
+    }
+    else if( -1 < activeObject.id && activeObject.id < 11) {
+      for(var i=0; i < 11; i ++ ){
+        if (activeObject.id == i){
+          ShowUserData(i);   
+          break;
+        }
       }
-
-    else if (activeObject.id == 0)
-    {
-      ShowUserData(0);
     }
-
-    else if (activeObject.id == 1)
-    {
-      ShowUserData(1);
-    }
-
-    else if (activeObject.id == 2)
-    {
-      ShowUserData(2);
-    }
-
-    else if (activeObject.id == 3)
-    {
-      ShowUserData(3);
-    }
-
-    else if (activeObject.id == 4)
-    {
-      ShowUserData(4);
-    }
-
-    else if (activeObject.id == 5)
-    {
-      ShowUserData(5);
-    }
-
-    else if (activeObject.id == 6)
-    {
-      ShowUserData(6);
-    }
-
-
-    else if (activeObject.id == 7)
-    {
-      ShowUserData(7);
-    }
-
-    else if (activeObject.id == 8)
-    {
-      ShowUserData(8);
-    }
-
-    else if (activeObject.id == 9)
-    {
-      ShowUserData(9);
-    }
-
-    else if (activeObject.id == 10)
-    {
-      ShowUserData(10);
-    }
-    
     else if(activeObject.id == 'mirror'){
         MirrorSelected();
         canvas.deactivateAll();
@@ -3162,16 +3113,18 @@ canvas.on({
     else if(activeObject.id == "settings_users"){
       hideSettings();
       ShowUserSettings();
-
     }
     else if(activeObject.id == 'settings_volume'){
       ShowVolumeSettings();
       mBackButton.addToBackStack( showSettings, HideVolumeSettings);
-
     }
     else if(activeObject.id == 'backbutton'){
       mBackButton.goBack();
     }
+    else if(activeObject.id == 'numberpad') {
+      NumberPadEvent();
+    }
+    canvas.deactivateAll();
   }
 });
 

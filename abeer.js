@@ -83,10 +83,7 @@ function HomeSelected()
 }
 
 //-------------------------------------------------------------
-function ShowHome()
-{
-  
-
+function ShowHome(){
   RegisteredUsers.hideAllUsersObjects();
   HideUsersList();
   CloseCamera();
@@ -104,11 +101,6 @@ function ShowHome()
   PanelRect.visible = true;
   icon_settings.selectable = true;
 
-//  if(CURRENT_USER != null)
-//  {
-//    CURRENT_USER.hideObjects();
-//  }
-//
   for (var i = 0; i < canvas.getObjects().length; ++i)
   {
     if (canvas.item(i).id == 'messages' || canvas.item(i).id == 'camera'   ||
@@ -507,19 +499,7 @@ function ResetCoordinates(){
   canvas.renderAll();
 }
 
-//-------------------------------------------------------------
- function TriggerDoorFromOutside()  //A user approached the door from outside
- {
 
-  for (var i = 0; i < canvas.getObjects().length; ++i)
-  {
-     if (canvas.item(i).id == 'doorbell' || canvas.item(i).id == 'writemsg' ||
-        canvas.item(i).id == 'LockKnobOut')
-
-      canvas.item(i).visible = true;
-
-  }
- }
 
 //-------------------------------------------------------------
  function ResetDoorFromOutside()  //Reset the door to non signal status
@@ -528,19 +508,15 @@ function ResetCoordinates(){
   document.getElementsByName('Verification')[1].disabled = false;
   document.getElementsByName('Verification')[2].disabled = false;
   document.getElementsByName('Verification')[3].disabled = false;
-  for (var i = 0; i < canvas.getObjects().length; ++i)
-  {
-     if (canvas.item(i).id == 'doorbell' || canvas.item(i).id == 'writemsg'|| canvas.item(i).id == 'numberpad' ||
-         canvas.item(i).id == 'UnlockKnobOut' || canvas.item(i).id == 'LockKnobOut')
+  for (var i = 0; i < canvas.getObjects().length; ++i){
+     if (canvas.item(i).id == 'doorbell' || canvas.item(i).id == 'writemsg'||       canvas.item(i).id == 'numberpad' || canvas.item(i).id == 'UnlockKnobOut' || canvas.item(i).id == 'LockKnobOut')
      {
         canvas.item(i).visible = false;
      }
    }
 
-   for (var i = 0; i < canvas.getObjects().length; ++i)
-    {
+   for (var i = 0; i < canvas.getObjects().length; ++i){
       if (canvas.item(i).id == 'UnlockKnobOut')
-
         canvas.item(i).selectable = true;
     }
  }
