@@ -526,12 +526,16 @@ function NoOneOutside() {
 function UnKnownPersonFromOutside() {
   TriggerDoorFromOutside();
   console.log("UnknownPersonFromOutside not yet implemented. On Todo List in gabe.js");
-  stepone[0].checked = false;
-  stepone[0].disabled = false;
-  stepone[1].disabled = false;
-  stepone[2].disabled = false;
-  stepone[3].disabled = false;
-  stepone[4].disabled = false;
+  for(var i=0; i<stepone.length; i++) {
+      stepone[i].disabled = false;
+      stepone[i].checked = false;
+      steptwo[i].disabled = true;
+      steptwo[i].checked = false;
+  }
+  verify[0].checked = false;
+  verify[0].disabled = true; 
+  verify[1].checked = false;
+  verify[1].disabled = true;
 }
 
 function MultiUsersOutside() {
