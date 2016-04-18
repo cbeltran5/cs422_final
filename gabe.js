@@ -319,9 +319,11 @@ function User(firstname, lastname, language, pin) {
   this.showMessages = function () {
     console.log("showMessages is not yet implemented. see gabe.js");
   }
+  
   this.hideMessages = function() {
     console.log("hideMessages is not yet implemented. see gabe.js");
   }
+  
   this.addMessage = function (msg) {
     this.myMessages.push(msg);
   }
@@ -468,6 +470,7 @@ function LoadUserData_Inside(index) {
   Date_format = RegisteredUsers.at(index).date_format;
   Time_format = RegisteredUsers.at(index).time_format;
   TemperatureUnits = RegisteredUsers.at(index).temerature_units;
+  
   UpdateText();
   UncheckHeight();
   SetDoorTheme();
@@ -682,6 +685,64 @@ function NumberPadEvent() {
   }
   return id;
 }
+
+var langselected = null;
+function isLangSelected( obj) {
+  for(var i=0; i< LanguageArr.length; i++){
+    if(obj == LanguageArr[i]){
+      return i;
+    }
+  }
+  return null;
+}
+
+function HighlightLang() {
+  console.log("Highlight Lang");
+}
+
+var tempsyslang;
+function SaveLanguageSettings(lang) {
+  console.log("SAVE LANG");
+  if(lang == null) {
+    console.log("lang is null");
+    return;
+  }
+  if(CURRENT_USER != null ) {
+    var changeOrNot;
+    if(lang > 1){
+      console.log(LanguageArr[lang].text + " is not supported at this time."); 
+      changeOrNot = false;
+    }
+    else { // 0 or 1 
+      CURRENT_USER.language = lang;
+      syslang = lang;
+      UpdateText();
+      changeOrNot = true;
+      console.log("Changed language to " + LanguageArr[lang].text + "!");
+    }
+    HideLangaugeSetting();
+    
+    ShowLangFeedBack(LanguageArr[lang].text,changeOrNot);
+    mBackButton.addToBackStack(ShowLangaugeSetting, HideLangFeedBack);
+  }
+  else {
+    Console.log("Current user is null");
+  }
+}
+//textDecoration: 'underline'
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

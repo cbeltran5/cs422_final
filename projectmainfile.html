@@ -3111,21 +3111,78 @@ SlovakLang.hasControls = SlovakLang.hasBorders = false;
 SlovakLang.lockMovementX = SlovakLang.lockMovementY = true;
 ArrayOfObjects.push(SlovakLang);
 
-//++++++
-var SaveLangButton = new fabric.Text('  Save Language  ', {
-  left: 220,
-  top: 470,
-  backgroundColor: '#B3B4B4',
-  fontFamily: 'Times',
-  fontWeight: 'bold',
-  fontSize: 15
+var langpromptbox = new fabric.Rect({
+  left: panelleft,
+  top: paneltop,
+  fill: '##f9f9f9',
+  stroke: 'black',
+  width: panelwidth,
+  height: panelheight,
+  angle: 0
 });
-SaveLangButton.setColor('black');
-SaveLangButton.selectable = true;
-SaveLangButton.visible = false;
-SaveLangButton.hasControls = SaveLangButton.hasBorders = false;
-SaveLangButton.lockMovementX = SaveLangButton.lockMovementY = true;
-ArrayOfObjects.push(SaveLangButton);
+langpromptbox.visible = false;
+langpromptbox.hasControls = langpromptbox.hasBorders = langpromptbox.selectable = false;
+langpromptbox.lockMovementX = langpromptbox.lockMovementY = true;  
+
+  
+function FabricText(string,mLeft, mTop, mFontSize) {
+  var temp = new fabric.Text(string, {
+    left: mLeft,
+    top: mTop,
+    fontFamily: 'Times',
+    fontSize: mFontSize
+  });
+  temp.visible = false;
+  temp.hasControls = temp.hasBorders = temp.selectable = false;
+  temp.lockMovementX = temp.lockMovementY = true;
+  return temp;
+}
+var retmsgstr = "Press back arrow to return to language settings.";
+
+var FailOrSuccess = FabricText('Sorry!',247,360,24);
+var FeedBackMessage = FabricText("Your language is now set to English." , 155, 400, 17);
+var ReturnMessage = FabricText(retmsgstr,140, 440,15);
+  
+function ShowLangFeedBack(string, changed) {
+  if(changed == true ) {
+    console.log("CHANGED");
+    FailOrSuccess.text = "Great!";
+    FeedBackMessage.text = "Your language is now set to " + string + ".";
+  }
+  else {
+    console.log("DID NOT CHANGE");
+    FailOrSuccess.text = "Sorry!";
+    FeedBackMessage.text = "The language was not set to " + string + ".";
+  }
+    langpromptbox.visible = true;
+  ReturnMessage.visible = true;
+  FeedBackMessage.visible = true;
+  FailOrSuccess.visible = true;
+}
+  
+function HideLangFeedBack() {
+  langpromptbox.visible = false;
+  ReturnMessage.visible = false;
+  FeedBackMessage.visible = false;
+  FailOrSuccess.visible = false;
+}
+
+
+////++++++
+//var SaveLangButton = new fabric.Text('  Save Language  ', {
+//  left: 220,
+//  top: 470,
+//  backgroundColor: '#B3B4B4',
+//  fontFamily: 'Times',
+//  fontWeight: 'bold',
+//  fontSize: 15
+//});
+//SaveLangButton.setColor('black');
+//SaveLangButton.selectable = true;
+//SaveLangButton.visible = false;
+//SaveLangButton.hasControls = SaveLangButton.hasBorders = false;
+//SaveLangButton.lockMovementX = SaveLangButton.lockMovementY = true;
+//ArrayOfObjects.push(SaveLangButton);
 
 //-------------------- Components for date time format----------------------------------
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -3292,11 +3349,20 @@ SaveDateTimeFormatButton.hasControls = SaveDateTimeFormatButton.hasBorders = fal
 SaveDateTimeFormatButton.lockMovementX = SaveDateTimeFormatButton.lockMovementY = true;
 ArrayOfObjects.push(SaveDateTimeFormatButton);
 
-
+var LanguageArr = []
+LanguageArr.push(EnglishLang);
+LanguageArr.push(SpanishLang);
+LanguageArr.push(ArabicLang);
+LanguageArr.push(HindiLang);
+LanguageArr.push(ChineseLang);
+LanguageArr.push(PersianLang);
+LanguageArr.push(ItalianLang);
+LanguageArr.push(RomanLang);
+LanguageArr.push(RussianLang);
+LanguageArr.push(SlovakLang);
 // ----------------- Some hide functions -----------------------------------------------
 
-function ShowLangaugeSetting()
-{
+function ShowLangaugeSetting(){
     HideHome();
     LangaugePanel.visible = true;
     EnglishLang.visible = true;
@@ -3309,11 +3375,10 @@ function ShowLangaugeSetting()
     RomanLang.visible = true;
     RussianLang.visible = true;
     SlovakLang.visible = true;
-    SaveLangButton.visible = true;
+    //SaveLangButton.visible = true;
 }
 
-function HideLangaugeSetting()
-{
+function HideLangaugeSetting(){
     //ShowHome();
     LangaugePanel.visible = false;
     EnglishLang.visible = false;
@@ -3326,7 +3391,7 @@ function HideLangaugeSetting()
     RomanLang.visible = false;
     RussianLang.visible = false;
     SlovakLang.visible = false;
-    SaveLangButton.visible = false;
+    //SaveLangButton.visible = false;
 }
 //--------------------------------------------------------------------------------------
 // add all of the elements to the canvas
@@ -3445,7 +3510,7 @@ canvas.add(ItalianLang);
 canvas.add(RomanLang);
 canvas.add(RussianLang);
 canvas.add(SlovakLang);
-canvas.add(SaveLangButton);
+//canvas.add(SaveLangButton);
 
 // Date and time
 
@@ -3460,7 +3525,10 @@ canvas.add(TimeFormat1);
 canvas.add(TimeFormat2);
 canvas.add(SaveDateTimeFormatButton);
 
-
+canvas.add(langpromptbox);
+canvas.add(FailOrSuccess);
+canvas.add(FeedBackMessage);
+canvas.add(ReturnMessage);
 //************************************** Functions *******************************************
 canvas.on({
   'object:moving': function(e) {
@@ -3634,14 +3702,11 @@ canvas.on({
     else if(activeObject.id == 'backbutton'){
       mBackButton.goBack();
     }
-
-
     else if(activeObject.id == '911'){
       HideHome();
       Show911();
 
     }
-
     else if(activeObject.id == 'CancelEmergency'){
       Hide911();
       ShowHome();
@@ -3663,7 +3728,11 @@ canvas.on({
       ShowLangaugeSetting();
       LanguageSettingIsActive = true;
     }
-
+    
+    if( (langselected = isLangSelected(activeObject)) != null ){
+        console.log("langselected: " + langselected);
+        SaveLanguageSettings(langselected);
+    }
     canvas.deactivateAll();
   }
 });
