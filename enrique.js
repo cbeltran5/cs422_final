@@ -14,7 +14,7 @@ function BringUpPrompt() {
 function AcceptSelected(){
  AcceptIsActive = true; 
  MessageHelloOutside.visible = true;
- accept_button.visible = false;
+ Post.visible = false;
  MessageBox.visible = false;
  //CloseMessageSettings();
  //HomeSelected();
@@ -31,15 +31,15 @@ function MessageBoxSelected(){
 function ShowMessageBox(){
   MessagesIsActive = true; 
   MessageBox.visible = true;
-  accept_button.visible = true;
-  MessageHelloOutside.visible = false;
+  Post.visible = true;
+  //MessageHelloOutside.visible = false;
   //HomeSelected();
 }
 
 function HideMessageBox(){
   MessagesIsActive = false; 
   MessageBox.visible = false;
-  accept_button.visible = false;
+  Post.visible = false;
 }
 // Line 2377
 

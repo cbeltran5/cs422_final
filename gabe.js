@@ -451,7 +451,10 @@ function LoadUserData_Inside(index) {
   HideNews();
   hideSettings();
   Hide911();
+  CloseMessageSettings();
   LanguageSettingIsActive = false;
+  MessagesIsActive = false;
+
   
 
 
