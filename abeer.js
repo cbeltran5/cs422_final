@@ -150,14 +150,10 @@ function HideHome()
   CloseThemeSettings();
   //HideLangaugeSetting();
   Hide911();
-
   
-
   PanelRect.visible = false;
-
-
-  for (var i = 0; i < canvas.getObjects().length; ++i)
-  {
+  
+  for (var i = 0; i < canvas.getObjects().length; ++i){
     if (canvas.item(i).id == 'messages' || canvas.item(i).id == 'camera'   ||
         canvas.item(i).id == 'traffic'  || canvas.item(i).id == 'cta'      ||
         canvas.item(i).id == 'news'     || canvas.item(i).id == 'mirror'   ||
@@ -182,167 +178,201 @@ function HideHome()
   Settingstext.visible = false;
 }
 
+
+/************************************************************************************
+  I wrote LoadLocks so we do not go through the entire canvas objects
+  looking for the objects we need everytime we need it. instead just got a handle to it,
+  and used that as a reference when needed   ~Gabe =D
+*************************************************************************************/
+var lockknobin;
+var unlockknobin;
+var lockknobout;
+var unlockknobout;
+var lockdeadbolt;
+var unlockdeadbolt;
+var arelocksloaded = false;
+function LoadLocks() {
+  for (var i = 0; i < canvas.getObjects().length; ++i){
+    var temp = canvas.item(i);
+    if (temp.id == 'LockKnobIn') {
+        lockknobin = temp;
+    }
+    else if (temp.id == 'UnlockKnobIn'){
+      unlockknobin = temp;
+    }
+    else if (temp.id == 'LockKnobOut') {
+      lockknobout = temp;
+    }
+    else if( temp.id == 'UnlockKnobOut') {
+      unlockknobout = temp;
+    }
+    else if( temp.id == 'LockDeadbolt'){
+      lockdeadbolt = temp;
+    }
+    else if(temp.id == 'UnlockDeadbolt' ){
+      unlockdeadbolt = temp;
+    } 
+  }
+  arelocksloaded = true;
+}
+
+
+
 //-------------------------------------------------------------
  function UnlockDoorIn(){
-   for (var i = 0; i < canvas.getObjects().length; ++i)
-   {
-    if (canvas.item(i).id == 'LockKnobIn')
-        canvas.item(i).visible = false;
-
-    else if (canvas.item(i).id == 'UnlockKnobIn')
-      canvas.item(i).visible = true;
-    }
+  
+//   for (var i = 0; i < canvas.getObjects().length; ++i){
+//    if (canvas.item(i).id == 'LockKnobIn')
+//        canvas.item(i).visible = false;
+//    else if (canvas.item(i).id == 'UnlockKnobIn')
+//      canvas.item(i).visible = true;
+//    }
+  if( arelocksloaded == false) {
+     LoadLocks();
+   }
+   lockknobin.visible = false;
+   unlockknobin.visible = true;
 }
 
 //-------------------------------------------------------------
-function UnlockDoorOut()
- {
-
-    for (var i = 0; i < canvas.getObjects().length; ++i)
-    {
-      if (canvas.item(i).id == 'LockKnobOut')
-
-        canvas.item(i).visible = false;
-
-      else if (canvas.item(i).id == 'UnlockKnobOut')
-
-        canvas.item(i).visible = true;
-    }
-
+function UnlockDoorOut(){
+//    for (var i = 0; i < canvas.getObjects().length; ++i){
+//      if (canvas.item(i).id == 'LockKnobOut')
+//        canvas.item(i).visible = false;
+//      else if (canvas.item(i).id == 'UnlockKnobOut')
+//        canvas.item(i).visible = true;
+//    }
+  if(arelocksloaded == false) {
+    LoadLocks();
+  }
+  lockknobout.visible = false;
+  unlockknobout.visible = true;
  }
 
 //-------------------------------------------------------------
-function LockDoorIn()
- {
-
-  for (var i = 0; i < canvas.getObjects().length; ++i)
-  {
-    if (canvas.item(i).id == 'UnlockKnobIn')
-
-      canvas.item(i).visible = false;
-
-    else if (canvas.item(i).id == 'LockKnobIn')
-
-      canvas.item(i).visible = true;
+function LockDoorIn(){
+//  for (var i = 0; i < canvas.getObjects().length; ++i){
+//    if (canvas.item(i).id == 'UnlockKnobIn')
+//      canvas.item(i).visible = false;
+//    else if (canvas.item(i).id == 'LockKnobIn')
+//      canvas.item(i).visible = true;
+//  }
+  if(arelocksloaded == false) {
+    LoadLocks();
   }
-
- }
+  unlockknobin.visible = false;
+  lockknobin.visible = true;
+}
 
 //-------------------------------------------------------------
-function LockDoorOut()
- {
-
-  for (var i = 0; i < canvas.getObjects().length; ++i)
-  {
-    if (canvas.item(i).id == 'UnlockKnobOut')
-
-      canvas.item(i).visible = false;
-
-    else if (canvas.item(i).id == 'LockKnobOut')
-
-      canvas.item(i).visible = true;
+function LockDoorOut(){
+//  for (var i = 0; i < canvas.getObjects().length; ++i){
+//    if (canvas.item(i).id == 'UnlockKnobOut')
+//      canvas.item(i).visible = false;
+//    else if (canvas.item(i).id == 'LockKnobOut')
+//      canvas.item(i).visible = true;
+//  }
+  if(arelocksloaded == false) {
+    LoadLocks();
   }
+  unlockknobout.visible = false;
+  lockknobout.visible = true;
+}
 
- }
 
 //-------------------------------------------------------------
-function UnlockDeadbolt()
- {
-
-  for (var i = 0; i < canvas.getObjects().length; ++i)
-  {
-    if (canvas.item(i).id == 'LockDeadbolt')
-
-      canvas.item(i).visible = false;
-
-    else if (canvas.item(i).id == 'UnlockDeadbolt')
-
-      canvas.item(i).visible = true;
+function UnlockDeadbolt(){
+//  for (var i = 0; i < canvas.getObjects().length; ++i){
+//    if (canvas.item(i).id == 'LockDeadbolt')
+//      canvas.item(i).visible = false;
+//    else if (canvas.item(i).id == 'UnlockDeadbolt')
+//      canvas.item(i).visible = true;
+//  }
+   if(arelocksloaded == false) {
+    LoadLocks();
   }
-
- }
+  lockdeadbolt.visible = false;
+  unlockdeadbolt.visible = true;
+}
 
 //-------------------------------------------------------------
-function LockDeadbolt()
- {
-
-  for (var i = 0; i < canvas.getObjects().length; ++i)
-  {
-    if (canvas.item(i).id == 'UnlockDeadbolt')
-
-      canvas.item(i).visible = false;
-
-    else if (canvas.item(i).id == 'LockDeadbolt')
-
-      canvas.item(i).visible = true;
+function LockDeadbolt(){
+//  for (var i = 0; i < canvas.getObjects().length; ++i){
+//    if (canvas.item(i).id == 'UnlockDeadbolt')
+//      canvas.item(i).visible = false;
+//    else if (canvas.item(i).id == 'LockDeadbolt')
+//      canvas.item(i).visible = true;
+//  }
+  if(arelocksloaded == false) {
+    LoadLocks();
   }
+  unlockdeadbolt.visible = false;
+  lockdeadbolt.visible = true;
+}
 
- }
 
 //------------------ Radio buttons Events Functions -------------------------
-function User1FromInside()
-{
-  HideHome();
-  HideUsersList();
-  HideUser2FromInside();
-
-  for (var i = 0; i < canvas.getObjects().length; ++i) {
-    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
-        canvas.item(i).visible = true;
-  }
-
-  LoadUserData_Inside(2);
-  
-  var insideradio = document.getElementsByName('UsersIn');
-  insideradio[5].checked = true; 
-  //document.getElementsByName('Verification')[1].disabled = false;
-  //console.log(CURRENT_USER.firstname);
-  UpdateText();
-}
-
-//-------------------------------------------------------------
-function HideUser1FromInside()
-{
-  for (var i = 0; i < canvas.getObjects().length; ++i)
-  {
-    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
-      canvas.item(i).visible = false;
-  }
-}
+//function User1FromInside()
+//{
+//  HideHome();
+//  HideUsersList();
+//  HideUser2FromInside();
+//
+//  for (var i = 0; i < canvas.getObjects().length; ++i) {
+//    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
+//        canvas.item(i).visible = true;
+//  }
+//
+//  LoadUserData_Inside(2);
+//  
+//  var insideradio = document.getElementsByName('UsersIn');
+//  insideradio[5].checked = true; 
+//  //document.getElementsByName('Verification')[1].disabled = false;
+//  //console.log(CURRENT_USER.firstname);
+//  UpdateText();
+//}
 
 //-------------------------------------------------------------
-function User2FromInside()
-{
-  HideHome();
-  HideUsersList();
-  HideUser1FromInside();
-
-  for (var i = 0; i < canvas.getObjects().length; ++i) {
-    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user2todo')
-        canvas.item(i).visible = true;
-  }
-
-  LoadUserData_Inside(0);
-
-  var insideradio = document.getElementsByName('UsersIn');
-  insideradio[3].checked = true; 
-  //document.getElementsByName('UsersFromInside')[2].checked = true; 
-  //document.getElementsByName('Verification')[1].disabled = false;
-  //console.log(CURRENT_USER.firstname);
-  UpdateText();
-}
-
+//function HideUser1FromInside()
+//{
+//  for (var i = 0; i < canvas.getObjects().length; ++i)
+//  {
+//    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
+//      canvas.item(i).visible = false;
+//  }
+//}
 //-------------------------------------------------------------
-function HideUser2FromInside()
-{
-
-for (var i = 0; i < canvas.getObjects().length; ++i)
-    {
-      if (canvas.item(i).id == 'user2calender' || canvas.item(i).id == 'user2todo')
-
-        canvas.item(i).visible = false;
-    }
-}
+//function User2FromInside()
+//{
+//  HideHome();
+//  HideUsersList();
+//  HideUser1FromInside();
+//
+//  for (var i = 0; i < canvas.getObjects().length; ++i) {
+//    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user2todo')
+//        canvas.item(i).visible = true;
+//  }
+//
+//  LoadUserData_Inside(0);
+//
+//  var insideradio = document.getElementsByName('UsersIn');
+//  insideradio[3].checked = true; 
+//  //document.getElementsByName('UsersFromInside')[2].checked = true; 
+//  //document.getElementsByName('Verification')[1].disabled = false;
+//  //console.log(CURRENT_USER.firstname);
+//  UpdateText();
+//}
+//-------------------------------------------------------------
+//function HideUser2FromInside()
+//{
+//
+//for (var i = 0; i < canvas.getObjects().length; ++i)
+//    {
+//      if (canvas.item(i).id == 'user2calender' || canvas.item(i).id == 'user2todo')
+//
+//        canvas.item(i).visible = false;
+//    }
+//}
 
 //-------------------------------------------------------------
 function MultiUsersFromInside()

@@ -251,6 +251,15 @@ function Registered_Users() {
     this.users.push(user);
     this.length++;
   }
+  
+  this.verifyPin = function(pin) {
+    for(var i=0; i< this.users.length; i++){
+      if(this.users[i].pin == pin) {
+        return this.users[i].id; // return id of user if found.
+      }
+    }
+    return -1; // pin is not registered to a known user
+  }
 }
 
 var RegisteredUsers = new Registered_Users();
@@ -259,13 +268,13 @@ var RegisteredUsers = new Registered_Users();
 var userscounter = 0;
 // Created a User class to hold the personal information common to all users
 
-function User(firstname, lastname, language) {
+function User(firstname, lastname, language, pin) {
   this.id = userscounter++; // id is position in Registered Users array
   this.firstname = firstname;
   this.lastname = lastname;
-
+  this.pin = pin;
   this.language = language; // an int
-
+  
   this.date_format = DATE_MONTHDDYYYY;
   this.time_format = TIME_12HOUR;
 
@@ -290,7 +299,7 @@ function User(firstname, lastname, language) {
   this.getFullName = function () {
     return this.firstname + " " + this.lastname;
   }
-
+  
   this.myObjects = [];
   this.addObject = function(object) {
     object.id = this.id;
@@ -344,6 +353,7 @@ function RemoveFromRadioChoices(id) {
   outside.removeChild(outside.children[remove]);
 }
 
+
 function AddUserToRadioChoices( name , value) {
   var UsersFromInside = document.getElementById(RADIO_ID_UFI);
   var label = document.createElement("label");
@@ -356,7 +366,7 @@ function AddUserToRadioChoices( name , value) {
   label.appendChild(element);
   label.innerHTML += " " + name + '<br/>';
   UsersFromInside.appendChild(label);
-
+  
   var UsersFromOutside= document.getElementById(RADIO_ID_UFO);
   var label2 = document.createElement("label");
   var element2 = document.createElement("input");
@@ -479,9 +489,13 @@ function TriggerDoorFromOutside(){  //A user approached the door from outside
   }
 }
 
+var stepone = document.getElementsByName("verifyfirst");
+var steptwo = document.getElementsByName("verifysecond");
+var verify = document.getElementsByName("verify");
+
 function LoadUserData_Outside(index ) {
   console.log("LoadUserData_Outside() is not yet implemented. On Todo List in gabe.js");
-    for(var i=0; i <stepone.length; i++ ){
+  for(var i=0; i <stepone.length; i++ ){
     stepone[i].disabled = false;
     stepone[i].checked = false;
   }
@@ -506,17 +520,23 @@ function NoOneOutside() {
       canvas.item(i).visible = false;
     }
   }
+  steponeselected = false;
+  steptwoselected = false;
 }
 
 function UnKnownPersonFromOutside() {
   TriggerDoorFromOutside();
   console.log("UnknownPersonFromOutside not yet implemented. On Todo List in gabe.js");
-  stepone[0].checked = false;
-  stepone[0].disabled = false;
-  stepone[1].disabled = false;
-  stepone[2].disabled = false;
-  stepone[3].disabled = false;
-  stepone[4].disabled = false;
+  for(var i=0; i<stepone.length; i++) {
+      stepone[i].disabled = false;
+      stepone[i].checked = false;
+      steptwo[i].disabled = true;
+      steptwo[i].checked = false;
+  }
+  verify[0].checked = false;
+  verify[0].disabled = true; 
+  verify[1].checked = false;
+  verify[1].disabled = true;
 }
 
 function MultiUsersOutside() {
@@ -541,9 +561,10 @@ function ShowVolumeSettings() {
   volumepanel.visible = true;
   volumeslider.visible = true;
 }
-var stepone = document.getElementsByName("verifyfirst");
-var steptwo = document.getElementsByName("verifysecond");
-var verify = document.getElementsByName("verify");
+
+var steponeselected = false;
+var steptwoselected = false;
+var pin = null;
 
 function VerifyFirst(value) {
   console.log("first " + value);
@@ -551,43 +572,115 @@ function VerifyFirst(value) {
     for(var i=0; i< steptwo.length; i++){
       steptwo[i].disabled = true;
     }
+    steponeselected = false;
     VerifySecond(value);
   }
   else {
+    if(value == "NumberPad" ) {
+      var ret; 
+      if( pin == null ) {
+        ret = NumberPadEvent();
+        if(ret != -1) {    // correct pin
+          stepone[4].checked = true;
+        }
+        else {
+          stepone[4].checked = false;
+          return;
+        }
+      }
+      pin = null;
+    }
+    
     for(var i=0; i< steptwo.length; i++){
       if(steptwo[i].value == value || stepone[i].disabled == true){
         steptwo[i].disabled = true;
+        steptwo[i].checked = false;
       }
       else {
         steptwo[i].disabled = false;
       }
     }
+    steponeselected = true;
   }
 }
 
 function VerifySecond(value) {
+  steptwoselected = true;
   console.log("second " + value);
   if(value == "None") {
     verify[0].disabled = true;
+    verify[0].checked = false;
+    verify[1].checked = false;
     verify[1].disabled = true;
+    steptwoselected = false;
   }
   else {
-    verify[0].disabled = false;
-    verify[1].disabled = false;
+    if(value == "NumberPad" ) {
+      var ret; 
+      if( pin == null ) {
+        console.log("Pin is null");
+        ret = NumberPadEvent();
+        console.log(ret);
+        if(ret != -1) {    // correct pin
+          verify[0].checked = true;
+          Verify("sucess");
+          UnlockDeadbolt();
+          UnlockDoorOut();
+          UnlockDoorIn();
+        }
+        else {
+          verify[1].checked = true;
+          Verify("fail");
+        }
+        verify[0].disabled = false;
+        verify[1].disabled = false;
+      }
+      else{
+        console.log("Pin is not null");
+        verify[1].checked = true;
+        Verify("fail");
+      }
+    }
+    // not number pad
+    else {
+      verify[0].disabled = false;
+      verify[1].disabled = false;
+    }
   }
+  pin = null;
 }
 
 function Verify(value) {
-  console.log("verify " + value);
+  console.log("Verify: " + value);
+  if(value == "success") {
+    
+  }
 }
 
 function NumberPadEvent() {
   console.log("NUMBERPAD");
-  var text = prompt("Please Enter your 4 digit pin", "0123");
-  if(text.length != 4){
+  pin = prompt("Please Enter your 4 digit pin", "0123");
+  
+  if(pin == null ) {
+    return -1;
+  }
+  else if(pin.length != 4){
     NumberPadEvent();
   }
-
+  
+  var id;
+  if((id = RegisteredUsers.verifyPin(pin)) != -1) {
+    console.log("VERIFIED. userID: " + id);
+    document.getElementsByName("UsersOut")[id + 3].checked = true;
+    LoadUserData_Outside(id);
+    if(steponeselected == false){
+      VerifyFirst("NumberPad");
+    }
+    else if(steptwoselected == false) {
+      VerifySecond("NumberPad");
+    }
+  }
+  return id;
 }
 
 

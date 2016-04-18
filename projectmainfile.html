@@ -66,7 +66,7 @@
       <code>
       <form> Users:<br>
         <div id = "UsersFromInside">
-          <label for="NoSignalInside"><input type="radio" class="radio1" name="UsersIn" onchange="NoSignalFromInside()" value="NoSignal" checked> No Signal<br></label>
+          <label for="NoSignalInside"><input type="radio" class="radio1" name="UsersIn" onchange="NoSignalFromInside()" value="NoSignal" checked> Noone<br></label>
           <label for="UnknownPersonInside"><input type="radio" class="radio1" name="UsersIn" onchange="NewUserFromInside()" value="NewUser"> Unknown Person<br></label>
           <label for="MultiUserInside"><input type="radio" class="radio1" name="UsersIn" onchange="MultiUsersFromInside()" value="MultiUser"> Multiple People<br></label>
         </div>
@@ -100,7 +100,7 @@
       <code>
       <form name="UsersOutside"> Users:<br>
         <div id="UsersFromOutside">
-          <label for="NoSignal"><input type="radio" class="radio1" name="UsersOut" onchange="NoOneOutside()" value="NoSignal" checked> No Signal<br></label>
+          <label for="NoSignal"><input type="radio" class="radio1" name="UsersOut" onchange="NoOneOutside()" value="NoSignal" checked> Noone<br></label>
           <label for="Unknown Person"><input type="radio" class="radio1" name="UsersOut" onchange="UnKnownPersonFromOutside()" value="NewUser"> Unknown Person<br></label>
           <label for="Multiple People"><input type="radio" class="radio1" name="UsersOut" onchange="MultiUsersOutside()" value="NewUser"> Multiple People<br></label>
         </div>
@@ -140,8 +140,8 @@
       <code>
       <form name="Verification"> Verification:<br>
         <div id="Verification2">
-          <label for="Success"><input type="radio" class="radio1"  name="verify" onchange="Verify(this.value)" id="success" value="None" disabled > Success<br></label>
-          <label for="Failure"><input type="radio" class="radio1" name="verify"  onchange="Verify(this.value)" id="failure" value="Phone/KeyFob" disabled> Fail<br></label>
+          <label for="Success"><input type="radio" class="radio1"  name="verify" onchange="Verify(this.value)" id="success" value="success" disabled > Success<br></label>
+          <label for="Failure"><input type="radio" class="radio1" name="verify"  onchange="Verify(this.value)" id="failure" value="fail" disabled> Fail<br></label>
         </div>
       </form>
       </code>
@@ -217,10 +217,10 @@ var UsersNames = [];
 
 //************************************ Users Profiles ***************************************
 
-var User0 = new User('Gabe', 'Mendoza', ENGLISH);
-var User1 = new User('Enrique', 'Vaca', SPANISH);
-var User2 = new User('Abeer','A.', ENGLISH);
-var User3 = new User('Carlos', 'Beltran', SPANISH);
+var User0 = new User('Gabe', 'Mendoza', ENGLISH, 1234);
+var User1 = new User('Enrique', 'Vaca', SPANISH, 1235);
+var User2 = new User('Abeer','A.', ENGLISH, 1236);
+var User3 = new User('Carlos', 'Beltran', SPANISH, 1237);
  
 
 
@@ -3592,12 +3592,10 @@ canvas.on({
       MessageBoxSelected();
       canvas.deactivateAll();
     }
-    
     else if(activeObject.id == 'messageBox'){
       HomeSelected();
       canvas.deactivateAll();
     }
-    
     else if(activeObject.id == 'accept'){
       AcceptSelected();
       canvas.deactivateAll();
