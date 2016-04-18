@@ -480,15 +480,12 @@ var verify = document.getElementsByName("verify");
 
 function VerifyFirst(value) {
   console.log("first " + value);
-  // if first radio is none,  disable the other 2 radios
   if(value == "None") {
     for(var i=0; i< steptwo.length; i++){
       steptwo[i].disabled = true;
     }
     VerifySecond(value);
   }
-  
-  // enable second set of radios for second input
   else {
     for(var i=0; i< steptwo.length; i++){
       if(steptwo[i].value == value){
@@ -520,7 +517,6 @@ function Verify(value) {
 
 }
 
-var VOLUME_MIN = 0;
-var VOLUME_MAX = 100;
+
 
 

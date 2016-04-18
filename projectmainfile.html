@@ -213,10 +213,6 @@ var counter = 0;
 HeightsRadioButtons_DISABLE();
 var UsersNames = [];
 
-var panelleft = 72;
-var panelheight = 200;
-var panelwidth = 410;
-var paneltop = 310;
 //*******************************************************************************************
 
 //************************************ Users Profiles ***************************************
@@ -551,12 +547,12 @@ ArrayOfObjects.push(Line);
 //********************************************************************************************
 // Main panel components
 var PanelRect = new fabric.Rect({
-  left: panelleft,
-  top: paneltop,
+  left: 72,
+  top: 310,
   fill: 'lightgrey',
   stroke: 'darkgrey',
-  width: panelwidth,
-  height: panelheight,
+  width: 410,
+  height: 200,
   angle: 0
 });
 PanelRect.visible = false;
@@ -2627,11 +2623,14 @@ for (i = 0; i < UsersNames.length; i++)
 
 }
 
-function HideUserSettings(){
+function HideUserSettings()
+{
+
   UserSettingList.visible = false;
   for (i = 0; i < UsersNames.length; i++) {
     UsersNames[i].visible = false;
   }
+<<<<<<< HEAD
 }
 
   
@@ -2739,6 +2738,10 @@ function HideUserData()
   canvas.renderAll();
 }
 
+=======
+
+}
+>>>>>>> parent of 6579efd... Working on code to add a volume slider
 //--------------------------------------------------------------------------------------
 // add all of the elements to the canvas
 
@@ -2836,6 +2839,7 @@ canvas.add(XmassText);
 canvas.add(EasterText);
 canvas.add(ResetTheme);
 
+<<<<<<< HEAD
 canvas.add(volumepanel);
 canvas.add(volumebar);
 canvas.add(volumeslider);
@@ -2844,6 +2848,8 @@ canvas.add(volumeslider);
 
 
 
+=======
+>>>>>>> parent of 6579efd... Working on code to add a volume slider
 //************************************** Functions *******************************************
 canvas.on({
   'object:moving': function(e) {
