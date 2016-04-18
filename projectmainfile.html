@@ -12,15 +12,15 @@
         border-radius: 6px;
         color: #fff;
         display: block;
-        font: 44px/64px "Source Code Pro", Inconsolata, "Calibri", Terminal, "Calibri", Courier;
-        padding: 24px 15px;
+        font: 40px/40px "Source Code Pro", Inconsolata, "Calibri", Terminal, "Calibri", Courier;
+        padding: 20px 15px;
         text-align: left;
       }
       header,
       section,
       aside,
       footer {
-        margin: 1% 20px;
+        margin: 1% 3px;
       }
       section {
         float: left;
@@ -1872,7 +1872,7 @@ fabric.Image.fromURL('images/numberpad.gif', function(oImg) {
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
-  oImg.id = 'np';
+  oImg.id = 'numberpad';
   icon_number_pad = oImg;
   canvas.add(icon_number_pad);
 });
@@ -2189,8 +2189,7 @@ EasterText.on('mousedown', function ()
   EasterOrn.visible = true;
 });
 //----------
-ResetTheme.on('mousedown', function ()
-{
+ResetTheme.on('mousedown', function (){
   In_theme = 'default';
   Out_theme = 'default';
   CURRENT_USER.out_theme = Out_theme;
@@ -2233,30 +2232,26 @@ fabric.Image.fromURL('images/Usersettinglist.jpg', function(oImg) {
 });
 
 var UsersNames = [];
-
-function ShowUserSettings()
-{
-
-  UserSettingList.visible = true;
-  
-  //loop to get names and add them to canvas
-  for (i = 0; i < RegisteredUsers.length; i++)
-  {
-    var topv = 730 + (70*(i+1)/(i+1)) * (i+1);
+function ShowUserSettings(){
+  UserSettingList.visible = true;  
+  for (i = 0; i < RegisteredUsers.length; i++){
+    var topv = 730 + (70 * (i+1));
+//    var topv = 730 + (70*(i+1)/(i+1)) * (i+1);
     var UserName = new fabric.Text('', {
-    fontFamily: 'Times',
-    fontSize: 60,
-    left: 400,
-    top: topv,
+      fontFamily: 'Times',
+      fontSize: 60,
+      left: 400,
+      top: topv,
     });
     
     UserName.setText(RegisteredUsers.at(i).firstname);
     canvas.add(UserName);
     UserName.bringForward();
     UsersNames.push(UserName);
-    ArrayOfObjects.push(UsersNames[i]);
+    console.log(UserName);
+    //ArrayOfObjects.push(UsersNames);
   }
-console.log("We are : "+ UsersNames.length);
+  console.log("We are : "+ UsersNames.length);
 }
 
 
@@ -2264,8 +2259,7 @@ function HideUserSettings()
 {
 
   UserSettingList.visible = false;
-  for (i = 0; i < UsersNames.length; i++)
-  {
+  for (i = 0; i < UsersNames.length; i++) {
     UsersNames[i].visible = false;
   }
 
@@ -2374,7 +2368,8 @@ canvas.on({
     if(activeObject.id == 'home'){
       HomeSelected();
       canvas.deactivateAll();
-      CURRENT_USER.hideObjects();
+      if(CURRENT_USER != null)
+        CURRENT_USER.hideObjects();
     }
     else if(activeObject.id == 'LockKnobIn')
       UnlockDoorIn();

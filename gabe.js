@@ -237,7 +237,6 @@ function Registered_Users() {
 
   this.hideAllUsersObjects = function() {
     for(var i=0; i < this.users.length; i++){
-      console.log(i);
       this.users[i].hideObjects();
     }
   }
@@ -483,8 +482,6 @@ function VerifyFirst(value) {
       }
     }
   }
-  
-  
 }
 
 function VerifySecond(value) {
