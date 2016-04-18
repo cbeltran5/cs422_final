@@ -2635,10 +2635,10 @@ function HideUserSettings()
 //********************************************************************************************
 //------------------------------ Volume ----------------  
 
-  var panelleft = 72;
-  var paneltop= 310;
-  var panelwidth = 410;
-  var panelheight = 200;
+  var panelleft = 72 + 20;
+  var paneltop= 335;
+  var panelwidth = 410 - 40;
+  var panelheight = 150;
 
 var volumepanel = new fabric.Rect({
   left: panelleft,
@@ -2655,7 +2655,7 @@ volumepanel.lockMovementX = volumepanel.lockMovementY = true;
   
 var volumebar = new fabric.Rect({
   left: panelleft + 50,
-  top: paneltop + 89,
+  top: paneltop + 64,
   fill: '#656565',
   stroke: 'darkgrey',
   width: panelwidth - 100,
@@ -2668,7 +2668,7 @@ volumebar.lockMovementX = volumebar.lockMovementY = true;
 
 var volumeslider = new fabric.Rect( {
   left: panelleft + 50,
-  top: paneltop + 75,
+  top: paneltop + 50,
   fill: 'white',
   stroke: 'darkgrey',
   width: 20,
@@ -2678,6 +2678,10 @@ var volumeslider = new fabric.Rect( {
 volumeslider.visible = false;
 volumeslider.hasControls = volumeslider.hasBorders = false;
 volumeslider.lockMovementY = true;
+
+ArrayOfObjects.push(volumepanel);
+ArrayOfObjects.push(volumebar);
+ArrayOfObjects.push(volumeslider);
 
 canvas.on("object:moving", function() {
   var leftBound = volumebar.left;
@@ -2891,6 +2895,10 @@ canvas.add(MetalText);
 canvas.add(XmassText);
 canvas.add(EasterText);
 canvas.add(ResetTheme);
+  
+canvas.add(volumepanel);
+canvas.add(volumebar);
+canvas.add(volumeslider);
 
 
 
@@ -3005,21 +3013,17 @@ canvas.on({
       showSettings();
     }
 
-    if(activeObject.id == 'messages')
-      {
+    else if(activeObject.id == 'messages'){
       MessageBoxSelected();
       canvas.deactivateAll();
-      }
+    }
     
-    if(activeObject.id == 'messageBox')
-      {
+    else if(activeObject.id == 'messageBox'){
       HomeSelected();
       canvas.deactivateAll();
-     }
+    }
     
-  
-    if(activeObject.id == 'accept')
-      {
+    else if(activeObject.id == 'accept'){
       AcceptSelected();
       canvas.deactivateAll();
       }
@@ -3079,46 +3083,35 @@ canvas.on({
     {
       ShowUserData(10);
     }
-    if(activeObject.id == 'mirror')
-      {
+    
+    else if(activeObject.id == 'mirror'){
         MirrorSelected();
         canvas.deactivateAll();
-      }
-    if(activeObject.id == 'traffic')
-      {
-        TrafficSelected();
-        canvas.deactivateAll();
-      }
-    if(activeObject.id == 'lights')
-      {
-        LightsSelected();
-        canvas.deactivateAll();
-      }
-    if(activeObject.id == 'cta')
-      {
-        TransportSelected();
-        canvas.deactivateAll();
-      }
-    if(activeObject.id == 'news')
-      {
-        NewsSelected();
-        canvas.deactivateAll();
-      }
-
-    if(activeObject.id == 'camera')
-    {
+    }
+    else if(activeObject.id == 'traffic'){
+      TrafficSelected();
+      canvas.deactivateAll();
+    }
+    else if(activeObject.id == 'lights'){
+      LightsSelected();
+      canvas.deactivateAll();
+    }
+    else if(activeObject.id == 'cta'){
+      TransportSelected();
+      canvas.deactivateAll();
+    }
+    else if(activeObject.id == 'news'){
+      NewsSelected();
+      canvas.deactivateAll();
+    }
+    else if(activeObject.id == 'camera'){
       RunCamera();
       //canvas.deactivateAll();
     }
-
-
-  if(activeObject.id == "settings_users")
-  {
-
+    else if(activeObject.id == "settings_users"){
       hideSettings();
       ShowUserSettings();
-
-  }
+    }
   }
 });
 
