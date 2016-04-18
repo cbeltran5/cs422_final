@@ -19,6 +19,7 @@ function ShowMessageBox(){
   MessagesIsActive = true; 
   MessageBox.visible = true;
   accept_button.visible = true;
+  MessageHelloOutside.visible = false;
   HomeSelected();
 }
 
