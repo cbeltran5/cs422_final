@@ -503,7 +503,7 @@ function GetOriginalCoordinate(){
   for (var i = 0; i < ArrayOfObjects.length; ++i) {
     OriginalObjCoordinate[i] = temp = ArrayOfObjects[i].top;
     //console.log(ArrayOfObjects[i]);
-    console.log("OG coordinate: " + temp );
+    //console.log("OG coordinate: " + temp );
   }
 }
 

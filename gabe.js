@@ -526,6 +526,7 @@ function HideVolumeSettings() {
 }
 
 function ShowVolumeSettings() {
+  close_functions.push(HideVolumeSettings);
   volumebar.visible = true;
   volumepanel.visible = true;
   volumeslider.visible = true;

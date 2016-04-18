@@ -2682,17 +2682,29 @@ canvas.on("object:moving", function() {
 //********************************************************************************************
 // Back Button
   
-  
+var backbutton; //Just a panel
+fabric.Image.fromURL('images/backbutton.png', function(oImg) {
+  oImg.set({left: 550, top: 1155, id: this.id});
+  oImg.visible = true;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'backbutton';
+  oImg.scaleX = 0.5;
+  oImg.scaleY = 0.5;
+  canvas.add(oImg);
+  ArrayOfObjects.push(oImg);
+});
+ 
+var close_functions = [];
+var how_igot_here = [];
+function BackButton() {
+  var hide = close_functions.pop();
+  var ret = how_igot_here.pop();
+  hide();
+  ret();
+}
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
   
 function ShowUserData(id){
   HideUserSettings();
@@ -2901,6 +2913,7 @@ canvas.on({
     else if (activeObject.id == "doorbell")
       playDoorbellSound();
     else if (activeObject.id == "settings") {
+      how_igot_here.push(showSettings);
       showSettings();
       //canvas.deactivateAll();
     }
@@ -3054,6 +3067,9 @@ canvas.on({
     }
     else if(activeObject.id == 'settings_volume'){
       ShowVolumeSettings();
+    }
+    else if(activeObject.id == 'backbutton'){
+      BackButton();
     }
   }
 });
