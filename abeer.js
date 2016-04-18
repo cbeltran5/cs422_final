@@ -91,6 +91,7 @@ function ShowHome()
   // HideLights();
   HideTransport();
   HideNews();
+  HideMessageBox();
   CloseThemeSettings();
   HideUserSettings();
   HomeIsActive = true;
