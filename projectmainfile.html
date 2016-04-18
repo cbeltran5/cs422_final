@@ -482,7 +482,7 @@ fabric.Image.fromURL('images/user2todo.gif', function(oImg) {
 
 var list_of_users;
 fabric.Image.fromURL('images/UsersList.gif', function(oImg) {
-  oImg.set({left: 440, top: 730 + ImgHeight, id: this.id});
+  oImg.set({left: 400, top: 730 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
@@ -494,7 +494,7 @@ fabric.Image.fromURL('images/UsersList.gif', function(oImg) {
 
 var name_user1;
 fabric.Image.fromURL('images/user1name.gif', function(oImg) {
-  oImg.set({left: 440, top: 830 + ImgHeight, id: this.id});
+  oImg.set({left: 350, top: 830 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
@@ -506,7 +506,7 @@ fabric.Image.fromURL('images/user1name.gif', function(oImg) {
 
 var name_user2;
 fabric.Image.fromURL('images/user2name.gif', function(oImg) {
-  oImg.set({left: 440, top: 911 + ImgHeight, id: this.id});
+  oImg.set({left: 350, top: 911 + ImgHeight, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
@@ -2953,7 +2953,9 @@ canvas.on({
         AlarmOn();
 
     else if(activeObject.id == 'user1name')
-       {HideUsersList(); User1FromInside();}
+       {
+        HideUsersList(); 
+        User1FromInside();}
 
     else if(activeObject.id == 'user2name')
        {HideUsersList(); User2FromInside();}

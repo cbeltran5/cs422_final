@@ -419,7 +419,7 @@ function ResetHeightRadioToDefault() {
   AdjustHeight('Medium');
 }
 
-function LoadUserData_Inside(index ) {
+function LoadUserData_Inside(index) {
   if(!heightsenabled)
     HeightsRadioButtons_ENABLE();   // enable radio buttons
 
@@ -441,6 +441,7 @@ function LoadUserData_Inside(index ) {
   HideLights();
   HideTransport();
   HideNews();
+  hideSettings();
 
 
   ResetHeightRadioToDefault();
