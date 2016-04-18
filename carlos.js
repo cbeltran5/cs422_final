@@ -5,14 +5,19 @@ var brightnessSettingsActive = false;
 var themeSettingsActive = false;
 var newUserAdded = false;
 var current_doorbell_option = "Ding";
+var current_display_setting = "three";
+var current_brightness_pref = 1;
+var current_slider_left;
 
 // traffic settings
 var stars = [];
 var user_traffic_options = [];
 
 function checkSettings() {
-  if (SettingsIsActive == true)
+  hideTrafficInputAdd();
+  if (SettingsIsActive == true) {
     hideSettings();
+  }
   else if (usersActive)
     hideUsers();
   else if (trafficSettingsActive)
@@ -20,7 +25,7 @@ function checkSettings() {
   else if (doorbellSettingsActive)
     hideDoorbellSettings();
   else if (brightnessSettingsActive)
-    hideBrightnessSettings();
+    hideBrightnessSettings(false);
   else if (themeSettingsActive)
     hideThemeSettings();
 }
@@ -63,6 +68,7 @@ function showSettings() {
   VolumeText.visible = true;
   ThemesText.visible = true;
   IntercomText.visible = true;
+  PanelRect.visible = true;
 
 }
 
@@ -94,6 +100,8 @@ function hideSettings()
   VolumeText.visible = false;
   ThemesText.visible = false;
   IntercomText.visible = false;
+  PanelRect.visible = false;
+
 
   hideUsers();
 }
@@ -206,8 +214,8 @@ function hideTrafficSettings()
     user_traffic_options[i].visible = false;
   }
 
-  trafficSettingsActive = false;
   hideTrafficInputAdd();
+  trafficSettingsActive = false;
 }
 
 function showTrafficInputAdd()
@@ -310,6 +318,7 @@ function showBrightnessSettings()
 
   toggle_display_buttons(CURRENT_USER.display_timer_pref);
   update_brightness(-500);
+  current_slider_left = slider.left;
 }
 
 function toggle_display_buttons(pref)
@@ -335,7 +344,7 @@ function toggle_display_buttons(pref)
   }
 }
 
-function hideBrightnessSettings()
+function hideBrightnessSettings(save)
 {
   brightness_text.visible = false;
   slider_back.visible = false;
@@ -351,16 +360,25 @@ function hideBrightnessSettings()
   brightness_save_btn_text.visible = false;
 
   brightnessSettingsActive = false;
+
+  if (save == true) {
+    CURRENT_USER.display_timer_pref = current_display_setting;
+    CURRENT_USER.brightness_pref = current_brightness_pref;
+  }
+  else {
+    update_brightness(CURRENT_USER.brightness_pref);
+    slider.left = current_slider_left;
+  }
 }
 
 function update_brightness(percentage)
 {
   if (percentage != -500)
-    CURRENT_USER.brightness_pref = percentage;
+    current_brightness_pref = percentage;
 
-  if (CURRENT_USER.brightness_pref < 1) {
+  if (current_brightness_pref < 1) {
     Lights.visible = true;
-    Lights.opacity = 1 - CURRENT_USER.brightness_pref;
+    Lights.opacity = 1 - current_brightness_pref;
   }
   else {
     Lights.visible = false;
@@ -370,7 +388,7 @@ function update_brightness(percentage)
 
 function updateDisplayTimer(newSetting)
 {
-  CURRENT_USER.display_timer_pref = newSetting;
+  current_display_setting = newSetting;
   toggle_display_buttons(newSetting);
 }
 

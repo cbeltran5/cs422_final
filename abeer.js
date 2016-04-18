@@ -92,6 +92,7 @@ function ShowHome()
   HideTransport();
   HideNews();
   CloseThemeSettings();
+  HideUserSettings();
   HomeIsActive = true;
   PanelRect.visible = true;
 
@@ -411,6 +412,7 @@ function NewUserFromInside()
   Date_format = DATE_MONTHDDYYYY;
   Time_format = TIME_12HOUR;
   TemperatureUnits = F;
+  CURRENT_USER = null;
 }
 
 //-------------------------------------------------------------
@@ -432,7 +434,7 @@ function NoSignalFromInside()
   LockDeadbolt();
   ResetCoordinates();
   HeightsRadioButtons_DISABLE();
-    UncheckHeight();
+  UncheckHeight();
 
   syslang = ENGLISH; // set to english by default
   System_language = SYSTEM_LANGUAGE[syslang];

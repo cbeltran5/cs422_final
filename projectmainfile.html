@@ -86,12 +86,7 @@
       </form>
       </code>
       </section>
-      <section></section>
-      <section></section>
-      <section></section>
-      <section></section>
-      <section></section>
-      <section></section>
+
     </code>
     </section>
 
@@ -115,12 +110,12 @@
 
       <section>
       <code>
-      <form name="Verification"> Verification1:<br>
+      <form name="Verification"> Step One:<br>
         <div id="Verification1">
           <label for="None"><input type="radio" class="radio1" name="verifyfirst" onchange="VerifyFirst(this.value)" id="noneA" value="None" checked> None<br></label>
           <label for="Phone/KeyFOB"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="pkfobA" value="Phone/KeyFob"> Phone/KeyFOB<br></label>
           <label for="FacialRecognition"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="faceA" value="FacialRecognition"> Facial Recognition<br></label>
-          <label for="FingerPrints"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="fingerA" value="FingerPrint"> FingerPrint<br></label>
+          <label for="FingerPrints"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="fingerA" value="FingerPrint"> Finger Print<br></label>
           <label for="NumberPad"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="numberA" value="NumberPad"> Number Pad<br></label>
         </div>
       </form>
@@ -129,13 +124,24 @@
 
       <section>
       <code>
-      <form name="Verification"> Verification2:<br>
+      <form name="Verification"> Step Two:<br>
         <div id="Verification2">
           <label for="None"><input type="radio" class="radio1"  name="verifysecond" onchange="VerifySecond(this.value)" id="noneB" value="None" disabled checked> None<br></label>
           <label for="Phone/KeyFOB"><input type="radio" class="radio1" name="verifysecond"  onchange="VerifySecond(this.value)" id="pkfobB" value="Phone/KeyFob" disabled> Phone/KeyFOB<br></label>
           <label for="FacialRecognition"><input type="radio" class="radio1" name="verifysecond"  onchange="VerifySecond(this.value)" id="faceB" value="FacialRecognition" disabled> Facial Recognition<br></label>
-          <label for="FingerPrints"><input type="radio" class="radio1" name="verifysecond" onchange="VerifySecond(this.value)" id="fingerB" value="FingerPrint" disabled> FingerPrint<br></label>
+          <label for="FingerPrints"><input type="radio" class="radio1" name="verifysecond" onchange="VerifySecond(this.value)" id="fingerB" value="FingerPrint" disabled> Finger Print<br></label>
           <label for="NumberPad"><input type="radio" class="radio1" name="verifysecond"  onchange="VerifySecond(this.value)" id="numberB" value="NumberPad" disabled> Number Pad<br></label>
+        </div>
+      </form>
+      </code>
+      </section>
+
+      <section>
+      <code>
+      <form name="Verification"> Verification:<br>
+        <div id="Verification2">
+          <label for="Success"><input type="radio" class="radio1"  name="verify" onchange="Verify(this.value)" id="success" value="None" disabled > Success<br></label>
+          <label for="Failure"><input type="radio" class="radio1" name="verify"  onchange="Verify(this.value)" id="failure" value="Phone/KeyFob" disabled> Fail<br></label>
         </div>
       </form>
       </code>
@@ -1243,6 +1249,7 @@ var traffic_add_btn = new fabric.Rect({
   top: 500,
   fill: 'white',
   stroke: 'black',
+  strokeWidth: 4,
   width: 74,
   height: 51,
   angle: 0
@@ -1273,6 +1280,7 @@ var traffic_save_btn = new fabric.Rect({
   top: 500,
   fill: 'white',
   stroke: 'black',
+  strokeWidth: 4,
   width: 65,
   height: 46,
   angle: 0
@@ -1303,6 +1311,7 @@ var traffic_input_name = new fabric.Rect({
   top: 330,
   fill: 'white',
   stroke: 'black',
+  strokeWidth: 4,
   width: 250,
   height: 50,
   angle: 0
@@ -1333,6 +1342,7 @@ var traffic_input_address = new fabric.Rect({
   top: 400,
   fill: 'white',
   stroke: 'black',
+  strokeWidth: 4,
   width: 275,
   height: 75,
   angle: 0
@@ -2378,7 +2388,58 @@ function init_traffic_stuff() {
 
 
 //********************************************************************************************
+//------------------------------ User settings components and function ----------------
+var UserSettingList; //Just a panel
+fabric.Image.fromURL('images/Usersettinglist.jpg', function(oImg) {
+  oImg.set({left: 365, top: 690, id: this.id});
+  oImg.visible = false;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'Usersettinglist';
+  UserSettingList = oImg;
+  canvas.add(UserSettingList);
+  ArrayOfObjects.push(UserSettingList);
+});
 
+var UsersNames = [];
+
+function ShowUserSettings()
+{
+
+  UserSettingList.visible = true;
+
+  //loop to get names and add them to canvas
+  for (i = 0; i < RegisteredUsers.length; i++)
+  {
+    var topv = 730 + (70*(i+1)/(i+1)) * (i+1);
+    var UserName = new fabric.Text('', {
+    fontFamily: 'Times',
+    fontSize: 60,
+    left: 400,
+    top: topv,
+    });
+
+    UserName.setText(RegisteredUsers.at(i).firstname);
+    canvas.add(UserName);
+    UserName.bringForward();
+    UsersNames.push(UserName);
+    ArrayOfObjects.push(UsersNames[i]);
+  }
+console.log("We are : "+ UsersNames.length);
+}
+
+
+function HideUserSettings()
+{
+
+  UserSettingList.visible = false;
+  for (i = 0; i < UsersNames.length; i++)
+  {
+    UsersNames[i].visible = false;
+  }
+
+}
+//--------------------------------------------------------------------------------------
 // add all of the elements to the canvas
 
 canvas.add(insideDoor);
@@ -2562,7 +2623,7 @@ canvas.on({
     else if (activeObject.id == "three_min_btn" || activeObject.id == "three_min_btn_text")
       updateDisplayTimer("three");
     else if (activeObject.id == "brightness_save_btn" || activeObject.id == "brightness_save_btn_text"){
-      hideBrightnessSettings();
+      hideBrightnessSettings(true);
       showSettings();
     }
     else if (activeObject.id == "settings_doorbell") {
@@ -2618,11 +2679,15 @@ canvas.on({
       //canvas.deactivateAll();
     }
 
-    if(activeObject.id == "settings_users") {
-      usersSelected();
-      canvas.deactivateAll();
-    }
+
+  if(activeObject.id == "settings_users")
+  {
+
+      hideSettings();
+      ShowUserSettings();
+
   }
+}
 });
 
 AvatarOnOff.on('selected', function(){
