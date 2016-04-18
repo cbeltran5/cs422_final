@@ -66,7 +66,7 @@
       <code>
       <form> Users:<br>
         <div id = "UsersFromInside">
-          <label for="NoSignalInside"><input type="radio" class="radio1" name="UsersIn" onchange="NoSignalFromInside()" value="NoSignal" checked> Noone<br></label>
+          <label for="NoSignalInside"><input type="radio" class="radio1" name="UsersIn" onchange="NoSignalFromInside()" value="NoSignal" checked> No One<br></label>
           <label for="UnknownPersonInside"><input type="radio" class="radio1" name="UsersIn" onchange="NewUserFromInside()" value="NewUser"> Unknown Person<br></label>
           <label for="MultiUserInside"><input type="radio" class="radio1" name="UsersIn" onchange="MultiUsersFromInside()" value="MultiUser"> Multiple People<br></label>
         </div>
@@ -100,7 +100,7 @@
       <code>
       <form name="UsersOutside"> Users:<br>
         <div id="UsersFromOutside">
-          <label for="NoSignal"><input type="radio" class="radio1" name="UsersOut" onchange="NoOneOutside()" value="NoSignal" checked> Noone<br></label>
+          <label for="NoSignal"><input type="radio" class="radio1" name="UsersOut" onchange="NoOneOutside()" value="NoSignal" checked> No Sne<br></label>
           <label for="Unknown Person"><input type="radio" class="radio1" name="UsersOut" onchange="UnKnownPersonFromOutside()" value="NewUser"> Unknown Person<br></label>
           <label for="Multiple People"><input type="radio" class="radio1" name="UsersOut" onchange="MultiUsersOutside()" value="NewUser"> Multiple People<br></label>
         </div>
@@ -3183,8 +3183,6 @@ TimeFormatText.lockMovementX = TimeFormatText.lockMovementY = true;
 ArrayOfObjects.push(TimeFormatText);
 
 //+++++++
-
-
 var DateFormat1 = new fabric.Text('  Month DD, YYYY  ', {
   left: 150,
   top: 350,
@@ -3200,7 +3198,6 @@ DateFormat1.lockMovementX = DateFormat1.lockMovementY = true;
 ArrayOfObjects.push(DateFormat1);
 
 //++++++++
-
 var DateFormat2 = new fabric.Text('  MM/DD/YYYY       ', {
   left: 150,
   top: 380,
@@ -3216,7 +3213,6 @@ DateFormat2.lockMovementX = DateFormat2.lockMovementY = true;
 ArrayOfObjects.push(DateFormat2);
 
 //+++++++
-
 var DateFormat3 = new fabric.Text('  DD Month YYYY   ', {
   left: 150,
   top: 410,
@@ -3480,7 +3476,7 @@ canvas.on({
   
   'object:selected': function(e) {
     var activeObject = e.target;
-
+    console.log(activeObject);
     //console.log(e.target);
     if(activeObject.id == 'home'){
       HomeSelected();
