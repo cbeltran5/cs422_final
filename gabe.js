@@ -389,13 +389,7 @@ function HeightsRadioButtons_ENABLE() {
 var CURRENT_USER = null;
 
 var homebutton = null;
-function getObjectWithId(id) {
-  for (var i = 0; i < canvas.getObjects().length; ++i){
-    if (canvas.item(i).id == id) {
-      return canvas.item(i);
-    }
-  }
-}
+
 
 function ShowHomeButtonAndLine() {
   // show home button

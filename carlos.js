@@ -41,6 +41,7 @@ function playDoorbellSound() {
 }
 
 function showSettings() {
+  //backbutton.visible = true;
   mBackButton.addToBackStack( HomeSelected,hideSettings);
   SettingsIsActive = true;
   HideHome();
@@ -54,7 +55,8 @@ function showSettings() {
         canvas.item(i).id == 'settings_traffic'  || canvas.item(i).id == 'settings_datetime'      ||
         canvas.item(i).id == 'settings_doorbell'     || canvas.item(i).id == 'settings_units'   ||
         canvas.item(i).id == 'settings_brightness'   || canvas.item(i).id == 'settings_volume'    ||
-        canvas.item(i).id == 'settings_themes'      || canvas.item(i).id == 'settings_intercom')
+        canvas.item(i).id == 'settings_themes'      || canvas.item(i).id == 'settings_intercom' ||
+       canvas.item(i).id == 'backbutton')
     {
         canvas.item(i).visible = true;
     }

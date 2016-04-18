@@ -2520,7 +2520,15 @@ function init_traffic_stuff() {
 
 
 }
-
+  
+function getObjectWithId(id) {
+  for (var i = 0; i < canvas.getObjects().length; ++i){
+    if (canvas.item(i).id == id) {
+      console.log(id);
+      return canvas.item(i);
+    }
+  }
+}
 
 //********************************************************************************************
 //------------------------------ User settings components and function ----------------
@@ -2755,10 +2763,10 @@ canvas.on("object:moving", function() {
 //********************************************************************************************
 // Back Button
   
-var backbutton; //Just a panel
+var backbutton = null;
 fabric.Image.fromURL('images/backbutton.png', function(oImg) {
   oImg.set({left: 550, top: 1155, id: this.id});
-  oImg.visible = true;
+  oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
   oImg.id = 'backbutton';
@@ -2767,7 +2775,7 @@ fabric.Image.fromURL('images/backbutton.png', function(oImg) {
   canvas.add(oImg);
   ArrayOfObjects.push(oImg);
 });
- 
+
 
 function BackButton() {
   this.hidefunctions = [];
@@ -2957,6 +2965,7 @@ canvas.on({
     //console.log(e.target);
     if(activeObject.id == 'home'){
       HomeSelected();
+      
       canvas.deactivateAll();
       if(CURRENT_USER != null)
         CURRENT_USER.hideObjects();
@@ -3207,9 +3216,9 @@ function zoomAll(SCALE_FACTOR) {
 // draw everything at the appropriate scale for this canvas
 zoomAll(canvas.height / localHeight);
 
-
-
-
+if(backbutton == null) {
+  backbutton = getObjectWithId('backbutton'); 
+}
 //})();
 
 </script>
