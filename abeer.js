@@ -102,6 +102,7 @@ function ShowHome(){
   HideUserData();
   Hide911();
   HideVideoTour();
+  CloseMessageSettings();
   PanelRect.visible = true;
   icon_settings.selectable = true;
 
@@ -159,6 +160,7 @@ function HideHome()
   HideLangaugeSetting();
   Hide911();
   HideVideoTour();
+  CloseMessageSettings();
   
   PanelRect.visible = false;
   

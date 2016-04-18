@@ -218,7 +218,13 @@ var OriginalObjCoordinate = [];
 var counter = 0;
 HeightsRadioButtons_DISABLE();
 var UsersNames = [];
+var UsersNamesMsg = [];
 var DoorbellAudio = 'ding';
+
+var MsgTo = null;
+var MsgMode = 'Public';
+var MsgText = '';
+var MessagesIsActive = false;
 
 //*******************************************************************************************
 
@@ -601,6 +607,8 @@ Messagestext.selectable = false;
 Messagestext.visible = false;
 ArrayOfObjects.push(Messagestext);
 
+
+/*
 var MessagesDroplist = new fabric.Text('  Type of Message       ', {
   backgroundColor: 'lightgrey',
   borderColor: 'black',
@@ -707,11 +715,6 @@ function ShowUsers(){
     ArrayOfObjects.push(UsersNames[i]);
   }
 
-  console.log("We are : "+ UsersNames.length);
-  console.log("here : "+ UsersNames[1].top);
-  console.log( "My array length a: " + ArrayOfObjects.length);
-
-
   for (i = 0; i < UsersNames.length; i++) {
     UsersNames[i].id = i;
   }
@@ -779,7 +782,7 @@ fabric.util.loadImage('images/chalkboard_hello.jpeg', function (img) {
       repeat: 'repeat'
   });
 });
-ArrayOfObjects.push(MessageHelloOutside);
+ArrayOfObjects.push(MessageHelloOutside);*/
 
 // MIRROR
 var Mirror = new fabric.Rect({
@@ -1647,10 +1650,12 @@ fabric.Image.fromURL('images/Settings/brightness.gif', function(oImg) {
 });
 
 var BrightnessText = new fabric.Text(BRIGHTNESS[syslang], {
-  left: 330,
-  top: 385,
+  left: 360,
+  top: 395,
   fontFamily: 'Times',
-  fontSize: 15
+  fontSize: 15,
+  originX: "center",
+  originY: "center"
 });
 BrightnessText.setColor('black');
 BrightnessText.selectable = false;
@@ -1723,10 +1728,10 @@ fabric.Image.fromURL('images/Settings/tutorial.gif', function(oImg) {
 });
 
 var IntercomText = new fabric.Text(INTERCOM[syslang], {
-  left: 415,
-  top: 475,
+  left: 410,
+  top: 480,
   fontFamily: 'Times',
-  fontSize: 15
+  fontSize: 15,
 });
 IntercomText.setColor('black');
 IntercomText.selectable = false;
@@ -1737,12 +1742,14 @@ ArrayOfObjects.push(IntercomText);
 // BRIGHTNESSSSS
 
 var brightness_text = new fabric.IText('Brightness', {
-  fontFamily: 'arial black',
+  fontFamily: 'Calibri',
   fontSize: 30,
-  left: 185,
-  top: 325,
+  left: 270,
+  top: 340,
   width: 100,
-  height: 50
+  height: 50,
+  originX: "center",
+  originY: "center"
 });
 brightness_text.visible = false;
 brightness_text.hasControls = brightness_text.hasBorders = brightness_text.selectable = false;
@@ -1794,12 +1801,14 @@ fabric.util.loadImage('images/Settings/slider.gif', function (img) {
 ArrayOfObjects.push(slider);
 
 var display_text = new fabric.IText('Display Timer', {
-  fontFamily: 'arial black',
+  fontFamily: 'Calibri',
   fontSize: 30,
-  left: 165,
-  top: 405,
+  left: 270,
+  top: 415,
   width: 100,
-  height: 50
+  height: 50,
+  originX: "center",
+  originY: "center"
 });
 display_text.visible = false;
 display_text.hasControls = display_text.hasBorders = display_text.selectable = false;
@@ -1824,9 +1833,9 @@ one_min_btn.lockMovementX = one_min_btn.lockMovementY = true;
 one_min_btn.id = 'one_min_btn';
 
 var one_min_btn_text = new fabric.IText('1 min', {
-  fontFamily: 'arial black',
+  fontFamily: 'Calibri',
   fontSize: 25,
-  left: 117,
+  left: 127,
   top: 465,
   width: 60,
   height: 50
@@ -1855,9 +1864,9 @@ three_min_btn.lockMovementX = three_min_btn.lockMovementY = true;
 three_min_btn.id = 'three_min_btn';
 
 var three_min_btn_text = new fabric.IText('3 min', {
-  fontFamily: 'arial black',
+  fontFamily: 'Calibri',
   fontSize: 25,
-  left: 237,
+  left: 247,
   top: 465,
   width: 60,
   height: 50
@@ -1886,9 +1895,9 @@ five_min_btn.lockMovementX = five_min_btn.lockMovementY = true;
 five_min_btn.id = 'five_min_btn';
 
 var five_min_btn_text = new fabric.IText('5 min', {
-  fontFamily: 'arial black',
+  fontFamily: 'Calibri',
   fontSize: 25,
-  left: 357,
+  left: 367,
   top: 465,
   width: 60,
   height: 50
@@ -2171,7 +2180,7 @@ ArrayOfObjects.push(LiveOnOff);
 //------------------------------------------------------------------
 var icon_doorbell;
 fabric.Image.fromURL('images/doorbell.gif', function(oImg) {
-  oImg.set({left: 1485, top: 680, id: this.id});
+  oImg.set({left: 1485, top: 660, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
@@ -2182,7 +2191,7 @@ fabric.Image.fromURL('images/doorbell.gif', function(oImg) {
 
 var icon_write_messages;
 fabric.Image.fromURL('images/writemsg.gif', function(oImg) {
-  oImg.set({left: 1470, top: 790, id: this.id});
+  oImg.set({left: 1470, top: 770, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
@@ -2193,7 +2202,7 @@ fabric.Image.fromURL('images/writemsg.gif', function(oImg) {
 
 var icon_number_pad;
 fabric.Image.fromURL('images/numberpad.gif', function(oImg) {
-  oImg.set({left: 1480, top: 860, id: this.id});
+  oImg.set({left: 1480, top: 840, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
@@ -2556,7 +2565,7 @@ function getObjectWithId(id) {
 
 //********************************************************************************************
 //------------------------------ User settings components and function ----------------
-var UserSettingList; //Just a panel
+/*var UserSettingList; //Just a panel
 fabric.Image.fromURL('images/Usersettinglist.jpg', function(oImg) {
   oImg.set({left: 365, top: 690, id: this.id});
   oImg.visible = false;
@@ -2566,15 +2575,32 @@ fabric.Image.fromURL('images/Usersettinglist.jpg', function(oImg) {
   UserSettingList = oImg;
   canvas.add(UserSettingList);
   ArrayOfObjects.push(UserSettingList);
-});
+});*/
 
+var UserSettingList = new fabric.Rect({
+  left: 165,
+  top: 366,
+  //backgroundColor: '',
+  //id: this.id,
+  fill: 'white',
+  stroke: 'grey',
+  width: 232,
+  height: 150,
+  angle: 0
+});
+UserSettingList.visible = false;
+UserSettingList.hasControls = UserSettingList.hasBorders = UserSettingList.selectable = false;
+UserSettingList.lockMovementX = UserSettingList.lockMovementY = true;
+UserSettingList.id = 'UserSettingList';
+
+ArrayOfObjects.push(UserSettingList);
 
 
 var UserFName = new fabric.Text('', {
     fontFamily: 'Times',
-    fontSize: 50,
+    fontSize: 40,
     left: 400,
-    top: 800,
+    top: 830,
     });
 UserFName.selectable = true;
 UserFName.visible = true;
@@ -2586,9 +2612,9 @@ ArrayOfObjects.push(UserFName);
 
 var UserLName = new fabric.Text('', {
     fontFamily: 'Times',
-    fontSize: 50,
+    fontSize: 40,
     left: 400,
-    top: 850,
+    top: 880,
     });
 UserLName.selectable = true;
 UserLName.visible = true;
@@ -2601,9 +2627,9 @@ ArrayOfObjects.push(UserLName);
 
 var UserLang = new fabric.Text('', {
     fontFamily: 'Times',
-    fontSize: 50,
+    fontSize: 40,
     left: 400,
-    top: 900,
+    top: 930,
     });
 UserLang.selectable = true;
 UserLang.visible = true;
@@ -2616,9 +2642,9 @@ ArrayOfObjects.push(UserLang);
 
 var UserTimeFormat = new fabric.Text('', {
     fontFamily: 'Times',
-    fontSize: 50,
+    fontSize: 40,
     left: 400,
-    top: 950,
+    top: 980,
     });
 UserTimeFormat.selectable = true;
 UserTimeFormat.visible = true;
@@ -2631,9 +2657,9 @@ ArrayOfObjects.push(UserTimeFormat);
 
 var UserDateFormat = new fabric.Text('', {
     fontFamily: 'Times',
-    fontSize: 50,
+    fontSize: 40,
     left: 400,
-    top: 1000,
+    top: 1030,
     });
 UserDateFormat.selectable = true;
 UserDateFormat.visible = true;
@@ -2691,10 +2717,10 @@ function ShowUserSettings(){
   //UserSettingMsg.visible = false;
   //loop to get names and add them to canvas
   for (i = 0; i < RegisteredUsers.length; i++){
-    var topv = 730 + (70*(i+1)/(i+1)) * (i+1);
+    var topv = 760 + (70*(i+1)/(i+1)) * (i+1);
     var UserName = new fabric.Text('', {
       fontFamily: 'Times',
-      fontSize: 60,
+      fontSize: 40,
       left: 400,
       top: topv,
     });
@@ -2727,6 +2753,13 @@ function HideUserSettings(){
   UserSettingList.visible = false;
   for (i = 0; i < UsersNames.length; i++) {
     UsersNames[i].visible = false;
+  }
+}
+
+function HideUserSettingsMsg(){
+  UserSettingList.visible = false;
+  for (i = 0; i < UsersNamesMsg.length; i++) {
+    UsersNamesMsg[i].visible = false;
   }
 }
 
@@ -2864,6 +2897,7 @@ var mBackButton = new BackButton();
 
 
 function ShowUserData(id){
+  
   HideUserSettings();
   UserSettingList.visible = true;
   UserFName.setText(RegisteredUsers.at(id).firstname);
@@ -2880,9 +2914,14 @@ function ShowUserData(id){
 
   canvas.add(UserLang);
 
-  canvas.add(BackButtFromUSerData);
+  //canvas.add(BackButtFromUSerData);
+
 }
 
+function ShowUserDataForMsg(id){
+  
+  MsgTo = id;
+}
 function HideUserData(){
   //UserSettingList.visible = false;
   //UserFName.setText(RegisteredUsers.at(id).firstname);
@@ -3600,6 +3639,388 @@ function HideLangaugeSetting(){
     SlovakLang.visible = false;
     //SaveLangButton.visible = false;
 }
+//------------------------ Messages components and functions ---------------------------
+
+var MessagesDroplist = new fabric.Text('  Post a Message                    ', {
+  backgroundColor: 'lightgrey',
+  borderColor: 'black',
+  fontFamily: 'Times',
+  fontSize: 20,
+  padding: 5,
+  left: 165,
+  top: 310 ,
+  width: 150,
+  height: 50
+});
+MessagesDroplist.selectable = true;
+MessagesDroplist.visible = false;
+MessagesDroplist.hasBorders = true;
+MessagesDroplist.hasControls =  false;
+MessagesDroplist.lockMovementX = MessagesDroplist.lockMovementY = true;
+ArrayOfObjects.push(MessagesDroplist);
+
+var PublicText = new fabric.Text('  Public            ', {
+  backgroundColor: '#5DADE2',
+  fontFamily: 'Times',
+  fontSize: 20,
+  padding: 5,
+  left: 165,
+  top: 340 ,
+  width: 150,
+  height: 50
+});
+PublicText.selectable = true;
+PublicText.visible = false;
+PublicText.hasBorders = false;
+PublicText.hasControls =  false;
+PublicText.lockMovementX = PublicText.lockMovementY = true;
+ArrayOfObjects.push(PublicText);
+
+var PrivateText = new fabric.Text('  Private         ', {
+  backgroundColor: 'white',
+  fontFamily: 'Times',
+  fontSize: 20,
+  padding: 5,
+  left: 285,
+  top: 340 ,
+  width: 150,
+  height: 50,
+  opacity: 0.3
+});
+PrivateText.selectable = true;
+PrivateText.visible = false;
+PrivateText.hasBorders = false;
+PrivateText.hasControls =  false;
+PrivateText.lockMovementX = PrivateText.lockMovementY = true;
+ArrayOfObjects.push(PrivateText);
+
+var MessageBox = new fabric.Rect({
+  left: 165,
+  top: 366,
+  //backgroundColor: '',
+  //id: this.id,
+  fill: 'white',
+  stroke: 'grey',
+  width: 232,
+  height: 150,
+  angle: 0
+});
+MessageBox.visible = false;
+MessageBox.hasControls = MessageBox.hasBorders = MessageBox.selectable = false;
+MessageBox.lockMovementX = MessageBox.lockMovementY = true;
+MessageBox.id = 'messageBox';
+//fabric.util.loadImage('images/chalkboard.jpeg', function (img) {
+  //MessageBox.setPatternFill({
+  //    source: img,
+  //    repeat: 'no-repeat'
+ // });
+//});
+ArrayOfObjects.push(MessageBox);
+
+  
+/*var accept_button;
+fabric.Image.fromURL('images/post.jpg', function(oImg) {
+  oImg.set({left: 505, top: 1350, width: 210, height: 120,id: this.id});
+  oImg.visible = true;
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.id = 'accept';
+  //oImg.scale(0.8);
+  accept_button = oImg;
+  ArrayOfObjects.push(accept_button);
+  canvas.add(accept_button);
+});*/
+
+//Post button
+
+var Post = new fabric.Text('    Post    ', {
+  backgroundColor: 'lightgrey',
+  fontFamily: 'Times',
+  fontSize: 23,
+  padding: 5,
+  left: 230, 
+  top: 530,
+  width: 150,
+  height: 50,
+  //opacity: 0.3
+});
+Post.selectable = true;
+Post.visible = false;
+Post.hasBorders = false;
+Post.hasControls =  false;
+Post.lockMovementX = Post.lockMovementY = true;
+ArrayOfObjects.push(Post);
+
+var OK = new fabric.Text('    OK    ', {
+  backgroundColor: 'lightgrey',
+  fontFamily: 'Times',
+  fontSize: 23,
+  padding: 5,
+  left: 230, 
+  top: 530,
+  width: 150,
+  height: 50,
+  //opacity: 0.3
+});
+OK.selectable = true;
+OK.visible = false;
+OK.hasBorders = false;
+OK.hasControls =  false;
+OK.lockMovementX = OK.lockMovementY = true;
+ArrayOfObjects.push(OK);
+
+var OKOut= new fabric.Text('    OK    ', {
+  backgroundColor: 'lightgrey',
+  fontFamily: 'Times',
+  fontSize: 23,
+  padding: 5,
+  left: 890, 
+  top: 470,
+  width: 150,
+  height: 50,
+  //opacity: 0.3
+});
+OKOut.selectable = true;
+OKOut.visible = false;
+OKOut.hasBorders = false;
+OKOut.hasControls =  false;
+OKOut.lockMovementX = OK.lockMovementY = true;
+
+
+var MsgBox = new fabric.IText('Type...', { 
+  fontFamily: 'Times',
+  fontSize: 18,
+  left: 165,
+  top: 366,
+  fill: 'black',
+  //stroke: 'grey',
+  width: 232,
+  height: 150,
+  angle: 0
+});
+MsgBox.selectable = false;
+MsgBox.editable = true;
+MsgBox.visible = false;
+MsgBox.hasBorders = false;
+MsgBox.hasControls =  false;
+MsgBox.lockMovementX = MsgBox.lockMovementY = true;
+ArrayOfObjects.push(MsgBox);
+
+var MsgOutsideText = new fabric.Text('', {
+      backgroundColor: 'black',
+      fontFamily: 'Times',
+      fontSize: 25,
+      padding: 5,
+      left: 830, 
+      top: 350,
+      width: 150,
+      height: 50,
+});
+MsgOutsideText.selectable = false;
+MsgOutsideText.visible = false;
+MsgOutsideText.hasBorders = false;
+MsgOutsideText.hasControls =  false;
+MsgOutsideText.setColor('white');
+MsgOutsideText.lockMovementX = MsgOutsideText.lockMovementY = true;
+
+function ShowMessageSettings()
+{
+  HideHome();
+  MessagesIsActive = true;
+
+  MessagesDroplist.visible = true;
+  PublicText.visible = true;
+  PrivateText.visible = true;
+  MessageBox.visible = true;
+  MsgBox.visible = true;
+  Post.visible = true;
+
+  PublicText.backgroundColor = '#5DADE2';
+  PublicText.setOpacity(1);
+  PrivateText.backgroundColor = 'white';
+  PrivateText.setOpacity(0.3);
+  
+  //HomeSelected();
+}
+
+function CloseMessageSettings()
+{
+  MessagesIsActive = false;
+
+  MessagesDroplist.visible = false;
+  PublicText.visible = false;
+  PrivateText.visible = false;
+  MessageBox.visible = false;
+  MsgBox.visible = false;
+  Post.visible = false;
+  OK.visible = false;
+
+  if(UsersNamesMsg.length!=0)
+  {
+    for(var i =0; i < UsersNamesMsg.length; i++)
+      UsersNamesMsg[i].visible = false;
+  }
+
+  PublicText.backgroundColor = '#5DADE2';
+  PublicText.setOpacity(1);
+  PrivateText.backgroundColor = 'white';
+  PrivateText.setOpacity(0.3);
+}
+
+PublicText.on('mousedown', function ()
+{
+  MsgMode = 'Public';
+  PublicText.backgroundColor = '#5DADE2';
+  PublicText.setOpacity(1);
+  PrivateText.backgroundColor = 'white';
+  PrivateText.setOpacity(0.3);
+
+  if(UsersNamesMsg.length!=0)
+  {
+    for(var i =0; i < UsersNamesMsg.length; i++)
+      UsersNamesMsg[i].visible = false;
+  }
+
+  UserSettingList.visible = false;
+  //CloseMessageSettings();
+  //MessageBoxSelected();
+});
+
+PrivateText.on('mousedown', function ()
+{
+  
+  MsgMode = 'Private';
+  PublicText.backgroundColor = 'white';
+  PublicText.setOpacity(0.3);
+  PrivateText.backgroundColor = '#5DADE2';
+  PrivateText.setOpacity(1);
+
+  //CloseMessageSettings();
+  MessagesDroplist.visible = true;
+  PublicText.visible = true;
+  PrivateText.visible = true;
+  ShowUsers();
+
+
+  OK.visible = true; 
+  console.log("bbb" + MessagesIsActive);
+  //MessageBoxSelected();
+});
+
+OK.on('mousedown', function ()
+{
+  HideUserSettingsMsg();
+  //Usersettinglist.visible = false;
+  OK.visible = false;
+
+  MessagesDroplist.visible = true;
+  PublicText.visible = true;
+  PrivateText.visible = true;
+  MessageBox.visible = true;
+  MsgBox.visible = true;
+  Post.visible = true;
+
+  //HomeSelected();
+});
+
+OKOut.on('mousedown', function ()
+{
+     MsgOutsideText.setText("");
+     MsgOutsideText.visible = false;
+     OKOut.visible = false;
+
+});
+
+Post.on('mousedown', function ()
+{
+
+  if(MsgMode == 'Public')
+  {
+
+     MsgOutsideText.setText("\n        " + MsgBox.getText() +"        \n");
+     MsgOutsideText.visible = true;
+     OKOut.visible = true;
+  }
+
+  if(MsgMode == 'Private')
+  {
+      if(MsgTo != null)
+      {
+      MsgOutsideText.setText("\n        " + MsgBox.getText() +"        \n");
+      RegisteredUsers.at(MsgTo).myMessages.push(MsgOutsideText);
+      console.log("Mqs to this: "+ RegisteredUsers.at(MsgTo).myMessages.length);
+
+      MsgTo = null;
+  }
+  }
+
+ } );
+
+function ShowUsers(){
+  mBackButton.addToBackStack(showSettings,HideUserData);
+  UsersNamesMsg = [];
+  UserSettingList.visible = true;
+  //UserSettingMsg.visible = false;
+  //loop to get names and add them to canvas
+  for (i = 0; i < RegisteredUsers.length; i++){
+    var topv = 760 + (70*(i+1)/(i+1)) * (i+1);
+    var UserNameMsg = new fabric.Text('', {
+      fontFamily: 'Times',
+      fontSize: 40,
+      left: 400,
+      top: topv,
+    });
+    
+    UserNameMsg.setText(RegisteredUsers.at(i).firstname);
+   
+    //UserNameMsg.on('mousedown', function ()
+    //{
+     // CloseMessageSettings();
+     // MessageBoxSelected();
+    //});
+    canvas.add(UserNameMsg);
+    UserNameMsg.bringForward();
+    UsersNamesMsg.push(UserNameMsg);
+    ArrayOfObjects.push(UsersNamesMsg[i]);
+  }
+
+  //console.log("We are : "+ UsersNamesMsg.length);
+  //console.log("here : "+ UsersNamesMsg[1].top);
+  //console.log( "My array length a: " + ArrayOfObjects.length);
+
+
+  for (i = 0; i < UsersNamesMsg.length; i++) {
+    UsersNamesMsg[i].id = i+15;
+  }
+}
+
+
+
+
+
+
+/*var MessageHelloOutside = new fabric.Rect({
+  left: 810,
+  top: 310,
+  //id: this.id,
+  fill: 'grey',
+  stroke: 'black',
+  width: 210,
+  height: 200,
+  angle: 0
+});
+
+MessageHelloOutside.visible = false;
+MessageHelloOutside.hasControls = MessageHelloOutside.hasBorders = MessageHelloOutside.selectable = false;
+MessageHelloOutside.lockMovementX = MessageHelloOutside.lockMovementY = true;
+fabric.util.loadImage('images/chalkboard_hello.jpeg', function (img) {
+  MessageHelloOutside.setPatternFill({
+      source: img,
+      repeat: 'repeat'
+  });
+});
+ArrayOfObjects.push(MessageHelloOutside);  */
+//------------- I did Messages above here here go above it for langauge setting -------------------
 //--------------------------------------------------------------------------------------
 // add all of the elements to the canvas
 
@@ -3610,7 +4031,13 @@ canvas.add(MessageBox);
 canvas.add(MessagesDroplist);
 canvas.add(PublicText);
 canvas.add(PrivateText);
-canvas.add(MessageHelloOutside);
+canvas.add(Post);
+canvas.add(OK); 
+canvas.add(OKOut);
+canvas.add(MsgBox);
+canvas.add(UserSettingList);
+canvas.add(MsgOutsideText);
+//canvas.add(MessageHelloOutside);
 canvas.add(Mirror);
 canvas.add(Traffic);
 canvas.add(Transport);
@@ -3746,8 +4173,9 @@ canvas.add(video1);
   
 canvas.on({ 'object:selected': function(e) {
     var activeObject = e.target;
-    console.log(activeObject);
-    //console.log(e.target);
+    console.log(activeObject.id);
+  
+  
     if(activeObject.id == 'home'){
       HomeSelected();
       HideLangFeedBack();
@@ -3792,15 +4220,16 @@ canvas.on({ 'object:selected': function(e) {
       HideUsersList();
       User2FromInside();
     }
-    else if (activeObject.id == "doorbell")
+    else if (activeObject.id == "doorbell") {
       playDoorbellSound();
+    }
     else if (activeObject.id == "settings") {
       showSettings();
       mBackButton.addToBackStack( HomeSelected,hideSettings);
       //canvas.deactivateAll();
     }
     else if(activeObject.id == 'settings_units') {
-
+      ChangeUnits();
     }
     else if (activeObject.id == "settings_traffic") {
       showTrafficSettings();
@@ -3829,10 +4258,6 @@ canvas.on({ 'object:selected': function(e) {
       updateDisplayTimer("one");
     else if (activeObject.id == "three_min_btn" || activeObject.id == "three_min_btn_text")
       updateDisplayTimer("three");
-    else if (activeObject.id == "brightness_save_btn" || activeObject.id == "brightness_save_btn_text"){
-      hideBrightnessSettings(true);
-      showSettings();
-    }
 
     else if (activeObject.id == "settings_doorbell") {
       showDoorbellSettings();
@@ -3854,7 +4279,6 @@ canvas.on({ 'object:selected': function(e) {
       hideDoorbellSettings(true);
       showSettings();
     }
-
     else if(activeObject.id == 'messages'){
       ShowMessageSettings();
       //MessageBoxSelected();
@@ -3868,14 +4292,39 @@ canvas.on({ 'object:selected': function(e) {
       AcceptSelected();
       canvas.deactivateAll();
     }
+    else if( activeObject.id == 'knob' ) {
+      FingerPrintScanner();
+    }
+    else if( activeObject.id == 'writemsg') {
+      WriteMessagesOutside();
+    }
     else if( -1 < activeObject.id && activeObject.id < 11) {
       for(var i=0; i < 11; i ++ ){
         if (activeObject.id == i){
-          ShowUserData(i);
-          break;
+
+          {UsersNames[i].backgroundColor = '#5DADE2';
+            ShowUserData(i);   
+          break;}
         }
       }
     }
+
+    else if( 14 < activeObject.id && activeObject.id < 30) {
+      for(var i=0; i < UsersNamesMsg.length; i ++ ){
+        if (activeObject.id == i+15){
+          UsersNamesMsg[i].backgroundColor = '#5DADE2';
+          MsgTo = i;
+          console.log("MsgTo : " + MsgTo);
+          break;
+        }
+      }
+      for(var i=0; i < UsersNamesMsg.length; i ++ ){
+        if(i != MsgTo) {
+            UsersNamesMsg[i].backgroundColor = 'white';
+        }
+      }
+    }
+
     else if(activeObject.id == 'mirror'){
         MirrorSelected();
         canvas.deactivateAll();
