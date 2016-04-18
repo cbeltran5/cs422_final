@@ -1,770 +1,840 @@
-var F = 'Fahrenheit';
-var C = 'Celsius';
-var MainUnit = F;
-var TemperatureF = 49;
+function ShowDateTime_BACKUP()
+{
+  var currentdate = new Date();
+  var year = currentdate.getFullYear();
+  var month = currentdate.getMonth()+1;
+  var day = currentdate.getDate();
+  var hours = currentdate.getHours();
+  var minutes = currentdate.getMinutes();
+  var timetype;
 
-function C2F(C) {
-  return C * 9 / 5 + 32;
-}
 
-function F2C(F) {
-  return (F - 32) * 5 / 9;
-}
+  if( hours >= 12)
+    timetype = "PM";
+  else
+    timetype = "AM";
 
-function TodoList() {
-
-}
-
-/***********************************************************************
-                           DATE AND TIME
-************************************************************************/
-var TIME_12HOUR = "12 Hour Format";
-var TIME_24HOUR = "24 Hour Format";
-var DATE_MONTHDDYYYY = "Month DD, YYYY";
-var DATE_MMDDYYYY = "MM/DD/YYYY";
-var DATE_DDMONTHYYYY = "DD Month YYYY";
-var DATE_DDMMYYYY = "DD/MM/YYYY";
-
-function getFormattedMonth(month) {
-  month = month + 1;
-  if(Date_format == DATE_MONTHDDYYYY || Date_format == DATE_DDMONTHYYYY) {
-    if (month == 1)
-      return JANUARY[syslang];
-    else if (month == 2)
-      return FEBRUARY[syslang];
-    else if (month == 3)
-      return MARCH[syslang];
-    else if (month == 4)
-      return APRIL[syslang];
-    else if (month == 5)
-      return MAY[syslang];
-    else if (month == 6)
-      return JUNE[syslang];
-    else if (month == 7)
-      return JULY[syslang];
-    else if (month == 8)
-      return AUGUST[syslang];
-    else if (month == 9)
-      return SEPTEMBER[syslang];
-    else if (month == 10)
-      return OCTOBER[syslang];
-    else if (month == 11)
-      return NOVEMBER[syslang];
-    else if (month == 12)
-      return DECEMBER[syslang];
-  }
-
-  if( month < 10) {
-    month = "0" + month;
-  }
-  else {
-    month = "" + month;
-  }
-  return month;
-}
-function getFormattedTimeString(hours, minutes){
-  var AmPmDesignator = "";
-  var spacing = "";
-  // fix minutes
-  if (minutes < 10) {
-    minutes = "0" + minutes;
-  }
-
-  // adjust if set to 12 hour format
-  if(Time_format == TIME_12HOUR)  {
-    if( hours >= 12) {
-      AmPmDesignator = "PM";
-    }
-    else {
-      AmPmDesignator = "AM";
-    }
+  if (Time_format == 1) // 12-hours format
+  {
     hours = hours % 12;
-    if (hours == 0) {
+    if (hours == 0)
       hours = 12;
-    }
-    if (hours < 10) {
-      hours = "0" + hours;
-    }
-  }
-  // if in 24 hour format. add spaces to center text
-  else {
-    spacing = "    ";
-  }
-  return spacing + hours + ":" + minutes + " " + AmPmDesignator;
-}
-function getFormattedDateString(day, month, year) {
-  if(Date_format == DATE_MONTHDDYYYY ) {
-    return month + " " + day + ", " + year;
-  }
-  else if (Date_format == DATE_MMDDYYYY ) {
-    return "  " + month + "/" + day + "/" + year;
-  }
-  else if (Date_format == DATE_DDMONTHYYYY) {
-    return day + " " + month + " " + year;
-  }
-  else if (Date_format == DATE_DDMMYYYY) {
-    return "  " + day + "/" + month + "/" + year;
-  }
-}
-function ShowDateTime() {
-  Time_format = TIME_12HOUR;
-  var date = new Date();
-  var month = getFormattedMonth(date.getMonth());
-  var timestr = getFormattedTimeString(date.getHours(), date.getMinutes());
-  var datestr = getFormattedDateString(date.getDate(),month, date.getFullYear());
 
-  Datetext.initialize(datestr);
+    if (minutes < 10)
+      minutes = "0" + minutes;
+
+    var time =  hours + ":" + minutes + " "+ timetype;
+  }
+
+  else if(Time_format == 2) // 24-hours format
+  {
+
+    if (hours < 10)
+      hours = "0" + hours;
+    if (minutes < 10)
+      minutes = "0" + minutes;
+
+    var time =  '    ' + hours + ":" + minutes;
+  }
+
+  if (Date_format == 1)
+  {
+    if      (month == 1) month = JANUARY[syslang];
+    else if (month == 2) month = FEBRUARY[syslang];
+    else if (month == 3) month = MARCH[syslang];
+    else if (month == 4) month = APRIL[syslang];
+    else if (month == 5) month = MAY[syslang];
+    else if (month == 6) month = JUNE[syslang];
+    else if (month == 7) month = JULY[syslang];
+    else if (month == 8) month = AUGUST[syslang];
+    else if (month == 9) month = SEPTEMBER[syslang];
+    else if (month == 10) month = OCTOBER[syslang];
+    else if (month == 11) month = NOVEMBER[syslang];
+    else if (month == 12) month = DECEMBER[syslang];
+    var date = day + " " + month + "-" + year;
+  }
+
+  else if (Date_format == 2)
+  var date = ' ' + day + " - " + month + " - " + year;
+
+  Datetext.initialize(date);
   canvas.remove(Datetext);
   canvas.add(Datetext);
 
-  Timetext.initialize(timestr);
+  Timetext.initialize(time);
   canvas.remove(Timetext);
   canvas.add(Timetext);
 
   timeout = setTimeout(ShowDateTime,1000);
 }
 
-// variables for text
-// English = 1 , Spanish = 2, etc...
-var ENGLISH = 0;
-var SPANISH = 1;
-var SYSTEM_LANGUAGE = ["English", "Spanish"];
+//-------------------------------------------------------------
+function HomeSelected()
+{
 
-var MESSAGES = ["Messages", "Mensajes"];
-var CAMERA = ["Camera", "Cámara"];
-var TRAFFIC = ["Traffic", "Tráfico"];
-var TRANSPORT = ["Transport", "Transporte"];
-var NEWS = ["News", "Noticias"];
-var MIRROR = ["Mirror", "Espejo"];
-var LIGHTS = ["Lights", "Luces"];
-var ALARM = ["Alarm", "Alarma"];
-var EMERGENCY = ["Emergency", "Emergencia"];
-var SETTINGS = ["Settings", "Ajustes"];
-var DEADBOLT = ["Dead Bolt", "Cerrojo"];
-
-// months of the year
-var JANUARY = ["January", "Enero"];
-var FEBRUARY = ["February", "Febrero"];
-var MARCH = ["March", "Marzo"];
-var APRIL = ["April", "Abril"];
-var MAY = ["May", "Mayo"];
-var JUNE = ["June", "Junio"];
-var JULY = ["July", "Julio"];
-var AUGUST = ["August", "Agosto"];
-var SEPTEMBER = ["September", "Septiembre"];
-var OCTOBER = ["October", "Octubre"];
-var NOVEMBER = ["November", "Noviembre"];
-var DECEMBER = ["December", "Diciembre"];
-
-// stuff for settings
-var USERS = ["Users", "Usuarios"];
-var LANGUAGE = ["Language", "Lenguaje"];
-var DOORBELL = ["Doorbell", "Timbre"];
-var BRIGHTNESS = ["Brightness", "Brillo"];
-var THEME = ["Theme", "Tema"];
-var DATE_TIME = ["Date/Time", "Fecha/Tiempo"];
-var UNITS = ["Units", "Unidades"];
-var VOLUME = ["Volume", "Volumen"];
-var INTERCOM = ["Intercom", "Intercomunicador"];
-var ADD = ["Add", "Anadir"];
-var SAVE = ["Save", "Guardar"];
-var INPUT_NAME = ["Type your name...", "Escriba su nombre"];
-var INPUT_ADDRESS = ["The address...", "La direccion"];
-var BRIGHTNESS = ["Brightness", "Brillo"];
-var DISPLAY = ["Display Timer", "Minutero de Pantalla "];
-var CANCEL = ["Cancel", "Cancelar"];
-var MUTE = ["Mute", "Mudo"];
-
-var GREAT = ["Great!", "Estupendo!"];
-var SORRY = ["Sorry!", "Lo Siento!"];
-var NOWSET =["Your language is now set to ", "Su idioma fue configurado para "];
-var NOTSET =["Your language was not set to ", "Su idioma no fue configurado para "]
-var RETURNMSG=["Please press the back arrow to return to language settings.",
-               "Presione la flecha para volver a la configuración de idioma."];
-// when called, this function will update the text of the respective
-// faric text object with a string that matches that object and the currently
-// set language
-
-function UpdateText() {
-  Messagestext.text = MESSAGES[syslang];
-  Cameratext.text = CAMERA[syslang];
-  Traffictext.text = TRAFFIC[syslang];
-  Transporttext.text = TRANSPORT[syslang];
-  Newstext.text = NEWS[syslang];
-  Mirrortext.text = MIRROR[syslang];
-  Lightstext.text = LIGHTS[syslang];
-  Alarmtext.text = ALARM[syslang];
-  Emergtext.text = EMERGENCY[syslang];
-  Settingstext.text = SETTINGS[syslang];
-  Deadbolttext.text = DEADBOLT[syslang];
-
-  UsersText.text = USERS[syslang];
-  LanguageText.text = LANGUAGE[syslang];
-  TrafficText.text = TRAFFIC[syslang];
-  DatetimeText.text = DATE_TIME[syslang];
-  DoorbellText.text = DOORBELL[syslang];
-  UnitsText.text = UNITS[syslang];
-  BrightnessText.text = BRIGHTNESS[syslang];
-  VolumeText.text = VOLUME[syslang];
-  ThemesText.text = THEME[syslang];
-  IntercomText.text = INTERCOM[syslang];
-  traffic_save_btn_text.text = SAVE[syslang];
-  traffic_add_btn_text.text = ADD[syslang];
-  traffic_input_address_text.text = INPUT_ADDRESS[syslang];
-  traffic_input_name_text.text = INPUT_NAME[syslang];
-  brightness_text.text = BRIGHTNESS[syslang];
-  display_text.text = DISPLAY[syslang];
-  brightness_save_btn_text.text = SAVE[syslang];
-  doorbell_cancel_btn_text.text = CANCEL[syslang];
-  doorbell_save_btn_text.text = SAVE[syslang];
-  doorbell_mute_option_text.text = MUTE[syslang];
-  VolumeSettingsText.text = VOLUME[syslang];
-}
-/***********************************************************************
-                           END OF DATE AND TIME
-************************************************************************/
-
-function Registered_Users() {
-  this.users = [];
-  this.length = 0;
-
-  this.at = function(index) {
-    return this.users[index];
-  }
-
-  this.removeUserByID = function (id) {
-    this.users.splice(id,1);
-    this.length--;
-  }
-
-  this.removeUserByName = function( firstname, lastname) {
-    var l = RegisteredUsers.length;
-    for(var i=0; i < l; i++) {
-      if(this.users[i].lastname == lastname && this.users[i].firstname == firstname){
-        this.users[i].splice(i,1);
-        this.length--;
-        break;
-      }
-    }
-  }
-
-  this.hideAllUsersObjects = function() {
-    for(var i=0; i < this.users.length; i++){
-      this.users[i].hideObjects();
-    }
-  }
-
-  this.addUser = function(user) {
-    this.users.push(user);
-    this.length++;
-  }
+  if (HomeIsActive == true)
+    HideHome();
+  else if(HomeIsActive == false)
+    ShowHome();
+  if(backbutton != null)
+    backbutton.visible = false;
   
-  this.verifyPin = function(pin) {
-    for(var i=0; i< this.users.length; i++){
-      if(this.users[i].pin == pin) {
-        return this.users[i].id; // return id of user if found.
-      }
-    }
-    return -1; // pin is not registered to a known user
-  }
+  checkSettings();
 }
 
-var RegisteredUsers = new Registered_Users();
+//-------------------------------------------------------------
+function ShowHome(){
 
-var userscounter = 0;
-// Created a User class to hold the personal information common to all users
-
-function User(firstname, lastname, language, pin) {
-  this.id = userscounter++; // id is position in Registered Users array
-  this.firstname = firstname;
-  this.lastname = lastname;
-  this.pin = pin;
-  this.language = language; // an int
-  
-  this.date_format = DATE_MONTHDDYYYY;
-  this.time_format = TIME_12HOUR;
-
-  // fahrenheit or celsius
-  // Fahrenheit by default
-  this.temerature_units = F;
-
-  this.in_theme = 'default';
-  this.out_theme = 'default';
-
-  this.in_ornament = 'default';
-  this.out_ornament = 'default';
-
-  this.traffic_options = [];
-  this.traffic_primary = "";
-
-  this.brightness_pref = 1;
-  this.display_timer_pref = "three";
-  
-  this.vpercent = "50";
-  this.sliderleft = 591;
-  
-  this.doorbell_pref = "Ding";
-
-  this.getFullName = function () {
-    return this.firstname + " " + this.lastname;
-  }
-  
-  this.myObjects = [];
-  this.addObject = function(object) {
-    object.id = this.id;
-    this.myObjects.push(object);
-  }
-  this.hideObjects = function() {
-    for( var i=0; i < this.myObjects.length; i++) {
-      this.myObjects[i].visible = false;
-    }
-  }
-  this.showObjects = function() {
-    for( var i=0; i < this.myObjects.length; i++) {
-      this.myObjects[i].visible = true;
-    }
-  }
-  
-  this.myMessages = [];
-  this.showMessages = function () {
-    console.log("showMessages is not yet implemented. see gabe.js");
-  }
-  
-  this.hideMessages = function() {
-    console.log("hideMessages is not yet implemented. see gabe.js");
-  }
-  
-  this.addMessage = function (msg) {
-    this.myMessages.push(msg);
-  }
-  
-
-  RegisteredUsers.addUser(this);
-
-  this.RemoveFromRegisteredUsers = function() {
-    console.log("Removing user with id " + this.id);
-    RemoveFromRadioChoices(this.id);
-    RegisteredUsers.removeUserByID(this.id);
-    for(var i =0; i < RegisteredUsers.length; i++){
-      console.log(RegisteredUsers.at(i));
-      RegisteredUsers.at(i).id = i;
-    }
-  }
-  AddUserToRadioChoices(this.firstname + " " + this.lastname, this.id);
-}
-
-var RADIO_ID_UFI = "UsersFromInside";
-var RADIO_ID_UFO = "UsersFromOutside";
-function RemoveFromRadioChoices(id) {
-  //console.log("removing " + id);
-  var remove = 3 + id;
-  var inside = document.getElementById(RADIO_ID_UFI);
-  var outside = document.getElementById(RADIO_ID_UFO);
-  inside.removeChild(inside.children[remove]);
-  outside.removeChild(outside.children[remove]);
-}
-
-
-function AddUserToRadioChoices( name , value) {
-  var UsersFromInside = document.getElementById(RADIO_ID_UFI);
-  var label = document.createElement("label");
-  var element = document.createElement("input");
-  element.setAttribute("type", "radio");
-  element.setAttribute("value", value);
-  element.setAttribute("name", "UsersIn");
-  element.setAttribute("class", "radio1");
-  element.setAttribute("onchange", "LoadUserData_Inside(this.value)");
-  label.appendChild(element);
-  label.innerHTML += " " + name + '<br/>';
-  UsersFromInside.appendChild(label);
-  
-  var UsersFromOutside= document.getElementById(RADIO_ID_UFO);
-  var label2 = document.createElement("label");
-  var element2 = document.createElement("input");
-  element2.setAttribute("type", "radio");
-  element2.setAttribute("value", value);
-  element2.setAttribute("name", "UsersOut");
-  element2.setAttribute("class", "radio1");
-  element2.setAttribute("onchange", "LoadUserData_Outside(this.value)");
-  label2.appendChild(element2);
-  label2.innerHTML += " " + name + '<br/>';
-  UsersFromOutside.appendChild(label2);
-}
-
-var heightsenabled = false;
-function HeightsRadioButtons_DISABLE() {
-  heightsenabled = false;
-  document.getElementsByName('Heights')[0].disabled = true; //
-  document.getElementsByName('Heights')[1].disabled = true; // all by abeer
-  document.getElementsByName('Heights')[2].disabled = true; //
-
-}
-
-function HeightsRadioButtons_ENABLE() {
-  heightsenabled = true;
-  document.getElementsByName('Heights')[0].disabled = false;  //
-  document.getElementsByName('Heights')[1].disabled = false;  // interpreted from abeers code
-  document.getElementsByName('Heights')[2].disabled = false;  //
-
-}
-
-var CURRENT_USER = null;
-var homebutton = null;
-
-function ShowHomeButtonAndLine() {
-  // show home button
-  if(homebutton == null){
-    homebutton = getObjectWithId('home');
-  }
-  homebutton.visible = 'true';
-  Line.visible = true;
-}
-
-function HideHomeButtonAndLine() {
-  // show home button
-  if(homebutton == null){
-    homebutton = getObjectWithId('home');
-  }
-  homebutton.visible = false;
-  Line.visible = false;
-  
-}
-
-function ResetHeightRadioToDefault() {
-  document.getElementById('Tall').checked = false;
-  document.getElementById('Medium').checked = true;
-  document.getElementById('Short').checked = false;
-  //AdjustHeight('Medium');
-}
-
-function LoadUserData_Inside(index) {
-  if(!heightsenabled)
-    HeightsRadioButtons_ENABLE();   // enable radio buttons
-
-  HideHome();
-  ShowHomeButtonAndLine();
-
-  console.log("LoadUserData_Inside(" + index + ")");
-  CURRENT_USER = RegisteredUsers.at(index);
-  console.log("Now Loading data for " + CURRENT_USER.getFullName() );
-
-  var i;
-  HideHome();
-  HideUsersList();
+  HomeIsActive = true;
   RegisteredUsers.hideAllUsersObjects();
   HideUsersList();
   CloseCamera();
   HideMirror();
   HideTraffic();
-  HideLights();
+  // HideLights();
   HideTransport();
   HideNews();
+  CloseMessageSettings();
+  HideMessageBox();
   hideSettings();
+  CloseThemeSettings();
+  HideUserSettings();
+  HideUserData();
   Hide911();
-  HideVolumeSettings();
+  HideVideoTour();
+  PanelRect.visible = true;
+  icon_settings.selectable = true;
+
+  if(LanguageSettingIsActive == true)
   HideLangaugeSetting();
-  backbutton.visible = false;
-  
-  LanguageSettingIsActive = false;
-  
-  volumeslider.left = CURRENT_USER.sliderleft;
-  volumeslider.setLeft(CURRENT_USER.sliderleft);
-  volumePercentage.text = "" + CURRENT_USER.vpercent + "%";
-  volumeslider.setCoords();
-  ResetHeightRadioToDefault();
 
-  RegisteredUsers.at(index).showObjects();
+  for (var i = 0; i < canvas.getObjects().length; ++i)
+  {
+    if (canvas.item(i).id == 'messages' || canvas.item(i).id == 'camera'   ||
+        canvas.item(i).id == 'traffic'  || canvas.item(i).id == 'cta'      ||
+        canvas.item(i).id == 'news'     || canvas.item(i).id == 'mirror'   ||
+        canvas.item(i).id == 'lights'   || canvas.item(i).id == 'alarm'    ||
+        canvas.item(i).id == '911'      ||
+        canvas.item(i).id == 'restart')
+    {
+        canvas.item(i).visible = true;
+    }
 
-  syslang = RegisteredUsers.at(index).language;
-  In_theme = RegisteredUsers.at(index).in_theme;
-  In_ornament = RegisteredUsers.at(index).in_ornament;
-  Out_theme = RegisteredUsers.at(index).out_theme;
-  Out_ornament = RegisteredUsers.at(index).out_ornament;
-
-  Date_format = RegisteredUsers.at(index).date_format;
-  Time_format = RegisteredUsers.at(index).time_format;
-  TemperatureUnits = RegisteredUsers.at(index).temerature_units;
-  
-  UpdateText();
-  UncheckHeight();
-  SetDoorTheme();
-  canvas.renderAll();
-}
-
-function randomIntFromInterval(min,max)
-{
-    return Math.floor(Math.random()*(max-min+1)+min);
-}
-
-//-------------------------------------------------------------
-function TriggerDoorFromOutside(){  //A user approached the door from outside
-  for (var i = 0; i < canvas.getObjects().length; ++i){
-    if (canvas.item(i).id == 'doorbell' || canvas.item(i).id == 'writemsg' ||
-      canvas.item(i).id == 'LockKnobOut' || canvas.item(i).id == 'numberpad') 
+    else if(canvas.item(i).id == 'settings')
     {
       canvas.item(i).visible = true;
+      if(CURRENT_USER == null)
+          canvas.item(i).selectable = false;
+      else
+          canvas.item(i).selectable = true;
     }
+
   }
+
+  Messagestext.visible = true;
+  Cameratext.visible = true;
+  Traffictext.visible = true;
+  Transporttext.visible = true;
+  Newstext.visible = true;
+  Mirrortext.visible = true;
+  Lightstext.visible = true;
+  Alarmtext.visible = true;
+  Emergtext.visible = true;
+  Settingstext.visible = true;
 }
 
-var stepone = document.getElementsByName("verifyfirst");
-var steptwo = document.getElementsByName("verifysecond");
-var verify = document.getElementsByName("verify");
 
-function LoadUserData_Outside(index ) {
-  console.log("LoadUserData_Outside() is not yet implemented. On Todo List in gabe.js");
-  for(var i=0; i <stepone.length; i++ ){
-    stepone[i].disabled = false;
-    stepone[i].checked = false;
-  }
-  TriggerDoorFromOutside();
-}
-
-function NoOneOutside() {
-  for(var i=0; i <stepone.length; i++ ){
-    stepone[i].disabled = true;
-    stepone[i].checked = false;
-    steptwo[i].disabled = true;
-    steptwo[i].checked = false;
-  }
-  verify[0].checked = false;
-  verify[0].disabled = true;
-  verify[1].checked = false;
-  verify[1].disabled = true;
+//-------------------------------------------------------------
+function HideHome()
+{
+  //console.log(HomeIsActive);
+  HomeIsActive = false;
+  //Here close all apps
+  CloseCamera();
+  HideUserSettings();
+  hideSettings();
+  HideUserData();
+  CloseThemeSettings();
+  if(LanguageSettingIsActive == true)
+  HideLangaugeSetting();
+  Hide911();
+  HideVideoTour();
+  
+  PanelRect.visible = false;
   
   for (var i = 0; i < canvas.getObjects().length; ++i){
-    if (canvas.item(i).id == 'doorbell' || canvas.item(i).id == 'writemsg'|| canvas.item(i).id == 'numberpad' || canvas.item(i).id == 'UnlockKnobOut' || canvas.item(i).id == 'LockKnobOut')
+    if (canvas.item(i).id == 'messages' || canvas.item(i).id == 'camera'   ||
+        canvas.item(i).id == 'traffic'  || canvas.item(i).id == 'cta'      ||
+        canvas.item(i).id == 'news'     || canvas.item(i).id == 'mirror'   ||
+        canvas.item(i).id == 'lights'   || canvas.item(i).id == 'alarm'    ||
+        canvas.item(i).id == '911'      || canvas.item(i).id == 'settings' ||
+        canvas.item(i).id == 'restart' || canvas.item(i).id == 'alarmOn')
     {
       canvas.item(i).visible = false;
     }
+
   }
-  steponeselected = false;
-  steptwoselected = false;
+
+  Messagestext.visible = false;
+  Cameratext.visible = false;
+  Traffictext.visible = false;
+  Transporttext.visible = false;
+  Newstext.visible = false;
+  Mirrortext.visible = false;
+  Lightstext.visible = false;
+  Alarmtext.visible = false;
+  Emergtext.visible = false;
+  Settingstext.visible = false;
 }
 
-function UnKnownPersonFromOutside() {
+
+/************************************************************************************
+  I wrote LoadLocks so we do not go through the entire canvas objects
+  looking for the objects we need everytime we need it. instead just got a handle to it,
+  and used that as a reference when needed   ~Gabe =D
+*************************************************************************************/
+var lockknobin;
+var unlockknobin;
+var lockknobout;
+var unlockknobout;
+var lockdeadbolt;
+var unlockdeadbolt;
+var knob;
+var arelocksloaded = false;
+function LoadLocks() {
+  for (var i = 0; i < canvas.getObjects().length; ++i){
+    var temp = canvas.item(i);
+    if (temp.id == 'LockKnobIn') {
+        lockknobin = temp;
+    }
+    else if (temp.id == 'UnlockKnobIn'){
+      unlockknobin = temp;
+    }
+    else if (temp.id == 'LockKnobOut') {
+      lockknobout = temp;
+    }
+    else if( temp.id == 'UnlockKnobOut') {
+      unlockknobout = temp;
+    }
+    else if( temp.id == 'LockDeadbolt'){
+      lockdeadbolt = temp;
+    }
+    else if(temp.id == 'UnlockDeadbolt' ){
+      unlockdeadbolt = temp;
+    } 
+    else if(temp.id == 'knob'){
+      console.log("knob");
+      console.log(temp);
+      knob = temp;
+    }
+  }
+  arelocksloaded = true;
+}
+
+
+
+//-------------------------------------------------------------
+ function UnlockDoorIn(){
+  
+//   for (var i = 0; i < canvas.getObjects().length; ++i){
+//    if (canvas.item(i).id == 'LockKnobIn')
+//        canvas.item(i).visible = false;
+//    else if (canvas.item(i).id == 'UnlockKnobIn')
+//      canvas.item(i).visible = true;
+//    }
+  if( arelocksloaded == false) {
+     LoadLocks();
+   }
+   lockknobin.visible = false;
+   unlockknobin.visible = true;
+}
+
+//-------------------------------------------------------------
+function UnlockDoorOut(){
+//    for (var i = 0; i < canvas.getObjects().length; ++i){
+//      if (canvas.item(i).id == 'LockKnobOut')
+//        canvas.item(i).visible = false;
+//      else if (canvas.item(i).id == 'UnlockKnobOut')
+//        canvas.item(i).visible = true;
+//    }
+  if(arelocksloaded == false) {
+    LoadLocks();
+  }
+  lockknobout.visible = false;
+  unlockknobout.visible = true;
+ }
+
+//-------------------------------------------------------------
+function LockDoorIn(){
+//  for (var i = 0; i < canvas.getObjects().length; ++i){
+//    if (canvas.item(i).id == 'UnlockKnobIn')
+//      canvas.item(i).visible = false;
+//    else if (canvas.item(i).id == 'LockKnobIn')
+//      canvas.item(i).visible = true;
+//  }
+  if(arelocksloaded == false) {
+    LoadLocks();
+  }
+  unlockknobin.visible = false;
+  lockknobin.visible = true;
+}
+
+//-------------------------------------------------------------
+function LockDoorOut(){
+//  for (var i = 0; i < canvas.getObjects().length; ++i){
+//    if (canvas.item(i).id == 'UnlockKnobOut')
+//      canvas.item(i).visible = false;
+//    else if (canvas.item(i).id == 'LockKnobOut')
+//      canvas.item(i).visible = true;
+//  }
+  if(arelocksloaded == false) {
+    LoadLocks();
+  }
+  unlockknobout.visible = false;
+  lockknobout.visible = true;
+}
+
+
+//-------------------------------------------------------------
+function UnlockDeadbolt(){
+//  for (var i = 0; i < canvas.getObjects().length; ++i){
+//    if (canvas.item(i).id == 'LockDeadbolt')
+//      canvas.item(i).visible = false;
+//    else if (canvas.item(i).id == 'UnlockDeadbolt')
+//      canvas.item(i).visible = true;
+//  }
+  if(arelocksloaded == false) {
+    LoadLocks();
+  }
+  lockdeadbolt.visible = false;
+  unlockdeadbolt.visible = true;
+}
+
+//-------------------------------------------------------------
+function LockDeadbolt(){
+//  for (var i = 0; i < canvas.getObjects().length; ++i){
+//    if (canvas.item(i).id == 'UnlockDeadbolt')
+//      canvas.item(i).visible = false;
+//    else if (canvas.item(i).id == 'LockDeadbolt')
+//      canvas.item(i).visible = true;
+//  }
+  if(arelocksloaded == false) {
+    LoadLocks();
+  }
+  unlockdeadbolt.visible = false;
+  lockdeadbolt.visible = true;
+}
+
+
+//------------------ Radio buttons Events Functions -------------------------
+//function User1FromInside()
+//{
+//  HideHome();
+//  HideUsersList();
+//  HideUser2FromInside();
+//
+//  for (var i = 0; i < canvas.getObjects().length; ++i) {
+//    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
+//        canvas.item(i).visible = true;
+//  }
+//
+//  LoadUserData_Inside(2);
+//  
+//  var insideradio = document.getElementsByName('UsersIn');
+//  insideradio[5].checked = true; 
+//  //document.getElementsByName('Verification')[1].disabled = false;
+//  //console.log(CURRENT_USER.firstname);
+//  UpdateText();
+//}
+
+//-------------------------------------------------------------
+//function HideUser1FromInside()
+//{
+//  for (var i = 0; i < canvas.getObjects().length; ++i)
+//  {
+//    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
+//      canvas.item(i).visible = false;
+//  }
+//}
+//-------------------------------------------------------------
+//function User2FromInside()
+//{
+//  HideHome();
+//  HideUsersList();
+//  HideUser1FromInside();
+//
+//  for (var i = 0; i < canvas.getObjects().length; ++i) {
+//    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user2todo')
+//        canvas.item(i).visible = true;
+//  }
+//
+//  LoadUserData_Inside(0);
+//
+//  var insideradio = document.getElementsByName('UsersIn');
+//  insideradio[3].checked = true; 
+//  //document.getElementsByName('UsersFromInside')[2].checked = true; 
+//  //document.getElementsByName('Verification')[1].disabled = false;
+//  //console.log(CURRENT_USER.firstname);
+//  UpdateText();
+//}
+//-------------------------------------------------------------
+//function HideUser2FromInside()
+//{
+//
+//for (var i = 0; i < canvas.getObjects().length; ++i)
+//    {
+//      if (canvas.item(i).id == 'user2calender' || canvas.item(i).id == 'user2todo')
+//
+//        canvas.item(i).visible = false;
+//    }
+//}
+
+//-------------------------------------------------------------
+function MultiUsersFromInside()
+{
+  CURRENT_USER = null;
+  HideHome();
+  ShowHomeButtonAndLine();
+  RegisteredUsers.hideAllUsersObjects();
+  HideUsersList();
+  LockDoorIn();
+  LockDeadbolt();
+  LockDeadbolt();
+  ResetCoordinates();
+  HeightsRadioButtons_ENABLE();
+  UncheckHeight();
+
+  syslang = ENGLISH; // set to english by default
+  System_language = SYSTEM_LANGUAGE[syslang];
+  In_theme = 'default';
+  In_ornament = 'default';
+  Out_theme = 'default';
+  Out_ornament = 'default';
+
+  Date_format = DATE_MONTHDDYYYY;
+  Time_format = TIME_12HOUR;
+  TemperatureUnits = F;
+
+
+  for (var i = 0; i < canvas.getObjects().length; ++i)
+    {
+      if (canvas.item(i).id == 'userslist' ||
+          canvas.item(i).id == 'user1name' ||
+          canvas.item(i).id == 'user2name')
+
+        canvas.item(i).visible = true;
+    }
+}
+
+//-------------------------------------------------------------
+function HideUsersList()
+{
+  for (var i = 0; i < canvas.getObjects().length; ++i)
+    {
+      if (canvas.item(i).id == 'userslist' ||
+          canvas.item(i).id == 'user1name' ||
+          canvas.item(i).id == 'user2name')
+        canvas.item(i).visible = false;
+    }
+}
+
+//----------------------------------------------------------
+function NewUserFromInside()
+{
+
+//  HideUser1FromInside();
+//  HideUser2FromInside();
+  CURRENT_USER = null;
+  HideHome();
+  ShowHomeButtonAndLine();
+  RegisteredUsers.hideAllUsersObjects();
+  HideUsersList();
+  LockDoorIn();
+  LockDeadbolt();
+  LockDeadbolt();
+  ResetCoordinates();
+  HeightsRadioButtons_ENABLE();
+  UncheckHeight();
+
+  syslang = ENGLISH; // set to english by default
+  System_language = SYSTEM_LANGUAGE[syslang];
+  In_theme = 'default';
+  In_ornament = 'default';
+  Out_theme = 'default';
+  Out_ornament = 'default';
+
+  Date_format = DATE_MONTHDDYYYY;
+  Time_format = TIME_12HOUR;
+  TemperatureUnits = F;
+  SetDoorTheme();
+  
+}
+
+//-------------------------------------------------------------
+function NoSignalFromInside()
+{
+  console.log("NoSignalFromInside()");
+  CURRENT_USER = null;
+
+  HideHomeButtonAndLine();
+
+  HideHome();
+
+//  HideUser1FromInside();
+//  HideUser2FromInside();
+  RegisteredUsers.hideAllUsersObjects();
+  HideUsersList();
+  LockDoorIn();
+  LockDeadbolt();
+  LockDeadbolt();
+  ResetCoordinates();
+  HeightsRadioButtons_DISABLE();
+  UncheckHeight();
+
+  syslang = ENGLISH; // set to english by default
+  System_language = SYSTEM_LANGUAGE[syslang];
+  In_theme = 'default';
+  In_ornament = 'default';
+  Out_theme = 'default';
+  Out_ornament = 'default';
+
+  Date_format = DATE_MONTHDDYYYY;
+  Time_format = TIME_12HOUR;
+  TemperatureUnits = F;
+  SetDoorTheme();
+}
+
+//-------------------------------------------------------------
+function AdjustHeight(value){
+  console.log("AdjustHeight()");
+  if (counter < 1){
+    GetOriginalCoordinate();
+    counter++;
+  }
+
+  var offset;
+  if(value == "Tall"){
+    offset = -100;;
+  }
+  else if (value == "Medium"){
+    offset = 0;
+  }
+  else if(value == "Short") {
+    offset = 100;
+  }
+
+  for (var i = 0; i < ArrayOfObjects.length; ++i) {
+    ArrayOfObjects[i].top = OriginalObjCoordinate[i] + offset;
+    ArrayOfObjects[i].setCoords();
+  }
+  canvas.renderAll();
+ }
+
+//-------------------------------------------------------------
+function GetOriginalCoordinate(){
+  //console.log("GetOriginalCoordinate");
+  var temp;
+  for (var i = 0; i < ArrayOfObjects.length; ++i) {
+    OriginalObjCoordinate[i] = temp = ArrayOfObjects[i].top;
+    //console.log(ArrayOfObjects[i]);
+    //console.log("OG coordinate: " + temp );
+  }
+}
+
+//-------------------------------------------------------------
+function ResetCoordinates(){
+  if (counter >= 1) {
+    for (var i = 0; i < ArrayOfObjects.length; ++i) {
+      ArrayOfObjects[i].top = OriginalObjCoordinate[i];
+      ArrayOfObjects[i].setCoords();
+    }
+  }
+  canvas.renderAll();
+}
+
+
+
+//-------------------------------------------------------------
+ function ResetDoorFromOutside()  //Reset the door to non signal status
+ {
+  UserFingerIsRecognizable = false;
+  document.getElementsByName('Verification')[1].disabled = false;
+  document.getElementsByName('Verification')[2].disabled = false;
+  document.getElementsByName('Verification')[3].disabled = false;
+  for (var i = 0; i < canvas.getObjects().length; ++i){
+     if (canvas.item(i).id == 'doorbell' || canvas.item(i).id == 'writemsg'||       canvas.item(i).id == 'numberpad' || canvas.item(i).id == 'UnlockKnobOut' || canvas.item(i).id == 'LockKnobOut')
+     {
+        canvas.item(i).visible = false;
+     }
+   }
+
+   for (var i = 0; i < canvas.getObjects().length; ++i){
+      if (canvas.item(i).id == 'UnlockKnobOut')
+        canvas.item(i).selectable = true;
+    }
+ }
+
+//-------------------------------------------------------------
+function User1FromOutside()
+{
+  ResetDoorFromOutside();
   TriggerDoorFromOutside();
-//  console.log("UnknownPersonFromOutside not yet implemented. On Todo List in gabe.js");
-  for(var i=0; i<stepone.length; i++) {
-      stepone[i].disabled = false;
-      stepone[i].checked = false;
-      steptwo[i].disabled = true;
-      steptwo[i].checked = false;
+  var Verification = document.getElementsByName('Verification');
+
+  if(Verification[1].checked)
+  {
+    FaceRecognized();
   }
-  verify[0].checked = false;
-  verify[0].disabled = true; 
-  verify[1].checked = false;
-  verify[1].disabled = true;
+  else if(Verification[2].checked) {
+    FingerRecognized();
+  }
+  else if(Verification[3].checked) {
+    FailedVerification();
+  }
 }
 
-function MultiUsersOutside() {
-  console.log("MultiUsersFromOutside not yet implemented. On Todo List in gabe.js");
+//-------------------------------------------------------------
+function NewUserFromOutside()
+{
+  HeightsRadioButtons_ENABLE(); // gabe
+
+  ResetDoorFromOutside();
+  TriggerDoorFromOutside();
+  FailedVerification();
+  document.getElementsByName('Verification')[1].disabled = true;
+  document.getElementsByName('Verification')[2].disabled = true;
+  document.getElementsByName('Verification')[3].checked = true;
+}
+
+//-------------------------------------------------------------
+function NoUserFromOutside()
+{
+  CURRENT_USER = null;
+
+  ResetDoorFromOutside();
+  document.getElementsByName('Verification')[1].disabled = true;
+  document.getElementsByName('Verification')[2].disabled = true;
+  document.getElementsByName('Verification')[3].checked = true;
+}
+
+//-------------------------------------------------------------
+function FaceRecognized()
+{
+  ResetDoorFromOutside();
+  TriggerDoorFromOutside();
+
+  for (var i = 0; i < canvas.getObjects().length; ++i){
+      if (canvas.item(i).id == 'UnlockKnobOut')
+        canvas.item(i).selectable = false;
+  }
+  UnlockDoorOut();
+}
+
+//-------------------------------------------------------------
+function FingerRecognized()
+{
+  ResetDoorFromOutside();
+  TriggerDoorFromOutside();
+  UserFingerIsRecognizable = true;
+}
+
+//-------------------------------------------------------------
+function FailedVerification()
+{
+  ResetDoorFromOutside();
+  TriggerDoorFromOutside();
+  for (var i = 0; i < canvas.getObjects().length; ++i){
+     if (canvas.item(i).id == 'numberpad'){
+        canvas.item(i).visible = true;
+     }
+  }
+}
+
+//------------------------------------------------------------
+//Camera Functionality
+
+function RunCamera()
+{
+
+  HideHome();
+  AvatarIsActive = false;
+  AvatarOnOff.visible = true;
+  LiveOnOff.visible = true;
+  CameraIn.visible = true;
+  RunOutsideCamera();           //To show what is outside
+  RunInsideCameraAvatar();     //Avatar from inside is default
+}
+
+//-------------------------------------------------------------
+function RunOutsideCamera()
+{
   
+  fabric.util.loadImage('images/FromOutCamera.gif', function (img) {
+    insideDoor.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });});
 }
 
+//-------------------------------------------------------------
+function RunInsideCameraAvatar()
+{
+  //SetDoorTheme();
+  RunOutsideCamera();
+  AvatarIsActive = true;
+  AvatarOut.visible = true;
+  
 
-function DateTime_Settings() {
+  fabric.util.loadImage('images/AvatarIn.gif', function (img) {
+    CameraIn.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });});
+
+  fabric.util.loadImage('images/AvatarOn.gif', function (img) {
+    AvatarOnOff.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });});
+
+  fabric.util.loadImage('images/LiveOff.gif', function (img) {
+    LiveOnOff.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });});
+
+fabric.util.loadImage('images/DoorpatternOut.gif', function (img) {
+  outsideDoor.setPatternFill({
+    source: img,
+      repeat: 'repeat'
+   });});
 
 }
 
-function HideVolumeSettings() {
-  volumebar.visible = false;
-  volumepanel.visible = false;
-  volumeslider.visible = false;
-  VolumeSettingsText.visible = false;
-  volumePercentage.visible = false;
+//-------------------------------------------------------------
+function RunInsideCameraLive()
+{
+  //console.log(" live ");
+  RunOutsideCamera();
+  AvatarIsActive = false;
+  AvatarOut.visible = false;
+
+  fabric.util.loadImage('images/LiveIn.gif', function (img) {
+    CameraIn.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });});
+
+  fabric.util.loadImage('images/AvatarOff.gif', function (img) {
+    AvatarOnOff.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });});
+
+  fabric.util.loadImage('images/LiveOn.gif', function (img) {
+    LiveOnOff.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });});
+
+  fabric.util.loadImage('images/FromInCamera.gif', function (img) {
+    outsideDoor.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+    });});
+
 }
 
-function ShowVolumeSettings() {
-  hideSettings();
-  volumebar.visible = true;
-  volumepanel.visible = true;
-  volumeslider.visible = true;
-  VolumeSettingsText.visible = true;
-  volumePercentage.visible = true;
+//-------------------------------------------------------------
+function CloseCamera()
+{
+  AvatarIsActive = false;
+  CameraIn.visible = false;
+  AvatarOut.visible = false;
+  AvatarOnOff.visible = false;
+  LiveOnOff.visible = false;
+
+  SetDoorTheme();
 }
+//-------------------------------------------------------------
+function SetDoorTheme()
+{
+  if( In_theme == 'default')
+    fabric.util.loadImage('images/Doorpattern.gif', function (img) {
+    insideDoor.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+    });});
 
-var steponeselected = false;
-var steptwoselected = false;
-var pin = null;
+  else if ( In_theme == 'Wood')
+    fabric.util.loadImage('images/wooddoor.jpg', function (img) {
+    img.id = 'Wood';
+    insideDoor.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+    }); });
 
-function VerifyFirst(value) {
-  console.log("first " + value);
-  if(value == "None") {
-    for(var i=0; i< steptwo.length; i++){
-      steptwo[i].disabled = true;
+  else if ( In_theme == 'Metal')
+    fabric.util.loadImage('images/metal.jpg', function (img) {
+    img.id = 'Metal';
+    insideDoor.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+    }); });
+
+  if( Out_theme == 'default')
+    fabric.util.loadImage('images/DoorpatternOut.gif', function (img) {
+    outsideDoor.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+    });});
+
+  else if ( Out_theme == 'Wood')
+    fabric.util.loadImage('images/wooddoor.jpg', function (img) {
+    img.id = 'Wood';
+    outsideDoor.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+    }); });
+
+  else if ( Out_theme == 'Metal')
+    fabric.util.loadImage('images/metal.jpg', function (img) {
+    img.id = 'Metal';
+    outsideDoor.setPatternFill({
+    source: img,
+    repeat: 'repeat'
+    }); });
+
+
+ if( Out_ornament == 'Easter')
+    
+    {
+      EasterOrn.visible = true;
+      XmassOrn.visible = false;
     }
-    steponeselected = false;
-    VerifySecond(value);
-  }
-  else {
-    if(value == "NumberPad" ) {
-      var ret; 
-      if( pin == null ) {
-        ret = NumberPadEvent();
-        if(ret != -1) {    // correct pin
-          stepone[4].checked = true;
-        }
-        else {
-          stepone[4].checked = false;
-          return;
-        }
-      }
-      pin = null;
+
+else if( Out_ornament == 'Xmass')
+    {
+      XmassOrn.visible = true;
+      EasterOrn.visible = false;
     }
     
-    for(var i=0; i< steptwo.length; i++){
-      if(steptwo[i].value == value || stepone[i].disabled == true){
-        steptwo[i].disabled = true;
-        steptwo[i].checked = false;
-      }
-      else {
-        steptwo[i].disabled = false;
-      }
+else if( Out_ornament == 'default')
+    {
+      EasterOrn.visible = false;
+      XmassOrn.visible = false;
     }
-    steponeselected = true;
-  }
-}
 
-function VerifySecond(value) {
-  steptwoselected = true;
-  console.log("second " + value);
-  if(value == "None") {
-    verify[0].disabled = true;
-    verify[0].checked = false;
-    verify[1].checked = false;
-    verify[1].disabled = true;
-    steptwoselected = false;
-  }
-  else {
-    if(value == "NumberPad" ) {
-      var ret; 
-      if( pin == null ) {
-        console.log("Pin is null");
-        ret = NumberPadEvent();
-        console.log(ret);
-        if(ret != -1) {    // correct pin
-          verify[0].checked = true;
-          Verify("sucess");
-        }
-        else {
-          verify[1].checked = true;
-          Verify("fail");
-        }
-        verify[0].disabled = false;
-        verify[1].disabled = false;
-      }
-      else{
-        console.log("Pin is not null");
-        verify[1].checked = true;
-        Verify("fail");
-      }
-    }
-    // not number pad
-    else {
-      verify[0].disabled = false;
-      verify[1].disabled = false;
-    }
-  }
-  pin = null;
-}
 
-function Verify(value) {
-  console.log("Verify: " + value);
-  if(value == "success") {
-      UnlockDeadbolt();
-      UnlockDoorOut();
-      UnlockDoorIn();
-  }
-}
 
-function NumberPadEvent() {
-  console.log("NUMBERPAD");
-  pin = prompt("Please Enter your 4 digit pin", "0123");
-  
-  if(pin == null ) {
-    return -1;
-  }
-  else if(pin.length != 4){
-    NumberPadEvent();
-  }
-  
-  var id;
-  if((id = RegisteredUsers.verifyPin(pin)) != -1) {
-    console.log("VERIFIED. userID: " + id);
-    document.getElementsByName("UsersOut")[id + 3].checked = true;
-    LoadUserData_Outside(id);
-    if(steponeselected == false){
-      VerifyFirst("NumberPad");
-    }
-    else if(steptwoselected == false) {
-      VerifySecond("NumberPad");
-    }
-  }
-  return id;
 }
 
 
+function UncheckHeight()
+{
 
-var langselected = null;
-function isLangSelected( obj) {
-  for(var i=0; i< LanguageArr.length; i++){
-    if(obj == LanguageArr[i]){
-      return i;
-    }
-  }
-  return null;
+  document.getElementsByName('Heights')[0].checked = false;
+  document.getElementsByName('Heights')[1].checked = false;
+  document.getElementsByName('Heights')[2].checked = false;
+
 }
-
-function HighlightLang() {
-  console.log("Highlight Lang");
-}
-
-var tempsyslang;
-function SaveLanguageSettings(lang) {
-  console.log("SAVE LANG");
-  if(lang == null) {
-    console.log("lang is null");
-    return;
-  }
-  if(CURRENT_USER != null ) {
-    var changed;
-    if(lang > 1){
-      console.log(LanguageArr[lang].text + " is not supported at this time."); 
-      changed = false;
-    }
-    else { // 0 or 1 
-      CURRENT_USER.language = lang;
-      syslang = lang;
-      UpdateText();
-      changed = true;
-      console.log("Changed language to " + LanguageArr[lang].text + "!");
-    }
-    HideLangaugeSetting();
-    
-    ShowLangFeedBack(LanguageArr[lang].text,changed);
-    mBackButton.addToBackStack(ShowLanguageSetting, HideLangFeedBack);
-  }
-  else {
-    Console.log("Current user is null");
-  }
-}
-//textDecoration: 'underline'
-
-
-
-
-
-function ChangeUnits() {
-  
-}
-
-
-
-
-
-
-
-
-
-
