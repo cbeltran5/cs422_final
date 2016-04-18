@@ -189,6 +189,7 @@ var lockknobout;
 var unlockknobout;
 var lockdeadbolt;
 var unlockdeadbolt;
+var knob;
 var arelocksloaded = false;
 function LoadLocks() {
   for (var i = 0; i < canvas.getObjects().length; ++i){
@@ -211,6 +212,9 @@ function LoadLocks() {
     else if(temp.id == 'UnlockDeadbolt' ){
       unlockdeadbolt = temp;
     } 
+    else if(temp.id == 'knob'){
+      knob = temp;
+    }
   }
   arelocksloaded = true;
 }

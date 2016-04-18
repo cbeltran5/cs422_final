@@ -333,7 +333,6 @@ Weathertext.selectable = false;
 
 //****************** Adding In/out Door knobs ******************************************
 var doorknob_inside_locked;
-//var XXX = new ...
   fabric.Image.fromURL('images/lockknob.png', function(oImg) {
   oImg.set({left: 1120, top: 1030, id: this.id});
   oImg.id = 'LockKnobIn';
@@ -344,9 +343,6 @@ var doorknob_inside_locked;
   canvas.add(doorknob_inside_locked);
 //    console.log(doorknob_inside_locked);
 });
-//  console.log("XXX");
-//  console.log(XXX);
-//console.log(doorknob_inside_locked);
 
 var doorknob_inside_unlocked;
 fabric.Image.fromURL('images/unlockknob2.png', function(oImg) {
@@ -2415,64 +2411,61 @@ WoodText.on('mousedown', function ()
   MetalText.backgroundColor = 'white';
   WoodText.backgroundColor = '#85C1E9';
 
-  if(ActiveSide == "Inside")
-    {
+  if(ActiveSide == "Inside"){ 
       In_theme = 'Wood';
       CURRENT_USER.in_theme = In_theme;
       fabric.util.loadImage('images/wooddoor.jpg', function (img) {
-      img.id = 'Wood';
-      insideDoor.setPatternFill({
-      source: img,
-      repeat: 'repeat'
-      }); });
-    }
+        img.id = 'Wood';
+        insideDoor.setPatternFill({
+          source: img,
+          repeat: 'repeat'
+        }); 
+      });
+  }
 
-  else if(ActiveSide == "Outside")
-    {
+  else if(ActiveSide == "Outside"){
       Out_theme = 'Wood';
       CURRENT_USER.out_theme = Out_theme;
       fabric.util.loadImage('images/wooddoor.jpg', function (img) {
-      img.id = 'Wood';
-      outsideDoor.setPatternFill({
-      source: img,
-      repeat: 'repeat'
-      }); });
+        img.id = 'Wood';
+        outsideDoor.setPatternFill({
+          source: img,
+          repeat: 'repeat'
+        }); 
+      });
     }
 });
 
 //------------
-MetalText.on('mousedown', function ()
-{
+MetalText.on('mousedown', function (){
   MetalText.backgroundColor = '#85C1E9';
   WoodText.backgroundColor = 'white';
-  if(ActiveSide == "Inside")
-  {
+  if(ActiveSide == "Inside"){
     In_theme = 'Metal';
     CURRENT_USER.in_theme = In_theme;
     fabric.util.loadImage('images/metal.jpg', function (img) {
-    img.id = 'Metal';
-    insideDoor.setPatternFill({
-    source: img,
-    repeat: 'repeat'
-    }); });
+      img.id = 'Metal';
+      insideDoor.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+      }); 
+    });
   }
-
-  else if(ActiveSide == "Outside")
-  {
-     Out_theme = 'Metal';
-     CURRENT_USER.out_theme = Out_theme;
-     fabric.util.loadImage('images/metal.jpg', function (img) {
-     img.id = 'Metal';
-     outsideDoor.setPatternFill({
-     source: img,
-     repeat: 'repeat'
-     }); });
-   }
-
+  else if(ActiveSide == "Outside"){
+    Out_theme = 'Metal';
+    CURRENT_USER.out_theme = Out_theme;
+    fabric.util.loadImage('images/metal.jpg', function (img) {
+      img.id = 'Metal';
+      outsideDoor.setPatternFill({
+        source: img,
+        repeat: 'repeat'
+      }); 
+    });
+  }
 });
+  
 //----------------
-XmassText.on('mousedown', function ()
-{
+XmassText.on('mousedown', function (){
   Out_ornament = 'Xmass';
   CURRENT_USER.out_ornament = Out_ornament;
   XmassText.backgroundColor = '#85C1E9';
@@ -2481,8 +2474,7 @@ XmassText.on('mousedown', function ()
   EasterOrn.visible = false;
 });
 
-EasterText.on('mousedown', function ()
-{
+EasterText.on('mousedown', function () {
   Out_ornament = 'Easter';
   CURRENT_USER.out_ornament = Out_ornament;
   XmassText.backgroundColor = 'white';
@@ -2490,12 +2482,12 @@ EasterText.on('mousedown', function ()
   XmassOrn.visible = false;
   EasterOrn.visible = true;
 });
+  
 //----------
 ResetTheme.on('mousedown', function (){
   In_theme = 'default';
   Out_theme = 'default';
   Out_ornament = 'default';
-  
 
   CURRENT_USER.out_theme = Out_theme;
   CURRENT_USER.in_theme = In_theme;
@@ -2503,17 +2495,19 @@ ResetTheme.on('mousedown', function (){
   XmassOrn.visible = false;
   EasterOrn.visible = false;
 
-fabric.util.loadImage('images/Doorpattern.gif', function (img) {
+  fabric.util.loadImage('images/Doorpattern.gif', function (img) {
     insideDoor.setPatternFill({
-    source: img,
-    repeat: 'repeat'
-    });});
+      source: img,
+      repeat: 'repeat'
+    });
+  });
 
-fabric.util.loadImage('images/DoorpatternOut.gif', function (img) {
-    outsideDoor.setPatternFill({
-    source: img,
-    repeat: 'repeat'
-    });});
+  fabric.util.loadImage('images/DoorpatternOut.gif', function (img) {
+      outsideDoor.setPatternFill({
+      source: img,
+      repeat: 'repeat'
+      });
+  });
 });
 
 //********************************************************************************************
