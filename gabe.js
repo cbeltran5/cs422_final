@@ -175,6 +175,12 @@ var DISPLAY = ["Display Timer", "Minutero de Pantalla "];
 var CANCEL = ["Cancel", "Cancelar"];
 var MUTE = ["Mute", "Mudo"];
 
+var GREAT = ["Great!", "Estupendo!"];
+var SORRY = ["Sorry!", "Lo Siento!"];
+var NOWSET =["Your language is now set to ", "Su idioma fue configurado para "];
+var NOTSET =["Your language was not set to ", "Su idioma no fue configurado para "]
+var RETURNMSG=["Please press the back arrow to return to language settings.",
+               "Presione la flecha para volver a la configuración de idioma."];
 // when called, this function will update the text of the respective
 // faric text object with a string that matches that object and the currently
 // set language
@@ -708,21 +714,21 @@ function SaveLanguageSettings(lang) {
     return;
   }
   if(CURRENT_USER != null ) {
-    var changeOrNot;
+    var changed;
     if(lang > 1){
       console.log(LanguageArr[lang].text + " is not supported at this time."); 
-      changeOrNot = false;
+      changed = false;
     }
     else { // 0 or 1 
       CURRENT_USER.language = lang;
       syslang = lang;
       UpdateText();
-      changeOrNot = true;
+      changed = true;
       console.log("Changed language to " + LanguageArr[lang].text + "!");
     }
     HideLangaugeSetting();
     
-    ShowLangFeedBack(LanguageArr[lang].text,changeOrNot);
+    ShowLangFeedBack(LanguageArr[lang].text,changed);
     mBackButton.addToBackStack(ShowLangaugeSetting, HideLangFeedBack);
   }
   else {

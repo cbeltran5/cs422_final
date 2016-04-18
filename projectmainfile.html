@@ -3324,24 +3324,30 @@ function FabricText(string,mLeft, mTop, mFontSize) {
   temp.lockMovementX = temp.lockMovementY = true;
   return temp;
 }
-var retmsgstr = "Press back arrow to return to language settings.";
 
-var FailOrSuccess = FabricText('Sorry!',247,360,24);
-var FeedBackMessage = FabricText("Your language is now set to English." , 155, 400, 17);
-var ReturnMessage = FabricText(retmsgstr,140, 440,15);
+var FailOrSuccess = FabricText(GREAT[syslang],247,360,24);
+var FeedBackMessage = FabricText(NOWSET[syslang] + "English." , 155, 400, 17);
+var ReturnMessage = FabricText(RETURNMSG[syslang],105, 440,15);
   
 function ShowLangFeedBack(string, changed) {
   if(changed == true ) {
     console.log("CHANGED");
-    FailOrSuccess.text = "Great!";
-    FeedBackMessage.text = "Your language is now set to " + string + ".";
+    if(syslang == SPANISH) {
+      FailOrSuccess.setLeft = 237;
+    }
+    else {
+      FailOrSuccess.setLeft = 247;
+    }
+    FailOrSuccess.text = GREAT[syslang];
+    FeedBackMessage.text = NOWSET[syslang] + string + ".";
+    ReturnMessage.text = RETURNMSG[syslang];
   }
   else {
     console.log("DID NOT CHANGE");
-    FailOrSuccess.text = "Sorry!";
-    FeedBackMessage.text = "The language was not set to " + string + ".";
+    FailOrSuccess.text = SORRY[syslang];
+    FeedBackMessage.text = NOTSET[syslang] + string + ".";
   }
-    langpromptbox.visible = true;
+  langpromptbox.visible = true;
   ReturnMessage.visible = true;
   FeedBackMessage.visible = true;
   FailOrSuccess.visible = true;
@@ -3738,7 +3744,7 @@ canvas.on({
     //console.log(e.target);
     if(activeObject.id == 'home'){
       HomeSelected();
-      
+      HideLangFeedBack();
       canvas.deactivateAll();
       if(CURRENT_USER != null)
         CURRENT_USER.hideObjects();
