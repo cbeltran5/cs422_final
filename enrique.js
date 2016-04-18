@@ -16,6 +16,7 @@ function AcceptSelected(){
  MessageHelloOutside.visible = true;
  accept_button.visible = false;
  MessageBox.visible = false;
+ CloseMessageSettings();
  //HomeSelected();
    BringUpPrompt();
 }
@@ -33,7 +34,6 @@ function ShowMessageBox(){
   accept_button.visible = true;
   MessageHelloOutside.visible = false;
   HomeSelected();
-
 }
 
 function HideMessageBox(){
@@ -43,12 +43,7 @@ function HideMessageBox(){
 }
 // Line 2377
 
-
-function BringUpPrompt() {
-  var text = prompt("Please enter your name", "Harry Potter");
-  console.log(text);
-}
-
+//------------------------------------------------------------- 
 /*
 function AcceptSelected(){
   AcceptIsActive = true; 
@@ -56,7 +51,6 @@ function AcceptSelected(){
   accept_button.visible = false;
   MessageBox.visible = false;
   //HomeSelected();
-    BringUpPrompt();
 }
 
 function ShowMessageHelloOutside(){

@@ -596,9 +596,82 @@ Messagestext.selectable = false;
 Messagestext.visible = false;
 ArrayOfObjects.push(Messagestext);
 
+var MessagesDroplist = new fabric.Text('  Type of Message       ', {
+  backgroundColor: 'lightgrey',
+  borderColor: 'black',
+  fontFamily: 'Times',
+  fontSize: 23,
+  padding: 5,
+  left: 175,
+  top: 310 ,
+  width: 150,
+  height: 50
+});
+MessagesDroplist.selectable = true;
+MessagesDroplist.visible = false;
+MessagesDroplist.hasBorders = true;
+MessagesDroplist.hasControls =  false;
+MessagesDroplist.lockMovementX = MessagesDroplist.lockMovementY = true;
+ArrayOfObjects.push(MessagesDroplist);
+
+var PublicText = new fabric.Text('  Public                        ', {
+  backgroundColor: 'white',
+  fontFamily: 'Times',
+  fontSize: 23,
+  padding: 5,
+  left: 175,
+  top: 345 ,
+  width: 150,
+  height: 50
+});
+PublicText.selectable = true;
+PublicText.visible = false;
+PublicText.hasBorders = false;
+PublicText.hasControls =  false;
+PublicText.lockMovementX = PublicText.lockMovementY = true;
+ArrayOfObjects.push(PublicText);
+
+var PrivateText = new fabric.Text('  Private                       ', {
+  backgroundColor: 'white',
+  fontFamily: 'Times',
+  fontSize: 23,
+  padding: 5,
+  left: 175,
+  top: 375 ,
+  width: 150,
+  height: 50
+});
+PrivateText.selectable = true;
+PrivateText.visible = false;
+PrivateText.hasBorders = false;
+PrivateText.hasControls =  false;
+PrivateText.lockMovementX = PrivateText.lockMovementY = true;
+ArrayOfObjects.push(PrivateText);
+
+function ShowMessageSettings()
+{
+  MessagesDroplist.visible = true;
+  
+  PublicText.visible = true;
+  PrivateText.visible = true;
+  
+  PublicText.backgroundColor = 'white';
+  PrivateText.backgroundColor = 'white';
+  
+}
+
+function CloseMessageSettings()
+{
+  MessagesDroplist.visible = false;
+  
+  PublicText.visible = false;
+  PrivateText.visible = false;
+  
+}
+
 var MessageBox = new fabric.Rect({
   left: 175,
-  top: 310,
+  top: 400,
   //id: this.id,
   fill: 'grey',
   stroke: 'black',
@@ -620,7 +693,7 @@ ArrayOfObjects.push(MessageBox);
   
 var accept_button;
 fabric.Image.fromURL('images/accept.png', function(oImg) {
-  oImg.set({left: 505, top: 1150, width: 210, height: 120,id: this.id});
+  oImg.set({left: 505, top: 1350, width: 210, height: 120,id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
@@ -2758,6 +2831,9 @@ canvas.add(insideDoor);
 canvas.add(outsideDoor);
 canvas.add(date_rect);
 canvas.add(MessageBox);
+canvas.add(MessagesDroplist);
+canvas.add(PublicText);
+canvas.add(PrivateText);
 canvas.add(MessageHelloOutside);
 canvas.add(Mirror);
 canvas.add(Traffic);
@@ -2969,6 +3045,7 @@ canvas.on({
     }
 
     else if(activeObject.id == 'messages'){
+      ShowMessageSettings();
       MessageBoxSelected();
       canvas.deactivateAll();
     }
