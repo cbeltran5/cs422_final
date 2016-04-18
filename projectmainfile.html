@@ -333,6 +333,8 @@ var Weathertext = new fabric.Text('49 F', {
 });
 Weathertext.setColor('black');
 Weathertext.selectable = false;
+  
+var Weathertext = FabricText('49',475,80,30);
 
 //*******************************************************************************************
 
@@ -2813,10 +2815,10 @@ ArrayOfObjects.push(volumepanel);
 ArrayOfObjects.push(volumebar);
 ArrayOfObjects.push(volumeslider);
 
-var VolumeSettingsText = FabricText(VOLUME[syslang],235,350,24);
-//VolumeSettingsText.visible = true; 
+var VolumeSettingsText = FabricText(VOLUME[syslang],235,350,24); 
 var volumePercentage = FabricText("0%",260, 450, 20);
-
+ArrayOfObjects.push( VolumeSettingsText );
+ArrayOfObjects.push( volumePercentage  );
 var vpercent;
 var left;
 canvas.on("object:moving", function() {
@@ -2843,7 +2845,8 @@ canvas.on("mouse:up", function (object) {
   
 //********************************************************************************************
 // Back Button
-  
+
+var backbutton 
 var backbutton = null;
 fabric.Image.fromURL('images/backbutton.png', function(oImg) {
   oImg.set({left: 550, top: 1155, id: this.id});
@@ -3826,6 +3829,9 @@ canvas.on({
       mBackButton.addToBackStack( HomeSelected,hideSettings);
       //canvas.deactivateAll();
     }
+    else if(activeObject.id == 'settings_units') {
+       
+    }
     else if (activeObject.id == "settings_traffic") {
       showTrafficSettings();
       hideSettings();
@@ -3837,7 +3843,7 @@ canvas.on({
       saveTrafficOption();
     else if(activeObject.id == "traffic_star1" || activeObject.id == "traffic_star2")
       toggleTrafficPrimary(activeObject.id);
-
+    
     else if (activeObject.id == "settings_themes"){
       hideSettings();
       ShowThemeSettings();
@@ -3858,6 +3864,7 @@ canvas.on({
       hideBrightnessSettings(true);
       showSettings();
     }
+    
     else if (activeObject.id == "settings_doorbell") {
       showDoorbellSettings();
       hideSettings();
@@ -3878,7 +3885,7 @@ canvas.on({
       hideDoorbellSettings(true);
       showSettings();
     }
-
+    
     else if(activeObject.id == 'messages'){
       ShowMessageSettings();
       //MessageBoxSelected();
