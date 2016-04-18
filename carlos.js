@@ -255,14 +255,14 @@ function saveTrafficOption()
 
   var rand = Math.random() * 2 | 0;
   options_count = CURRENT_USER.traffic_options.length;
-    if (options_count < 2){
+
+  if (options_count < 2){
     CURRENT_USER.traffic_options.push([rand]);
-    if (CURRENT_USER.traffic_options.length == 1)
-      CURRENT_USER.traffic_primary = "traffic_star1"
+
+  if (CURRENT_USER.traffic_options.length == 1)
+    CURRENT_USER.traffic_primary = "traffic_star1"
   }
-  else {
-    CURRENT_USER.traffic_options.pop();
-  }
+
   showTrafficSettings();
 }
 

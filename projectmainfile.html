@@ -1435,7 +1435,7 @@ stars.push(traffic_star1);
 stars.push(traffic_star2);
 
 var traffic_add_btn = new fabric.Rect({
-  left: 165,
+  left: 155,
   top: 500,
   fill: 'white',
   stroke: 'black',
@@ -1452,7 +1452,7 @@ traffic_add_btn.id = 'traffic_add_btn';
 var traffic_add_btn_text = new fabric.IText('Add', {
   fontFamily: 'Calibri',
   fontSize: 25,
-  left: 180,
+  left: 170,
   top: 515,
   width: 100,
   height: 50
@@ -2885,7 +2885,7 @@ var mBackButton = new BackButton();
 
 
 function ShowUserData(id){
-  
+
   HideUserSettings();
   UserSettingList.visible = true;
   UserFName.setText(RegisteredUsers.at(id).firstname);
@@ -2907,7 +2907,7 @@ function ShowUserData(id){
 }
 
 function ShowUserDataForMsg(id){
-  
+
   MsgTo = id;
 }
 function HideUserData(){
@@ -3705,7 +3705,7 @@ MessageBox.id = 'messageBox';
 //});
 ArrayOfObjects.push(MessageBox);
 
-  
+
 /*var accept_button;
 fabric.Image.fromURL('images/post.jpg', function(oImg) {
   oImg.set({left: 505, top: 1350, width: 210, height: 120,id: this.id});
@@ -3726,7 +3726,7 @@ var Post = new fabric.Text('    Post    ', {
   fontFamily: 'Times',
   fontSize: 23,
   padding: 5,
-  left: 230, 
+  left: 230,
   top: 530,
   width: 150,
   height: 50,
@@ -3744,7 +3744,7 @@ var OK = new fabric.Text('    OK    ', {
   fontFamily: 'Times',
   fontSize: 23,
   padding: 5,
-  left: 230, 
+  left: 230,
   top: 530,
   width: 150,
   height: 50,
@@ -3762,7 +3762,7 @@ var OKOut= new fabric.Text('    OK    ', {
   fontFamily: 'Times',
   fontSize: 23,
   padding: 5,
-  left: 890, 
+  left: 890,
   top: 470,
   width: 150,
   height: 50,
@@ -3775,7 +3775,7 @@ OKOut.hasControls =  false;
 OKOut.lockMovementX = OK.lockMovementY = true;
 
 
-var MsgBox = new fabric.IText('Type...', { 
+var MsgBox = new fabric.IText('Type...', {
   fontFamily: 'Times',
   fontSize: 18,
   left: 165,
@@ -3799,7 +3799,7 @@ var MsgOutsideText = new fabric.Text('', {
       fontFamily: 'Times',
       fontSize: 25,
       padding: 5,
-      left: 830, 
+      left: 830,
       top: 350,
       width: 150,
       height: 50,
@@ -3827,7 +3827,7 @@ function ShowMessageSettings()
   PublicText.setOpacity(1);
   PrivateText.backgroundColor = 'white';
   PrivateText.setOpacity(0.3);
-  
+
   //HomeSelected();
 }
 
@@ -3868,7 +3868,7 @@ PublicText.on('mousedown', function ()
 
 PrivateText.on('mousedown', function ()
 {
-  
+
   MsgMode = 'Private';
   PublicText.backgroundColor = 'white';
   PublicText.setOpacity(0.3);
@@ -3882,7 +3882,7 @@ PrivateText.on('mousedown', function ()
   ShowUsers();
 
 
-  OK.visible = true; 
+  OK.visible = true;
   console.log("bbb" + MessagesIsActive);
   //MessageBoxSelected();
 });
@@ -3950,9 +3950,9 @@ function ShowUsers(){
       left: 400,
       top: topv,
     });
-    
+
     UserNameMsg.setText(RegisteredUsers.at(i).firstname);
-   
+
     //UserNameMsg.on('mousedown', function ()
     //{
      // CloseMessageSettings();
@@ -4012,7 +4012,7 @@ canvas.add(MessagesDroplist);
 canvas.add(PublicText);
 canvas.add(PrivateText);
 canvas.add(Post);
-canvas.add(OK); 
+canvas.add(OK);
 canvas.add(OKOut);
 canvas.add(MsgBox);
 canvas.add(UserSettingList);
@@ -4251,6 +4251,8 @@ canvas.on({
       hideSettings();
       mBackButton.addToBackStack(showSettings, hideDoorbellSettings);
     }
+    else if (activeObject.id == "traffic_save_btn_text" || activeObject.id == "traffic_save_btn")
+      saveTrafficOption();
     else if (activeObject.id == "doorbell_dingdong_option" || activeObject.id == "doorbell_dingdong_option_text")
       toggle_doobell_option("ding-dong");
     else if (activeObject.id == "doorbell_ding_option" || activeObject.id == "doorbell_ding_option_text")
@@ -4285,7 +4287,7 @@ canvas.on({
         if (activeObject.id == i){
 
           {UsersNames[i].backgroundColor = '#5DADE2';
-            ShowUserData(i);   
+            ShowUserData(i);
           break;}
         }
       }
@@ -4297,14 +4299,14 @@ canvas.on({
 
       for(var i=0; i < UsersNamesMsg.length; i ++ ){
         if (activeObject.id == i+15){
-          
+
             UsersNamesMsg[i].backgroundColor = '#5DADE2';
             MsgTo = i;
             console.log("MsgTo : " + MsgTo);
             break;
           }
         }
-          
+
           for(var i=0; i < UsersNamesMsg.length; i ++ ){
 
             if(i!=MsgTo)
