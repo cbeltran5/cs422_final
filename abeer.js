@@ -93,6 +93,7 @@ function ShowHome()
   // HideLights();
   HideTransport();
   HideNews();
+  HideMessageBox();
   CloseThemeSettings();
   HideUserSettings();
   HideUserData();
@@ -470,8 +471,8 @@ function NoSignalFromInside()
 }
 
 //-------------------------------------------------------------
-function AdjustHeight(value)
-{
+function AdjustHeight(value){
+  console.log("AdjustHeight()");
   if (counter < 1){
     GetOriginalCoordinate();
     counter++;
@@ -492,18 +493,22 @@ function AdjustHeight(value)
     ArrayOfObjects[i].top = OriginalObjCoordinate[i] + offset;
     ArrayOfObjects[i].setCoords();
   }
-
   canvas.renderAll();
  }
+
 //-------------------------------------------------------------
 function GetOriginalCoordinate(){
-  for (var i = 0; i < ArrayOfObjects.length; ++i)
-    OriginalObjCoordinate[i] = ArrayOfObjects[i].top;
+  console.log("GetOriginalCoordinate");
+  var temp;
+  for (var i = 0; i < ArrayOfObjects.length; ++i) {
+    OriginalObjCoordinate[i] = temp = ArrayOfObjects[i].top;
+    //console.log(ArrayOfObjects[i]);
+    console.log("OG coordinate: " + temp );
+  }
 }
 
 //-------------------------------------------------------------
-function ResetCoordinates()
-{
+function ResetCoordinates(){
   if (counter >= 1) {
     for (var i = 0; i < ArrayOfObjects.length; ++i) {
       ArrayOfObjects[i].top = OriginalObjCoordinate[i];
@@ -536,7 +541,7 @@ function ResetCoordinates()
   document.getElementsByName('Verification')[3].disabled = false;
   for (var i = 0; i < canvas.getObjects().length; ++i)
   {
-     if (canvas.item(i).id == 'doorbell' || canvas.item(i).id == 'writemsg'|| canvas.item(i).id == 'np' ||
+     if (canvas.item(i).id == 'doorbell' || canvas.item(i).id == 'writemsg'|| canvas.item(i).id == 'numberpad' ||
          canvas.item(i).id == 'UnlockKnobOut' || canvas.item(i).id == 'LockKnobOut')
      {
         canvas.item(i).visible = false;
@@ -600,13 +605,10 @@ function FaceRecognized()
   ResetDoorFromOutside();
   TriggerDoorFromOutside();
 
-  for (var i = 0; i < canvas.getObjects().length; ++i)
-    {
+  for (var i = 0; i < canvas.getObjects().length; ++i){
       if (canvas.item(i).id == 'UnlockKnobOut')
-
         canvas.item(i).selectable = false;
-    }
-
+  }
   UnlockDoorOut();
 }
 
@@ -623,13 +625,11 @@ function FailedVerification()
 {
   ResetDoorFromOutside();
   TriggerDoorFromOutside();
-  for (var i = 0; i < canvas.getObjects().length; ++i)
-  {
-     if (canvas.item(i).id == 'np')
-     {
+  for (var i = 0; i < canvas.getObjects().length; ++i){
+     if (canvas.item(i).id == 'numberpad'){
         canvas.item(i).visible = true;
      }
-   }
+  }
 }
 
 //------------------------------------------------------------
