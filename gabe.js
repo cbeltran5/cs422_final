@@ -519,6 +519,8 @@ function NoOneOutside() {
       canvas.item(i).visible = false;
     }
   }
+  steponeselected = false;
+  steptwoselected = false;
 }
 
 function UnKnownPersonFromOutside() {
@@ -555,6 +557,9 @@ function ShowVolumeSettings() {
   volumeslider.visible = true;
 }
 
+var steponeselected = false;
+var steptwoselected = false;
+var pin = null;
 
 function VerifyFirst(value) {
   console.log("first " + value);
@@ -562,30 +567,79 @@ function VerifyFirst(value) {
     for(var i=0; i< steptwo.length; i++){
       steptwo[i].disabled = true;
     }
+    steponeselected = false;
     VerifySecond(value);
   }
   else {
+    if(value == "NumberPad" ) {
+      var ret; 
+      if( pin == null ) {
+        ret = NumberPadEvent();
+        if(ret != -1) {    // correct pin
+          stepone[4].checked = true;
+        }
+        else {
+          stepone[4].checked = false;
+          return;
+        }
+      }
+      pin = null;
+    }
+    
     for(var i=0; i< steptwo.length; i++){
       if(steptwo[i].value == value || stepone[i].disabled == true){
         steptwo[i].disabled = true;
+        steptwo[i].checked = false;
       }
       else {
         steptwo[i].disabled = false;
       }
     }
+    steponeselected = true;
   }
 }
 
 function VerifySecond(value) {
+  
   console.log("second " + value);
   if(value == "None") {
     verify[0].disabled = true;
+    verify[0].checked = false;
+    verify[1].checked = false;
     verify[1].disabled = true;
+    steptwoselected = false;
   }
   else {
-    verify[0].disabled = false;
-    verify[1].disabled = false;
+    if(value == "NumberPad" ) {
+      var ret; 
+      if( pin == null ) {
+        ret = NumberPadEvent();
+        if(ret != -1) {    // correct pin
+          verify[0].checked = true;
+          Verify("sucess");
+        }
+        else {
+          verify[1].checked = true;
+          Verify("fail");
+        }
+        steptwoselected = true;
+        verify[0].disabled = false;
+        verify[1].disabled = false;
+      }
+      else{
+        console.log("Pin is null");
+        verify[1].checked = true;
+        Verify("fail");
+      }
+    }
+    // not number pad
+    else {
+      verify[0].disabled = false;
+      verify[1].disabled = false;
+      steptwoselected = true;
+    }
   }
+  pin = null;
 }
 
 function Verify(value) {
@@ -594,18 +648,28 @@ function Verify(value) {
 
 function NumberPadEvent() {
   console.log("NUMBERPAD");
-  var pin = prompt("Please Enter your 4 digit pin", "0123");
-  if(pin.length != 4){
+  pin = prompt("Please Enter your 4 digit pin", "0123");
+  
+  if(pin == null ) {
+    return -1;
+  }
+  else if(pin.length != 4){
     NumberPadEvent();
   }
-  else {
-    var id;
-    if((id = RegisteredUsers.verifyPin(pin)) != -1) {
-      console.log("VERIFIED. userID: " + id);
-      document.getElementsByName("UsersOut")[id + 3].checked = true;
-      LoadUserData_Outside(id);
+  
+  var id;
+  if((id = RegisteredUsers.verifyPin(pin)) != -1) {
+    console.log("VERIFIED. userID: " + id);
+    document.getElementsByName("UsersOut")[id + 3].checked = true;
+    LoadUserData_Outside(id);
+    if(steponeselected == false){
+      VerifyFirst("NumberPad");
+    }
+    else {
+      VerifySecond("NumberPad");
     }
   }
+  return id;
 }
 
 
