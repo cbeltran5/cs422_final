@@ -512,12 +512,10 @@ function VerifySecond(value) {
 
 function Verify(value) {
   console.log("verify " + value);
-
 }
 
 function VolumeSettings() {
   console.log("Volume Settings");
-  
 }
 
 

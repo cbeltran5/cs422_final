@@ -2728,72 +2728,11 @@ function HideUserData(){
  // UserDateFormat.setText(RegisteredUsers.at(id).date_format);
   canvas.remove(UserDateFormat);
 
-  
-  //if (RegisteredUsers.at(id).language == 0)
-  //UserLang.setText("English");
-  //else if (RegisteredUsers.at(id).language == 1)
-  //UserLang.setText("Spanish");
   canvas.remove(UserLang);
-
   canvas.remove(BackButtFromUSerData);
-
   canvas.renderAll();
 }
 
-
-
-function ShowUserData(id)
-{
-  HideUserSettings();
-  UserSettingList.visible = true;
-  UserFName.setText(RegisteredUsers.at(id).firstname);
-  canvas.add(UserFName);
-  UserLName.setText(RegisteredUsers.at(id).lastname);
-  canvas.add(UserLName);
-
-  UserTimeFormat.setText(RegisteredUsers.at(id).time_format);
-  canvas.add(UserTimeFormat);
-
-  UserDateFormat.setText(RegisteredUsers.at(id).date_format);
-  canvas.add(UserDateFormat);
-
-  
-  if (RegisteredUsers.at(id).language == 0)
-  UserLang.setText("English");
-  else if (RegisteredUsers.at(id).language == 1)
-  UserLang.setText("Spanish");
-  canvas.add(UserLang);
-
-  canvas.add(BackButtFromUSerData);
-
-
-}
-
-function HideUserData()
-{
-  //UserSettingList.visible = false;
-  //UserFName.setText(RegisteredUsers.at(id).firstname);
-  canvas.remove(UserFName);
- // UserLName.setText(RegisteredUsers.at(id).lastname);
-  canvas.remove(UserLName);
-
-  //UserTimeFormat.setText(RegisteredUsers.at(id).time_format);
-  canvas.remove(UserTimeFormat);
-
- // UserDateFormat.setText(RegisteredUsers.at(id).date_format);
-  canvas.remove(UserDateFormat);
-
-  //if (RegisteredUsers.at(id).language == 0)
-  //UserLang.setText("English");
-  //else if (RegisteredUsers.at(id).language == 1)
-  //UserLang.setText("Spanish");
-  canvas.remove(UserLang);
-
-  canvas.remove(BackButtFromUSerData);
-
-  canvas.renderAll();
-
-}
 //--------------------------------------------------------------------------------------
 // add all of the elements to the canvas
 
