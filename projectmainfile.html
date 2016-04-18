@@ -3558,6 +3558,14 @@ LanguageArr.push(SlovakLang);
 function ShowLangaugeSetting(){
     HideHome();
     LangaugePanel.visible = true;
+    if(syslang == ENGLISH) {
+      EnglishLang.fontWeight = "bold";
+      SpanishLang.fontWeight  = "normal";
+    }
+    else {
+      SpanishLang.fontWeight  = "bold";
+      EnglishLang.fontWeight  = "normal";
+    }
     EnglishLang.visible = true;
     SpanishLang.visible = true;
     ArabicLang.visible = true;
