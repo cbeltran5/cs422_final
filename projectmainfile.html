@@ -4336,19 +4336,15 @@ canvas.on({ 'object:selected': function(e) {
       }
       for(var i=0; i < UsersNamesMsg.length; i ++ ){
         if(i != MsgTo) {
-
             UsersNamesMsg[i].backgroundColor = '#5DADE2';
             MsgTo = i;
             console.log("MsgTo : " + MsgTo);
             break;
-          }
         }
-
-          for(var i=0; i < UsersNamesMsg.length; i ++ ){
-
-            if(i!=MsgTo)
-            UsersNamesMsg[i].backgroundColor = 'white';
-        }
+      }
+      for(var i=0; i < UsersNamesMsg.length; i ++ ){
+        if(i!=MsgTo)
+          UsersNamesMsg[i].backgroundColor = 'white';
       }
     }
 
