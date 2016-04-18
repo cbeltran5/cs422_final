@@ -2951,6 +2951,29 @@ function Run911Call()
 }
 // ------------------- vidoe tutorial ----------------
 
+var VideoPanel = new fabric.Rect({
+  left: 148,
+  top: 310,
+  fill: 'darkgrey',
+  //stroke: 'darkgrey',
+  width: 253,
+  height: 205,
+  angle: 0
+});
+VideoPanel.visible = false;
+VideoPanel.hasControls = VideoPanel.hasBorders = VideoPanel.selectable = false;
+VideoPanel.lockMovementX = VideoPanel.lockMovementY = true;
+
+//fabric.util.loadImage('images/videoBackground.jpg', function (img) {
+  //VideoPanel.setPatternFill({
+    //source: img,
+  //  repeat: 'repeat'
+ // });
+//});
+
+ArrayOfObjects.push(VideoPanel);
+
+
 var VideoElement1 = document.getElementById('video1');
 var video1 = new fabric.Image(VideoElement1, {
   left: 150,
@@ -2987,10 +3010,13 @@ fabric.Image.fromURL('images/pause.gif', function(oImg) {
   });
 
 
+
+
 function ShowVideoTour()
 {
   hideSettings();
   video1.visible = true;
+  VideoPanel.visible = true;
   for (var i = 0; i < canvas.getObjects().length; ++i) 
   { 
     if (canvas.item(i).id == 'play') 
@@ -3006,6 +3032,7 @@ function ShowVideoTour()
 function HideVideoTour()
 {
   video1.visible = false;
+  VideoPanel.visible = false;
   for (var i = 0; i < canvas.getObjects().length; ++i) 
   { 
     if (canvas.item(i).id == 'play' || canvas.item(i).id == 'pause' ) 
@@ -3577,7 +3604,7 @@ canvas.add(DateFormat4);
 canvas.add(TimeFormat1);
 canvas.add(TimeFormat2);
 canvas.add(SaveDateTimeFormatButton);
-
+canvas.add(VideoPanel);
 canvas.add(video1);
 //************************************** Functions *******************************************
 canvas.on({
