@@ -600,7 +600,7 @@ function VerifyFirst(value) {
 }
 
 function VerifySecond(value) {
-  
+  steptwoselected = true;
   console.log("second " + value);
   if(value == "None") {
     verify[0].disabled = true;
@@ -613,7 +613,9 @@ function VerifySecond(value) {
     if(value == "NumberPad" ) {
       var ret; 
       if( pin == null ) {
+        console.log("Pin is null");
         ret = NumberPadEvent();
+        console.log(ret);
         if(ret != -1) {    // correct pin
           verify[0].checked = true;
           Verify("sucess");
@@ -622,12 +624,11 @@ function VerifySecond(value) {
           verify[1].checked = true;
           Verify("fail");
         }
-        steptwoselected = true;
         verify[0].disabled = false;
         verify[1].disabled = false;
       }
       else{
-        console.log("Pin is null");
+        console.log("Pin is not null");
         verify[1].checked = true;
         Verify("fail");
       }
@@ -636,7 +637,6 @@ function VerifySecond(value) {
     else {
       verify[0].disabled = false;
       verify[1].disabled = false;
-      steptwoselected = true;
     }
   }
   pin = null;
@@ -644,6 +644,9 @@ function VerifySecond(value) {
 
 function Verify(value) {
   console.log("Verify: " + value);
+  if(value == "success") {
+    
+  }
 }
 
 function NumberPadEvent() {
@@ -665,7 +668,7 @@ function NumberPadEvent() {
     if(steponeselected == false){
       VerifyFirst("NumberPad");
     }
-    else {
+    else if(steptwoselected == false) {
       VerifySecond("NumberPad");
     }
   }
