@@ -462,12 +462,19 @@ function LoadUserData_Inside(index) {
   HideNews();
   hideSettings();
   Hide911();
+//<<<<<<< HEAD
+  CloseMessageSettings();
+//=======
   HideVolumeSettings();
   HideLangaugeSetting();
   backbutton.visible = false;
 
+  
+//>>>>>>> 8abc788b98fda319a20da301b55b73527e72e2be
   LanguageSettingIsActive = false;
+  MessagesIsActive = false;
 
+  
   volumeslider.left = CURRENT_USER.sliderleft;
   volumeslider.setLeft(CURRENT_USER.sliderleft);
   volumePercentage.text = "" + CURRENT_USER.vpercent + "%";
