@@ -194,89 +194,55 @@ function HideHome()
 }
 
 //-------------------------------------------------------------
-function UnlockDoorOut()
- {
-
-    for (var i = 0; i < canvas.getObjects().length; ++i)
-    {
+function UnlockDoorOut(){
+    for (var i = 0; i < canvas.getObjects().length; ++i){
       if (canvas.item(i).id == 'LockKnobOut')
-
         canvas.item(i).visible = false;
-
       else if (canvas.item(i).id == 'UnlockKnobOut')
-
         canvas.item(i).visible = true;
     }
-
  }
 
 //-------------------------------------------------------------
-function LockDoorIn()
- {
-
-  for (var i = 0; i < canvas.getObjects().length; ++i)
-  {
+function LockDoorIn(){
+  for (var i = 0; i < canvas.getObjects().length; ++i){
     if (canvas.item(i).id == 'UnlockKnobIn')
-
       canvas.item(i).visible = false;
-
     else if (canvas.item(i).id == 'LockKnobIn')
-
       canvas.item(i).visible = true;
   }
-
- }
+}
 
 //-------------------------------------------------------------
-function LockDoorOut()
- {
-
-  for (var i = 0; i < canvas.getObjects().length; ++i)
-  {
+function LockDoorOut(){
+  for (var i = 0; i < canvas.getObjects().length; ++i){
     if (canvas.item(i).id == 'UnlockKnobOut')
-
       canvas.item(i).visible = false;
-
     else if (canvas.item(i).id == 'LockKnobOut')
-
       canvas.item(i).visible = true;
   }
+}
 
- }
 
 //-------------------------------------------------------------
-function UnlockDeadbolt()
- {
-
-  for (var i = 0; i < canvas.getObjects().length; ++i)
-  {
+function UnlockDeadbolt(){
+  for (var i = 0; i < canvas.getObjects().length; ++i){
     if (canvas.item(i).id == 'LockDeadbolt')
-
       canvas.item(i).visible = false;
-
     else if (canvas.item(i).id == 'UnlockDeadbolt')
-
       canvas.item(i).visible = true;
   }
-
- }
+}
 
 //-------------------------------------------------------------
-function LockDeadbolt()
- {
-
-  for (var i = 0; i < canvas.getObjects().length; ++i)
-  {
+function LockDeadbolt(){
+  for (var i = 0; i < canvas.getObjects().length; ++i){
     if (canvas.item(i).id == 'UnlockDeadbolt')
-
       canvas.item(i).visible = false;
-
     else if (canvas.item(i).id == 'LockDeadbolt')
-
       canvas.item(i).visible = true;
   }
-
- }
+}
 
 //------------------ Radio buttons Events Functions -------------------------
 function User1FromInside()
