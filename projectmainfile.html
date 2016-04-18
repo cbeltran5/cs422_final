@@ -2399,43 +2399,38 @@ ArrayOfObjects.push(UserSettingMsg);
 
 
 //console.log( "My array length b: "+ArrayOfObjects.length);
-
+var UsersNames = [];
 function ShowUserSettings()
 {
   UsersNames = [];
 
   UserSettingList.visible = true;
   //UserSettingMsg.visible = false;
+}
 
-var UsersNames = [];
 function ShowUserSettings(){
   UserSettingList.visible = true;
   //UserSettingMsg.visible = false;
   //loop to get names and add them to canvas
-  for (i = 0; i < RegisteredUsers.length; i++)
-
-  {
+  for (i = 0; i < RegisteredUsers.length; i++){
     var topv = 730 + (70*(i+1)/(i+1)) * (i+1);
     var UserName = new fabric.Text('', {
-    fontFamily: 'Times',
-    fontSize: 60,
-    left: 400,
-    top: topv,
+      fontFamily: 'Times',
+      fontSize: 60,
+      left: 400,
+      top: topv,
     });
     UserName.setText(RegisteredUsers.at(i).firstname);
     if(CURRENT_USER.id == RegisteredUsers.at(i).id)
       UserName.selectable = true;
-    else
-      {
+    else{
       UserName.selectable = false;
       UserName.opacity = 0.3;
     }
-
     UserName.setText(RegisteredUsers.at(i).firstname);
     if(CURRENT_USER.id == RegisteredUsers.at(i).id)
       UserName.selectable = true;
-    else
-      {
+    else{
       UserName.selectable = false;
       UserName.opacity = 0.3;
     }
@@ -2444,31 +2439,23 @@ function ShowUserSettings(){
     UserName.bringForward();
     UsersNames.push(UserName);
     ArrayOfObjects.push(UsersNames[i]);
-
   }
-console.log("We are : "+ UsersNames.length);
-console.log("here : "+ UsersNames[1].top);
-console.log( "My array length a: " + ArrayOfObjects.length);
+  console.log("We are : "+ UsersNames.length);
+  console.log("here : "+ UsersNames[1].top);
+  console.log( "My array length a: " + ArrayOfObjects.length);
 
-for (i = 0; i < UsersNames.length; i++)
-
-  {
+  for (i = 0; i < UsersNames.length; i++){
     UsersNames[i].id = i;
   }
 
-console.log( "My array length a: " + ArrayOfObjects.length);
-
-
-for (i = 0; i < UsersNames.length; i++)
-
-  {
-    UsersNames[i].id = i;
+  console.log( "My array length a: " + ArrayOfObjects.length);
+  for (i = 0; i < UsersNames.length; i++){
+      UsersNames[i].id = i;
   }
-
 }
 
-function HideUserSettings()
-{
+function HideUserSettings() 
+{}
 
 function HideUserSettings()
 {
@@ -2483,6 +2470,11 @@ function HideUserSettings()
   
 //********************************************************************************************
 //------------------------------ Volume ----------------  
+
+  var panelleft = 72;
+  var paneltop= 310;
+  var panelwidth = 410;
+  var panelheight = 200;
 
 var volumepanel = new fabric.Rect({
   left: panelleft,
@@ -2627,7 +2619,6 @@ function HideUserData()
  // UserDateFormat.setText(RegisteredUsers.at(id).date_format);
   canvas.remove(UserDateFormat);
 
-  
   //if (RegisteredUsers.at(id).language == 0)
   //UserLang.setText("English");
   //else if (RegisteredUsers.at(id).language == 1)
@@ -2742,6 +2733,7 @@ canvas.on({
           activeObject.left = slider_back.left + (slider_back.width*2);
       }
     },
+  
   'object:selected': function(e) {
     var activeObject = e.target;
 
@@ -2761,13 +2753,11 @@ canvas.on({
       if(UserFingerIsRecognizable == true)
       UnlockDoorOut();
     }
-
+    
     else if(activeObject.id == 'UnlockKnobOut')
       LockDoorOut();
-
     else if(activeObject.id == 'LockDeadbolt')
        UnlockDeadbolt();
-
     else if(activeObject.id == 'UnlockDeadbolt')
        LockDeadbolt();
 
@@ -2985,7 +2975,7 @@ canvas.on({
       ShowUserSettings();
     
   }
-}
+  }
 });
 
 AvatarOnOff.on('selected', function(){
