@@ -218,6 +218,7 @@ var OriginalObjCoordinate = [];
 var counter = 0;
 HeightsRadioButtons_DISABLE();
 var UsersNames = [];
+var DoorbellAudio = 'ding';
 
 //*******************************************************************************************
 
@@ -1882,13 +1883,13 @@ ArrayOfObjects.push(brightness_save_btn);
 
 
 var doorbell_save_btn = new fabric.Rect({
-  left: 325,
-  top: 600,
+  left: 290,
+  top: 470,
   fill: 'light-gray',
   stroke: 'green',
-  strokeWidth: 4,
-  width: 120,
-  height: 60,
+  strokeWidth: 2,
+  width: 80,
+  height: 30,
   angle: 0
 });
 doorbell_save_btn.visible = false;
@@ -1897,10 +1898,10 @@ doorbell_save_btn.lockMovementX = doorbell_save_btn.lockMovementY = true;
 doorbell_save_btn.id = 'doorbell_save_btn';
 
 var doorbell_save_btn_text = new fabric.IText('Save', {
-  fontFamily: 'arial black',
-  fontSize: 30,
-  left: 345,
-  top: 610 ,
+  fontFamily: 'Calibri',
+  fontSize: 20,
+  left: 300,
+  top: 475 ,
   width: 65,
   height: 46
 });
@@ -1913,13 +1914,13 @@ ArrayOfObjects.push(doorbell_save_btn);
 ArrayOfObjects.push(doorbell_save_btn_text);
 
 var doorbell_cancel_btn = new fabric.Rect({
-  left: 150,
-  top: 600,
+  left: 180,
+  top: 470,
   fill: 'light-gray',
   stroke: 'red',
-  strokeWidth: 4,
-  width: 120,
-  height: 60,
+  strokeWidth: 2,
+  width: 80,
+  height: 30,
   angle: 0
 });
 doorbell_cancel_btn.visible = false;
@@ -1928,10 +1929,10 @@ doorbell_cancel_btn.lockMovementX = doorbell_cancel_btn.lockMovementY = true;
 doorbell_cancel_btn.id = 'doorbell_cancel_btn';
 
 var doorbell_cancel_btn_text = new fabric.IText('Cancel', {
-  fontFamily: 'arial black',
-  fontSize: 30,
-  left: 155,
-  top: 610 ,
+  fontFamily: 'Calibri',
+  fontSize: 20,
+  left: 185,
+  top: 475 ,
   width: 65,
   height: 46
 });
@@ -1944,13 +1945,13 @@ ArrayOfObjects.push(doorbell_cancel_btn_text);
 ArrayOfObjects.push(doorbell_cancel_btn);
 
 var doorbell_mute_option = new fabric.Rect({
-  left: 200,
-  top: 340,
+  left: 180,
+  top: 320,
   fill: 'light-gray',
   stroke: 'black',
-  strokeWidth: 4,
+  strokeWidth: 3,
   width: 190,
-  height: 60,
+  height: 40,
   angle: 0
 });
 doorbell_mute_option.visible = false;
@@ -1959,10 +1960,10 @@ doorbell_mute_option.lockMovementX = doorbell_mute_option.lockMovementY = true;
 doorbell_mute_option.id = 'doorbell_mute_option';
 
 var doorbell_mute_option_text = new fabric.IText('Mute', {
-  fontFamily: 'arial black',
-  fontSize: 30,
-  left: 215,
-  top: 355,
+  fontFamily: 'Calibri',
+  fontSize: 20,
+  left: 200,
+  top: 330,
   width: 65,
   height: 46
 });
@@ -1975,13 +1976,13 @@ ArrayOfObjects.push(doorbell_mute_option_text);
 ArrayOfObjects.push(doorbell_mute_option);
 
 var doorbell_ding_option = new fabric.Rect({
-  left: 200,
-  top: 410,
+  left: 180,
+  top: 370,
   fill: 'light-gray',
   stroke: 'blue',
-  strokeWidth: 4,
+  strokeWidth: 3,
   width: 190,
-  height: 60,
+  height: 40,
   angle: 0
 });
 doorbell_ding_option.visible = false;
@@ -1990,10 +1991,10 @@ doorbell_ding_option.lockMovementX = doorbell_ding_option.lockMovementY = true;
 doorbell_ding_option.id = 'doorbell_ding_option';
 
 var doorbell_ding_option_text = new fabric.IText('Ding', {
-  fontFamily: 'arial black',
-  fontSize: 30,
-  left: 215,
-  top: 420,
+  fontFamily: 'Calibri',
+  fontSize:20,
+  left: 200,
+  top: 380,
   width: 65,
   height: 46
 });
@@ -2006,13 +2007,13 @@ ArrayOfObjects.push(doorbell_ding_option);
 ArrayOfObjects.push(doorbell_ding_option_text);
 
 var doorbell_dingdong_option = new fabric.Rect({
-  left: 200,
-  top: 480,
+  left: 180,
+  top: 420,
   fill: 'light-gray',
   stroke: 'black',
-  strokeWidth: 4,
+  strokeWidth: 3,
   width: 190,
-  height: 60,
+  height: 40,
   angle: 0
 });
 doorbell_dingdong_option.visible = false;
@@ -2021,10 +2022,10 @@ doorbell_dingdong_option.lockMovementX = doorbell_dingdong_option.lockMovementY 
 doorbell_dingdong_option.id = 'doorbell_dingdong_option';
 
 var doorbell_dingdong_option_text = new fabric.IText('Ding-Dong', {
-  fontFamily: 'arial black',
-  fontSize: 30,
-  left: 215,
-  top: 490,
+  fontFamily: 'Calibri',
+  fontSize: 20,
+  left: 200,
+  top: 430,
   width: 65,
   height: 46
 });
@@ -3686,6 +3687,7 @@ canvas.on({
       showSettings();
     }
     else if (activeObject.id == "doorbell_save_btn" || activeObject.id == "doorbell_save_btn_text") {
+      CURRENT_USER.doorbell_pref = DoorbellAudio;
       hideDoorbellSettings(true);
       showSettings();
     }
