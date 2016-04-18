@@ -660,17 +660,22 @@ function ShowMessageSettings()
   
   PublicText.backgroundColor = 'white';
   PrivateText.backgroundColor = 'white';
-  
+  HomeSelected();
 }
 
 function CloseMessageSettings()
 {
   MessagesDroplist.visible = false;
-  
   PublicText.visible = false;
   PrivateText.visible = false;
   
 }
+
+PublicText.on('mousedown', function ()
+{
+  CloseMessageSettings();
+  MessageBoxSelected();
+});
 
 var MessageBox = new fabric.Rect({
   left: 175,
@@ -3694,7 +3699,7 @@ canvas.on({
 
     else if(activeObject.id == 'messages'){
       ShowMessageSettings();
-      MessageBoxSelected();
+      //MessageBoxSelected();
       canvas.deactivateAll();
     }
     else if(activeObject.id == 'messageBox'){

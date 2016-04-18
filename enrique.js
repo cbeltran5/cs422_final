@@ -16,7 +16,7 @@ function AcceptSelected(){
  MessageHelloOutside.visible = true;
  accept_button.visible = false;
  MessageBox.visible = false;
- CloseMessageSettings();
+ //CloseMessageSettings();
  //HomeSelected();
    BringUpPrompt();
 }
@@ -33,7 +33,7 @@ function ShowMessageBox(){
   MessageBox.visible = true;
   accept_button.visible = true;
   MessageHelloOutside.visible = false;
-  HomeSelected();
+  //HomeSelected();
 }
 
 function HideMessageBox(){
