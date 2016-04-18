@@ -2298,7 +2298,7 @@ OrnamentDroplist.selectable = true;
 OrnamentDroplist.visible = false;
 OrnamentDroplist.hasBorders = true;
 OrnamentDroplist.hasControls =  false;
-ThemesDroplist.lockMovementX = OrnamentDroplist.lockMovementY = true;
+OrnamentDroplist.lockMovementX = OrnamentDroplist.lockMovementY = true;
 ArrayOfObjects.push(OrnamentDroplist);
 
 
@@ -3576,7 +3576,8 @@ LanguageArr.push(RussianLang);
 LanguageArr.push(SlovakLang);
 // ----------------- Some hide functions -----------------------------------------------
 
-function ShowLangaugeSetting(){
+function ShowLanguageSetting(){
+    mBackButton.addToBackStack(showSettings,HideLangaugeSetting);
     HideHome();
     LangaugePanel.visible = true;
     if(syslang == ENGLISH) {
@@ -3810,14 +3811,14 @@ canvas.on({
     else if(activeObject.id == 'alarm')
         AlarmOn();
 
-    else if(activeObject.id == 'user1name')
-       {
+    else if(activeObject.id == 'user1name'){
         HideUsersList(); 
-        User1FromInside();}
-
-    else if(activeObject.id == 'user2name')
-       {HideUsersList(); User2FromInside();}
-
+        User1FromInside();
+    }
+    else if(activeObject.id == 'user2name'){
+      HideUsersList(); 
+      User2FromInside();
+    }
     else if (activeObject.id == "doorbell")
       playDoorbellSound();
     else if (activeObject.id == "settings") {
@@ -3840,6 +3841,7 @@ canvas.on({
     else if (activeObject.id == "settings_themes"){
       hideSettings();
       ShowThemeSettings();
+      mBackButton.addToBackStack(showSettings,CloseThemeSettings);
     }
     else if (activeObject.id == "settings_brightness") {
       showBrightnessSettings();
@@ -3956,7 +3958,7 @@ canvas.on({
       NumberPadEvent();
     }
     else if(activeObject.id == 'settings_language') {
-      ShowLangaugeSetting();
+      ShowLanguageSetting();
       LanguageSettingIsActive = true;
     }
     

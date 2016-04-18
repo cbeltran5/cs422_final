@@ -744,7 +744,7 @@ function SaveLanguageSettings(lang) {
     HideLangaugeSetting();
     
     ShowLangFeedBack(LanguageArr[lang].text,changed);
-    mBackButton.addToBackStack(ShowLangaugeSetting, HideLangFeedBack);
+    mBackButton.addToBackStack(ShowLanguageSetting, HideLangFeedBack);
   }
   else {
     Console.log("Current user is null");
