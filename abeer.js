@@ -76,7 +76,9 @@ function HomeSelected()
     HideHome();
   else if(HomeIsActive == false)
     ShowHome();
-
+  if(backbutton != null)
+    backbutton.visible = false;
+  
   checkSettings();
 }
 

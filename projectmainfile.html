@@ -3009,6 +3009,7 @@ canvas.on({
       playDoorbellSound();
     else if (activeObject.id == "settings") {
       showSettings();
+      mBackButton.addToBackStack( HomeSelected,hideSettings);
       //canvas.deactivateAll();
     }
     else if (activeObject.id == "settings_traffic") {

@@ -42,7 +42,7 @@ function playDoorbellSound() {
 
 function showSettings() {
   //backbutton.visible = true;
-  mBackButton.addToBackStack( HomeSelected,hideSettings);
+
   SettingsIsActive = true;
   HideHome();
 
