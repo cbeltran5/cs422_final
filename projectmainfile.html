@@ -58,6 +58,11 @@
     <!-- but keep the same aspect ratio -->
     <!-- we will use width="2714" height="2200" for presentations and evaluation -->
 	<!-- <canvas id="c" width="494" height="400" style="border:2px solid black;" ></canvas> -->
+
+  <video id="video1" style="display: none">
+  <source src="tutorial.mp4">
+  </video>
+
     <canvas id="c" width="2714" height="2200" style="border:2px solid black;" ></canvas>
     <section>
     <h1>Inside Events</h1>
@@ -213,6 +218,7 @@ var OriginalObjCoordinate = [];
 var counter = 0;
 HeightsRadioButtons_DISABLE();
 var UsersNames = [];
+var DoorbellAudio = 'ding';
 
 //*******************************************************************************************
 
@@ -654,17 +660,68 @@ function ShowMessageSettings()
   
   PublicText.backgroundColor = 'white';
   PrivateText.backgroundColor = 'white';
-  
+  HomeSelected();
 }
 
 function CloseMessageSettings()
 {
   MessagesDroplist.visible = false;
-  
   PublicText.visible = false;
   PrivateText.visible = false;
   
 }
+
+PublicText.on('mousedown', function ()
+{
+  CloseMessageSettings();
+  MessageBoxSelected();
+});
+
+function ShowUsers(){
+  mBackButton.addToBackStack(showSettings,HideUserData);
+  UsersNames = [];
+  UserSettingList.visible = true;
+  //UserSettingMsg.visible = false;
+  //loop to get names and add them to canvas
+  for (i = 0; i < RegisteredUsers.length; i++){
+    var topv = 730 + (70*(i+1)/(i+1)) * (i+1);
+    var UserName = new fabric.Text('', {
+      fontFamily: 'Times',
+      fontSize: 60,
+      left: 400,
+      top: topv,
+    });
+    
+    UserName.setText(RegisteredUsers.at(i).firstname);
+   
+    UserName.on('mousedown', function ()
+    {
+      CloseMessageSettings();
+      MessageBoxSelected();
+    });
+    canvas.add(UserName);
+    UserName.bringForward();
+    UsersNames.push(UserName);
+    ArrayOfObjects.push(UsersNames[i]);
+  }
+
+  console.log("We are : "+ UsersNames.length);
+  console.log("here : "+ UsersNames[1].top);
+  console.log( "My array length a: " + ArrayOfObjects.length);
+
+
+  for (i = 0; i < UsersNames.length; i++) {
+    UsersNames[i].id = i;
+  }
+}
+
+
+PrivateText.on('mousedown', function ()
+{
+  CloseMessageSettings();
+  ShowUsers();
+  //MessageBoxSelected();
+});
 
 var MessageBox = new fabric.Rect({
   left: 175,
@@ -1877,13 +1934,13 @@ ArrayOfObjects.push(brightness_save_btn);
 
 
 var doorbell_save_btn = new fabric.Rect({
-  left: 325,
-  top: 600,
+  left: 290,
+  top: 470,
   fill: 'light-gray',
   stroke: 'green',
-  strokeWidth: 4,
-  width: 120,
-  height: 60,
+  strokeWidth: 2,
+  width: 80,
+  height: 30,
   angle: 0
 });
 doorbell_save_btn.visible = false;
@@ -1892,10 +1949,10 @@ doorbell_save_btn.lockMovementX = doorbell_save_btn.lockMovementY = true;
 doorbell_save_btn.id = 'doorbell_save_btn';
 
 var doorbell_save_btn_text = new fabric.IText('Save', {
-  fontFamily: 'arial black',
-  fontSize: 30,
-  left: 345,
-  top: 610 ,
+  fontFamily: 'Calibri',
+  fontSize: 20,
+  left: 300,
+  top: 475 ,
   width: 65,
   height: 46
 });
@@ -1908,13 +1965,13 @@ ArrayOfObjects.push(doorbell_save_btn);
 ArrayOfObjects.push(doorbell_save_btn_text);
 
 var doorbell_cancel_btn = new fabric.Rect({
-  left: 150,
-  top: 600,
+  left: 180,
+  top: 470,
   fill: 'light-gray',
   stroke: 'red',
-  strokeWidth: 4,
-  width: 120,
-  height: 60,
+  strokeWidth: 2,
+  width: 80,
+  height: 30,
   angle: 0
 });
 doorbell_cancel_btn.visible = false;
@@ -1923,10 +1980,10 @@ doorbell_cancel_btn.lockMovementX = doorbell_cancel_btn.lockMovementY = true;
 doorbell_cancel_btn.id = 'doorbell_cancel_btn';
 
 var doorbell_cancel_btn_text = new fabric.IText('Cancel', {
-  fontFamily: 'arial black',
-  fontSize: 30,
-  left: 155,
-  top: 610 ,
+  fontFamily: 'Calibri',
+  fontSize: 20,
+  left: 185,
+  top: 475 ,
   width: 65,
   height: 46
 });
@@ -1939,13 +1996,13 @@ ArrayOfObjects.push(doorbell_cancel_btn_text);
 ArrayOfObjects.push(doorbell_cancel_btn);
 
 var doorbell_mute_option = new fabric.Rect({
-  left: 200,
-  top: 340,
+  left: 180,
+  top: 320,
   fill: 'light-gray',
   stroke: 'black',
-  strokeWidth: 4,
+  strokeWidth: 3,
   width: 190,
-  height: 60,
+  height: 40,
   angle: 0
 });
 doorbell_mute_option.visible = false;
@@ -1954,10 +2011,10 @@ doorbell_mute_option.lockMovementX = doorbell_mute_option.lockMovementY = true;
 doorbell_mute_option.id = 'doorbell_mute_option';
 
 var doorbell_mute_option_text = new fabric.IText('Mute', {
-  fontFamily: 'arial black',
-  fontSize: 30,
-  left: 215,
-  top: 355,
+  fontFamily: 'Calibri',
+  fontSize: 20,
+  left: 200,
+  top: 330,
   width: 65,
   height: 46
 });
@@ -1970,13 +2027,13 @@ ArrayOfObjects.push(doorbell_mute_option_text);
 ArrayOfObjects.push(doorbell_mute_option);
 
 var doorbell_ding_option = new fabric.Rect({
-  left: 200,
-  top: 410,
+  left: 180,
+  top: 370,
   fill: 'light-gray',
   stroke: 'blue',
-  strokeWidth: 4,
+  strokeWidth: 3,
   width: 190,
-  height: 60,
+  height: 40,
   angle: 0
 });
 doorbell_ding_option.visible = false;
@@ -1985,10 +2042,10 @@ doorbell_ding_option.lockMovementX = doorbell_ding_option.lockMovementY = true;
 doorbell_ding_option.id = 'doorbell_ding_option';
 
 var doorbell_ding_option_text = new fabric.IText('Ding', {
-  fontFamily: 'arial black',
-  fontSize: 30,
-  left: 215,
-  top: 420,
+  fontFamily: 'Calibri',
+  fontSize:20,
+  left: 200,
+  top: 380,
   width: 65,
   height: 46
 });
@@ -2001,13 +2058,13 @@ ArrayOfObjects.push(doorbell_ding_option);
 ArrayOfObjects.push(doorbell_ding_option_text);
 
 var doorbell_dingdong_option = new fabric.Rect({
-  left: 200,
-  top: 480,
+  left: 180,
+  top: 420,
   fill: 'light-gray',
   stroke: 'black',
-  strokeWidth: 4,
+  strokeWidth: 3,
   width: 190,
-  height: 60,
+  height: 40,
   angle: 0
 });
 doorbell_dingdong_option.visible = false;
@@ -2016,10 +2073,10 @@ doorbell_dingdong_option.lockMovementX = doorbell_dingdong_option.lockMovementY 
 doorbell_dingdong_option.id = 'doorbell_dingdong_option';
 
 var doorbell_dingdong_option_text = new fabric.IText('Ding-Dong', {
-  fontFamily: 'arial black',
-  fontSize: 30,
-  left: 215,
-  top: 490,
+  fontFamily: 'Calibri',
+  fontSize: 20,
+  left: 200,
+  top: 430,
   width: 65,
   height: 46
 });
@@ -2938,7 +2995,137 @@ function Run911Call()
 
 
 }
+// ------------------- vidoe tutorial ----------------
 
+var VideoPanel = new fabric.Rect({
+  left: 148,
+  top: 310,
+  fill: 'darkgrey',
+  //stroke: 'darkgrey',
+  width: 253,
+  height: 205,
+  angle: 0
+});
+VideoPanel.visible = false;
+VideoPanel.hasControls = VideoPanel.hasBorders = VideoPanel.selectable = false;
+VideoPanel.lockMovementX = VideoPanel.lockMovementY = true;
+
+//fabric.util.loadImage('images/videoBackground.jpg', function (img) {
+  //VideoPanel.setPatternFill({
+    //source: img,
+  //  repeat: 'repeat'
+ // });
+//});
+
+ArrayOfObjects.push(VideoPanel);
+
+
+var VideoElement1 = document.getElementById('video1');
+var video1 = new fabric.Image(VideoElement1, {
+  left: 150,
+  top: 312,
+  width: 250,
+  height: 200,
+});
+video1.visible = false;
+video1.hasControls = video1.hasBorders = video1.selectable = false;
+video1.lockMovementX = video1.lockMovementY = true;
+
+fabric.Image.fromURL('images/play.gif', function(oImg) {
+  oImg.set({left: 547, top: 1152, borderColor: 'silver', id: this.id});
+  oImg.hasControls = false;
+  oImg.hasBorders = false;
+  oImg.lockMovementY = true;
+  oImg.lockMovementX = true;
+  oImg.visible = false;
+  oImg.scale(0.55);
+  oImg.id = 'play';
+  canvas.add(oImg);
+  });
+
+fabric.Image.fromURL('images/pause.gif', function(oImg) {
+  oImg.set({left: 547, top: 1152, borderColor: 'silver', id: this.id});
+  oImg.hasControls = false;
+  oImg.hasBorders = false;
+  oImg.lockMovementY = true;
+  oImg.lockMovementX = true;
+  oImg.visible = false;
+  oImg.scale(0.55);
+  oImg.id = 'pause';
+  canvas.add(oImg);
+  });
+
+
+
+
+function ShowVideoTour()
+{
+  hideSettings();
+  video1.visible = true;
+  VideoPanel.visible = true;
+  for (var i = 0; i < canvas.getObjects().length; ++i) 
+  { 
+    if (canvas.item(i).id == 'play') 
+    {
+      canvas.item(i).visible = true;
+    }
+    
+    
+  }
+
+}
+
+function HideVideoTour()
+{
+  video1.visible = false;
+  VideoPanel.visible = false;
+  for (var i = 0; i < canvas.getObjects().length; ++i) 
+  { 
+    if (canvas.item(i).id == 'play' || canvas.item(i).id == 'pause' ) 
+    {
+      canvas.item(i).visible = false;
+    }
+    
+  }
+
+}
+
+function play()
+{
+  video1.getElement().play();
+
+  for (var i = 0; i < canvas.getObjects().length; ++i) 
+  { 
+    if (canvas.item(i).id == 'play') 
+    {
+      canvas.item(i).visible = false;
+    }
+    else if (canvas.item(i).id == 'pause') 
+    {
+      canvas.item(i).visible = true;
+    }
+
+    
+  }
+}
+
+function pause()
+{
+  video1.getElement().pause();
+  for (var i = 0; i < canvas.getObjects().length; ++i) 
+  { 
+    if (canvas.item(i).id == 'pause') 
+    {
+      canvas.item(i).visible = false;
+    }
+    else if (canvas.item(i).id == 'play') 
+    {
+      canvas.item(i).visible = true;
+    }
+
+    
+  }
+}
 //----------------------- All components for Language settings -------------------------
 
 var LangaugePanel = new fabric.Rect({
@@ -3529,6 +3716,9 @@ canvas.add(langpromptbox);
 canvas.add(FailOrSuccess);
 canvas.add(FeedBackMessage);
 canvas.add(ReturnMessage);
+
+canvas.add(VideoPanel);
+canvas.add(video1);
 //************************************** Functions *******************************************
 canvas.on({
   'object:moving': function(e) {
@@ -3642,13 +3832,14 @@ canvas.on({
       showSettings();
     }
     else if (activeObject.id == "doorbell_save_btn" || activeObject.id == "doorbell_save_btn_text") {
+      CURRENT_USER.doorbell_pref = DoorbellAudio;
       hideDoorbellSettings(true);
       showSettings();
     }
 
     else if(activeObject.id == 'messages'){
       ShowMessageSettings();
-      MessageBoxSelected();
+      //MessageBoxSelected();
       canvas.deactivateAll();
     }
     else if(activeObject.id == 'messageBox'){
@@ -3733,6 +3924,18 @@ canvas.on({
         console.log("langselected: " + langselected);
         SaveLanguageSettings(langselected);
     }
+    else if(activeObject.id == 'settings_intercom') {
+      ShowVideoTour();
+    }
+
+    else if(activeObject.id == 'play') {
+      play();
+    }
+
+    else if(activeObject.id == 'pause') {
+      pause();
+    }
+
     canvas.deactivateAll();
   }
 });

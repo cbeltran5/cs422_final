@@ -445,16 +445,27 @@ function toggle_doobell_option(newOption) {
       doorbell_mute_option.stroke = "blue";
       doorbell_ding_option.stroke = "black";
       doorbell_dingdong_option.stroke = "black";
+      DoorbellAudio = 'mute';
       break
     case "ding":
       doorbell_mute_option.stroke = "black";
       doorbell_ding_option.stroke = "blue";
       doorbell_dingdong_option.stroke = "black";
+      DoorbellAudio = 'ding';
+      filename = 'sounds/ding.mp3';
+      var audio = new Audio(filename);
+      audio.currentTime=0;
+      audio.play();
       break;
     case "ding-dong":
       doorbell_mute_option.stroke = "black";
       doorbell_ding_option.stroke = "black";
       doorbell_dingdong_option.stroke = "blue";
+      DoorbellAudio = 'ding-dong';
+      filename = 'sounds/ding-dong.mp3';
+      var audio = new Audio(filename);
+      audio.currentTime=0;
+      audio.play();
       break;
     default:
       break;
