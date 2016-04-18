@@ -4012,6 +4012,19 @@ ArrayOfObjects.push(MessageHelloOutside);  */
 //------------- I did Messages above here here go above it for langauge setting -------------------
 //--------------------------------------------------------------------------------------
 // add all of the elements to the canvas
+function ShowDateTimeSettings()
+{
+    DateTimePanel.visible = true;
+    DateFormatText.visible = true;
+    TimeFormatText.visible = true;
+    DateFormat1.visible = true;
+    DateFormat2.visible = true;
+    DateFormat3.visible = true;
+    DateFormat4.visible = true;
+    TimeFormat1.visible = true;
+    TimeFormat2.visible = true;
+    SaveDateTimeFormatButton.visible = true;
+}
 
 canvas.add(insideDoor);
 canvas.add(outsideDoor);
@@ -4388,6 +4401,11 @@ canvas.on({
     else if(activeObject.id == 'settings_language') {
       ShowLanguageSetting();
       LanguageSettingIsActive = true;
+    }
+
+    else if(activeObject.id == 'settings_datetime')
+    {
+        ShowDateTimeSettings();
     }
 
     if( (langselected = isLangSelected(activeObject)) != null ){
