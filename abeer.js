@@ -149,14 +149,10 @@ function HideHome()
   HideUserData();
   CloseThemeSettings();
   Hide911();
-
   
-
   PanelRect.visible = false;
-
-
-  for (var i = 0; i < canvas.getObjects().length; ++i)
-  {
+  
+  for (var i = 0; i < canvas.getObjects().length; ++i){
     if (canvas.item(i).id == 'messages' || canvas.item(i).id == 'camera'   ||
         canvas.item(i).id == 'traffic'  || canvas.item(i).id == 'cta'      ||
         canvas.item(i).id == 'news'     || canvas.item(i).id == 'mirror'   ||
@@ -182,6 +178,11 @@ function HideHome()
 }
 
 
+/************************************************************************************
+  I wrote LoadLocks so we do not go through the entire canvas objects
+  looking for the objects we need everytime we need it. instead just got a handle to it,
+  and used that as a reference when needed   ~Gabe =D
+*************************************************************************************/
 var lockknobin;
 var unlockknobin;
 var lockknobout;
@@ -213,6 +214,8 @@ function LoadLocks() {
   }
   arelocksloaded = true;
 }
+
+
 
 //-------------------------------------------------------------
  function UnlockDoorIn(){
@@ -306,70 +309,69 @@ function LockDeadbolt(){
   lockdeadbolt.visible = true;
 }
 
+
 //------------------ Radio buttons Events Functions -------------------------
-function User1FromInside()
-{
-  HideHome();
-  HideUsersList();
-  HideUser2FromInside();
-
-  for (var i = 0; i < canvas.getObjects().length; ++i) {
-    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
-        canvas.item(i).visible = true;
-  }
-
-  LoadUserData_Inside(2);
-  
-  var insideradio = document.getElementsByName('UsersIn');
-  insideradio[5].checked = true; 
-  //document.getElementsByName('Verification')[1].disabled = false;
-  //console.log(CURRENT_USER.firstname);
-  UpdateText();
-}
-
-//-------------------------------------------------------------
-function HideUser1FromInside()
-{
-  for (var i = 0; i < canvas.getObjects().length; ++i)
-  {
-    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
-      canvas.item(i).visible = false;
-  }
-}
+//function User1FromInside()
+//{
+//  HideHome();
+//  HideUsersList();
+//  HideUser2FromInside();
+//
+//  for (var i = 0; i < canvas.getObjects().length; ++i) {
+//    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
+//        canvas.item(i).visible = true;
+//  }
+//
+//  LoadUserData_Inside(2);
+//  
+//  var insideradio = document.getElementsByName('UsersIn');
+//  insideradio[5].checked = true; 
+//  //document.getElementsByName('Verification')[1].disabled = false;
+//  //console.log(CURRENT_USER.firstname);
+//  UpdateText();
+//}
 
 //-------------------------------------------------------------
-function User2FromInside()
-{
-  HideHome();
-  HideUsersList();
-  HideUser1FromInside();
-
-  for (var i = 0; i < canvas.getObjects().length; ++i) {
-    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user2todo')
-        canvas.item(i).visible = true;
-  }
-
-  LoadUserData_Inside(0);
-
-  var insideradio = document.getElementsByName('UsersIn');
-  insideradio[3].checked = true; 
-  //document.getElementsByName('UsersFromInside')[2].checked = true; 
-  //document.getElementsByName('Verification')[1].disabled = false;
-  //console.log(CURRENT_USER.firstname);
-  UpdateText();
-}
-
+//function HideUser1FromInside()
+//{
+//  for (var i = 0; i < canvas.getObjects().length; ++i)
+//  {
+//    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
+//      canvas.item(i).visible = false;
+//  }
+//}
 //-------------------------------------------------------------
-function HideUser2FromInside()
-{
-
-for (var i = 0; i < canvas.getObjects().length; ++i)
-    {
-      if (canvas.item(i).id == 'user2calender' || canvas.item(i).id == 'user2todo')
-
-        canvas.item(i).visible = false;
-    }
-}
+//function User2FromInside()
+//{
+//  HideHome();
+//  HideUsersList();
+//  HideUser1FromInside();
+//
+//  for (var i = 0; i < canvas.getObjects().length; ++i) {
+//    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user2todo')
+//        canvas.item(i).visible = true;
+//  }
+//
+//  LoadUserData_Inside(0);
+//
+//  var insideradio = document.getElementsByName('UsersIn');
+//  insideradio[3].checked = true; 
+//  //document.getElementsByName('UsersFromInside')[2].checked = true; 
+//  //document.getElementsByName('Verification')[1].disabled = false;
+//  //console.log(CURRENT_USER.firstname);
+//  UpdateText();
+//}
+//-------------------------------------------------------------
+//function HideUser2FromInside()
+//{
+//
+//for (var i = 0; i < canvas.getObjects().length; ++i)
+//    {
+//      if (canvas.item(i).id == 'user2calender' || canvas.item(i).id == 'user2todo')
+//
+//        canvas.item(i).visible = false;
+//    }
+//}
 
 //-------------------------------------------------------------
 function MultiUsersFromInside()
