@@ -305,6 +305,7 @@ function User(firstname, lastname, language) {
       this.myObjects[i].visible = true;
     }
   }
+  
   this.myMessages = [];
   this.showMessages = function () {
     console.log("showMessages is not yet implemented. see gabe.js");
@@ -312,6 +313,10 @@ function User(firstname, lastname, language) {
   this.hideMessages = function() {
     console.log("hideMessages is not yet implemented. see gabe.js");
   }
+  this.addMessage = function (msg) {
+    this.myMessages.push(msg);
+  }
+  
 
   RegisteredUsers.addUser(this);
 
@@ -501,8 +506,6 @@ function VerifyFirst(value) {
 
 function VerifySecond(value) {
   console.log("second " + value);
-
-
   if(value == "None") {
     verify[0].disabled = true;
     verify[1].disabled = true;
@@ -515,9 +518,10 @@ function VerifySecond(value) {
 
 function Verify(value) {
   console.log("verify " + value);
-
 }
 
-
+function VolumeSettings() {
+  console.log("Volume Settings");
+}
 
 
