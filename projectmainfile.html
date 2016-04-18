@@ -135,7 +135,7 @@
       </form>
       </code>
       </section>
-      
+
       <section>
       <code>
       <form name="Verification"> Verification:<br>
@@ -152,9 +152,9 @@
 </body>
 
 <script>
-  
 
-  
+
+
 
 
 // the aspect ratios given here are not quite tall enough for a 36" x 80" door
@@ -1249,6 +1249,7 @@ var traffic_add_btn = new fabric.Rect({
   top: 500,
   fill: 'white',
   stroke: 'black',
+  strokeWidth: 4,
   width: 74,
   height: 51,
   angle: 0
@@ -1279,6 +1280,7 @@ var traffic_save_btn = new fabric.Rect({
   top: 500,
   fill: 'white',
   stroke: 'black',
+  strokeWidth: 4,
   width: 65,
   height: 46,
   angle: 0
@@ -1309,6 +1311,7 @@ var traffic_input_name = new fabric.Rect({
   top: 330,
   fill: 'white',
   stroke: 'black',
+  strokeWidth: 4,
   width: 250,
   height: 50,
   angle: 0
@@ -1339,6 +1342,7 @@ var traffic_input_address = new fabric.Rect({
   top: 400,
   fill: 'white',
   stroke: 'black',
+  strokeWidth: 4,
   width: 275,
   height: 75,
   angle: 0
@@ -1622,6 +1626,7 @@ var one_min_btn = new fabric.Rect({
   top: 500,
   fill: 'light-gray',
   stroke: 'black',
+  strokeWidth: 4,
   width: 95,
   height: 60,
   angle: 0
@@ -1652,6 +1657,7 @@ var three_min_btn = new fabric.Rect({
   top: 500,
   fill: 'light-gray',
   stroke: 'blue',
+  strokeWidth: 4,
   width: 95,
   height: 60,
   angle: 0
@@ -1682,6 +1688,7 @@ var five_min_btn = new fabric.Rect({
   top: 500,
   fill: 'light-gray',
   stroke: 'black',
+  strokeWidth: 4,
   width: 95,
   height: 60,
   angle: 0
@@ -1712,6 +1719,7 @@ var brightness_save_btn = new fabric.Rect({
   top: 600,
   fill: 'light-gray',
   stroke: 'green',
+  strokeWidth: 4,
   width: 90,
   height: 60,
   angle: 0
@@ -1736,6 +1744,167 @@ brightness_save_btn_text.id = 'brightness_save_btn_text';
 
 ArrayOfObjects.push(brightness_save_btn_text);
 ArrayOfObjects.push(brightness_save_btn);
+
+//********************************************************************************************
+
+
+var doorbell_save_btn = new fabric.Rect({
+  left: 325,
+  top: 600,
+  fill: 'light-gray',
+  stroke: 'green',
+  strokeWidth: 4,
+  width: 120,
+  height: 60,
+  angle: 0
+});
+doorbell_save_btn.visible = false;
+doorbell_save_btn.hasControls = doorbell_save_btn.hasBorders = false;
+doorbell_save_btn.lockMovementX = doorbell_save_btn.lockMovementY = true;
+doorbell_save_btn.id = 'doorbell_save_btn';
+
+var doorbell_save_btn_text = new fabric.IText('Save', {
+  fontFamily: 'arial black',
+  fontSize: 30,
+  left: 345,
+  top: 610 ,
+  width: 65,
+  height: 46
+});
+doorbell_save_btn_text.visible = false;
+doorbell_save_btn_text.hasControls = doorbell_save_btn_text.hasBorders = false;
+doorbell_save_btn_text.lockMovementX = doorbell_save_btn_text.lockMovementY = true;
+doorbell_save_btn_text.id = 'doorbell_save_btn_text';
+
+ArrayOfObjects.push(doorbell_save_btn);
+ArrayOfObjects.push(doorbell_save_btn_text);
+
+var doorbell_cancel_btn = new fabric.Rect({
+  left: 150,
+  top: 600,
+  fill: 'light-gray',
+  stroke: 'red',
+  strokeWidth: 4,
+  width: 120,
+  height: 60,
+  angle: 0
+});
+doorbell_cancel_btn.visible = false;
+doorbell_cancel_btn.hasControls = doorbell_cancel_btn.hasBorders = false;
+doorbell_cancel_btn.lockMovementX = doorbell_cancel_btn.lockMovementY = true;
+doorbell_cancel_btn.id = 'doorbell_cancel_btn';
+
+var doorbell_cancel_btn_text = new fabric.IText('Cancel', {
+  fontFamily: 'arial black',
+  fontSize: 30,
+  left: 155,
+  top: 610 ,
+  width: 65,
+  height: 46
+});
+doorbell_cancel_btn_text.visible = false;
+doorbell_cancel_btn_text.hasControls = doorbell_cancel_btn_text.hasBorders = false;
+doorbell_cancel_btn_text.lockMovementX = doorbell_cancel_btn_text.lockMovementY = true;
+doorbell_cancel_btn_text.id = 'doorbell_cancel_btn_text';
+
+ArrayOfObjects.push(doorbell_cancel_btn_text);
+ArrayOfObjects.push(doorbell_cancel_btn);
+
+var doorbell_mute_option = new fabric.Rect({
+  left: 200,
+  top: 340,
+  fill: 'light-gray',
+  stroke: 'black',
+  strokeWidth: 4,
+  width: 190,
+  height: 60,
+  angle: 0
+});
+doorbell_mute_option.visible = false;
+doorbell_mute_option.hasControls = doorbell_mute_option.hasBorders = false;
+doorbell_mute_option.lockMovementX = doorbell_mute_option.lockMovementY = true;
+doorbell_mute_option.id = 'doorbell_mute_option';
+
+var doorbell_mute_option_text = new fabric.IText('Mute', {
+  fontFamily: 'arial black',
+  fontSize: 30,
+  left: 215,
+  top: 355,
+  width: 65,
+  height: 46
+});
+doorbell_mute_option_text.visible = false;
+doorbell_mute_option_text.hasControls = doorbell_mute_option_text.hasBorders = false;
+doorbell_mute_option_text.lockMovementX = doorbell_mute_option_text.lockMovementY = true;
+doorbell_mute_option_text.id = 'doorbell_mute_option_text';
+
+ArrayOfObjects.push(doorbell_mute_option_text);
+ArrayOfObjects.push(doorbell_mute_option);
+
+var doorbell_ding_option = new fabric.Rect({
+  left: 200,
+  top: 410,
+  fill: 'light-gray',
+  stroke: 'blue',
+  strokeWidth: 4,
+  width: 190,
+  height: 60,
+  angle: 0
+});
+doorbell_ding_option.visible = false;
+doorbell_ding_option.hasControls = doorbell_ding_option.hasBorders = false;
+doorbell_ding_option.lockMovementX = doorbell_ding_option.lockMovementY = true;
+doorbell_ding_option.id = 'doorbell_ding_option';
+
+var doorbell_ding_option_text = new fabric.IText('Ding', {
+  fontFamily: 'arial black',
+  fontSize: 30,
+  left: 215,
+  top: 420,
+  width: 65,
+  height: 46
+});
+doorbell_ding_option_text.visible = false;
+doorbell_ding_option_text.hasControls = doorbell_ding_option_text.hasBorders = false;
+doorbell_ding_option_text.lockMovementX = doorbell_ding_option_text.lockMovementY = true;
+doorbell_ding_option_text.id = 'doorbell_ding_option_text';
+
+ArrayOfObjects.push(doorbell_ding_option);
+ArrayOfObjects.push(doorbell_ding_option_text);
+
+var doorbell_dingdong_option = new fabric.Rect({
+  left: 200,
+  top: 480,
+  fill: 'light-gray',
+  stroke: 'black',
+  strokeWidth: 4,
+  width: 190,
+  height: 60,
+  angle: 0
+});
+doorbell_dingdong_option.visible = false;
+doorbell_dingdong_option.hasControls = doorbell_dingdong_option.hasBorders = false;
+doorbell_dingdong_option.lockMovementX = doorbell_dingdong_option.lockMovementY = true;
+doorbell_dingdong_option.id = 'doorbell_dingdong_option';
+
+var doorbell_dingdong_option_text = new fabric.IText('Ding-Dong', {
+  fontFamily: 'arial black',
+  fontSize: 30,
+  left: 215,
+  top: 490,
+  width: 65,
+  height: 46
+});
+doorbell_dingdong_option_text.visible = false;
+doorbell_dingdong_option_text.hasControls = doorbell_dingdong_option_text.hasBorders = false;
+doorbell_dingdong_option_text.lockMovementX = doorbell_dingdong_option_text.lockMovementY = true;
+doorbell_dingdong_option_text.id = 'doorbell_dingdong_option_text';
+
+ArrayOfObjects.push(doorbell_dingdong_option_text);
+ArrayOfObjects.push(doorbell_dingdong_option);
+
+
+
 
 //********************************************************************************************
 
@@ -2233,17 +2402,18 @@ fabric.Image.fromURL('images/Usersettinglist.jpg', function(oImg) {
 
 var UsersNames = [];
 function ShowUserSettings(){
-  UserSettingList.visible = true;  
+  UserSettingList.visible = true;
+  //loop to get names and add them to canvas
   for (i = 0; i < RegisteredUsers.length; i++){
-    var topv = 730 + (70 * (i+1));
-//    var topv = 730 + (70*(i+1)/(i+1)) * (i+1);
+  var topv = 730 + (70 * (i+1));
+  //var topv = 730 + (70*(i+1)/(i+1)) * (i+1);
     var UserName = new fabric.Text('', {
       fontFamily: 'Times',
       fontSize: 60,
       left: 400,
       top: topv,
     });
-    
+
     UserName.setText(RegisteredUsers.at(i).firstname);
     canvas.add(UserName);
     UserName.bringForward();
@@ -2337,6 +2507,16 @@ canvas.add(five_min_btn_text);
 canvas.add(brightness_save_btn);
 canvas.add(brightness_save_btn_text);
 
+canvas.add(doorbell_cancel_btn)
+canvas.add(doorbell_cancel_btn_text);
+canvas.add(doorbell_save_btn);
+canvas.add(doorbell_save_btn_text);
+canvas.add(doorbell_mute_option);
+canvas.add(doorbell_mute_option_text);
+canvas.add(doorbell_ding_option);
+canvas.add(doorbell_ding_option_text);
+canvas.add(doorbell_dingdong_option);
+canvas.add(doorbell_dingdong_option_text);
 
 //For themes texts and components
 canvas.add(InsideText);
@@ -2439,9 +2619,29 @@ canvas.on({
     else if (activeObject.id == "three_min_btn" || activeObject.id == "three_min_btn_text")
       updateDisplayTimer("three");
     else if (activeObject.id == "brightness_save_btn" || activeObject.id == "brightness_save_btn_text"){
-      hideBrightnessSettings();
+      hideBrightnessSettings(true);
       showSettings();
     }
+    else if (activeObject.id == "settings_doorbell") {
+      showDoorbellSettings();
+      hideSettings();
+    }
+    else if (activeObject.id == "doorbell_dingdong_option" || activeObject.id == "doorbell_dingdong_option_text")
+      toggle_doobell_option("ding-dong");
+    else if (activeObject.id == "doorbell_ding_option" || activeObject.id == "doorbell_ding_option_text")
+      toggle_doobell_option("ding");
+    else if (activeObject.id == "doorbell_mute_option" || activeObject.id == "doorbell_mute_option_text")
+      toggle_doobell_option("mute");
+    else if (activeObject.id == "doorbell_cancel_btn" || activeObject.id == "doorbell_cancel_btn_text") {
+      hideDoorbellSettings(false);
+      showSettings();
+    }
+    else if (activeObject.id == "doorbell_save_btn" || activeObject.id == "doorbell_save_btn_text") {
+      hideDoorbellSettings(true);
+      showSettings();
+    }
+
+
 
     if(activeObject.id == 'mirror')
       {
@@ -2476,12 +2676,12 @@ canvas.on({
     }
 
 
-  if(activeObject.id == "settings_users") 
+  if(activeObject.id == "settings_users")
   {
-    
+
       hideSettings();
       ShowUserSettings();
-    
+
   }
 }
 });

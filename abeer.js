@@ -519,7 +519,7 @@ function ResetCoordinates(){
   document.getElementsByName('Verification')[3].disabled = false;
   for (var i = 0; i < canvas.getObjects().length; ++i)
   {
-     if (canvas.item(i).id == 'doorbell' || canvas.item(i).id == 'writemsg'|| canvas.item(i).id == 'numberpad'' ||
+     if (canvas.item(i).id == 'doorbell' || canvas.item(i).id == 'writemsg'|| canvas.item(i).id == 'numberpad' ||
          canvas.item(i).id == 'UnlockKnobOut' || canvas.item(i).id == 'LockKnobOut')
      {
         canvas.item(i).visible = false;
@@ -604,7 +604,7 @@ function FailedVerification()
   ResetDoorFromOutside();
   TriggerDoorFromOutside();
   for (var i = 0; i < canvas.getObjects().length; ++i){
-     if (canvas.item(i).id == 'numberpad''){
+     if (canvas.item(i).id == 'numberpad'){
         canvas.item(i).visible = true;
      }
   }
