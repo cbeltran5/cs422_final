@@ -2703,10 +2703,12 @@ function BackButton() {
   this.addToBackStack = function( returnTo, hidefunction){
     this.hidefunctions.push(hidefunction);
     this.howigothere.push(returnTo);
+    console.log(returnTo.name);
+    console.log(hidefunction.name);
   }
   
   this.goBack = function() {
-    var hide = this.hidefunction.pop();
+    var hide = this.hidefunctions.pop();
     var returnto = this.howigothere.pop();
     hide();
     returnto();
@@ -2714,8 +2716,6 @@ function BackButton() {
 }
   
 var mBackButton = new BackButton();
-
-
 
   
 function ShowUserData(id){
