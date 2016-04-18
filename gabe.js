@@ -172,6 +172,8 @@ var INPUT_NAME = ["Type your name...", "Escriba su nombre"];
 var INPUT_ADDRESS = ["The address...", "La direccion"];
 var BRIGHTNESS = ["Brightness", "Brillo"];
 var DISPLAY = ["Display Timer", "Minutero de Pantalla "];
+var CANCEL = ["Cancel", "Cancelar"];
+var MUTE = ["Mute", "Mudo"];
 
 // when called, this function will update the text of the respective
 // faric text object with a string that matches that object and the currently
@@ -205,6 +207,10 @@ function UpdateText() {
   traffic_input_name_text.text = INPUT_NAME[syslang];
   brightness_text.text = BRIGHTNESS[syslang];
   display_text.text = DISPLAY[syslang];
+  brightness_save_btn_text.text = SAVE[syslang];
+  doorbell_cancel_btn_text.text = CANCEL[syslang];
+  doorbell_save_btn_text.text = SAVE[syslang];
+  doorbell_mute_option_text.text = MUTE[syslang];
 
 }
 /***********************************************************************
@@ -278,6 +284,8 @@ function User(firstname, lastname, language) {
 
   this.brightness_pref = 1;
   this.display_timer_pref = "five_min_btn";
+
+  this.doorbell_pref = "Ding";
 
   this.getFullName = function () {
     return this.firstname + " " + this.lastname;
@@ -482,12 +490,12 @@ function VerifyFirst(value) {
       }
     }
   }
-  
+
 }
 
 function VerifySecond(value) {
   console.log("second " + value);
-  
+
 }
 
 

@@ -1,10 +1,10 @@
-var audio = new Audio('sounds/doorbell.mp3');
 var usersActive = false;
 var trafficSettingsActive = false;
 var doorbellSettingsActive = false;
 var brightnessSettingsActive = false;
 var themeSettingsActive = false;
 var newUserAdded = false;
+var current_doorbell_option = "Ding";
 
 // traffic settings
 var stars = [];
@@ -26,6 +26,11 @@ function checkSettings() {
 }
 
 function playDoorbellSound() {
+  if (CURRENT_USER.doorbell_pref == "mute")
+    return;
+
+  filename = 'sounds/' + CURRENT_USER.doorbell_pref + ".mp3"
+  var audio = new Audio(filename);
   audio.currentTime=0;
   audio.play();
 }
@@ -367,6 +372,68 @@ function updateDisplayTimer(newSetting)
 {
   CURRENT_USER.display_timer_pref = newSetting;
   toggle_display_buttons(newSetting);
+}
+
+function showDoorbellSettings()
+{
+  doorbellSettingsActive = true;
+  PanelRect.visible = false;
+
+  doorbell_cancel_btn.visible = true;
+  doorbell_cancel_btn_text.visible = true;
+  doorbell_save_btn.visible = true;
+  doorbell_save_btn_text.visible = true;
+  doorbell_mute_option.visible = true;
+  doorbell_mute_option_text.visible = true;
+  doorbell_ding_option.visible = true;
+  doorbell_ding_option_text.visible = true;
+  doorbell_dingdong_option.visible = true;
+  doorbell_dingdong_option_text.visible = true;
+
+  toggle_doobell_option(CURRENT_USER.doorbell_pref);
+}
+
+function hideDoorbellSettings(save)
+{
+  doorbellSettingsActive = false;
+
+  doorbell_cancel_btn.visible = false;
+  doorbell_cancel_btn_text.visible = false;
+  doorbell_save_btn.visible = false;
+  doorbell_save_btn_text.visible = false;
+  doorbell_mute_option.visible = false;
+  doorbell_mute_option_text.visible = false;
+  doorbell_ding_option.visible = false;
+  doorbell_ding_option_text.visible = false;
+  doorbell_dingdong_option.visible = false;
+  doorbell_dingdong_option_text.visible = false;
+
+  if (save == true) {
+    CURRENT_USER.doorbell_pref = current_doorbell_option;
+  }
+}
+
+function toggle_doobell_option(newOption) {
+  current_doorbell_option = newOption;
+  switch (newOption) {
+    case "mute":
+      doorbell_mute_option.stroke = "blue";
+      doorbell_ding_option.stroke = "black";
+      doorbell_dingdong_option.stroke = "black";
+      break
+    case "ding":
+      doorbell_mute_option.stroke = "black";
+      doorbell_ding_option.stroke = "blue";
+      doorbell_dingdong_option.stroke = "black";
+      break;
+    case "ding-dong":
+      doorbell_mute_option.stroke = "black";
+      doorbell_ding_option.stroke = "black";
+      doorbell_dingdong_option.stroke = "blue";
+      break;
+    default:
+      break;
+  }
 }
 
 // TODO??
