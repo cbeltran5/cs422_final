@@ -94,6 +94,7 @@ function ShowHome(){
   // HideLights();
   HideTransport();
   HideNews();
+  CloseMessageSettings();
   HideMessageBox();
   hideSettings();
   CloseThemeSettings();
