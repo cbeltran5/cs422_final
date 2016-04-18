@@ -184,6 +184,7 @@ var RETURNMSG=["Please press the back arrow to return to language settings.",
 // when called, this function will update the text of the respective
 // faric text object with a string that matches that object and the currently
 // set language
+
 function UpdateText() {
   Messagestext.text = MESSAGES[syslang];
   Cameratext.text = CAMERA[syslang];
@@ -217,7 +218,7 @@ function UpdateText() {
   doorbell_cancel_btn_text.text = CANCEL[syslang];
   doorbell_save_btn_text.text = SAVE[syslang];
   doorbell_mute_option_text.text = MUTE[syslang];
-
+  VolumeSettingsText.text = VOLUME[syslang];
 }
 /***********************************************************************
                            END OF DATE AND TIME
@@ -298,7 +299,8 @@ function User(firstname, lastname, language, pin) {
 
   this.brightness_pref = 1;
   this.display_timer_pref = "three";
-
+  this.vpercent = "50";
+  this.sliderleft = "0";
   this.doorbell_pref = "Ding";
 
   this.getFullName = function () {
@@ -562,6 +564,8 @@ function HideVolumeSettings() {
   volumebar.visible = false;
   volumepanel.visible = false;
   volumeslider.visible = false;
+  VolumeSettingsText.visible = false;
+  volumePercentage.visible = false;
 }
 
 function ShowVolumeSettings() {
@@ -569,6 +573,8 @@ function ShowVolumeSettings() {
   volumebar.visible = true;
   volumepanel.visible = true;
   volumeslider.visible = true;
+  VolumeSettingsText.visible = true;
+  volumePercentage.visible = true;
 }
 
 var steponeselected = false;

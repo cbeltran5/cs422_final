@@ -2781,6 +2781,7 @@ var volumepanel = new fabric.Rect({
 volumepanel.visible = false;
 volumepanel.hasControls = volumepanel.hasBorders = volumepanel.selectable = false;
 volumepanel.lockMovementX = volumepanel.lockMovementY = true;
+
   
 var volumebar = new fabric.Rect({
   left: panelleft + 50,
@@ -2812,10 +2813,29 @@ ArrayOfObjects.push(volumepanel);
 ArrayOfObjects.push(volumebar);
 ArrayOfObjects.push(volumeslider);
 
+var VolumeSettingsText = FabricText(VOLUME[syslang],235,350,24);
+//VolumeSettingsText.visible = true; 
+var volumePercentage = FabricText("0%",260, 450, 20);
+
+var vpercent;
+var left;
 canvas.on("object:moving", function() {
   var leftBound = volumebar.left;
-  var rightBound = leftBound + volumebar.width*2.22 - volumeslider.width*2.22;
-  volumeslider.setLeft( Math.min( Math.max(volumeslider.left, leftBound) , rightBound));      
+  var widthdiff = volumebar.width*2.22 - volumeslider.width*2.22
+  var rightBound = leftBound + widthdiff;
+  volumeslider.setLeft( Math.min( Math.max(volumeslider.left, leftBound) , rightBound));
+  left = volumeslider.left;
+  vpercent = ((volumeslider.left - leftBound) * 100 / widthdiff).toFixed(0);
+  volumePercentage.text =  "" + vpercent + "%";
+  console.log(vpercent);
+});
+  
+canvas.on("mouse:up", function (object) {
+//  console.log(object.target);
+  if(object.target == volumeslider) {
+    CURRENT_USER.vpercent = vpercent;
+    CURRENT_USER.sliderleft = left;
+  }
 });
 
   
@@ -3697,6 +3717,8 @@ canvas.add(ResetTheme);
 canvas.add(volumepanel);
 canvas.add(volumebar);
 canvas.add(volumeslider);
+canvas.add(VolumeSettingsText);
+canvas.add(volumePercentage);
 
 //Language settings comp
 
@@ -3731,6 +3753,7 @@ canvas.add(FailOrSuccess);
 canvas.add(FeedBackMessage);
 canvas.add(ReturnMessage);
 
+  
 canvas.add(VideoPanel);
 canvas.add(video1);
 //************************************** Functions *******************************************
@@ -3753,6 +3776,8 @@ canvas.on({
     if(activeObject.id == 'home'){
       HomeSelected();
       HideLangFeedBack();
+      HideVolumeSettings()
+      
       canvas.deactivateAll();
       if(CURRENT_USER != null)
         CURRENT_USER.hideObjects();
