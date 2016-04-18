@@ -3862,6 +3862,14 @@ PublicText.on('mousedown', function ()
   PublicText.setOpacity(1);
   PrivateText.backgroundColor = 'white';
   PrivateText.setOpacity(0.3);
+
+  if(UsersNamesMsg.length!=0)
+  {
+    for(var i =0; i < UsersNamesMsg.length; i++)
+      UsersNamesMsg[i].visible = false;
+  }
+
+  UserSettingList.visible = false;
   //CloseMessageSettings();
   //MessageBoxSelected();
 });
