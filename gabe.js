@@ -463,13 +463,13 @@ function DateTime_Settings() {
 function VerifyFirst(value) {
   console.log("first " + value);
   if(value == "None") {
-    var elements = document.getElementsByName("verifysecond");
+    var elements = document.getElementsByName("verifySecond");
     for(var i=0; i< elements.length; i++){
       elements[i].disabled= true;
     }
   }
   else {
-    var elements = document.getElementsByName("verifysecond");
+    var elements = document.getElementsByName("verifySecond");
     for(var i=0; i< elements.length; i++){
       if(elements[i].value == value){
         elements[i].disabled = true;
@@ -478,15 +478,16 @@ function VerifyFirst(value) {
         elements[i].disabled = false;
       }
     }
-  }
-  
+  } 
 }
 
 function VerifySecond(value) {
   console.log("second " + value);
-  
 }
 
+function Verify(value) {
+  console.log("verify " + value);
+}
 
 
 
