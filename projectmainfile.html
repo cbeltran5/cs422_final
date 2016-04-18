@@ -2788,16 +2788,29 @@ var VolumeSettingsText = FabricText(VOLUME[syslang],235,350,24);
 var volumePercentage = FabricText("0%",260, 450, 20);
 ArrayOfObjects.push( VolumeSettingsText );
 ArrayOfObjects.push( volumePercentage  );
+  
 var vpercent;
 var left;
-canvas.on("object:moving", function() {
-  var leftBound = volumebar.left;
-  var widthdiff = volumebar.width*2.22 - volumeslider.width*2.22
-  var rightBound = leftBound + widthdiff;
-  volumeslider.setLeft( Math.min( Math.max(volumeslider.left, leftBound) , rightBound));
-  left = volumeslider.left;
-  vpercent = ((volumeslider.left - leftBound) * 100 / widthdiff).toFixed(0);
-  volumePercentage.text =  "" + vpercent + "%";
+canvas.on("object:moving", function(e) {
+  var activeObject = e.target;
+  if (activeObject.id == "slider") {
+    update_brightness(activeObject.left/(slider_back.left + (slider_back.width*2)));
+    if (activeObject.left <= slider_back.left) {
+      activeObject.left = slider_back.left
+    }
+    else if ( activeObject.left >= ( slider_back.left + (slider_back.width*2))) {
+      activeObject.left = slider_back.left + (slider_back.width*2);
+    }
+  } 
+  else {
+    var leftBound = volumebar.left;
+    var widthdiff = volumebar.width*2.22 - volumeslider.width*2.22
+    var rightBound = leftBound + widthdiff;
+    volumeslider.setLeft( Math.min( Math.max(volumeslider.left, leftBound) , rightBound));
+    left = volumeslider.left;
+    vpercent = ((volumeslider.left - leftBound) * 100 / widthdiff).toFixed(0);
+    volumePercentage.text =  "" + vpercent + "%";
+  } 
 //  console.log(vpercent);
 //  console.log(left);
 });
@@ -2815,7 +2828,6 @@ canvas.on("mouse:up", function (object) {
 //********************************************************************************************
 // Back Button
 
-var backbutton
 var backbutton = null;
 fabric.Image.fromURL('images/backbutton.png', function(oImg) {
   oImg.set({left: 550, top: 1155, id: this.id});
@@ -2832,7 +2844,7 @@ fabric.Image.fromURL('images/backbutton.png', function(oImg) {
 
 function BackButton() {
   this.hidefunctions = [];
-  this.howigothere = []
+  this.howigothere = [];
 
   this.addToBackStack = function( returnTo, hidefunction){
     this.hidefunctions.push(hidefunction);
@@ -3729,19 +3741,10 @@ canvas.add(ReturnMessage);
 canvas.add(VideoPanel);
 canvas.add(video1);
 //************************************** Functions *******************************************
-canvas.on({
-  'object:moving': function(e) {
-      var activeObject = e.target;
-      if (activeObject.id == "slider") {
-        update_brightness(activeObject.left/(slider_back.left + (slider_back.width*2)));
-        if (activeObject.left <= slider_back.left)
-          activeObject.left = slider_back.left
-        else if (activeObject.left >= (slider_back.left + (slider_back.width*2)))
-          activeObject.left = slider_back.left + (slider_back.width*2);
-      }
-    },
 
-  'object:selected': function(e) {
+
+  
+canvas.on({ 'object:selected': function(e) {
     var activeObject = e.target;
     console.log(activeObject);
     //console.log(e.target);

@@ -648,9 +648,6 @@ function VerifySecond(value) {
         if(ret != -1) {    // correct pin
           verify[0].checked = true;
           Verify("sucess");
-          UnlockDeadbolt();
-          UnlockDoorOut();
-          UnlockDoorIn();
         }
         else {
           verify[1].checked = true;
@@ -677,7 +674,9 @@ function VerifySecond(value) {
 function Verify(value) {
   console.log("Verify: " + value);
   if(value == "success") {
-    
+    UnlockDeadbolt();
+    UnlockDoorOut();
+    UnlockDoorIn();
   }
 }
 
