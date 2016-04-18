@@ -97,6 +97,7 @@ function ShowHome(){
   CloseThemeSettings();
   HideUserSettings();
   HideUserData();
+  Hide911();
   HomeIsActive = true;
   PanelRect.visible = true;
   icon_settings.selectable = true;
@@ -147,6 +148,7 @@ function HideHome()
   HideUserSettings();
   HideUserData();
   CloseThemeSettings();
+  Hide911();
 
   
 
@@ -289,7 +291,9 @@ function User1FromInside()
   }
 
   LoadUserData_Inside(2);
-  //document.getElementsByName('UsersFromInside')[2].checked = true; 
+  
+  var insideradio = document.getElementsByName('UsersIn');
+  insideradio[5].checked = true; 
   //document.getElementsByName('Verification')[1].disabled = false;
   //console.log(CURRENT_USER.firstname);
   UpdateText();
@@ -318,6 +322,9 @@ function User2FromInside()
   }
 
   LoadUserData_Inside(0);
+
+  var insideradio = document.getElementsByName('UsersIn');
+  insideradio[3].checked = true; 
   //document.getElementsByName('UsersFromInside')[2].checked = true; 
   //document.getElementsByName('Verification')[1].disabled = false;
   //console.log(CURRENT_USER.firstname);
@@ -479,7 +486,7 @@ function AdjustHeight(value){
 
 //-------------------------------------------------------------
 function GetOriginalCoordinate(){
-  console.log("GetOriginalCoordinate");
+  //console.log("GetOriginalCoordinate");
   var temp;
   for (var i = 0; i < ArrayOfObjects.length; ++i) {
     OriginalObjCoordinate[i] = temp = ArrayOfObjects[i].top;
