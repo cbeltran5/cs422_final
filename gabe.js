@@ -299,8 +299,10 @@ function User(firstname, lastname, language, pin) {
 
   this.brightness_pref = 1;
   this.display_timer_pref = "three";
+  
   this.vpercent = "50";
-  this.sliderleft = "0";
+  this.sliderleft = 591;
+  
   this.doorbell_pref = "Ding";
 
   this.getFullName = function () {
@@ -461,10 +463,16 @@ function LoadUserData_Inside(index) {
   HideNews();
   hideSettings();
   Hide911();
+  HideVolumeSettings();
+  HideLangaugeSetting();
+  backbutton.visible = false;
+  
   LanguageSettingIsActive = false;
   
-
-
+  volumeslider.left = CURRENT_USER.sliderleft;
+  volumeslider.setLeft(CURRENT_USER.sliderleft);
+  volumePercentage.text = "" + CURRENT_USER.vpercent + "%";
+  volumeslider.setCoords();
   ResetHeightRadioToDefault();
 
   RegisteredUsers.at(index).showObjects();
@@ -482,6 +490,7 @@ function LoadUserData_Inside(index) {
   UpdateText();
   UncheckHeight();
   SetDoorTheme();
+  canvas.renderAll();
 }
 
 function randomIntFromInterval(min,max)

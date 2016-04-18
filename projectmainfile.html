@@ -2797,7 +2797,7 @@ volumebar.hasControls = volumebar.hasBorders = volumebar.selectable = false;
 volumebar.lockMovementX = volumebar.lockMovementY = true;
 
 var volumeslider = new fabric.Rect( {
-  left: panelleft + 50,
+  left: 591 / 2.22,
   top: paneltop + 50,
   fill: 'white',
   stroke: 'darkgrey',
@@ -2827,12 +2827,13 @@ canvas.on("object:moving", function() {
   left = volumeslider.left;
   vpercent = ((volumeslider.left - leftBound) * 100 / widthdiff).toFixed(0);
   volumePercentage.text =  "" + vpercent + "%";
-  console.log(vpercent);
+//  console.log(vpercent);
+//  console.log(left);
 });
   
 canvas.on("mouse:up", function (object) {
 //  console.log(object.target);
-  if(object.target == volumeslider) {
+  if(object.target == volumeslider && CURRENT_USER != null) {
     CURRENT_USER.vpercent = vpercent;
     CURRENT_USER.sliderleft = left;
   }
