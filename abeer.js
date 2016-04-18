@@ -231,17 +231,9 @@ function LoadLocks() {
   arelocksloaded = true;
 }
 
-
-
 //-------------------------------------------------------------
  function UnlockDoorIn(){
-  
-//   for (var i = 0; i < canvas.getObjects().length; ++i){
-//    if (canvas.item(i).id == 'LockKnobIn')
-//        canvas.item(i).visible = false;
-//    else if (canvas.item(i).id == 'UnlockKnobIn')
-//      canvas.item(i).visible = true;
-//    }
+
   if( arelocksloaded == false) {
      LoadLocks();
    }
@@ -251,12 +243,6 @@ function LoadLocks() {
 
 //-------------------------------------------------------------
 function UnlockDoorOut(){
-//    for (var i = 0; i < canvas.getObjects().length; ++i){
-//      if (canvas.item(i).id == 'LockKnobOut')
-//        canvas.item(i).visible = false;
-//      else if (canvas.item(i).id == 'UnlockKnobOut')
-//        canvas.item(i).visible = true;
-//    }
   if(arelocksloaded == false) {
     LoadLocks();
   }
@@ -266,12 +252,6 @@ function UnlockDoorOut(){
 
 //-------------------------------------------------------------
 function LockDoorIn(){
-//  for (var i = 0; i < canvas.getObjects().length; ++i){
-//    if (canvas.item(i).id == 'UnlockKnobIn')
-//      canvas.item(i).visible = false;
-//    else if (canvas.item(i).id == 'LockKnobIn')
-//      canvas.item(i).visible = true;
-//  }
   if(arelocksloaded == false) {
     LoadLocks();
   }
@@ -281,12 +261,6 @@ function LockDoorIn(){
 
 //-------------------------------------------------------------
 function LockDoorOut(){
-//  for (var i = 0; i < canvas.getObjects().length; ++i){
-//    if (canvas.item(i).id == 'UnlockKnobOut')
-//      canvas.item(i).visible = false;
-//    else if (canvas.item(i).id == 'LockKnobOut')
-//      canvas.item(i).visible = true;
-//  }
   if(arelocksloaded == false) {
     LoadLocks();
   }
@@ -297,12 +271,6 @@ function LockDoorOut(){
 
 //-------------------------------------------------------------
 function UnlockDeadbolt(){
-//  for (var i = 0; i < canvas.getObjects().length; ++i){
-//    if (canvas.item(i).id == 'LockDeadbolt')
-//      canvas.item(i).visible = false;
-//    else if (canvas.item(i).id == 'UnlockDeadbolt')
-//      canvas.item(i).visible = true;
-//  }
   if(arelocksloaded == false) {
     LoadLocks();
   }
@@ -312,12 +280,6 @@ function UnlockDeadbolt(){
 
 //-------------------------------------------------------------
 function LockDeadbolt(){
-//  for (var i = 0; i < canvas.getObjects().length; ++i){
-//    if (canvas.item(i).id == 'UnlockDeadbolt')
-//      canvas.item(i).visible = false;
-//    else if (canvas.item(i).id == 'LockDeadbolt')
-//      canvas.item(i).visible = true;
-//  }
   if(arelocksloaded == false) {
     LoadLocks();
   }

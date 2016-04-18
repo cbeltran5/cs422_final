@@ -629,7 +629,6 @@ function VerifyFirst(value) {
 }
 
 function VerifySecond(value) {
-  steptwoselected = true;
   console.log("second " + value);
   if(value == "None") {
     verify[0].disabled = true;
@@ -639,22 +638,27 @@ function VerifySecond(value) {
     steptwoselected = false;
   }
   else {
-    if(value == "NumberPad" ) {
+    steptwoselected = true;
+    // anything other than "None"
+    if(value == "NumberPad" ) { // if numberpad is selected
       var ret; 
-      if( pin == null ) {
-        console.log("Pin is null");
+      if( pin == null ) { 
+        console.log("pin is null");
         ret = NumberPadEvent();
         console.log(ret);
         if(ret != -1) {    // correct pin
+          verify[0].disabled = false;
+          verify[1].disabled = false;
           verify[0].checked = true;
           Verify("sucess");
         }
         else {
+          verify[0].disabled = false;
+          verify[1].disabled = false;
           verify[1].checked = true;
           Verify("fail");
         }
-        verify[0].disabled = false;
-        verify[1].disabled = false;
+        // step2selected
       }
       else{
         console.log("Pin is not null");
@@ -662,12 +666,11 @@ function VerifySecond(value) {
         Verify("fail");
       }
     }
-    // not number pad
-    else {
+    else { // not number pad
       verify[0].disabled = false;
       verify[1].disabled = false;
     }
-  }
+  } 
   pin = null;
 }
 
@@ -677,6 +680,12 @@ function Verify(value) {
     UnlockDeadbolt();
     UnlockDoorOut();
     UnlockDoorIn();
+    knob.visible = false;
+  }
+  else {
+    LockDeadbolt();
+    LockDoorOut();
+    LockDoorIn();
   }
 }
 
