@@ -759,13 +759,21 @@ function SaveLanguageSettings(lang) {
 }
 //textDecoration: 'underline'
 
-
-
-
-
+var FAHREN = 0;
+var CELCIUS = 1;
+var unit = FAHREN;
 function ChangeUnits() {
+  if( unit == FAHREN) {
+    Weathertext.text = "9.4 C";
+    unit = CELCIUS;
+  }
+  else {
+    Weathertext.text = "49 F";
+    unit = FAHREN;
+  }
 
 }
+
 
 function WriteMessagesOutside() {
   console.log("gabe.js/WriteMessageoutside is not yet implemented");
