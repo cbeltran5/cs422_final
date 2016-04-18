@@ -462,34 +462,47 @@ function DateTime_Settings() {
 
 }
 
+var steptwo = document.getElementsByName("verifysecond");
+var verify = document.getElementsByName("verify");
 
 function VerifyFirst(value) {
   console.log("first " + value);
   if(value == "None") {
-    var elements = document.getElementsByName("verifySecond");
-    for(var i=0; i< elements.length; i++){
-      elements[i].disabled= true;
+    for(var i=0; i< steptwo.length; i++){
+      steptwo[i].disabled = true;
     }
+    VerifySecond(value);
   }
   else {
-    var elements = document.getElementsByName("verifySecond");
-    for(var i=0; i< elements.length; i++){
-      if(elements[i].value == value){
-        elements[i].disabled = true;
+    for(var i=0; i< steptwo.length; i++){
+      if(steptwo[i].value == value){
+        steptwo[i].disabled = true;
       }
       else {
-        elements[i].disabled = false;
+        steptwo[i].disabled = false;
       }
     }
-  } 
+  }
+  
+  
 }
 
 function VerifySecond(value) {
   console.log("second " + value);
+
+  if(value == "None") {
+    verify[0].disabled = true;
+    verify[1].disabled = true;
+  }
+  else {
+    verify[0].disabled = false;
+    verify[1].disabled = false;
+  }
 }
 
 function Verify(value) {
   console.log("verify " + value);
+  
 }
 
 

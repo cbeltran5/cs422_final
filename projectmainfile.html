@@ -110,7 +110,7 @@
 
       <section>
       <code>
-      <form name="Verification"> Verification1:<br>
+      <form name="Verification"> Step One:<br>
         <div id="Verification1">
           <label for="None"><input type="radio" class="radio1" name="verifyfirst" onchange="VerifyFirst(this.value)" id="noneA" value="None" checked> None<br></label>
           <label for="Phone/KeyFOB"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="pkfobA" value="Phone/KeyFob"> Phone/KeyFOB<br></label>
@@ -124,13 +124,24 @@
 
       <section>
       <code>
-      <form name="Verification"> Verification2:<br>
+      <form name="Verification"> Step Two:<br>
         <div id="Verification2">
           <label for="None"><input type="radio" class="radio1"  name="verifysecond" onchange="VerifySecond(this.value)" id="noneB" value="None" disabled checked> None<br></label>
           <label for="Phone/KeyFOB"><input type="radio" class="radio1" name="verifysecond"  onchange="VerifySecond(this.value)" id="pkfobB" value="Phone/KeyFob" disabled> Phone/KeyFOB<br></label>
           <label for="FacialRecognition"><input type="radio" class="radio1" name="verifysecond"  onchange="VerifySecond(this.value)" id="faceB" value="FacialRecognition" disabled> Facial Recognition<br></label>
           <label for="FingerPrints"><input type="radio" class="radio1" name="verifysecond" onchange="VerifySecond(this.value)" id="fingerB" value="FingerPrint" disabled> Finger Print<br></label>
           <label for="NumberPad"><input type="radio" class="radio1" name="verifysecond"  onchange="VerifySecond(this.value)" id="numberB" value="NumberPad" disabled> Number Pad<br></label>
+        </div>
+      </form>
+      </code>
+      </section>
+      
+      <section>
+      <code>
+      <form name="Verification"> Verification:<br>
+        <div id="Verification2">
+          <label for="Success"><input type="radio" class="radio1"  name="verify" onchange="Verify(this.value)" id="success" value="None" disabled > Success<br></label>
+          <label for="Failure"><input type="radio" class="radio1" name="verify"  onchange="Verify(this.value)" id="failure" value="Phone/KeyFob" disabled> Fail<br></label>
         </div>
       </form>
       </code>
@@ -2230,7 +2241,6 @@ function ShowUserSettings()
   
   //loop to get names and add them to canvas
   for (i = 0; i < RegisteredUsers.length; i++)
-
   {
     var topv = 730 + (70*(i+1)/(i+1)) * (i+1);
     var UserName = new fabric.Text('', {
@@ -2241,13 +2251,10 @@ function ShowUserSettings()
     });
     
     UserName.setText(RegisteredUsers.at(i).firstname);
-    
-
     canvas.add(UserName);
     UserName.bringForward();
     UsersNames.push(UserName);
     ArrayOfObjects.push(UsersNames[i]);
-
   }
 console.log("We are : "+ UsersNames.length);
 }
