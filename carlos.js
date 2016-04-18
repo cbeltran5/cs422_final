@@ -59,6 +59,10 @@ function showSettings() {
        canvas.item(i).id == 'backbutton')
     {
         canvas.item(i).visible = true;
+        sif(canvas.item(i).id == 'backbutton') {
+        backbutton = canvas.item(i);
+        //console.log(backbutton);
+      }
     }
   }
 
