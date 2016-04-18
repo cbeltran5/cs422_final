@@ -84,6 +84,8 @@ function HomeSelected()
 
 //-------------------------------------------------------------
 function ShowHome(){
+
+  HomeIsActive = true;
   RegisteredUsers.hideAllUsersObjects();
   HideUsersList();
   CloseCamera();
@@ -661,7 +663,7 @@ function RunCamera()
 //-------------------------------------------------------------
 function RunOutsideCamera()
 {
-  SetDoorTheme();
+  
   fabric.util.loadImage('images/FromOutCamera.gif', function (img) {
     insideDoor.setPatternFill({
         source: img,
@@ -672,9 +674,11 @@ function RunOutsideCamera()
 //-------------------------------------------------------------
 function RunInsideCameraAvatar()
 {
+  //SetDoorTheme();
+  RunOutsideCamera();
   AvatarIsActive = true;
   AvatarOut.visible = true;
-  RunOutsideCamera();
+  
 
   fabric.util.loadImage('images/AvatarIn.gif', function (img) {
     CameraIn.setPatternFill({
@@ -694,18 +698,18 @@ function RunInsideCameraAvatar()
         repeat: 'repeat'
     });});
 
-  //fabric.util.loadImage('images/DoorpatternOut.gif', function (img) {
-   // outsideDoor.setPatternFill({
-    //    source: img,
-   //     repeat: 'repeat'
-   // });});
+fabric.util.loadImage('images/DoorpatternOut.gif', function (img) {
+  outsideDoor.setPatternFill({
+    source: img,
+      repeat: 'repeat'
+   });});
 
 }
 
 //-------------------------------------------------------------
 function RunInsideCameraLive()
 {
-  console.log(" live ");
+  //console.log(" live ");
   RunOutsideCamera();
   AvatarIsActive = false;
   AvatarOut.visible = false;
