@@ -264,7 +264,6 @@ function Registered_Users() {
 
 var RegisteredUsers = new Registered_Users();
 
-
 var userscounter = 0;
 // Created a User class to hold the personal information common to all users
 
