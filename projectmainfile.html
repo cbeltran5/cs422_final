@@ -228,7 +228,7 @@ var User0 = new User('Gabe', 'Mendoza', ENGLISH, 1234);
 var User1 = new User('Enrique', 'Vaca', SPANISH, 1235);
 var User2 = new User('Abeer','A.', ENGLISH, 1236);
 var User3 = new User('Carlos', 'Beltran', SPANISH, 1237);
- 
+
 
 
 //*******************************************************************************************
@@ -333,7 +333,7 @@ var Weathertext = new fabric.Text('49 F', {
 });
 Weathertext.setColor('black');
 Weathertext.selectable = false;
-  
+
 var Weathertext = FabricText('49',475,80,30);
 
 //*******************************************************************************************
@@ -656,10 +656,10 @@ ArrayOfObjects.push(PrivateText);
 function ShowMessageSettings()
 {
   MessagesDroplist.visible = true;
-  
+
   PublicText.visible = true;
   PrivateText.visible = true;
-  
+
   PublicText.backgroundColor = 'white';
   PrivateText.backgroundColor = 'white';
   HomeSelected();
@@ -670,7 +670,7 @@ function CloseMessageSettings()
   MessagesDroplist.visible = false;
   PublicText.visible = false;
   PrivateText.visible = false;
-  
+
 }
 
 PublicText.on('mousedown', function ()
@@ -693,9 +693,9 @@ function ShowUsers(){
       left: 400,
       top: topv,
     });
-    
+
     UserName.setText(RegisteredUsers.at(i).firstname);
-   
+
     UserName.on('mousedown', function ()
     {
       CloseMessageSettings();
@@ -746,7 +746,7 @@ fabric.util.loadImage('images/chalkboard.jpeg', function (img) {
   });
 });
 ArrayOfObjects.push(MessageBox);
-  
+
 var accept_button;
 fabric.Image.fromURL('images/accept.png', function(oImg) {
   oImg.set({left: 505, top: 1350, width: 210, height: 120,id: this.id});
@@ -779,7 +779,7 @@ fabric.util.loadImage('images/chalkboard_hello.jpeg', function (img) {
       repeat: 'repeat'
   });
 });
-ArrayOfObjects.push(MessageHelloOutside);  
+ArrayOfObjects.push(MessageHelloOutside);
 
 // MIRROR
 var Mirror = new fabric.Rect({
@@ -1738,8 +1738,8 @@ ArrayOfObjects.push(IntercomText);
 
 var brightness_text = new fabric.IText('Brightness', {
   fontFamily: 'arial black',
-  fontSize: 40,
-  left: 175,
+  fontSize: 30,
+  left: 185,
   top: 325,
   width: 100,
   height: 50
@@ -1752,8 +1752,8 @@ brightness_text.id = 'brightness_text';
 ArrayOfObjects.push(brightness_text);
 
 var slider_back = new fabric.Rect({
-  left: 130,
-  top: 410,
+  left: 110,
+  top: 375,
   fill: 'grey',
   width: 328,
   height: 10,
@@ -1774,7 +1774,7 @@ ArrayOfObjects.push(slider_back);
 
 var slider = new fabric.Rect({
   left: slider_back.left + slider_back.width,
-  top: 390,
+  top: 355,
   fill: 'grey',
   width: 54,
   height: 55,
@@ -1795,9 +1795,9 @@ ArrayOfObjects.push(slider);
 
 var display_text = new fabric.IText('Display Timer', {
   fontFamily: 'arial black',
-  fontSize: 40,
-  left: 155,
-  top: 450,
+  fontSize: 30,
+  left: 165,
+  top: 405,
   width: 100,
   height: 50
 });
@@ -1809,8 +1809,8 @@ display_text.id = 'brightness_text';
 ArrayOfObjects.push(display_text);
 
 var one_min_btn = new fabric.Rect({
-  left: 120,
-  top: 500,
+  left: 110,
+  top: 450,
   fill: 'light-gray',
   stroke: 'black',
   strokeWidth: 4,
@@ -1825,9 +1825,9 @@ one_min_btn.id = 'one_min_btn';
 
 var one_min_btn_text = new fabric.IText('1 min', {
   fontFamily: 'arial black',
-  fontSize: 30,
-  left: 123,
-  top: 510,
+  fontSize: 25,
+  left: 117,
+  top: 465,
   width: 60,
   height: 50
 });
@@ -1840,8 +1840,8 @@ ArrayOfObjects.push(one_min_btn_text);
 ArrayOfObjects.push(one_min_btn);
 
 var three_min_btn = new fabric.Rect({
-  left: 240,
-  top: 500,
+  left: 230,
+  top: 450,
   fill: 'light-gray',
   stroke: 'blue',
   strokeWidth: 4,
@@ -1856,9 +1856,9 @@ three_min_btn.id = 'three_min_btn';
 
 var three_min_btn_text = new fabric.IText('3 min', {
   fontFamily: 'arial black',
-  fontSize: 30,
-  left: 243,
-  top: 510,
+  fontSize: 25,
+  left: 237,
+  top: 465,
   width: 60,
   height: 50
 });
@@ -1871,8 +1871,8 @@ ArrayOfObjects.push(three_min_btn_text);
 ArrayOfObjects.push(three_min_btn);
 
 var five_min_btn = new fabric.Rect({
-  left: 360,
-  top: 500,
+  left: 350,
+  top: 450,
   fill: 'light-gray',
   stroke: 'black',
   strokeWidth: 4,
@@ -1887,9 +1887,9 @@ five_min_btn.id = 'five_min_btn';
 
 var five_min_btn_text = new fabric.IText('5 min', {
   fontFamily: 'arial black',
-  fontSize: 30,
-  left: 363,
-  top: 510,
+  fontSize: 25,
+  left: 357,
+  top: 465,
   width: 60,
   height: 50
 });
@@ -1900,37 +1900,6 @@ five_min_btn_text.id = 'five_min_btn_text';
 
 ArrayOfObjects.push(five_min_btn);
 ArrayOfObjects.push(five_min_btn_text);
-
-var brightness_save_btn = new fabric.Rect({
-  left: 240,
-  top: 600,
-  fill: 'light-gray',
-  stroke: 'green',
-  strokeWidth: 4,
-  width: 90,
-  height: 60,
-  angle: 0
-});
-brightness_save_btn.visible = false;
-brightness_save_btn.hasControls = brightness_save_btn.hasBorders = false;
-brightness_save_btn.lockMovementX = brightness_save_btn.lockMovementY = true;
-brightness_save_btn.id = 'brightness_save_btn';
-
-var brightness_save_btn_text = new fabric.IText('Save', {
-  fontFamily: 'arial black',
-  fontSize: 30,
-  left: 243,
-  top: 610 ,
-  width: 65,
-  height: 46
-});
-brightness_save_btn_text.visible = false;
-brightness_save_btn_text.hasControls = brightness_save_btn_text.hasBorders = false;
-brightness_save_btn_text.lockMovementX = brightness_save_btn_text.lockMovementY = true;
-brightness_save_btn_text.id = 'brightness_save_btn_text';
-
-ArrayOfObjects.push(brightness_save_btn_text);
-ArrayOfObjects.push(brightness_save_btn);
 
 //********************************************************************************************
 
@@ -2471,7 +2440,7 @@ WoodText.on('mousedown', function ()
   MetalText.backgroundColor = 'white';
   WoodText.backgroundColor = '#85C1E9';
 
-  if(ActiveSide == "Inside"){ 
+  if(ActiveSide == "Inside"){
       In_theme = 'Wood';
       CURRENT_USER.in_theme = In_theme;
       fabric.util.loadImage('images/wooddoor.jpg', function (img) {
@@ -2479,7 +2448,7 @@ WoodText.on('mousedown', function ()
         insideDoor.setPatternFill({
           source: img,
           repeat: 'repeat'
-        }); 
+        });
       });
   }
 
@@ -2491,7 +2460,7 @@ WoodText.on('mousedown', function ()
         outsideDoor.setPatternFill({
           source: img,
           repeat: 'repeat'
-        }); 
+        });
       });
     }
 });
@@ -2508,7 +2477,7 @@ MetalText.on('mousedown', function (){
       insideDoor.setPatternFill({
         source: img,
         repeat: 'repeat'
-      }); 
+      });
     });
   }
   else if(ActiveSide == "Outside"){
@@ -2519,11 +2488,11 @@ MetalText.on('mousedown', function (){
       outsideDoor.setPatternFill({
         source: img,
         repeat: 'repeat'
-      }); 
+      });
     });
   }
 });
-  
+
 //----------------
 XmassText.on('mousedown', function (){
   Out_ornament = 'Xmass';
@@ -2542,7 +2511,7 @@ EasterText.on('mousedown', function () {
   XmassOrn.visible = false;
   EasterOrn.visible = true;
 });
-  
+
 //----------
 ResetTheme.on('mousedown', function (){
   In_theme = 'default';
@@ -2575,7 +2544,7 @@ function init_traffic_stuff() {
 
 
 }
-  
+
 function getObjectWithId(id) {
   for (var i = 0; i < canvas.getObjects().length; ++i){
     if (canvas.item(i).id == id) {
@@ -2729,7 +2698,7 @@ function ShowUserSettings(){
       left: 400,
       top: topv,
     });
-    
+
     UserName.setText(RegisteredUsers.at(i).firstname);
     if(CURRENT_USER.id == RegisteredUsers.at(i).id)
       UserName.selectable = true;
@@ -2762,9 +2731,9 @@ function HideUserSettings(){
 }
 
 
-  
+
 //********************************************************************************************
-//------------------------------ Volume ----------------  
+//------------------------------ Volume ----------------
 
   var panelleft = 72 + 20;
   var paneltop= 335;
@@ -2784,7 +2753,7 @@ volumepanel.visible = false;
 volumepanel.hasControls = volumepanel.hasBorders = volumepanel.selectable = false;
 volumepanel.lockMovementX = volumepanel.lockMovementY = true;
 
-  
+
 var volumebar = new fabric.Rect({
   left: panelleft + 50,
   top: paneltop + 64,
@@ -2815,7 +2784,7 @@ ArrayOfObjects.push(volumepanel);
 ArrayOfObjects.push(volumebar);
 ArrayOfObjects.push(volumeslider);
 
-var VolumeSettingsText = FabricText(VOLUME[syslang],235,350,24); 
+var VolumeSettingsText = FabricText(VOLUME[syslang],235,350,24);
 var volumePercentage = FabricText("0%",260, 450, 20);
 ArrayOfObjects.push( VolumeSettingsText );
 ArrayOfObjects.push( volumePercentage  );
@@ -2832,7 +2801,7 @@ canvas.on("object:moving", function() {
 //  console.log(vpercent);
 //  console.log(left);
 });
-  
+
 canvas.on("mouse:up", function (object) {
 //  console.log(object.target);
   if(object.target == volumeslider && CURRENT_USER != null) {
@@ -2841,12 +2810,12 @@ canvas.on("mouse:up", function (object) {
   }
 });
 
-  
-  
+
+
 //********************************************************************************************
 // Back Button
 
-var backbutton 
+var backbutton
 var backbutton = null;
 fabric.Image.fromURL('images/backbutton.png', function(oImg) {
   oImg.set({left: 550, top: 1155, id: this.id});
@@ -2864,14 +2833,14 @@ fabric.Image.fromURL('images/backbutton.png', function(oImg) {
 function BackButton() {
   this.hidefunctions = [];
   this.howigothere = []
-  
+
   this.addToBackStack = function( returnTo, hidefunction){
     this.hidefunctions.push(hidefunction);
     this.howigothere.push(returnTo);
     console.log(returnTo.name);
     console.log(hidefunction.name);
   }
-  
+
   this.goBack = function() {
     var hide = this.hidefunctions.pop();
     var returnto = this.howigothere.pop();
@@ -2881,7 +2850,7 @@ function BackButton() {
 }
 var mBackButton = new BackButton();
 
-  
+
 function ShowUserData(id){
   HideUserSettings();
   UserSettingList.visible = true;
@@ -3087,14 +3056,14 @@ function ShowVideoTour()
   hideSettings();
   video1.visible = true;
   VideoPanel.visible = true;
-  for (var i = 0; i < canvas.getObjects().length; ++i) 
-  { 
-    if (canvas.item(i).id == 'play') 
+  for (var i = 0; i < canvas.getObjects().length; ++i)
+  {
+    if (canvas.item(i).id == 'play')
     {
       canvas.item(i).visible = true;
     }
-    
-    
+
+
   }
 
 }
@@ -3103,13 +3072,13 @@ function HideVideoTour()
 {
   video1.visible = false;
   VideoPanel.visible = false;
-  for (var i = 0; i < canvas.getObjects().length; ++i) 
-  { 
-    if (canvas.item(i).id == 'play' || canvas.item(i).id == 'pause' ) 
+  for (var i = 0; i < canvas.getObjects().length; ++i)
+  {
+    if (canvas.item(i).id == 'play' || canvas.item(i).id == 'pause' )
     {
       canvas.item(i).visible = false;
     }
-    
+
   }
 
 }
@@ -3118,36 +3087,36 @@ function play()
 {
   video1.getElement().play();
 
-  for (var i = 0; i < canvas.getObjects().length; ++i) 
-  { 
-    if (canvas.item(i).id == 'play') 
+  for (var i = 0; i < canvas.getObjects().length; ++i)
+  {
+    if (canvas.item(i).id == 'play')
     {
       canvas.item(i).visible = false;
     }
-    else if (canvas.item(i).id == 'pause') 
+    else if (canvas.item(i).id == 'pause')
     {
       canvas.item(i).visible = true;
     }
 
-    
+
   }
 }
 
 function pause()
 {
   video1.getElement().pause();
-  for (var i = 0; i < canvas.getObjects().length; ++i) 
-  { 
-    if (canvas.item(i).id == 'pause') 
+  for (var i = 0; i < canvas.getObjects().length; ++i)
+  {
+    if (canvas.item(i).id == 'pause')
     {
       canvas.item(i).visible = false;
     }
-    else if (canvas.item(i).id == 'play') 
+    else if (canvas.item(i).id == 'play')
     {
       canvas.item(i).visible = true;
     }
 
-    
+
   }
 }
 //----------------------- All components for Language settings -------------------------
@@ -3333,9 +3302,9 @@ var langpromptbox = new fabric.Rect({
 });
 langpromptbox.visible = false;
 langpromptbox.hasControls = langpromptbox.hasBorders = langpromptbox.selectable = false;
-langpromptbox.lockMovementX = langpromptbox.lockMovementY = true;  
+langpromptbox.lockMovementX = langpromptbox.lockMovementY = true;
 
-  
+
 function FabricText(string,mLeft, mTop, mFontSize) {
   var temp = new fabric.Text(string, {
     left: mLeft,
@@ -3352,7 +3321,7 @@ function FabricText(string,mLeft, mTop, mFontSize) {
 var FailOrSuccess = FabricText(GREAT[syslang],247,360,24);
 var FeedBackMessage = FabricText(NOWSET[syslang] + "English." , 155, 400, 17);
 var ReturnMessage = FabricText(RETURNMSG[syslang],105, 440,15);
-  
+
 function ShowLangFeedBack(string, changed) {
   if(changed == true ) {
     console.log("CHANGED");
@@ -3376,7 +3345,7 @@ function ShowLangFeedBack(string, changed) {
   FeedBackMessage.visible = true;
   FailOrSuccess.visible = true;
 }
-  
+
 function HideLangFeedBack() {
   langpromptbox.visible = false;
   ReturnMessage.visible = false;
@@ -3694,8 +3663,6 @@ canvas.add(three_min_btn);
 canvas.add(three_min_btn_text);
 canvas.add(five_min_btn);
 canvas.add(five_min_btn_text);
-canvas.add(brightness_save_btn);
-canvas.add(brightness_save_btn_text);
 
 canvas.add(doorbell_cancel_btn)
 canvas.add(doorbell_cancel_btn_text);
@@ -3718,7 +3685,7 @@ canvas.add(MetalText);
 canvas.add(XmassText);
 canvas.add(EasterText);
 canvas.add(ResetTheme);
-  
+
 canvas.add(volumepanel);
 canvas.add(volumebar);
 canvas.add(volumeslider);
@@ -3758,7 +3725,7 @@ canvas.add(FailOrSuccess);
 canvas.add(FeedBackMessage);
 canvas.add(ReturnMessage);
 
-  
+
 canvas.add(VideoPanel);
 canvas.add(video1);
 //************************************** Functions *******************************************
@@ -3773,7 +3740,7 @@ canvas.on({
           activeObject.left = slider_back.left + (slider_back.width*2);
       }
     },
-  
+
   'object:selected': function(e) {
     var activeObject = e.target;
     console.log(activeObject);
@@ -3782,7 +3749,7 @@ canvas.on({
       HomeSelected();
       HideLangFeedBack();
       HideVolumeSettings()
-      
+
       canvas.deactivateAll();
       if(CURRENT_USER != null)
         CURRENT_USER.hideObjects();
@@ -3797,7 +3764,7 @@ canvas.on({
       if(UserFingerIsRecognizable == true)
       UnlockDoorOut();
     }
-    
+
     else if(activeObject.id == 'UnlockKnobOut')
       LockDoorOut();
     else if(activeObject.id == 'LockDeadbolt')
@@ -3815,11 +3782,11 @@ canvas.on({
         AlarmOn();
 
     else if(activeObject.id == 'user1name'){
-        HideUsersList(); 
+        HideUsersList();
         User1FromInside();
     }
     else if(activeObject.id == 'user2name'){
-      HideUsersList(); 
+      HideUsersList();
       User2FromInside();
     }
     else if (activeObject.id == "doorbell")
@@ -3830,7 +3797,7 @@ canvas.on({
       //canvas.deactivateAll();
     }
     else if(activeObject.id == 'settings_units') {
-       
+
     }
     else if (activeObject.id == "settings_traffic") {
       showTrafficSettings();
@@ -3839,11 +3806,10 @@ canvas.on({
     }
     else if (activeObject.id == "traffic_add_btn" || activeObject.id == "traffic_add_btn_text")
       showTrafficInputAdd();
-    else if (activeObject.id == "traffic_save_btn" || activeObject.id == "traffic_save_btn_text")
-      saveTrafficOption();
+
     else if(activeObject.id == "traffic_star1" || activeObject.id == "traffic_star2")
       toggleTrafficPrimary(activeObject.id);
-    
+
     else if (activeObject.id == "settings_themes"){
       hideSettings();
       ShowThemeSettings();
@@ -3864,7 +3830,7 @@ canvas.on({
       hideBrightnessSettings(true);
       showSettings();
     }
-    
+
     else if (activeObject.id == "settings_doorbell") {
       showDoorbellSettings();
       hideSettings();
@@ -3885,7 +3851,7 @@ canvas.on({
       hideDoorbellSettings(true);
       showSettings();
     }
-    
+
     else if(activeObject.id == 'messages'){
       ShowMessageSettings();
       //MessageBoxSelected();
@@ -3902,7 +3868,7 @@ canvas.on({
     else if( -1 < activeObject.id && activeObject.id < 11) {
       for(var i=0; i < 11; i ++ ){
         if (activeObject.id == i){
-          ShowUserData(i);   
+          ShowUserData(i);
           break;
         }
       }
@@ -3940,6 +3906,7 @@ canvas.on({
       mBackButton.addToBackStack( showSettings, HideVolumeSettings);
     }
     else if(activeObject.id == 'backbutton'){
+      checkSettings();
       mBackButton.goBack();
     }
     else if(activeObject.id == '911'){
@@ -3968,7 +3935,7 @@ canvas.on({
       ShowLanguageSetting();
       LanguageSettingIsActive = true;
     }
-    
+
     if( (langselected = isLangSelected(activeObject)) != null ){
         console.log("langselected: " + langselected);
         SaveLanguageSettings(langselected);
@@ -4006,7 +3973,7 @@ LiveOnOff.on('selected', function(){
 
 //CancelEmergency.on('selected', function()
 // {
-    
+
 // });
 //********************************************************************************************
 
@@ -4041,7 +4008,7 @@ function zoomAll(SCALE_FACTOR) {
 zoomAll(canvas.height / localHeight);
 
 if(backbutton == null) {
-  backbutton = getObjectWithId('backbutton'); 
+  backbutton = getObjectWithId('backbutton');
 }
 //})();
 
