@@ -80,8 +80,8 @@
       <form > Heights:<br>
         <div id="Heights">
           <label for="Tall"><input type="radio" class="radio1" name="Heights" id='Tall' onchange="AdjustHeight(this.value)" value="Tall"> Tall<br></label>
-          <label for="Medium"><input type="radio" class="radio1" name="Heights" id='Medium'onchange="AdjustHeight(this.value)" value="Medium" checked> Medium<br></label>
-          <label for="Short"><input type="radio" class="radio1" name="Heights" id='Short'onchange="AdjustHeight(this.value)" value="Short"> Short<br></label>
+          <label for="Medium"><input type="radio" class="radio1" name="Heights" id='Medium' onchange="AdjustHeight(this.value)" value="Medium" checked> Medium<br></label>
+          <label for="Short"><input type="radio" class="radio1" name="Heights" id='Short' onchange="AdjustHeight(this.value)" value="Short"> Short<br></label>
         </div>
       </form>
       </code>
@@ -117,11 +117,11 @@
       <code>
       <form name="Verification"> Verification1:<br>
         <div id="Verification1">
-          <label for="None"><input type="radio" class="radio1" name="Verification1" onchange="FailedVerification()" value="None" checked> None<br></label>
-          <label for="FacialRecognition"><input type="radio" class="radio1" name="Verification1" onchange="FaceRecognized()" value="Phone/KeyFob"> Phone/KeyFOB<br></label>
-          <label for="FacialRecognition"><input type="radio" class="radio1" name="Verification1" onchange="FaceRecognized()" value="Face"> Facial Recognition<br></label>
-          <label for="FingerPrints"><input type="radio" class="radio1" name="Verification1" onchange="FingerRecognized()" value="FingerPrint"> FingerPrint<br></label>
-          <label for="FingerPrints"><input type="radio" class="radio1" name="Verification1" onchange="FingerRecognized()" value="FingerPrint"> Number Pad<br></label>
+          <label for="None"><input type="radio" class="radio1" name="verifyfirst" onchange="VerifyFirst(this.value)" id="noneA" value="None" checked> None<br></label>
+          <label for="Phone/KeyFOB"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="pkfobA" value="Phone/KeyFob"> Phone/KeyFOB<br></label>
+          <label for="FacialRecognition"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="faceA" value="FacialRecognition"> Facial Recognition<br></label>
+          <label for="FingerPrints"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="fingerA" value="FingerPrint"> FingerPrint<br></label>
+          <label for="NumberPad"><input type="radio" class="radio1"  name="verifyfirst" onchange="VerifyFirst(this.value)" id="numberA" value="NumberPad"> Number Pad<br></label>
         </div>
       </form>
       </code>
@@ -131,10 +131,11 @@
       <code>
       <form name="Verification"> Verification2:<br>
         <div id="Verification2">
-          <label for="FacialRecognition"><input type="radio" class="radio1" name="Verification" onchange="FaceRecognized()" value="Phone/KeyFob" disabled> Phone/KeyFOB<br></label>
-          <label for="FacialRecognition"><input type="radio" class="radio1" name="Verification" onchange="FaceRecognized()" value="Face" disabled> Facial Recognition<br></label>
-          <label for="FingerPrints"><input type="radio" class="radio1" name="Verification" onchange="FingerRecognized()" value="FingerPrint" disabled> FingerPrint<br></label>
-          <label for="FingerPrints"><input type="radio" class="radio1" name="Verification" onchange="FingerRecognized()" value="FingerPrint" disabled> Number Pad<br></label>
+          <label for="None"><input type="radio" class="radio1"  name="verifysecond" onchange="VerifySecond(this.value)" id="noneB" value="None" disabled checked> None<br></label>
+          <label for="Phone/KeyFOB"><input type="radio" class="radio1" name="verifysecond"  onchange="VerifySecond(this.value)" id="pkfobB" value="Phone/KeyFob" disabled> Phone/KeyFOB<br></label>
+          <label for="FacialRecognition"><input type="radio" class="radio1" name="verifysecond"  onchange="VerifySecond(this.value)" id="faceB" value="FacialRecognition" disabled> Facial Recognition<br></label>
+          <label for="FingerPrints"><input type="radio" class="radio1" name="verifysecond" onchange="VerifySecond(this.value)" id="fingerB" value="FingerPrint" disabled> FingerPrint<br></label>
+          <label for="NumberPad"><input type="radio" class="radio1" name="verifysecond"  onchange="VerifySecond(this.value)" id="numberB" value="NumberPad" disabled> Number Pad<br></label>
         </div>
       </form>
       </code>
@@ -145,6 +146,11 @@
 </body>
 
 <script>
+  
+
+  
+
+
 // the aspect ratios given here are not quite tall enough for a 36" x 80" door
 // we are assuming bottom 15 inches of the door are not part of the display.
 // that part contains lots of necessary electronics so the bottom of the door
@@ -209,9 +215,8 @@ var User1 = new User('Enrique', 'Vaca', SPANISH);
 var User2 = new User('Adam', 'Porter', ENGLISH);
 var User3 = new User('Sara', 'Parker', ENGLISH);
 var User4 = new User('Carlos', 'Beltran', SPANISH);
-var User5 = new User('Some','Person', ENGLISH);
+var User5 = new User('Abeer','A.', ENGLISH);
 
-User5.RemoveFromRegisteredUsers();
 
 //*******************************************************************************************
 
@@ -1537,7 +1542,7 @@ ArrayOfObjects.push(IntercomText);
 var brightness_text = new fabric.IText('Brightness', {
   fontFamily: 'arial black',
   fontSize: 40,
-  left: 180,
+  left: 175,
   top: 325,
   width: 100,
   height: 50
@@ -1550,12 +1555,11 @@ brightness_text.id = 'brightness_text';
 ArrayOfObjects.push(brightness_text);
 
 var slider_back = new fabric.Rect({
-  left: 165,
-  top: 430,
+  left: 130,
+  top: 410,
   fill: 'grey',
-  stroke: 'black',
-  width: 213,
-  height: 14,
+  width: 328,
+  height: 10,
   angle: 0
 });
 slider_back.visible = false;
@@ -1572,18 +1576,17 @@ fabric.util.loadImage('images/Settings/slider_back.gif', function (img) {
 ArrayOfObjects.push(slider_back);
 
 var slider = new fabric.Rect({
-  left: 245,
-  top: 425,
+  left: slider_back.left + slider_back.width,
+  top: 390,
   fill: 'grey',
-  stroke: 'black',
-  width: 37,
-  height: 38,
+  width: 54,
+  height: 55,
   angle: 0
 });
 slider.visible = false;
 slider.hasControls = slider.hasBorders = false;
 slider.lockMovementY = true;
-slider.id = 'slider_back';
+slider.id = 'slider';
 
 fabric.util.loadImage('images/Settings/slider.gif', function (img) {
   slider.setPatternFill({
@@ -1597,7 +1600,7 @@ var display_text = new fabric.IText('Display Timer', {
   fontFamily: 'arial black',
   fontSize: 40,
   left: 155,
-  top: 500,
+  top: 450,
   width: 100,
   height: 50
 });
@@ -1609,12 +1612,12 @@ display_text.id = 'brightness_text';
 ArrayOfObjects.push(display_text);
 
 var one_min_btn = new fabric.Rect({
-  left: 165,
+  left: 120,
   top: 500,
-  fill: 'white',
+  fill: 'light-gray',
   stroke: 'black',
-  width: 60,
-  height: 50,
+  width: 95,
+  height: 60,
   angle: 0
 });
 one_min_btn.visible = false;
@@ -1624,9 +1627,9 @@ one_min_btn.id = 'one_min_btn';
 
 var one_min_btn_text = new fabric.IText('1 min', {
   fontFamily: 'arial black',
-  fontSize: 20,
-  left: 170,
-  top: 515,
+  fontSize: 30,
+  left: 123,
+  top: 510,
   width: 60,
   height: 50
 });
@@ -1639,12 +1642,12 @@ ArrayOfObjects.push(one_min_btn_text);
 ArrayOfObjects.push(one_min_btn);
 
 var three_min_btn = new fabric.Rect({
-  left: 210,
+  left: 240,
   top: 500,
-  fill: 'white',
+  fill: 'light-gray',
   stroke: 'blue',
-  width: 60,
-  height: 50,
+  width: 95,
+  height: 60,
   angle: 0
 });
 three_min_btn.visible = false;
@@ -1654,9 +1657,9 @@ three_min_btn.id = 'three_min_btn';
 
 var three_min_btn_text = new fabric.IText('3 min', {
   fontFamily: 'arial black',
-  fontSize: 20,
-  left: 210,
-  top: 500,
+  fontSize: 30,
+  left: 243,
+  top: 510,
   width: 60,
   height: 50
 });
@@ -1669,12 +1672,12 @@ ArrayOfObjects.push(three_min_btn_text);
 ArrayOfObjects.push(three_min_btn);
 
 var five_min_btn = new fabric.Rect({
-  left: 270,
+  left: 360,
   top: 500,
-  fill: 'white',
+  fill: 'light-gray',
   stroke: 'black',
-  width: 60,
-  height: 50,
+  width: 95,
+  height: 60,
   angle: 0
 });
 five_min_btn.visible = false;
@@ -1684,9 +1687,9 @@ five_min_btn.id = 'five_min_btn';
 
 var five_min_btn_text = new fabric.IText('5 min', {
   fontFamily: 'arial black',
-  fontSize: 20,
-  left: 270,
-  top: 515,
+  fontSize: 30,
+  left: 363,
+  top: 510,
   width: 60,
   height: 50
 });
@@ -1699,12 +1702,12 @@ ArrayOfObjects.push(five_min_btn);
 ArrayOfObjects.push(five_min_btn_text);
 
 var brightness_save_btn = new fabric.Rect({
-  left: 300,
-  top: 550,
-  fill: 'white',
-  stroke: 'black',
-  width: 65,
-  height: 46,
+  left: 240,
+  top: 600,
+  fill: 'light-gray',
+  stroke: 'green',
+  width: 90,
+  height: 60,
   angle: 0
 });
 brightness_save_btn.visible = false;
@@ -1714,9 +1717,9 @@ brightness_save_btn.id = 'brightness_save_btn';
 
 var brightness_save_btn_text = new fabric.IText('Save', {
   fontFamily: 'arial black',
-  fontSize: 20,
-  left: 165,
-  top: 550 ,
+  fontSize: 30,
+  left: 243,
+  top: 610 ,
   width: 65,
   height: 46
 });
@@ -2351,112 +2354,139 @@ canvas.add(EasterText);
 canvas.add(ResetTheme);
 
 //************************************** Functions *******************************************
-canvas.on('object:selected', function(e) {
-  var activeObject = e.target;
+canvas.on({
+  'object:moving': function(e) {
+      var activeObject = e.target;
+      if (activeObject.id == "slider") {
+        update_brightness(activeObject.left/(slider_back.left + (slider_back.width*2)));
+        if (activeObject.left <= slider_back.left)
+          activeObject.left = slider_back.left
+        else if (activeObject.left >= (slider_back.left + (slider_back.width*2)))
+          activeObject.left = slider_back.left + (slider_back.width*2);
+      }
+    },
+  'object:selected': function(e) {
+    var activeObject = e.target;
 
-  //console.log(e.target);
-  if(activeObject.id == 'home'){
-    HomeSelected();
-    canvas.deactivateAll();
-    CURRENT_USER.hideObjects();
-  }
-  else if(activeObject.id == 'LockKnobIn')
-    UnlockDoorIn();
-
-  else if(activeObject.id == 'UnlockKnobIn')
-    LockDoorIn();
-
-  else if(activeObject.id == 'LockKnobOut') {
-    if(UserFingerIsRecognizable == true)
-    UnlockDoorOut();
-  }
-
-  else if(activeObject.id == 'UnlockKnobOut')
-    LockDoorOut();
-
-  else if(activeObject.id == 'LockDeadbolt')
-     UnlockDeadbolt();
-
-  else if(activeObject.id == 'UnlockDeadbolt')
-     LockDeadbolt();
-
-  else if(activeObject.id == 'restart')
-     RestartSystem();
-
-  else if(activeObject.id == 'alarmOn')
-     AlarmOff();
-
-  else if(activeObject.id == 'alarm')
-      AlarmOn();
-
-  else if(activeObject.id == 'user1name')
-     {HideUsersList(); User1FromInside();}
-
-  else if(activeObject.id == 'user2name')
-     {HideUsersList(); User2FromInside();}
-
-  else if (activeObject.id == "doorbell")
-    playDoorbellSound();
-  else if (activeObject.id == "settings") {
-    showSettings();
-    canvas.deactivateAll();
-  }
-  else if (activeObject.id == "settings_traffic")
-    showTrafficSettings();
-  else if (activeObject.id == "traffic_add_btn" || activeObject.id == "traffic_add_btn_text")
-    showTrafficInputAdd();
-  else if (activeObject.id == "traffic_save_btn" || activeObject.id == "traffic_save_btn_text")
-    saveTrafficOption();
-  else if(activeObject.id == "traffic_star1" || activeObject.id == "traffic_star2")
-    toggleTrafficPrimary(activeObject.id);
-
-  else if (activeObject.id == "settings_themes")
-  {
-    hideSettings();
-    ShowThemeSettings();
-  }
-  else if (activeObject.id == "settings_brightness")
-    showBrightnessSettings();
-
-  if(activeObject.id == 'mirror')
-    {
-      MirrorSelected();
+    //console.log(e.target);
+    if(activeObject.id == 'home'){
+      HomeSelected();
       canvas.deactivateAll();
+      CURRENT_USER.hideObjects();
     }
-  if(activeObject.id == 'traffic')
-    {
-      TrafficSelected();
-      canvas.deactivateAll();
-    }
-  if(activeObject.id == 'lights')
-    {
-      LightsSelected();
-      canvas.deactivateAll();
-    }
-  if(activeObject.id == 'cta')
-    {
-      TransportSelected();
-      canvas.deactivateAll();
-    }
-  if(activeObject.id == 'news')
-    {
-      NewsSelected();
-      canvas.deactivateAll();
+    else if(activeObject.id == 'LockKnobIn')
+      UnlockDoorIn();
+
+    else if(activeObject.id == 'UnlockKnobIn')
+      LockDoorIn();
+
+    else if(activeObject.id == 'LockKnobOut') {
+      if(UserFingerIsRecognizable == true)
+      UnlockDoorOut();
     }
 
-  if(activeObject.id == 'camera')
-  {
-    RunCamera();
-    //canvas.deactivateAll();
-  }
+    else if(activeObject.id == 'UnlockKnobOut')
+      LockDoorOut();
 
-  if(activeObject.id == "settings_users") {
+    else if(activeObject.id == 'LockDeadbolt')
+       UnlockDeadbolt();
+
+    else if(activeObject.id == 'UnlockDeadbolt')
+       LockDeadbolt();
+
+    else if(activeObject.id == 'restart')
+       RestartSystem();
+
+    else if(activeObject.id == 'alarmOn')
+       AlarmOff();
+
+    else if(activeObject.id == 'alarm')
+        AlarmOn();
+
+    else if(activeObject.id == 'user1name')
+       {HideUsersList(); User1FromInside();}
+
+    else if(activeObject.id == 'user2name')
+       {HideUsersList(); User2FromInside();}
+
+    else if (activeObject.id == "doorbell")
+      playDoorbellSound();
+    else if (activeObject.id == "settings") {
+      showSettings();
+      canvas.deactivateAll();
+    }
+    else if (activeObject.id == "settings_traffic") {
+      showTrafficSettings();
+      hideSettings();
+    }
+    else if (activeObject.id == "traffic_add_btn" || activeObject.id == "traffic_add_btn_text")
+      showTrafficInputAdd();
+    else if (activeObject.id == "traffic_save_btn" || activeObject.id == "traffic_save_btn_text")
+      saveTrafficOption();
+    else if(activeObject.id == "traffic_star1" || activeObject.id == "traffic_star2")
+      toggleTrafficPrimary(activeObject.id);
+
+    else if (activeObject.id == "settings_themes")
     {
       hideSettings();
-      ShowUserSettings();}
-    //usersSelected();
-    //canvas.deactivateAll();
+      ShowThemeSettings();
+    }
+    else if (activeObject.id == "settings_brightness") {
+      showBrightnessSettings();
+      hideSettings();
+    }
+    else if (activeObject.id == "five_min_btn" || activeObject.id == "five_min_btn_text")
+      updateDisplayTimer("five");
+    else if (activeObject.id == "one_min_btn" || activeObject.id == "one_min_btn_text")
+      updateDisplayTimer("one");
+    else if (activeObject.id == "three_min_btn" || activeObject.id == "three_min_btn_text")
+      updateDisplayTimer("three");
+    else if (activeObject.id == "brightness_save_btn" || activeObject.id == "brightness_save_btn_text"){
+      hideBrightnessSettings();
+      showSettings();
+    }
+
+    if(activeObject.id == 'mirror')
+      {
+        MirrorSelected();
+        canvas.deactivateAll();
+      }
+    if(activeObject.id == 'traffic')
+      {
+        TrafficSelected();
+        canvas.deactivateAll();
+      }
+    if(activeObject.id == 'lights')
+      {
+        LightsSelected();
+        canvas.deactivateAll();
+      }
+    if(activeObject.id == 'cta')
+      {
+        TransportSelected();
+        canvas.deactivateAll();
+      }
+    if(activeObject.id == 'news')
+      {
+        NewsSelected();
+        canvas.deactivateAll();
+      }
+
+    if(activeObject.id == 'camera')
+    {
+      RunCamera();
+      //canvas.deactivateAll();
+    }
+
+
+  if(activeObject.id == "settings_users") 
+  {
+    
+      hideSettings();
+      ShowUserSettings();
+    
   }
+}
 });
 
 AvatarOnOff.on('selected', function(){

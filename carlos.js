@@ -23,8 +23,6 @@ function checkSettings() {
     hideBrightnessSettings();
   else if (themeSettingsActive)
     hideThemeSettings();
-
-
 }
 
 function playDoorbellSound() {
@@ -165,6 +163,7 @@ function showPostSendKey()
 
 function showTrafficSettings()
 {
+  trafficSettingsActive = true;
   hideSettings();
   PanelRect.visible = false;
 
@@ -205,6 +204,7 @@ function hideTrafficSettings()
     user_traffic_options[i].visible = false;
   }
 
+  trafficSettingsActive = false;
   hideTrafficInputAdd();
 }
 
@@ -289,6 +289,7 @@ function toggleTrafficPrimary(name)
 function showBrightnessSettings()
 {
 
+  brightnessSettingsActive = true;
   hideSettings();
   PanelRect.visible = false;
 
@@ -304,6 +305,32 @@ function showBrightnessSettings()
   five_min_btn_text.visible = true;
   brightness_save_btn.visible = true;
   brightness_save_btn_text.visible = true;
+
+  toggle_display_buttons(CURRENT_USER.display_timer_pref);
+  update_brightness(-500);
+}
+
+function toggle_display_buttons(pref)
+{
+  switch (pref) {
+    case "one":
+      one_min_btn.stroke = "blue";
+      three_min_btn.stroke = "black";
+      five_min_btn.stroke = "black";
+      break
+    case "three":
+      one_min_btn.stroke = "black";
+      three_min_btn.stroke = "blue";
+      five_min_btn.stroke = "black";
+      break;
+    case "five":
+      one_min_btn.stroke = "black";
+      three_min_btn.stroke = "black";
+      five_min_btn.stroke = "blue";
+      break;
+    default:
+      break;
+  }
 }
 
 function hideBrightnessSettings()
@@ -320,6 +347,29 @@ function hideBrightnessSettings()
   five_min_btn_text.visible = false;
   brightness_save_btn.visible = false;
   brightness_save_btn_text.visible = false;
+
+  brightnessSettingsActive = false;
+}
+
+function update_brightness(percentage)
+{
+  if (percentage != -500)
+    CURRENT_USER.brightness_pref = percentage;
+
+  if (CURRENT_USER.brightness_pref < 1) {
+    Lights.visible = true;
+    Lights.opacity = 1 - CURRENT_USER.brightness_pref;
+  }
+  else {
+    Lights.visible = false;
+    Lights.opacity = 1;
+  }
+}
+
+function updateDisplayTimer(newSetting)
+{
+  CURRENT_USER.display_timer_pref = newSetting;
+  toggle_display_buttons(newSetting);
 }
 
 // TODO??
