@@ -2915,7 +2915,6 @@ function ShowUserData(id){
 }
 
 function ShowUserDataForMsg(id){
-
   MsgTo = id;
 }
 function HideUserData(){
@@ -3957,10 +3956,9 @@ OKOut.on('mousedown', function ()
 
 Post.on('mousedown', function ()
 {
-
   if(MsgMode == 'Public')
   {
-
+    
      MsgOutsideText.setText("\n        " + MsgBox.getText() +"        \n");
      MsgOutsideText.visible = true;
      OKOut.visible = true;
@@ -3970,11 +3968,12 @@ Post.on('mousedown', function ()
   {
       if(MsgTo != null)
       {
-      MsgOutsideText.setText("\n        " + MsgBox.getText() +"        \n");
-      RegisteredUsers.at(MsgTo).myMessages.push(MsgOutsideText);
-      console.log("Mqs to this: "+ RegisteredUsers.at(MsgTo).myMessages.length);
+        MsgOutsideText.visible = true;
+        MsgOutsideText.setText("\n        " + MsgBox.getText() +"        \n");
+        RegisteredUsers.at(MsgTo).myMessages.push(MsgOutsideText);
+        console.log("Mqs to this: "+ RegisteredUsers.at(MsgTo).myMessages.length);
 
-      MsgTo = null;
+        MsgTo = null;
     }
   }
 

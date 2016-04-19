@@ -320,11 +320,13 @@ function User(firstname, lastname, language, pin) {
     object.id = this.id;
     this.myObjects.push(object);
   }
+  
   this.hideObjects = function() {
     for( var i=0; i < this.myObjects.length; i++) {
       this.myObjects[i].visible = false;
     }
   }
+  
   this.showObjects = function() {
     for( var i=0; i < this.myObjects.length; i++) {
       this.myObjects[i].visible = true;
@@ -838,17 +840,22 @@ function WriteMessagesOutside() {
 }
 
 
-
-
-function ShowPrivateMEssages()
-{
-  if(CURRENT_USER.myMessages != null)
-  {
+function ShowPrivateMEssages(){
+  if(CURRENT_USER.myMessages != null){
     if(CURRENT_USER.myMessages.length != 0) 
     {  
-      MsgOutsideTextPrivate.setText("\n   "+ CURRENT_USER.myMessages[1] + '' +"     \n");
-      MsgOutsideTextPrivate.visible = true;
-      OKOut.visible = true;
+      if( CURRENT_USER.myObjects.length == 0) {
+        console.log(CURRENT_USER.myMessages[0]);
+        MsgOutsideTextPrivate.setText( CURRENT_USER.myMessages[0]);
+        MsgOutsideTextPrivate.visible = true;
+        OKOut.visible = true;
+        OKOut.setTop(MsgOutsideTextPrivate.top + MsgOutsideTextPrivate.height + 20);
+        OKOut.setCoords();
+      }
+      else {
+        
+      }
+      
     }
   }
 }
