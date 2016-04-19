@@ -18,12 +18,13 @@ function TodoList() {
 /***********************************************************************
                            DATE AND TIME
 ************************************************************************/
-var TIME_12HOUR = "12 Hour Format";
-var TIME_24HOUR = "24 Hour Format";
 var DATE_MONTHDDYYYY = "Month DD, YYYY";
 var DATE_MMDDYYYY = "MM/DD/YYYY";
 var DATE_DDMONTHYYYY = "DD Month YYYY";
 var DATE_DDMMYYYY = "DD/MM/YYYY";
+
+var TIME_12HOUR = "12 Hour Format";
+var TIME_24HOUR = "24 Hour Format";
 
 function getFormattedMonth(month) {
   month = month + 1;
@@ -107,7 +108,7 @@ function getFormattedDateString(day, month, year) {
   }
 }
 function ShowDateTime() {
-  Time_format = TIME_12HOUR;
+  
   var date = new Date();
   var month = getFormattedMonth(date.getMonth());
   var timestr = getFormattedTimeString(date.getHours(), date.getMinutes());
@@ -273,6 +274,9 @@ var RegisteredUsers = new Registered_Users();
 
 var userscounter = 0;
 // Created a User class to hold the personal information common to all users
+
+var dateselected = null;
+var timeselected = null;
 
 function User(firstname, lastname, language, pin) {
   this.id = userscounter++; // id is position in Registered Users array
@@ -661,10 +665,10 @@ function VerifyFirst(value) {
 
 function VerifySecond(value) {
   console.log("second " + value);
+  verify[0].checked = false;
+  verify[1].checked = false;
   if(value == "None") {
     verify[0].disabled = true;
-    verify[0].checked = false;
-    verify[1].checked = false;
     verify[1].disabled = true;
     steptwoselected = false;
   }
@@ -682,7 +686,7 @@ function VerifySecond(value) {
           verify[1].disabled = false;
           verify[0].checked = true;
           steptwoselected = true;
-          Verify("sucess");
+          Verify("success");
         }
         else {
           verify[0].disabled = false;
@@ -707,6 +711,17 @@ function VerifySecond(value) {
   pin = null;
 }
 
+
+function resetKnob() {
+  lockknobout.visible = false;
+  unlockknobout.visible = false;
+  knob.visible = true;
+}
+function setLocks() {
+  LockDeadbolt();
+  LockDoorIn();
+}
+
 function Verify(value) {
   console.log("Verify: " + value);
   if(value == "success") {
@@ -714,12 +729,17 @@ function Verify(value) {
     UnlockDoorOut();
     UnlockDoorIn();
     knob.visible = false;
+    
+    setTimeout(resetKnob, 5000);
   }
   else {
-    LockDeadbolt();
+    //LockDeadbolt();
     LockDoorOut();
-    LockDoorIn();
+    //LockDoorIn();
+    setTimeout(resetKnob, 5000);
   }
+  
+  setTimeout(setLocks, 10000);
 }
 
 function FingerPrintScanner() {
