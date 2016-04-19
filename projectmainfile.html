@@ -3827,6 +3827,25 @@ MsgOutsideText.hasControls =  false;
 MsgOutsideText.setColor('white');
 MsgOutsideText.lockMovementX = MsgOutsideText.lockMovementY = true;
 
+
+
+var MsgOutsideTextPrivate = new fabric.Text('', {
+      backgroundColor: 'black',
+      fontFamily: 'Times',
+      fontSize: 25,
+      padding: 5,
+      left: 830,
+      top: 350,
+      width: 150,
+      height: 50,
+});
+MsgOutsideTextPrivate.selectable = false;
+MsgOutsideTextPrivate.visible = false;
+MsgOutsideTextPrivate.hasBorders = false;
+MsgOutsideTextPrivate.hasControls =  false;
+MsgOutsideTextPrivate.setColor('white');
+MsgOutsideTextPrivate.lockMovementX = MsgOutsideTextPrivate.lockMovementY = true;
+
 function ShowMessageSettings()
 {
   HideHome();
@@ -3931,6 +3950,7 @@ OKOut.on('mousedown', function ()
 {
      MsgOutsideText.setText("");
      MsgOutsideText.visible = false;
+     MsgOutsideTextPrivate.visible = false;
      OKOut.visible = false;
 
 });
@@ -4098,6 +4118,7 @@ canvas.add(outsideDoor);
 canvas.add(date_rect);
 canvas.add(MessageBox);
 canvas.add(MessagesDroplist);
+canvas.add(MsgOutsideTextPrivate);
 canvas.add(PublicText);
 canvas.add(PrivateText);
 canvas.add(Post);
@@ -4552,6 +4573,8 @@ canvas.on({ 'object:selected': function(e) {
         }
         ShowDateTime();
         
+
+    
 
       
         dateselected = null;
