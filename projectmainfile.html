@@ -4023,6 +4023,37 @@ ArrayOfObjects.push(MessageHelloOutside);  */
 //------------- I did Messages above here here go above it for langauge setting -------------------
 //--------------------------------------------------------------------------------------
 // add all of the elements to the canvas
+
+
+var Doorbellfired;
+fabric.Image.fromURL('images/doorbellfired.gif', function(oImg) {
+  oImg.set({left: 420, top: 690, id: this.id});
+  oImg.visible = false;
+  //oImg.scale(1.1);
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.selectable = false;
+  oImg.id = '911Panel';
+  Doorbellfired = oImg;
+  ArrayOfObjects.push(Doorbellfired);
+  canvas.add(Doorbellfired);
+});
+
+
+fabric.Image.fromURL('images/alarmfired.gif', function(oImg) {
+  oImg.set({left: 420, top: 690, id: this.id});
+  oImg.visible = false;
+  //oImg.scale(1.1);
+  oImg.hasControls = oImg.hasBorders = false;
+  oImg.lockMovementY = oImg.lockMovementX = true;
+  oImg.selectable = false;
+  oImg.id = 'Alarmfired';
+  ArrayOfObjects.push(oImg);
+  canvas.add(oImg);
+});
+
+
+
 function ShowDateTimeSettings()
 {
     DateTimePanel.visible = true;
@@ -4182,7 +4213,8 @@ canvas.add(VideoPanel);
 canvas.add(video1);
 //************************************** Functions *******************************************
 
-
+//var arlarmfired = getObjectWithId('Alarmfired');
+//arlarmfired.visible = false;
   
 canvas.on({ 'object:selected': function(e) {
     var activeObject = e.target;
@@ -4223,7 +4255,12 @@ canvas.on({ 'object:selected': function(e) {
        AlarmOff();
 
     else if(activeObject.id == 'alarm')
+    {
+
+        //arlarmfired.visible = true;
         AlarmOn();
+
+      }
 
     else if(activeObject.id == 'user1name'){
         HideUsersList();
@@ -4325,25 +4362,29 @@ canvas.on({ 'object:selected': function(e) {
     }
 
     else if( 14 < activeObject.id && activeObject.id < 30) {
-      for(var i=0; i < UsersNamesMsg.length; i ++ ){
-        if (activeObject.id == i+15){
+      
+     for(var i=0; i < UsersNamesMsg.length; i ++ ){
+       if (activeObject.id == i+15){
           UsersNamesMsg[i].backgroundColor = '#5DADE2';
+          UsersNamesMsg[i].lockMovementY = UsersNamesMsg[i].lockMovementX = true;
           MsgTo = i;
           console.log("MsgTo : " + MsgTo);
-          break;
+         break;
         }
-      }
-      for(var i=0; i < UsersNamesMsg.length; i ++ ){
-        if(i != MsgTo) {
-            UsersNamesMsg[i].backgroundColor = '#5DADE2';
-            MsgTo = i;
-            console.log("MsgTo : " + MsgTo);
-            break;
-        }
-      }
+
+     }
+      //for(var i=0; i < UsersNamesMsg.length; i ++ ){
+      //  if(i != MsgTo) {
+        //    UsersNamesMsg[i].backgroundColor = 'white';
+        //    MsgTo = i;
+         //   console.log("MsgTo : " + MsgTo);
+          //  break;
+        //}
+     // }
       for(var i=0; i < UsersNamesMsg.length; i ++ ){
         if(i!=MsgTo)
           UsersNamesMsg[i].backgroundColor = 'white';
+        UsersNamesMsg[i].lockMovementY = UsersNamesMsg[i].lockMovementX = true;
       }
     }
 
