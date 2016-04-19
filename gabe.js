@@ -437,7 +437,7 @@ function LoadUserData_Inside(index) {
   if(!heightsenabled)
     HeightsRadioButtons_ENABLE();   // enable radio buttons
 
-  HideHome();
+//  HideHome();
   ShowHomeButtonAndLine();
 
   console.log("LoadUserData_Inside(" + index + ")");
@@ -460,8 +460,10 @@ function LoadUserData_Inside(index) {
   CloseMessageSettings();
   HideVolumeSettings();
   HideLangaugeSetting();
-  backbutton.visible = false;
-
+  if( backbutton != null ) {
+    backbutton.visible = false;
+  }
+  
   LanguageSettingIsActive = false;
   MessagesIsActive = false;
   LanguageSettingIsActive = false;

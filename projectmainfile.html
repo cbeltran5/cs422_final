@@ -4409,12 +4409,11 @@ canvas.on({ 'object:selected': function(e) {
       ShowLanguageSetting();
       LanguageSettingIsActive = true;
     }
-
     else if(activeObject.id == 'settings_datetime')
     {
+        hideSettings();
         ShowDateTimeSettings();
     }
-
     if( (langselected = isLangSelected(activeObject)) != null ){
         console.log("langselected: " + langselected);
         SaveLanguageSettings(langselected);

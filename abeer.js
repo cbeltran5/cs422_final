@@ -291,67 +291,67 @@ function LockDeadbolt(){
 
 
 //------------------ Radio buttons Events Functions -------------------------
-//function User1FromInside()
-//{
-//  HideHome();
-//  HideUsersList();
-//  HideUser2FromInside();
-//
-//  for (var i = 0; i < canvas.getObjects().length; ++i) {
-//    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
-//        canvas.item(i).visible = true;
-//  }
-//
-//  LoadUserData_Inside(2);
-//  
-//  var insideradio = document.getElementsByName('UsersIn');
-//  insideradio[5].checked = true; 
-//  //document.getElementsByName('Verification')[1].disabled = false;
-//  //console.log(CURRENT_USER.firstname);
-//  UpdateText();
-//}
+function User1FromInside()
+{
+  HideHome();
+  HideUsersList();
+  HideUser2FromInside();
+
+  for (var i = 0; i < canvas.getObjects().length; ++i) {
+    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
+        canvas.item(i).visible = true;
+  }
+
+  LoadUserData_Inside(2);
+  
+  var insideradio = document.getElementsByName('UsersIn');
+  insideradio[5].checked = true; 
+  //document.getElementsByName('Verification')[1].disabled = false;
+  //console.log(CURRENT_USER.firstname);
+  UpdateText();
+}
 
 //-------------------------------------------------------------
-//function HideUser1FromInside()
-//{
-//  for (var i = 0; i < canvas.getObjects().length; ++i)
-//  {
-//    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
-//      canvas.item(i).visible = false;
-//  }
-//}
+function HideUser1FromInside()
+{
+  for (var i = 0; i < canvas.getObjects().length; ++i)
+  {
+    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user1todo')
+      canvas.item(i).visible = false;
+  }
+}
 //-------------------------------------------------------------
-//function User2FromInside()
-//{
-//  HideHome();
-//  HideUsersList();
-//  HideUser1FromInside();
-//
-//  for (var i = 0; i < canvas.getObjects().length; ++i) {
-//    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user2todo')
-//        canvas.item(i).visible = true;
-//  }
-//
-//  LoadUserData_Inside(0);
-//
-//  var insideradio = document.getElementsByName('UsersIn');
-//  insideradio[3].checked = true; 
-//  //document.getElementsByName('UsersFromInside')[2].checked = true; 
-//  //document.getElementsByName('Verification')[1].disabled = false;
-//  //console.log(CURRENT_USER.firstname);
-//  UpdateText();
-//}
+function User2FromInside()
+{
+  HideHome();
+  HideUsersList();
+  HideUser1FromInside();
+
+  for (var i = 0; i < canvas.getObjects().length; ++i) {
+    if (canvas.item(i).id == 'user1calender' || canvas.item(i).id == 'user2todo')
+        canvas.item(i).visible = true;
+  }
+
+  LoadUserData_Inside(0);
+
+  var insideradio = document.getElementsByName('UsersIn');
+  insideradio[3].checked = true; 
+  //document.getElementsByName('UsersFromInside')[2].checked = true; 
+  //document.getElementsByName('Verification')[1].disabled = false;
+  //console.log(CURRENT_USER.firstname);
+  UpdateText();
+}
 //-------------------------------------------------------------
-//function HideUser2FromInside()
-//{
-//
-//for (var i = 0; i < canvas.getObjects().length; ++i)
-//    {
-//      if (canvas.item(i).id == 'user2calender' || canvas.item(i).id == 'user2todo')
-//
-//        canvas.item(i).visible = false;
-//    }
-//}
+function HideUser2FromInside()
+{
+
+for (var i = 0; i < canvas.getObjects().length; ++i)
+    {
+      if (canvas.item(i).id == 'user2calender' || canvas.item(i).id == 'user2todo')
+
+        canvas.item(i).visible = false;
+    }
+}
 
 //-------------------------------------------------------------
 function MultiUsersFromInside()
