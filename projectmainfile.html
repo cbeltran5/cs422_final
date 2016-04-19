@@ -2897,21 +2897,17 @@ var mBackButton = new BackButton();
 
 
 function ShowUserData(id){
-
   HideUserSettings();
   UserSettingList.visible = true;
   UserFName.setText(RegisteredUsers.at(id).firstname);
   canvas.add(UserFName);
   UserLName.setText(RegisteredUsers.at(id).lastname);
   canvas.add(UserLName);
-
   UserTimeFormat.setText(RegisteredUsers.at(id).time_format);
   canvas.add(UserTimeFormat);
-
   UserDateFormat.setText(RegisteredUsers.at(id).date_format);
   canvas.add(UserDateFormat);
   UserLang.setText(SYSTEM_LANGUAGE[RegisteredUsers.at(id).language]);
-
   canvas.add(UserLang);
 
   //canvas.add(BackButtFromUSerData);
@@ -3476,6 +3472,9 @@ TimeFormatText.hasControls = TimeFormatText.hasBorders = false;
 TimeFormatText.lockMovementX = TimeFormatText.lockMovementY = true;
 ArrayOfObjects.push(TimeFormatText);
 
+  
+
+  
 //+++++++
 var DateFormat1 = new fabric.Text('  Month DD, YYYY  ', {
   left: 150,
@@ -3489,6 +3488,11 @@ DateFormat1.selectable = true;
 DateFormat1.visible = false;
 DateFormat1.hasControls = DateFormat1.hasBorders = false;
 DateFormat1.lockMovementX = DateFormat1.lockMovementY = true;
+  
+  
+
+  
+  
 ArrayOfObjects.push(DateFormat1);
 
 //++++++++
@@ -4040,7 +4044,7 @@ fabric.util.loadImage('images/chalkboard_hello.jpeg', function (img) {
   });
 });
 ArrayOfObjects.push(MessageHelloOutside);  */
-//------------- I did Messages above here here go above it for langauge setting -------------------
+//------------- I did Messages above here here go above it for langauge setting ----------------
 //--------------------------------------------------------------------------------------
 // add all of the elements to the canvas
 
@@ -4099,6 +4103,12 @@ function HideDateTimeSettings(){
     TimeFormat1.visible = false;
     TimeFormat2.visible = false;
     SaveDateTimeFormatButton.visible = false;
+    DateFormat1.backgroundColor = 'silver';
+    DateFormat2.backgroundColor = 'silver';
+    DateFormat3.backgroundColor = 'silver';
+    DateFormat4.backgroundColor = 'silver';
+    TimeFormat1.backgroundColor = 'silver';
+    TimeFormat2.backgroundColor = 'silver';
 }
   
 
@@ -4231,10 +4241,12 @@ canvas.add(SlovakLang);
 canvas.add(DateTimePanel);
 canvas.add(DateFormatText);
 canvas.add(TimeFormatText);
+  
 canvas.add(DateFormat1);
 canvas.add(DateFormat2);
 canvas.add(DateFormat3);
 canvas.add(DateFormat4);
+  
 canvas.add(TimeFormat1);
 canvas.add(TimeFormat2);
 canvas.add(SaveDateTimeFormatButton);
@@ -4248,6 +4260,7 @@ canvas.add(ReturnMessage);
 canvas.add(VideoPanel);
 canvas.add(video1);
 //************************************** Functions *******************************************
+
 
 //var arlarmfired = getObjectWithId('Alarmfired');
 //arlarmfired.visible = false;
@@ -4274,9 +4287,8 @@ canvas.on({ 'object:selected': function(e) {
 
     else if(activeObject.id == 'LockKnobOut') {
       if(UserFingerIsRecognizable == true)
-      UnlockDoorOut();
+        UnlockDoorOut();
     }
-
     else if(activeObject.id == 'UnlockKnobOut')
       LockDoorOut();
     else if(activeObject.id == 'LockDeadbolt')
@@ -4390,9 +4402,9 @@ canvas.on({ 'object:selected': function(e) {
       for(var i=0; i < 11; i ++ ){
         if (activeObject.id == i){
 
-          {UsersNames[i].backgroundColor = '#5DADE2';
+          UsersNames[i].backgroundColor = '#5DADE2';
             ShowUserData(i);
-          break;}
+          break;
         }
       }
     }
@@ -4492,10 +4504,12 @@ canvas.on({ 'object:selected': function(e) {
         ShowDateTimeSettings();
         mBackButton.addToBackStack(showSettings, HideDateTimeSettings);
     }
+  
     if( (langselected = isLangSelected(activeObject)) != null ){
         console.log("langselected: " + langselected);
         SaveLanguageSettings(langselected);
     }
+  
     else if(activeObject.id == 'settings_intercom') {
       ShowVideoTour();
     }
@@ -4507,9 +4521,65 @@ canvas.on({ 'object:selected': function(e) {
     else if(activeObject.id == 'pause') {
       pause();
     }
+  
+  
+    if(activeObject == DateFormat1) {
+        activeObject.backgroundColor = '#5DADE2'; //'silver';
+        DateFormat2.backgroundColor = 'silver';
+        DateFormat3.backgroundColor = 'silver';
+        DateFormat4.backgroundColor = 'silver';
+        dateselected = DATE_MONTHDDYYYY;
+    }
+    else if(activeObject == DateFormat2) {
+        activeObject.backgroundColor = '#5DADE2'; //'silver';
+        DateFormat1.backgroundColor = 'silver';
+        DateFormat3.backgroundColor = 'silver';
+        DateFormat4.backgroundColor = 'silver';
+        dateselected = DATE_MMDDYYYY;
+    }
+    else if(activeObject == DateFormat3) {
+        activeObject.backgroundColor = '#5DADE2'; //'silver';
+        DateFormat2.backgroundColor = 'silver';
+        DateFormat1.backgroundColor = 'silver';
+        DateFormat4.backgroundColor = 'silver';
+        dateselected = DATE_DDMONTHYYYY;
+    }
+    else if(activeObject == DateFormat4) {
+        activeObject.backgroundColor = '#5DADE2'; //'silver';
+        DateFormat2.backgroundColor = 'silver';
+        DateFormat3.backgroundColor = 'silver';
+        DateFormat1.backgroundColor = 'silver';
+        dateselected = DATE_DDMMYYYY;
+    }
+    else if(activeObject == TimeFormat1) {
+        activeObject.backgroundColor = '#5DADE2';
+        TimeFormat2.backgroundColor = 'silver';
+        timeselected = TIME_12HOUR;
+    }
+    else if(activeObject == TimeFormat2) {
+        activeObject.backgroundColor = '#5DADE2';
+        TimeFormat1.backgroundColor = 'silver';
+        timeselected = TIME_24HOUR;
+    }
+    else if(activeObject == SaveDateTimeFormatButton ) {
+        if(dateselected != null) {
+          CURRENT_USER.date_format = dateselected;
+          Date_format = dateselected
+        }
+      
+        if(timeselected != null) {
+          CURRENT_USER.time_format = timeselected;
+          Time_format = timeselected;
+        }
+        ShowDateTime();
+        
 
     
 
+      
+        dateselected = null;
+        timeselected = null;
+    }
     canvas.deactivateAll();
   }
 });
