@@ -540,12 +540,16 @@ var LOADFROMOUTSIDE = 0;
 var LOADFROMINSIDE = 1;
 var CHANGESIDEOFFSET = 1500;
 function LoadUserData_Outside(index ) {
+  MsgOutsideTextPrivate.visible = false;
+  OKOut.visible = false;
+
   
   stepone[0].disabled = false;
   stepone[1].disabled = false;
   stepone[2].disabled = false;
   stepone[3].disabled = false;
   stepone[4].disabled = false;
+  
   RegisteredUsers.hideAllUsersObjects();
   CURRENT_USER = RegisteredUsers.at(index);
   CURRENT_USER.showObjects();
@@ -566,6 +570,9 @@ function LoadUserData_Outside(index ) {
 }
 
 function NoOneOutside() {
+  MsgOutsideTextPrivate.visible = false;
+  OKOut.visible = false;
+  RegisteredUsers.hideAllUsersObjects();
   for(var i=0; i <stepone.length; i++ ){
     stepone[i].disabled = true;
     stepone[i].checked = false;
@@ -588,6 +595,9 @@ function NoOneOutside() {
 }
 
 function UnKnownPersonFromOutside() {
+  MsgOutsideTextPrivate.visible = false;
+  OKOut.visible = false;
+  RegisteredUsers.hideAllUsersObjects();
   TriggerDoorFromOutside();
 //  console.log("UnknownPersonFromOutside not yet implemented. On Todo List in gabe.js");
   for(var i=0; i<stepone.length; i++) {
