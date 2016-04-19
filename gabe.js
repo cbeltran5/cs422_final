@@ -108,7 +108,7 @@ function getFormattedDateString(day, month, year) {
   }
 }
 function ShowDateTime() {
-  
+
   var date = new Date();
   var month = getFormattedMonth(date.getMonth());
   var timestr = getFormattedTimeString(date.getHours(), date.getMinutes());
