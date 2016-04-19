@@ -231,7 +231,9 @@ var MessagesIsActive = false;
 //************************************ Users Profiles ***************************************
 
 var User0 = new User('Gabe', 'Mendoza', ENGLISH, 1234);
+  User0.myMessages.push(" Gabe! Take dog out!");
 var User1 = new User('Enrique', 'Vaca', SPANISH, 1235);
+  User1.myMessages.push("HELLO WORLD!");
 var User2 = new User('Abeer','A.', ENGLISH, 1236);
 var User3 = new User('Carlos', 'Beltran', SPANISH, 1237);
 
@@ -3772,7 +3774,7 @@ OK.hasControls =  false;
 OK.lockMovementX = OK.lockMovementY = true;
 ArrayOfObjects.push(OK);
 
-var OKOut= new fabric.Text('    OK    ', {
+var OKOut = new fabric.Text('    OK    ', {
   backgroundColor: 'lightgrey',
   fontFamily: 'Times',
   fontSize: 23,
@@ -3954,30 +3956,21 @@ OKOut.on('mousedown', function ()
 
 });
 
-Post.on('mousedown', function ()
-{
-  if(MsgMode == 'Public')
-  {
-    
+Post.on('mousedown', function (){
+  if(MsgMode == 'Public'){ 
      MsgOutsideText.setText("\n        " + MsgBox.getText() +"        \n");
      MsgOutsideText.visible = true;
      OKOut.visible = true;
   }
 
-  if(MsgMode == 'Private')
-  {
-      if(MsgTo != null)
-      {
-        MsgOutsideText.visible = true;
-        MsgOutsideText.setText("\n        " + MsgBox.getText() +"        \n");
-        RegisteredUsers.at(MsgTo).myMessages.push(MsgOutsideText);
-        console.log("Mqs to this: "+ RegisteredUsers.at(MsgTo).myMessages.length);
-
-        MsgTo = null;
+  if(MsgMode == 'Private'){
+    if(MsgTo != null){
+      RegisteredUsers.at(MsgTo).myMessages.push(MsgBox.getText()) ;
+      console.log("Mqs to this: "+ RegisteredUsers.at(MsgTo).myMessages.length);
+      MsgTo = null;
     }
   }
-
- } );
+ });
 
 function ShowUsers(){
   mBackButton.addToBackStack(showSettings,HideUserData);
@@ -4268,7 +4261,6 @@ canvas.on({ 'object:selected': function(e) {
     var activeObject = e.target;
     console.log(activeObject.id);
   
-  
     if(activeObject.id == 'home'){
       HomeSelected();
       HideLangFeedBack();
@@ -4521,7 +4513,6 @@ canvas.on({ 'object:selected': function(e) {
       pause();
     }
   
-  
     if(activeObject == DateFormat1) {
         activeObject.backgroundColor = '#5DADE2'; //'silver';
         DateFormat2.backgroundColor = 'silver';
@@ -4571,11 +4562,6 @@ canvas.on({ 'object:selected': function(e) {
           Time_format = timeselected;
         }
         ShowDateTime();
-        
-
-    
-
-      
         dateselected = null;
         timeselected = null;
     }

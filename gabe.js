@@ -541,6 +541,11 @@ var LOADFROMINSIDE = 1;
 var CHANGESIDEOFFSET = 1500;
 function LoadUserData_Outside(index ) {
   
+  stepone[0].disabled = false;
+  stepone[1].disabled = false;
+  stepone[2].disabled = false;
+  stepone[3].disabled = false;
+  stepone[4].disabled = false;
   RegisteredUsers.hideAllUsersObjects();
   CURRENT_USER = RegisteredUsers.at(index);
   CURRENT_USER.showObjects();
@@ -831,7 +836,6 @@ function ChangeUnits() {
     Weathertext.text = "49 F";
     unit = FAHREN;
   }
-
 }
 
 
@@ -839,24 +843,31 @@ function WriteMessagesOutside() {
   console.log("gabe.js/WriteMessageoutside is not yet implemented");
 }
 
+var originaltop;
 
 function ShowPrivateMEssages(){
   if(CURRENT_USER.myMessages != null){
-    if(CURRENT_USER.myMessages.length != 0) 
-    {  
+    if(CURRENT_USER.myMessages.length != 0) {  
       if( CURRENT_USER.myObjects.length == 0) {
-        console.log(CURRENT_USER.myMessages[0]);
+        //console.log(CURRENT_USER.myMessages[0]);
+        //console.log(MsgOutsideTextPrivate.top);
+        MsgOutsideTextPrivate.setTop(777 + 150);
         MsgOutsideTextPrivate.setText( CURRENT_USER.myMessages[0]);
         MsgOutsideTextPrivate.visible = true;
         OKOut.visible = true;
-        OKOut.setTop(MsgOutsideTextPrivate.top + MsgOutsideTextPrivate.height + 20);
-        OKOut.setCoords();
+
       }
       else {
-        
+        console.log(CURRENT_USER.myMessages[0]);
+        MsgOutsideTextPrivate.setText( CURRENT_USER.myMessages[0]);
+        MsgOutsideTextPrivate.visible = true;
+        MsgOutsideTextPrivate.setTop(1077);
+        OKOut.visible = true;
+        OKOut.setTop( 1200);
       }
-      
     }
+    MsgOutsideTextPrivate.setCoords();
+    OKOut.setCoords();
   }
 }
 
