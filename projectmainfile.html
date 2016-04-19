@@ -4056,6 +4056,7 @@ fabric.Image.fromURL('images/alarmfired.gif', function(oImg) {
 
 function ShowDateTimeSettings()
 {
+
     DateTimePanel.visible = true;
     DateFormatText.visible = true;
     TimeFormatText.visible = true;
@@ -4067,6 +4068,20 @@ function ShowDateTimeSettings()
     TimeFormat2.visible = true;
     SaveDateTimeFormatButton.visible = true;
 }
+function HideDateTimeSettings(){
+    DateTimePanel.visible = false;
+    DateFormatText.visible = false;
+    TimeFormatText.visible = false;;
+    DateFormat1.visible = false;
+    DateFormat2.visible = false;
+    DateFormat3.visible = false;
+    DateFormat4.visible = false;
+    TimeFormat1.visible = false;
+    TimeFormat2.visible = false;
+    SaveDateTimeFormatButton.visible = false;
+}
+  
+
 
 canvas.add(insideDoor);
 canvas.add(outsideDoor);
@@ -4225,7 +4240,7 @@ canvas.on({ 'object:selected': function(e) {
       HomeSelected();
       HideLangFeedBack();
       HideVolumeSettings()
-
+      HideDateTimeSettings();
       canvas.deactivateAll();
       if(CURRENT_USER != null)
         CURRENT_USER.hideObjects();
@@ -4454,6 +4469,7 @@ canvas.on({ 'object:selected': function(e) {
     {
         hideSettings();
         ShowDateTimeSettings();
+        mBackButton.addToBackStack(showSettings, HideDateTimeSettings);
     }
     if( (langselected = isLangSelected(activeObject)) != null ){
         console.log("langselected: " + langselected);

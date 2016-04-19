@@ -305,6 +305,8 @@ function User(firstname, lastname, language, pin) {
 
   this.doorbell_pref = "ding";
 
+  this.LOADFROM = -1;
+  
   this.getFullName = function () {
     return this.firstname + " " + this.lastname;
   }
@@ -460,6 +462,7 @@ function LoadUserData_Inside(index) {
   CloseMessageSettings();
   HideVolumeSettings();
   HideLangaugeSetting();
+  
   if( backbutton != null ) {
     backbutton.visible = false;
   }
@@ -477,6 +480,20 @@ function LoadUserData_Inside(index) {
 
   RegisteredUsers.at(index).showObjects();
 
+  if(CURRENT_USER.LOADFROM == LOADFROMOUTSIDE) {
+    CURRENT_USER.LOADFROM = LOADFROMINSIDE;
+    var objects = CURRENT_USER.myObjects;
+    if(objects.length > 0) {
+      for(var i=0; i< objects.length; i++) {
+        var left = objects[i].left;
+        objects[i].setLeft(left - CHANGESIDEOFFSET);
+      }
+    }
+  }
+  else {
+    CURRENT_USER.LOADFROM = LOADFROMINSIDE;
+  }
+  
   syslang = RegisteredUsers.at(index).language;
   In_theme = RegisteredUsers.at(index).in_theme;
   In_ornament = RegisteredUsers.at(index).in_ornament;
@@ -513,8 +530,27 @@ var stepone = document.getElementsByName("verifyfirst");
 var steptwo = document.getElementsByName("verifysecond");
 var verify = document.getElementsByName("verify");
 
+var LOADFROMOUTSIDE = 0;
+var LOADFROMINSIDE = 1;
+var CHANGESIDEOFFSET = 1500;
 function LoadUserData_Outside(index ) {
+  
+  RegisteredUsers.hideAllUsersObjects();
   CURRENT_USER = RegisteredUsers.at(index);
+  CURRENT_USER.showObjects();
+  
+  if(CURRENT_USER.LOADFROM != LOADFROMOUTSIDE) {
+    CURRENT_USER.LOADFROM = LOADFROMOUTSIDE;
+    var objects = CURRENT_USER.myObjects;
+    
+    if(objects.length > 0) {
+      for(var i=0; i< objects.length; i++) {
+        var left = objects[i].left;
+        objects[i].setLeft(left + CHANGESIDEOFFSET);
+      }
+    }
+  }
+
   TriggerDoorFromOutside();
 }
 
