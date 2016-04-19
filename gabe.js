@@ -550,7 +550,7 @@ function LoadUserData_Outside(index ) {
       }
     }
   }
-
+  ShowPrivateMEssages();
   TriggerDoorFromOutside();
 }
 
@@ -820,7 +820,18 @@ function WriteMessagesOutside() {
 
 
 
-
+function ShowPrivateMEssages()
+{
+  if(CURRENT_USER.myMessages != null)
+  {
+    if(CURRENT_USER.myMessages.length != 0) 
+    {  
+      MsgOutsideTextPrivate.setText("\n   "+ CURRENT_USER.myMessages[1] + '' +"     \n");
+      MsgOutsideTextPrivate.visible = true;
+      OKOut.visible = true;
+    }
+  }
+}
 
 
 
