@@ -31,14 +31,26 @@ function checkSettings() {
     hideThemeSettings();
 }
 
+var firsttone = "ding";
+var secondtone = "ding-dong";
+var defaultsound = secondtone;
 function playDoorbellSound() {
-  if (CURRENT_USER.doorbell_pref == "mute")
-    return;
+  if(CURRENT_USER != null) {
+    if (CURRENT_USER.doorbell_pref == "mute")
+      return;
 
-  filename = 'sounds/' + CURRENT_USER.doorbell_pref + ".mp3"
-  var audio = new Audio(filename);
-  audio.currentTime=0;
-  audio.play();
+    filename = 'sounds/' + CURRENT_USER.doorbell_pref + ".mp3"
+    var audio = new Audio(filename);
+    audio.currentTime =0;
+    audio.play();
+  }
+  else {
+    filename = 'sounds/' + defaultsound + ".mp3"
+    var audio = new Audio(filename);
+    audio.currentTime =0;
+    audio.play();
+  }
+  
 }
 
 function showSettings() {
@@ -46,12 +58,10 @@ function showSettings() {
 
   SettingsIsActive = true;
   HideHome();
-
-
+  
   PanelRect.visible = true;
 
-  for (var i = 0; i < canvas.getObjects().length; ++i)
-  {
+  for (var i = 0; i < canvas.getObjects().length; ++i) {
     if (canvas.item(i).id == 'settings_users' || canvas.item(i).id ==       'settings_language'   ||
         canvas.item(i).id == 'settings_traffic'  || canvas.item(i).id == 'settings_datetime'      ||
         canvas.item(i).id == 'settings_doorbell'     || canvas.item(i).id == 'settings_units'   ||

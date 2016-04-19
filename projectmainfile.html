@@ -105,7 +105,7 @@
       <code>
       <form name="UsersOutside"> Users:<br>
         <div id="UsersFromOutside">
-          <label for="NoSignal"><input type="radio" class="radio1" name="UsersOut" onchange="NoOneOutside()" value="NoSignal" checked> No Sne<br></label>
+          <label for="NoSignal"><input type="radio" class="radio1" name="UsersOut" onchange="NoOneOutside()" value="NoSignal" checked> No One<br></label>
           <label for="Unknown Person"><input type="radio" class="radio1" name="UsersOut" onchange="UnKnownPersonFromOutside()" value="NewUser"> Unknown Person<br></label>
           <label for="Multiple People"><input type="radio" class="radio1" name="UsersOut" onchange="MultiUsersOutside()" value="NewUser"> Multiple People<br></label>
         </div>
@@ -340,7 +340,6 @@ var Weathertext = new fabric.Text('49 F', {
 Weathertext.setColor('black');
 Weathertext.selectable = false;
 
-var Weathertext = FabricText('49',475,80,30);
 
 //*******************************************************************************************
 
@@ -900,7 +899,7 @@ fabric.util.loadImage('images/black.gif', function (img) {
     repeat: 'repeat'
   });
 });
-ArrayOfObjects.push(Lights);
+//ArrayOfObjects.push(Lights);
 //********************************************************************************************
 
 
@@ -2181,7 +2180,7 @@ ArrayOfObjects.push(LiveOnOff);
 //------------------------------------------------------------------
 var icon_doorbell;
 fabric.Image.fromURL('images/doorbell.gif', function(oImg) {
-  oImg.set({left: 1485, top: 680, id: this.id});
+  oImg.set({left: 1485, top: 660, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
@@ -2192,7 +2191,7 @@ fabric.Image.fromURL('images/doorbell.gif', function(oImg) {
 
 var icon_write_messages;
 fabric.Image.fromURL('images/writemsg.gif', function(oImg) {
-  oImg.set({left: 1470, top: 790, id: this.id});
+  oImg.set({left: 1470, top: 770, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
@@ -2203,7 +2202,7 @@ fabric.Image.fromURL('images/writemsg.gif', function(oImg) {
 
 var icon_number_pad;
 fabric.Image.fromURL('images/numberpad.gif', function(oImg) {
-  oImg.set({left: 1480, top: 860, id: this.id});
+  oImg.set({left: 1480, top: 840, id: this.id});
   oImg.visible = false;
   oImg.hasControls = oImg.hasBorders = false;
   oImg.lockMovementY = oImg.lockMovementX = true;
@@ -2822,16 +2821,29 @@ var VolumeSettingsText = FabricText(VOLUME[syslang],235,350,24);
 var volumePercentage = FabricText("0%",260, 450, 20);
 ArrayOfObjects.push( VolumeSettingsText );
 ArrayOfObjects.push( volumePercentage  );
+  
 var vpercent;
 var left;
-canvas.on("object:moving", function() {
-  var leftBound = volumebar.left;
-  var widthdiff = volumebar.width*2.22 - volumeslider.width*2.22
-  var rightBound = leftBound + widthdiff;
-  volumeslider.setLeft( Math.min( Math.max(volumeslider.left, leftBound) , rightBound));
-  left = volumeslider.left;
-  vpercent = ((volumeslider.left - leftBound) * 100 / widthdiff).toFixed(0);
-  volumePercentage.text =  "" + vpercent + "%";
+canvas.on("object:moving", function(e) {
+  var activeObject = e.target;
+  if (activeObject.id == "slider") {
+    update_brightness(activeObject.left/(slider_back.left + (slider_back.width*2)));
+    if (activeObject.left <= slider_back.left) {
+      activeObject.left = slider_back.left
+    }
+    else if ( activeObject.left >= ( slider_back.left + (slider_back.width*2))) {
+      activeObject.left = slider_back.left + (slider_back.width*2);
+    }
+  } 
+  else {
+    var leftBound = volumebar.left;
+    var widthdiff = volumebar.width*2.22 - volumeslider.width*2.22
+    var rightBound = leftBound + widthdiff;
+    volumeslider.setLeft( Math.min( Math.max(volumeslider.left, leftBound) , rightBound));
+    left = volumeslider.left;
+    vpercent = ((volumeslider.left - leftBound) * 100 / widthdiff).toFixed(0);
+    volumePercentage.text =  "" + vpercent + "%";
+  } 
 //  console.log(vpercent);
 //  console.log(left);
 });
@@ -2849,7 +2861,6 @@ canvas.on("mouse:up", function (object) {
 //********************************************************************************************
 // Back Button
 
-var backbutton
 var backbutton = null;
 fabric.Image.fromURL('images/backbutton.png', function(oImg) {
   oImg.set({left: 550, top: 1155, id: this.id});
@@ -2866,7 +2877,7 @@ fabric.Image.fromURL('images/backbutton.png', function(oImg) {
 
 function BackButton() {
   this.hidefunctions = [];
-  this.howigothere = []
+  this.howigothere = [];
 
   this.addToBackStack = function( returnTo, hidefunction){
     this.hidefunctions.push(hidefunction);
@@ -4170,22 +4181,14 @@ canvas.add(ReturnMessage);
 canvas.add(VideoPanel);
 canvas.add(video1);
 //************************************** Functions *******************************************
-canvas.on({
-  'object:moving': function(e) {
-      var activeObject = e.target;
-      if (activeObject.id == "slider") {
-        update_brightness(activeObject.left/(slider_back.left + (slider_back.width*2)));
-        if (activeObject.left <= slider_back.left)
-          activeObject.left = slider_back.left
-        else if (activeObject.left >= (slider_back.left + (slider_back.width*2)))
-          activeObject.left = slider_back.left + (slider_back.width*2);
-      }
-    },
 
-  'object:selected': function(e) {
+
+  
+canvas.on({ 'object:selected': function(e) {
     var activeObject = e.target;
-    console.log(activeObject);
-    //console.log(e.target);
+    console.log(activeObject.id);
+  
+  
     if(activeObject.id == 'home'){
       HomeSelected();
       HideLangFeedBack();
@@ -4230,15 +4233,16 @@ canvas.on({
       HideUsersList();
       User2FromInside();
     }
-    else if (activeObject.id == "doorbell")
+    else if (activeObject.id == "doorbell") {
       playDoorbellSound();
+    }
     else if (activeObject.id == "settings") {
       showSettings();
       mBackButton.addToBackStack( HomeSelected,hideSettings);
       //canvas.deactivateAll();
     }
     else if(activeObject.id == 'settings_units') {
-
+      ChangeUnits();
     }
     else if (activeObject.id == "settings_traffic") {
       showTrafficSettings();
@@ -4290,7 +4294,6 @@ canvas.on({
       hideDoorbellSettings(true);
       showSettings();
     }
-
     else if(activeObject.id == 'messages'){
       ShowMessageSettings();
       //MessageBoxSelected();
@@ -4304,6 +4307,12 @@ canvas.on({
       AcceptSelected();
       canvas.deactivateAll();
     }
+    else if( activeObject.id == 'knob' ) {
+      FingerPrintScanner();
+    }
+    else if( activeObject.id == 'writemsg') {
+      WriteMessagesOutside();
+    }
     else if( -1 < activeObject.id && activeObject.id < 11) {
       for(var i=0; i < 11; i ++ ){
         if (activeObject.id == i){
@@ -4316,29 +4325,27 @@ canvas.on({
     }
 
     else if( 14 < activeObject.id && activeObject.id < 30) {
-
-
-
       for(var i=0; i < UsersNamesMsg.length; i ++ ){
         if (activeObject.id == i+15){
-
+          UsersNamesMsg[i].backgroundColor = '#5DADE2';
+          MsgTo = i;
+          console.log("MsgTo : " + MsgTo);
+          break;
+        }
+      }
+      for(var i=0; i < UsersNamesMsg.length; i ++ ){
+        if(i != MsgTo) {
             UsersNamesMsg[i].backgroundColor = '#5DADE2';
             MsgTo = i;
             console.log("MsgTo : " + MsgTo);
             break;
-          }
         }
-
-          for(var i=0; i < UsersNamesMsg.length; i ++ ){
-
-            if(i!=MsgTo)
-            UsersNamesMsg[i].backgroundColor = 'white';
-
-            }
-
-        }
-     // }
-    //}
+      }
+      for(var i=0; i < UsersNamesMsg.length; i ++ ){
+        if(i!=MsgTo)
+          UsersNamesMsg[i].backgroundColor = 'white';
+      }
+    }
 
     else if(activeObject.id == 'mirror'){
         MirrorSelected();
@@ -4402,12 +4409,11 @@ canvas.on({
       ShowLanguageSetting();
       LanguageSettingIsActive = true;
     }
-
     else if(activeObject.id == 'settings_datetime')
     {
+        hideSettings();
         ShowDateTimeSettings();
     }
-
     if( (langselected = isLangSelected(activeObject)) != null ){
         console.log("langselected: " + langselected);
         SaveLanguageSettings(langselected);
@@ -4482,6 +4488,7 @@ zoomAll(canvas.height / localHeight);
 if(backbutton == null) {
   backbutton = getObjectWithId('backbutton');
 }
+
 //})();
 
 </script>

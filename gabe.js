@@ -303,7 +303,7 @@ function User(firstname, lastname, language, pin) {
   this.vpercent = "50";
   this.sliderleft = 591;
 
-  this.doorbell_pref = "Ding";
+  this.doorbell_pref = "ding";
 
   this.getFullName = function () {
     return this.firstname + " " + this.lastname;
@@ -338,7 +338,6 @@ function User(firstname, lastname, language, pin) {
     this.myMessages.push(msg);
   }
 
-
   RegisteredUsers.addUser(this);
 
   this.RemoveFromRegisteredUsers = function() {
@@ -363,7 +362,6 @@ function RemoveFromRadioChoices(id) {
   inside.removeChild(inside.children[remove]);
   outside.removeChild(outside.children[remove]);
 }
-
 
 function AddUserToRadioChoices( name , value) {
   var UsersFromInside = document.getElementById(RADIO_ID_UFI);
@@ -404,14 +402,11 @@ function HeightsRadioButtons_ENABLE() {
   heightsenabled = true;
   document.getElementsByName('Heights')[0].disabled = false;  //
   document.getElementsByName('Heights')[1].disabled = false;  // interpreted from abeers code
-  document.getElementsByName('Heights')[2].disabled = false;  //
-
+  document.getElementsByName('Heights')[2].disabled = false;  //s
 }
 
 var CURRENT_USER = null;
-
 var homebutton = null;
-
 
 function ShowHomeButtonAndLine() {
   // show home button
@@ -429,7 +424,6 @@ function HideHomeButtonAndLine() {
   }
   homebutton.visible = false;
   Line.visible = false;
-
 }
 
 function ResetHeightRadioToDefault() {
@@ -443,7 +437,7 @@ function LoadUserData_Inside(index) {
   if(!heightsenabled)
     HeightsRadioButtons_ENABLE();   // enable radio buttons
 
-  HideHome();
+//  HideHome();
   ShowHomeButtonAndLine();
 
   console.log("LoadUserData_Inside(" + index + ")");
@@ -463,18 +457,17 @@ function LoadUserData_Inside(index) {
   HideNews();
   hideSettings();
   Hide911();
-//<<<<<<< HEAD
   CloseMessageSettings();
-//=======
   HideVolumeSettings();
   HideLangaugeSetting();
-  backbutton.visible = false;
-
-
-//>>>>>>> 8abc788b98fda319a20da301b55b73527e72e2be
+  if( backbutton != null ) {
+    backbutton.visible = false;
+  }
+  
   LanguageSettingIsActive = false;
   MessagesIsActive = false;
-
+  LanguageSettingIsActive = false;
+  MessagesIsActive = false;
 
   volumeslider.left = CURRENT_USER.sliderleft;
   volumeslider.setLeft(CURRENT_USER.sliderleft);
@@ -521,11 +514,7 @@ var steptwo = document.getElementsByName("verifysecond");
 var verify = document.getElementsByName("verify");
 
 function LoadUserData_Outside(index ) {
-  console.log("LoadUserData_Outside() is not yet implemented. On Todo List in gabe.js");
-  for(var i=0; i <stepone.length; i++ ){
-    stepone[i].disabled = false;
-    stepone[i].checked = false;
-  }
+  CURRENT_USER = RegisteredUsers.at(index);
   TriggerDoorFromOutside();
 }
 
@@ -553,7 +542,7 @@ function NoOneOutside() {
 
 function UnKnownPersonFromOutside() {
   TriggerDoorFromOutside();
-  console.log("UnknownPersonFromOutside not yet implemented. On Todo List in gabe.js");
+//  console.log("UnknownPersonFromOutside not yet implemented. On Todo List in gabe.js");
   for(var i=0; i<stepone.length; i++) {
       stepone[i].disabled = false;
       stepone[i].checked = false;
@@ -596,7 +585,6 @@ function ShowVolumeSettings() {
 var steponeselected = false;
 var steptwoselected = false;
 var pin = null;
-
 function VerifyFirst(value) {
   console.log("first " + value);
   if(value == "None") {
@@ -636,7 +624,6 @@ function VerifyFirst(value) {
 }
 
 function VerifySecond(value) {
-  steptwoselected = true;
   console.log("second " + value);
   if(value == "None") {
     verify[0].disabled = true;
@@ -646,25 +633,29 @@ function VerifySecond(value) {
     steptwoselected = false;
   }
   else {
-    if(value == "NumberPad" ) {
+    steptwoselected = true;
+    // anything other than "None"
+    if(value == "NumberPad" ) { // if numberpad is selected
       var ret;
       if( pin == null ) {
         console.log("Pin is null");
         ret = NumberPadEvent();
         console.log(ret);
-        if(ret != -1) {    // correct pin
+        if(ret != -1) {    // correct pin!
+          verify[0].disabled = false;
+          verify[1].disabled = false;
           verify[0].checked = true;
+          steptwoselected = true;
           Verify("sucess");
-          UnlockDeadbolt();
-          UnlockDoorOut();
-          UnlockDoorIn();
         }
         else {
+          verify[0].disabled = false;
+          verify[1].disabled = false;
           verify[1].checked = true;
+          steptwoselected = true;
           Verify("fail");
         }
-        verify[0].disabled = false;
-        verify[1].disabled = false;
+        // step2selected
       }
       else{
         console.log("Pin is not null");
@@ -672,20 +663,31 @@ function VerifySecond(value) {
         Verify("fail");
       }
     }
-    // not number pad
-    else {
+    else { // not number pad
       verify[0].disabled = false;
       verify[1].disabled = false;
     }
-  }
+  } 
   pin = null;
 }
 
 function Verify(value) {
   console.log("Verify: " + value);
   if(value == "success") {
-
+    UnlockDeadbolt();
+    UnlockDoorOut();
+    UnlockDoorIn();
+    knob.visible = false;
   }
+  else {
+    LockDeadbolt();
+    LockDoorOut();
+    LockDoorIn();
+  }
+}
+
+function FingerPrintScanner() {
+  console.log("Fingerprint scanner");
 }
 
 function NumberPadEvent() {
@@ -759,12 +761,24 @@ function SaveLanguageSettings(lang) {
 }
 //textDecoration: 'underline'
 
-
-
-
-
+var FAHREN = 0;
+var CELCIUS = 1;
+var unit = FAHREN;
 function ChangeUnits() {
+  if( unit == FAHREN) {
+    Weathertext.text = "9.4 C";
+    unit = CELCIUS;
+  }
+  else {
+    Weathertext.text = "49 F";
+    unit = FAHREN;
+  }
 
+}
+
+
+function WriteMessagesOutside() {
+  console.log("gabe.js/WriteMessageoutside is not yet implemented");
 }
 
 
